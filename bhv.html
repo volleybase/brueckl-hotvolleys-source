@@ -1,0 +1,196 @@
+<html>
+ <head>
+ <title>br&uuml;ckl hotvolleys</title>
+ <link rel="shortcut icon" type="image/x-icon" href="/brueckl-hotvolleys/favicon.ico">
+ <style>
+*, html, body {
+  margin: 0px;
+  padding: 0px;
+  border: 0px none;  
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 48pt;
+  font-weight: bold;
+  color: #111;
+  text-decoration: none;
+  text-align: center;
+}
+
+img.bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -400px;
+  margin-left: -640px;
+  width: 1280px;
+  height: 800px;
+  opacity: 0.1;
+}
+.x {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -320px;
+  width: 640px;
+  height: 400px;
+  background: url(/brueckl-hotvolleys/x/logo.jpeg);
+}
+img#img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 640px;
+  height: 400px;
+  opacity: 0;
+}
+#mask {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 640px;
+  height: 400px;
+}
+
+div.x1, div.x2, a.a1, a.a2, a.a1w, a.a1m, a.a2w, a.a2m {
+  position: absolute;
+  padding: 100px 0px 75px;
+  border-radius: 140px;
+  color: aliceblue;
+  opacity: 0.5;
+}
+.x1 {
+  top: 600px;
+  left: 50%;
+  margin-left: -750px;
+  width: 700px;
+  height: 150px;
+  background: blue; /* url(/brueckl-hotvolleys/image/bgk.png) no-repeat center;*/
+}
+.x2 {
+  top: 600px;
+  left: 50%;
+  margin-left: 50px;
+  width: 700px;
+  height: 150px;
+  background: blue; /* url(/brueckl-hotvolleys/image/bgj.png) no-repeat center;*/
+}
+a.a1, a.a2, a.a1w, a.a1m, a.a2w, a.a2m {
+ left: 50%;
+ width: 700px;
+ padding: 0px;
+ font-size: 90pt;
+ font-weight: 800;
+ color: #111;
+ opacity: 0.7;
+}
+a.a1 {
+  top: 705px;
+  margin-left: -750px;
+  font-size: 70pt;
+}	 
+a.a1w {
+  top: 625px;
+  margin-left: -750px;
+}	 
+a.a1m {
+  top: 755px;
+  margin-left: -750px;
+}	 
+	 
+a.a2 {
+  top: 705px;
+  margin-left: 50px;
+  font-size: 70pt;
+}	 
+a.a2w {
+  top: 625px;
+  margin-left: 50px;
+}	 
+a.a2m {
+  top: 755px;
+  margin-left: 50px;
+}	 
+	 
+a.link {
+  position: absolute;
+  top: 1000px;
+  left: 50%;
+  height: 10px;
+  width: 240px;
+  margin-left: -120px;
+  padding-bottom: 50px;
+  font-size: 8pt;
+  text-align: center;
+}
+
+div#spacer {
+  position: absolute;
+  top: 950px;
+  height: 10px;
+  overflow: hidden;
+}
+ </style>
+ <script>
+var imgs = new Array();
+var index = -1, indexImg = 0;
+var nams = new Array("aufspiel.jpeg", "u12 meister.png", "u11gruppe.jpeg", "u11-7.gif", "angriff.jpeg", "u12 meister.png", "u11w.jpeg", "u11-7.gif", "block.jpeg");
+function init() {
+
+  // load the images
+  for (var i = 0, i2 = nams.length; i < i2; ++i) {
+    imgs[i] = new Image();
+    imgs[i].src = "/brueckl-hotvolleys/x/" + nams[i];
+  }
+  
+  Animation();
+}
+
+function Animation() {
+
+  var steps = 100, 
+      steps2 = 20, start2,
+      duration = 30;
+
+  // prepare indices
+  start2 = steps2 + 1;
+  if (++index >= steps) {
+    index = 0;
+	if (++indexImg >= imgs.length) {
+	  indexImg = 0;
+	}
+  } 
+  
+  var img = document.getElementById("img");
+
+  if (index == 0) {
+    img.src = imgs[indexImg].src;
+  } else if (index >= 1 && index <= steps2) {
+     img.style.opacity = "" + (index / steps2);
+  } else if (index >= steps - start2 && index <= steps - 2) {
+    img.style.opacity = "" + ((steps - 2 - index) / steps2);
+  }
+  
+  window.setTimeout("Animation()", duration);
+}
+ </script>
+ </head>
+ <body onload="init();">
+  <img class="bg" src="/brueckl-hotvolleys/x/logo2.png" />
+  <div class="x">
+   <img id="img" src="" />
+   <img id="mask" src="/brueckl-hotvolleys/x/maske.png" />
+  </div>
+
+  <div class="x1">&nbsp;</div>
+  <!--a class="a1w" href="/brueckl-hotvolleys/u10.html">M&auml;dchen</a>
+  <a class="a1m" href="/brueckl-hotvolleys/u13.html">Burschen</a-->
+  <a class="a1" href="/brueckl-hotvolleys/u10.html">Bis 10 - VS</a>
+  <div class="x2">&nbsp;</div>
+  <a class="a2" href="/brueckl-hotvolleys/x10.html">Ab 11 - &Auml;ltere</a>
+  <!--a class="a2w" href="/brueckl-hotvolleys/u13.html">M&auml;dchen</a>
+  <a class="a2m" href="/brueckl-hotvolleys/u13.html">Burschen</a-->
+	 
+  <a class="link" href="http://www.facebook.com/bruecklhotvolleys">www.facebook.com/bruecklhotvolleys</a>
+  
+  <div id="spacer">&nbsp;</div>
+ </body>
+</html>

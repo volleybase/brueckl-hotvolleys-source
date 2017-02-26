@@ -1,0 +1,27 @@
+{
+  "name": "bhv",
+  "version": "1.0.0",
+  "description": "Brückl hotvolleys",
+  "author": "i",
+  "license": "TODO",
+  "readmeFilename": "TODO",
+  "dependencies": {},
+  "devDependencies": {
+    "connect": "^3.5.0",
+    "express": "~4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-batch": "^0.2.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-newer": "^1.2.0",
+    "serve-static": "^1.11.1"
+  },
+  "keywords": [
+    "bhv",
+    "brückl-hotvolleys",
+    "brueckl-hotvolleys",
+    "volleyball",
+    "info",
+    "information"
+  ]
+}
