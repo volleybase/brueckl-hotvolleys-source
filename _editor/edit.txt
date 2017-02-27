@@ -1,0 +1,4 @@
+call "_editor\edit (atom).cmd"       "-new_console:t:Start Atom"
+call _editor\compiler.cmd            "-new_console:t:Compiler"
+node _server\bhv-server.js           "-new_console:t:Dev Web Server (Express-5005)"
+cmd /K echo User input...            "-new_console:t:User"
