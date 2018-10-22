@@ -5,7 +5,7 @@ set str=%str:".\=%
 set str=%str:"=%
 set str=%str:\=/%
 
-echo /brueckl-hotvolleys/infos/%str%>> d:\github\brueckl-hotvolleys-source\cache.manifest
+echo /brueckl-hotvolleys/%str%>> D:\workdir\brueckl-hotvolleys-source\cache.manifest
 
 rem index.html -> double entry without index.html
 set r=%str:~-10%
@@ -14,7 +14,7 @@ if "%r%" == "index.html" (
   set str2=%str:index.html=%
 )
 if "%str%" neq "%str2%" (
-  echo /brueckl-hotvolleys/infos/%str2%>> d:\github\brueckl-hotvolleys-source\cache.manifest
+  echo /brueckl-hotvolleys/%str2%>> D:\workdir\brueckl-hotvolleys-source\cache.manifest
 )
 
 endlocal

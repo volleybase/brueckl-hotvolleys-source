@@ -6,7 +6,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="/brueckl-hotvolleys/favicon.ico">
   <link rel="stylesheet" href="/brueckl-hotvolleys/styles.css">
   <style>
-a {
+div {
   position: absolute;
   left: 0;
   top: 0;
@@ -20,8 +20,19 @@ a {
 }
   </style>
   <script src="/brueckl-hotvolleys/script/caching.js"></script>
+  <script>
+function setImage() {
+  var s = location.search;
+  if (s && s.length > 1) {
+    var elem = document.getElementById('img');
+    if (elem) {
+      elem.style.backgroundImage = 'url("/brueckl-hotvolleys/' + s.substr(1) +'")';
+    }
+  }
+}
+  </script>
 </head>
-<body>
-  <a href="ov.html">&nbsp;</a>
+<body onload="setImage();">
+  <div id="img">&nbsp;</div>
 </body>
 </html>

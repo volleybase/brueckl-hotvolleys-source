@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html manifest="/brueckl-hotvolleys/cache.manifest">
+<head>
+  <meta charset="UTF-8">
+  <title>Brückl hotvolleys</title>
+  <link rel="stylesheet" href="/brueckl-hotvolleys/styles.css">
+  <script src="/brueckl-hotvolleys/script/caching.js"></script>
+  <script>
+function init() {
+  var toHide = ['u10', 'u11', 'u12', 'u13', 'u15', 'br4', 'br3', 'br2', 'nw', 'ak', 'info'];
+  for (var i = 0; i < toHide.length; ++i) {
+    var div = document.getElementById(toHide[i]);
+    if (div) {
+      div.style.display = 'none';
+    }
+  }
+
+  // header 1
+  var h1s = document.getElementsByTagName("H1");
+  for (var i = 0; i < h1s.length; ++i) {
+    var h1 = h1s[i];
+    if (h1.className === 'expandable') {
+      h1.insertAdjacentHTML('beforeend', '<div class="expander">&nbsp;</div>');
+    }
+  }
+  // header 2
+  var h2s = document.getElementsByTagName("H2");
+  for (var i = 0; i < h2s.length; ++i) {
+    h2s[i].insertAdjacentHTML('beforeend', '<div class="expander">&nbsp;</div>');
+  }
+}
+
+function toggle(id, header) {
+  var div = document.getElementById(id);
+  if (div) {
+    var show = div.style.display == 'none';
+    if (header) {
+      header.className = show ? 'expandable up' : 'expandable'
+    }
+    div.style.display = show ? 'block' : 'none';
+  }
+}
+  </script>
+
+  <script id="tpl_expander" type="text/template">
+<div class="expander">&nbsp;</div>
+  </script>
+
+  <style>
+div.expander {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+
+  width: 0;
+  height: 0;
+
+  overflow: hidden;
+  background-color: transparent;
+  opacity: 0.2;
+}
+
+.expandable {
+  cursor: pointer;
+}
+
+h1.expandable div.expander {
+  margin-top: -15px;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 30px solid blue;
+}
+h1.expandable.up div.expander {
+  border-top: 0 none;
+  border-bottom: 30px solid blue;
+}
+
+h2.expandable div.expander {
+  margin-top: -9px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 18px solid blue;
+}
+h2.expandable.up div.expander {
+  border-top: 0 none;
+  border-bottom: 18px solid blue;
+}
+
+a h1::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -25px;
+
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 30px solid blue;
+  border-bottom: 25px solid transparent;
+
+  overflow: hidden;
+  background-color: transparent;
+  opacity: 0.2;
+}
+a h3::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -9px;
+
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 18px solid blue;
+  border-bottom: 15px solid transparent;
+
+  overflow: hidden;
+  background-color: transparent;
+  opacity: 0.2;
+}
+
+  </style>
+</head>
+<body onload="init();">
+
+  <a href="gesucht"><h1>Gesucht!<br>Bitte an Freunde und Bekannte weiterleiten.</h1></a>
+
+  <br>
+  <h1 class="expandable" onclick="toggle('nw', this); return false;" style="">Nachwuchs<br><br>(U10 U11 U12 U13 U15)</h1>
+  <div id="nw">
+
+    <h2 class="expandable" onclick="toggle('u10', this); return false;">U10</h1>
+    <div id="u10">
+      <a href="u11"><h3>Grundlagen</h3></a>
+      <a href="u10/termine.html"><h3>Spieltermine</h3></a>
+      <!--a href="tabelle.html?key=u10"><h3>Tabelle</h3></a-->
+    </div>
+
+    <h2 class="expandable" onclick="toggle('u11', this); return false;">U11</h1>
+    <div id="u11">
+      <a href="u11"><h3>Grundlagen</h3></a>
+      <a href="u11/termine.html"><h3>Spieltermine</h3></a>
+      <!--a href="tabelle.html?key=u11"><h3>Tabelle</h3></a-->
+    </div>
+
+    <h2 class="expandable" onclick="toggle('u12', this); return false;">U12</h1>
+    <div id="u12">
+      <a href="u12"><h3>Grundlagen</h3></a>
+      <a href="u12/termine.html"><h3>Spieltermine</h3></a>
+      <!--a href="tabelle.html?key=u12"><h3>Tabelle</h3></a-->
+    </div>
+
+    <h2 class="expandable" onclick="toggle('u13', this); return false;">U13</h1>
+    <div id="u13">
+      <!--a href="u13"><h3>Grundlagen</h3></a-->
+      <a href="u13/termine.html"><h3>Spieltermine</h3></a>
+      <!--a href="tabelle.html?key=u13"><h3>Tabelle</h3></a-->
+    </div>
+
+    <h2 class="expandable" onclick="toggle('u15', this); return false;">U15</h1>
+    <div id="u15">
+      <!--a href="u15"><h3>Grundlagen</h3></a-->
+      <!--a href="u15/aufspiel"><h3>Aufspiel - Codes und Varianten</h3></a-->
+      <a href="u15/termine15.html"><h3>Spieltermine</h3></a>
+      <!--a href="tabelle.html?key=u15w"><h3>Tabelle U15w</h3></a-->
+    </div>
+
+  </div>
+
+  <br>
+  <h1 class="expandable" onclick="toggle('ak', this); return false;"><br>Allgemeine Klasse<br>&nbsp;</h1>
+  <div id="ak">
+
+    <h2 class="expandable" onclick="toggle('br4', this); return false;">Brückl 4 - Unterliga</h2>
+    <div id="br4">
+      <a href="uld/grundlagen"><h3>Grundlagen</h3></a>
+      <a href="uld/termine/GD4.html"><h3>Spieltermine</h3></a>
+      <a href="tabelle.html?key=br4"><h3>Tabelle</h3></a>
+    </div>
+
+    <h2 class="expandable" onclick="toggle('br3', this); return false;">Brückl 3 - Unterliga</h2>
+    <div id="br3">
+      <a href="uld/termine/GD3.html"><h3>Spieltermine</h3></a>
+      <a href="tabelle.html?key=br3"><h3>Tabelle</h3></a>
+    </div>
+
+    <h2 class="expandable" onclick="toggle('br2', this); return false;">Brückl 2 - Landesliga</h2>
+    <div id="br2">
+      <a href="lld/termine/PO.html"><h3>Spieltermine</h3></a>
+      <a href="tabelle.html?key=br2"><h3>Tabelle</h3></a>
+    </div>
+  </div>
+
+  <br>
+  <h1 class="expandable" onclick="toggle('info', this); return false;"><br>Infos<br>&nbsp;</h1>
+  <div id="info">
+    <a href="info/info.html"><h3>Infos</h3></a>
+    <a href="info/alletermine.html"><h3>Alle NW-Termine (Text)</h3></a>
+    <a href="info/wunschzettel.html"><h3>Ein Wunschzettel</h3></a>
+  </div>
+
+</body>
+</html>

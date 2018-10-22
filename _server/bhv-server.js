@@ -2,7 +2,8 @@
 //var serveStatic = require('../mro1/node_modules/serve-static');
 
 //var express = require('express')
-var express = require('d:/github/brueckl-hotvolleys-source/node_modules/express')
+// var express = require('d:/github/brueckl-hotvolleys-source/node_modules/express')
+var express = require('d:/workdir/brueckl-hotvolleys-source/node_modules/express')
 //var fs = require('fs')
 
 var app = express()
@@ -14,7 +15,7 @@ app.use(function(req, res, next) {
 });
 
 // server
-app.use(express.static('D:/github/'))
+app.use(express.static('D:/workdir/'))
 
 // error info
 app.use(function (req, res, next) {
@@ -23,8 +24,8 @@ app.use(function (req, res, next) {
 })
 
 // start
-app.listen(5005, function () {
-  console.log('BHV-Info (5005)!')
+app.listen(5001, function () {
+  console.log('BHV-Info (5001)!')
 })
 
 
@@ -37,7 +38,7 @@ volleybase.use(function(req, res, next) {
 });
 
 // server
-volleybase.use(express.static('D:/github/volleybase.github.io'))
+volleybase.use(express.static('D:/workdir/volleybase.github.io'))
 
 // error info
 volleybase.use(function (req, res, next) {
