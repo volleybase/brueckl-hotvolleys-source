@@ -1,14 +1,34 @@
 var map = {
-  'u10': [18858, kidsResult, 'Tabelle U10'],
-  'u11': [18865, kidsResult, 'Tabelle U11'],
-  'u12': [18863, kidsResult, 'Tabelle U12'],
-  'u13': [18861, kidsResult, 'Tabelle U13'],
-  'u15': [18859, kidsResult, 'Tabelle U15'],
+  'u10': [18858, kidsSchedule, 'Termine U10'],
+  'u11': [18865, kidsSchedule, 'Termine U11'],
+  'u12': [18863, kidsSchedule, 'Termine U12'],
+  'u13': [18861, kidsSchedule, 'Termine U13'],
+  'u15': [18859, kidsSchedule, 'Termine U15'],
 
-  'br4': [22934, leagueResult, 'Tabelle Unterliga'],
-  'br3': [22934, leagueResult, 'Tabelle Unterliga'],
-  'br2': [22933, leagueResult, 'Tabelle Landesliga']
+  'br4': [22934, leagueSchedule, 'Termine Unterliga'],
+  'br3': [22934, leagueSchedule, 'Termine Unterliga'],
+  'br2': [22933, leagueSchedule, 'Termine Landesliga']
 };
+
+// function _getTitle(date) {
+//
+//   // get key of current team
+//   var key = _getKey();
+//
+//   // check if any entry for this team
+//   if (map && map[key] && map[key][2]) {
+//
+//     // create the title and return it
+//     return '<b>'
+//       + map[key][2]
+//       // add optional date info (for offline data, only)
+//       + bhv.request.utils.dateInfo(date)
+//       + '</b>\n';
+//   }
+//
+//   // else: empty string
+//   return '';
+// }
 
 function _fill(txt, len) {
   if (txt === undefined || txt === null || typeof txt !== 'string') {
@@ -46,7 +66,6 @@ function _find(list, name) {
  */
 function kidsResult(response) {
 
-
   // create xml data
   var xml = bhv.request.utils.getXml(response);
   if (xml) {
@@ -67,7 +86,7 @@ function kidsResult(response) {
       // save data for offline mode
       _save(bhv.request.utils.getTitle(new Date(), map) + msg);
       // add created text to page
-      inject(bhv.request.utils.getTitle(null, map) + msg);
+      _inject(bhv.request.utils.getTitle(null, map) + msg);
     }
   }
 }
@@ -106,7 +125,7 @@ function leagueResult(response) {
       // save data for offline mode
       _save(bhv.request.utils.getTitle(new Date(), map) + msg);
       // add created text to page
-      inject(bhv.request.utils.getTitle(null, map) + msg);
+      _inject(bhv.request.utils.getTitle(null, map) + msg);
     }
   }
 }
@@ -116,14 +135,14 @@ function leagueResult(response) {
  * @param {string} txt The text to add.
  * @return {void}
  */
-function inject(txt) {
+function _inject(txt) {
   var div = document.getElementById('content');
   div.innerHTML = txt;
 }
 
 function _save(txt) {
   // store data for offline reading
-  bhv.db.set('result:' + bhv.request.utils.getKey(), txt);
+  bhv.db.set('result:' + _getKey(), txt);
 }
 
 /**
@@ -131,19 +150,35 @@ function _save(txt) {
  * @return {void}
  */
 function getResults() {
-  var key = bhv.request.utils.getKey();
+  var key = _getKey();
 
   if (map && map[key]) {
     bhv.request.queryResults(map[key][0], map[key][1], getResultsOffline);
   } else {
-    inject('Ungültige Tabelle!');
+    _inject('Ungültige Tabelle!');
   }
 }
 
-/**
- * Returns the stored results if offline.
- * @return {string} The stored results.
- */
+function _getKey() {
+  var key = '?';
+
+  var parts = location.search.substring(1).split('&');
+  if (parts.length == 1) {
+    parts = parts[0].split('=');
+    if (parts.length == 2) {
+      key = parts[1];
+    }
+  }
+
+  return key;
+}
+
 function getResultsOffline() {
-  bhv.request.utils.show('result', inject);
+  var key = _getKey();
+  if (key !== '?') {
+    var txt = bhv.db.get('result:' + key);
+    if (txt) {
+      _inject(txt);
+    }
+  }
 }
