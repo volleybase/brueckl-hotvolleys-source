@@ -100,7 +100,9 @@ window.bhv.request = {
     }
 
     // start request
-    var url = 'http://kvv.volleynet.at/volleynet/service/xml2.php?action=tabelle&bew_id=' + id;
+    var url = location.protocol
+      + '//kvv.volleynet.at/volleynet/service/xml2.php?action=tabelle&bew_id='
+      + id;
     if (!this._startRequest(url, onsuccess, onerror, true)) {
       onerror();
       return false;
@@ -118,7 +120,8 @@ window.bhv.request = {
     }
 
     // the url to get the schedule
-    var url = 'http://kvv.volleynet.at/volleynet/service/xml2.php'
+    var url = location.protocol
+      + '//kvv.volleynet.at/volleynet/service/xml2.php'
       + '?action=termin&where='
       + encodeURIComponent('bew_id=' + idBew
         + 'and (vrn_id_a=21 or vrn_id_b=21) and (spi_tea_id_a=' + idTea
@@ -147,6 +150,7 @@ window.bhv.request = {
 
     // the url to get the schedule
     // http://localhost:5001/testdata/Turniere/20752/
+    // location.protocol
     var url = 'http://localhost:5001/testdata/Turniere/' + idBew;
 
     // request data
