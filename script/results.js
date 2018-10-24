@@ -30,7 +30,8 @@ function kidsResult(response) {
       var msg = bhv.request.utils.fillColumn('', 47) + 'P  T' + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
-            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 40)
+            + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
+                bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 40))
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'punkte'), -4)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gespielt'), -3) + NL;
       }
@@ -64,7 +65,8 @@ function leagueResult(response) {
           + bhv.request.utils.fillColumn('', 50) + 'Sp.  +  -   +  -    +   -  P' + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
-            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 45)
+            + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
+              bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 45))
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gespielt'), -3)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gewonnen'), -4)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'verloren'), -3)

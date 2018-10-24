@@ -198,6 +198,19 @@ window.bhv.request.utils = {
   },
 
   /**
+   * Checks if a given text contains 'brückl hotvolleys' and make it bold if found.
+   * @param {string} txt The text
+   * @return {string} The text.
+   */
+  checkBold: function(txt) {
+    if (txt.toLowerCase().indexOf('brückl hotvolleys') > -1) {
+      return '<b class="team">' + txt + '</b>';
+    }
+
+    return txt;
+  },
+
+  /**
    * Text column padding.
    * @param {string} txt The text to display in a text column.
    * @param {number} The size of the column, + for left aligned text, - for

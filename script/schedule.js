@@ -72,8 +72,10 @@ function leagueSchedule(response) {
         msg += bhv.request.utils.fillColumn(days[bhv.request.xml.findNode(list[i].childNodes, 'tag')], L1)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'datum'), L2)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'zeit'), L3)
-            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'), L45) + ' '
-            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'), L45) + ' '
+            + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
+              bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'), L45)) + ' '
+            + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
+              bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'), L45)) + ' '
             + bhv.request.xml.findNode(list[i].childNodes, 'spo_name') + NL;
       }
 
