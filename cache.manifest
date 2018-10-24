@@ -1,10 +1,12 @@
 CACHE MANIFEST
-# 22.10.2018 18:56:32
+# 24.10.2018 11:54:14
 
 CACHE:
 /brueckl-hotvolleys/imageview.html
 /brueckl-hotvolleys/index.html
 /brueckl-hotvolleys/ov.html
+/brueckl-hotvolleys/schedule.html
+/brueckl-hotvolleys/scheduleoffline.html
 /brueckl-hotvolleys/tabelle.html
 /brueckl-hotvolleys/tabelleoffline.html
 /brueckl-hotvolleys/styles.css
@@ -17,12 +19,12 @@ CACHE:
 /brueckl-hotvolleys/info/alletermine.html
 /brueckl-hotvolleys/info/info.html
 /brueckl-hotvolleys/info/wunschzettel.html
-/brueckl-hotvolleys/lld/termine/GD.html
 /brueckl-hotvolleys/script/caching.js
 /brueckl-hotvolleys/script/db.js
 /brueckl-hotvolleys/script/polyfills.js
 /brueckl-hotvolleys/script/request.js
 /brueckl-hotvolleys/script/results.js
+/brueckl-hotvolleys/script/schedule.js
 /brueckl-hotvolleys/u10/termine.html
 /brueckl-hotvolleys/u11/image/ich-zu-mir.png
 /brueckl-hotvolleys/u11/image/mickymaus.png
@@ -115,12 +117,11 @@ CACHE:
 /brueckl-hotvolleys/uld/grundlagen/index.html
 /brueckl-hotvolleys/uld/grundlagen/positionen.png
 /brueckl-hotvolleys/uld/grundlagen/spielfeld.png
-/brueckl-hotvolleys/uld/termine/GD3.html
-/brueckl-hotvolleys/uld/termine/GD4.html
 
 NETWORK:
 *
 
 FALLBACK:
-/brueckl-hotvolleys/infos/tabelle.html /brueckl-hotvolleys/infos/tabelleoffline.html
-/brueckl-hotvolleys/infos/imageview.html /brueckl-hotvolleys/infos/imageview.html
+/brueckl-hotvolleys/schedule.html /brueckl-hotvolleys/scheduleoffline.html
+/brueckl-hotvolleys/tabelle.html /brueckl-hotvolleys/tabelleoffline.html
+/brueckl-hotvolleys/imageview.html /brueckl-hotvolleys/imageview.html
