@@ -1,9 +1,9 @@
 CACHE MANIFEST
-# 25.10.2018 01:00:30
+# 25.10.2018 01:36:53
 
 CACHE:
 /brueckl-hotvolleys/imageview.html
-/brueckl-hotvolleys/index.html
+/brueckl-hotvolleys/
 /brueckl-hotvolleys/ov.html
 /brueckl-hotvolleys/schedule.html
 /brueckl-hotvolleys/scheduleoffline.html
@@ -13,7 +13,7 @@ CACHE:
 /brueckl-hotvolleys/favicon.ico
 /brueckl-hotvolleys/README.md
 /brueckl-hotvolleys/gesucht/gesucht.jpeg
-/brueckl-hotvolleys/gesucht/index.html
+/brueckl-hotvolleys/gesucht/
 /brueckl-hotvolleys/image/ball32.png
 /brueckl-hotvolleys/image/logo.png
 /brueckl-hotvolleys/info/alletermine.html
@@ -29,7 +29,7 @@ CACHE:
 /brueckl-hotvolleys/u11/image/ich-zu-mir.png
 /brueckl-hotvolleys/u11/image/mickymaus.png
 /brueckl-hotvolleys/u11/image/tomjerry.png
-/brueckl-hotvolleys/u11/index.html
+/brueckl-hotvolleys/u11/
 /brueckl-hotvolleys/u11/termine.html
 /brueckl-hotvolleys/u12/angriff2.png
 /brueckl-hotvolleys/u12/angriff4.png
@@ -39,7 +39,7 @@ CACHE:
 /brueckl-hotvolleys/u12/block2.png
 /brueckl-hotvolleys/u12/block3.png
 /brueckl-hotvolleys/u12/block4.png
-/brueckl-hotvolleys/u12/index.html
+/brueckl-hotvolleys/u12/
 /brueckl-hotvolleys/u12/ohne2.png
 /brueckl-hotvolleys/u12/ohne3.png
 /brueckl-hotvolleys/u12/ohne4.png
@@ -55,14 +55,14 @@ CACHE:
 /brueckl-hotvolleys/u13/block3l.png
 /brueckl-hotvolleys/u13/block3r.png
 /brueckl-hotvolleys/u13/block4.png
-/brueckl-hotvolleys/u13/index.html
+/brueckl-hotvolleys/u13/
 /brueckl-hotvolleys/u13/ohne.png
 /brueckl-hotvolleys/u13/ohne2.png
 /brueckl-hotvolleys/u13/ohne3.png
 /brueckl-hotvolleys/u13/ohne4.png
 /brueckl-hotvolleys/u13/termine.html
 /brueckl-hotvolleys/u15/termine15.html
-/brueckl-hotvolleys/uld/grundlagen/index.html
+/brueckl-hotvolleys/uld/grundlagen/
 /brueckl-hotvolleys/uld/grundlagen/positionen.png
 /brueckl-hotvolleys/uld/grundlagen/spielfeld.png
 /brueckl-hotvolleys/uld/grundlagen3/annahme/zudritt.png
@@ -86,7 +86,7 @@ CACHE:
 /brueckl-hotvolleys/uld/grundlagen3/aufspiel/images/set_7.png
 /brueckl-hotvolleys/uld/grundlagen3/aufspiel/images/set_8_hi.png
 /brueckl-hotvolleys/uld/grundlagen3/aufspiel/images/set_8.png
-/brueckl-hotvolleys/uld/grundlagen3/aufspiel/index.html
+/brueckl-hotvolleys/uld/grundlagen3/aufspiel/
 /brueckl-hotvolleys/uld/grundlagen3/aufspiel/plan.png
 /brueckl-hotvolleys/uld/grundlagen3/basis/basis.png
 /brueckl-hotvolleys/uld/grundlagen3/block/block2.png
@@ -104,7 +104,7 @@ CACHE:
 /brueckl-hotvolleys/uld/grundlagen3/blockinfo/grundstellung2.gif
 /brueckl-hotvolleys/uld/grundlagen3/blockinfo/passiv.gif
 /brueckl-hotvolleys/uld/grundlagen3/blockinfo/zur_mitte.gif
-/brueckl-hotvolleys/uld/grundlagen3/index.html
+/brueckl-hotvolleys/uld/grundlagen3/
 
 NETWORK:
 *

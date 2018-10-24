@@ -55,6 +55,9 @@ module.exports = function init(grunt) {
 
         const stat = fs.statSync(file2);
         if (stat.isFile()) {
+          if (file2.endsWith('index.html')) {
+            file2 = file2.substr(0, file2.length - 10)
+          }
           manifest += '/brueckl-hotvolleys/' + file2 + '\n'
         }
       });
