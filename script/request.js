@@ -8,6 +8,9 @@ if (window.bhv === undefined) {
   window.bhv = {};
 }
 
+/**
+ * The ajax request handler.
+ */
 window.bhv.request = {
 
   /**
@@ -25,8 +28,17 @@ window.bhv.request = {
       request = new XMLHttpRequest();
     }
 
+    if (!request && window.ActiveXObject) {
+      try {
+        request = new ActiveXObject('MSXML2.XMLHTTP');
+      } catch (ex) {
+      }
+    }
+
     // check if ok
-    if (!request || ! ("withCredentials" in request)) {
+    // if (!request || request.onerror === undefined) {
+    // just try it...
+    if (!request) {
       log('XMLHttpRequest is not available!');
       return null;
     }
@@ -94,13 +106,14 @@ window.bhv.request = {
       return false;
     }
 
-    // http://kvv.volleynet.at/volleynet/service/xml2.php?action=termin&where=bew_id%20=%2022934%20and%20(vrn_id_a%20=%2021%20or%20vrn_id_b%20=%2021)%20and%20(spi_tea_id_a%20=%2028955%20or%20spi_tea_id_b%20=%2028955)%20and%20spi_datum%3E=current_timestamp&orderBy=spi_datum
     // the url to get the schedule
-    var url = 'http://kvv.volleynet.at/volleynet/service/xml2.php?action=termin&where='
+    var url = 'http://kvv.volleynet.at/volleynet/service/xml2.php'
+      + '?action=termin&where='
       + encodeURIComponent('bew_id=' + idBew
         + 'and (vrn_id_a=21 or vrn_id_b=21) and (spi_tea_id_a=' + idTea
         + ' or spi_tea_id_b=' + idTea
-        + ") and spi_datum >= timestamp '" + bhv.request.utils.yyyymmdd(new Date()) + " 00:00'")
+        + ") and spi_datum >= timestamp '"
+        + bhv.request.utils.yyyymmdd(new Date()) + " 00:00'")
       + '&orderBy=spi_datum';
 
     // request data
@@ -138,7 +151,7 @@ window.bhv.request.utils = {
         + map[key][2]
         // add optional date info (for offline data, only)
         + this._dateInfo(date)
-        + '</b>\n';
+        + '</b>' + NL;
     }
 
     // else: empty string
@@ -146,42 +159,16 @@ window.bhv.request.utils = {
   },
 
   /**
-   * Creates a xml document from the response text.
-   * @param {string} reponse The response from the web service.
-   * @return {DOMDocument} The xml document.
-   */
-  getXml: function(response) {
-
-    try {
-
-      // check for parser
-      if (window.DOMParser) {
-
-        // create the parser, if ok, parse xml document from text and return it
-        var parser = new DOMParser();
-        if (parser) {
-          return parser.parseFromString(response, "text/xml");
-        }
-      }
-    } catch (err) {}
-
-    // simple error handling
-    log('Cannot parse results!');
-    return null;
-  },
-
-  /**
    * Shows offline data.
    * @param {string} type The type of the data (results, schedule).
-   * @param {function(txt)} callback The callback to inject the result into
    * the page.
    */
-  show: function(type, callback) {
+  showOffline: function(type) {
     var key = this.getKey();
     if (key !== '?') {
-      var txt = bhv.db.get(type + ':' + key);
+      var txt = bhv.db.read(type + ':' + key);
       if (txt) {
-        callback(txt);
+        inject(txt);
       }
     }
   },
@@ -263,36 +250,13 @@ window.bhv.request.utils = {
   },
 
   /**
-   * Finds a node in a list of nodes by its name.
-   * @param {Array} list The node list.
-   * @param {string} name The name of name.
-   * @return {string} The text content of the node or an empty string.
-   */
-  findNode: function(list, name) {
-
-    // if any list: handle each item
-    if (list && list.length) {
-      for (var i = 0; i < list.length; ++i) {
-
-        // if node found: return its content
-        if (list[i].nodeName === name) {
-          return list[i].textContent;
-        }
-      }
-    }
-
-    // nothing found: return empty string
-    return '';
-  },
-
-  /**
    * Add the results to the page.
    * @param {string} txt The text to add.
    * @return {void}
    */
   inject: function(txt) {
-    var div = document.getElementById('content');
-    div.innerHTML = txt;
+    var elem = document.getElementById('content');
+    elem.innerHTML = txt;
   },
 
   /**
@@ -325,7 +289,7 @@ window.bhv.request.utils = {
    * @param {Date} date The date info.
    * @return {string} The formated date or an empty string.
    */
-  yyyymmdd(date) {
+  yyyymmdd: function(date) {
     var pad2 = function(nr) {
       if (nr < 10) {
         return '0' + nr;
@@ -339,6 +303,75 @@ window.bhv.request.utils = {
         + pad2(date.getDate());
     }
 
+    return '';
+  }
+}
+
+/**
+ * Xml utilities.
+ */
+window.bhv.request.xml = {
+
+  /**
+   * Creates a xml document from the response text.
+   * @param {string} reponse The response from the web service.
+   * @return {DOMDocument} The xml document.
+   */
+  fromText: function(response) {
+
+    try {
+
+      // check for parser
+      if (window.DOMParser) {
+
+        // create the parser, if ok, parse xml document from text and return it
+        var parser = new DOMParser();
+        if (parser) {
+          return parser.parseFromString(response, "text/xml");
+        }
+      } else if (ActiveXObject) {
+        var parserIE = new ActiveXObject('Microsoft.XMLDom');
+        if (parserIE && parserIE.loadXML(response)) {
+          return parserIE.documentElement;
+        }
+      }
+    } catch (err) {}
+
+    // simple error handling
+    log('Cannot parse results!');
+    return null;
+  },
+
+  /**
+   * Returns all nodes of a given name from the xml document.
+   * @param {(Xml)Document} xml The xml document.
+   * @param {string} name The name of the nodes to read.
+   * @return {NodeList} The nodes.
+   */
+  getNodes: function(xml, name) {
+    return xml.getElementsByTagName(name);
+  },
+
+  /**
+   * Finds a node in a list of nodes by its name.
+   * @param {Array} list The node list.
+   * @param {string} name The name of name.
+   * @return {string} The text content of the node or an empty string.
+   */
+  findNode: function(list, name) {
+
+    // if any list: handle each item
+    if (list && list.length) {
+      for (var i = 0; i < list.length; ++i) {
+
+        // if node found: return its content
+        if (list[i].nodeName === name) {
+          return list[i].textContent || list[i].text;
+        }
+      }
+    }
+
+    // nothing found: return empty string
     return '';
   }
 }

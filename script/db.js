@@ -2,24 +2,22 @@ if (window.bhv === undefined) {
   window.bhv = {};
 }
 
-if (!window.bhv.db) {
-  window.bhv.db = {
-    set: function(key, value) {
-      if (localStorage) {
-        localStorage.setItem(key, value);
-      }
-    },
+window.bhv.db = {
+  write: function(key, value) {
+    if (localStorage) {
+      localStorage.setItem(key, value);
+    }
+  },
 
-    get: function(key) {
-      if (localStorage) {
-        return localStorage.getItem(key);
-      }
-    },
+  read: function(key) {
+    if (localStorage) {
+      return localStorage.getItem(key);
+    }
+  },
 
-    delete: function(key) {
-      if (localStorage) {
-        localStorage.removeItem(key);
-      }
+  xdelete: function(key) {
+    if (localStorage) {
+      localStorage.removeItem(key);
     }
   }
 }

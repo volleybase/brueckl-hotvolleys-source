@@ -19,20 +19,20 @@ function kidsResult(response) {
 
 
   // create xml data
-  var xml = bhv.request.utils.getXml(response);
+  var xml = bhv.request.xml.fromText(response);
   if (xml) {
 
     // get list of results
-    var list = xml.getElementsByTagName('tabelle');
+    var list = bhv.request.xml.getNodes(xml, 'tabelle');
     if (list && list.length) {
 
       // create text
-      var msg = bhv.request.utils.fillColumn('', 47) + 'P  T\n';
+      var msg = bhv.request.utils.fillColumn('', 47) + 'P  T' + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'tea_name'), 40)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'punkte'), -4)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'gespielt'), -3) + "\n";
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 40)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'punkte'), -4)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gespielt'), -3) + NL;
       }
 
       // save data for offline mode
@@ -51,27 +51,28 @@ function kidsResult(response) {
 function leagueResult(response) {
 
   // create xml data
-  var xml = bhv.request.utils.getXml(response);
+  var xml = bhv.request.xml.fromText(response);
   if (xml) {
 
     // get list of results
-    var list = xml.getElementsByTagName('tabelle');
+    // var list = xml.getElementsByTagName('tabelle');
+    var list = bhv.request.xml.getNodes(xml, 'tabelle');
     if (list && list.length) {
 
       // create text
-      var msg = bhv.request.utils.fillColumn('', 56) + 'S/N  Sätze   Punkte\n'
-          + bhv.request.utils.fillColumn('', 50) + 'Sp.  +  -   +  -    +   -  P\n';
+      var msg = bhv.request.utils.fillColumn('', 56) + 'S/N  Sätze   Punkte' + NL
+          + bhv.request.utils.fillColumn('', 50) + 'Sp.  +  -   +  -    +   -  P' + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'tea_name'), 45)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'gespielt'), -3)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'gewonnen'), -4)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'verloren'), -3)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'satzgewonnen'), -4)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'satzverloren'), -3)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'punktgewonnen'), -5)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'punktverloren'), -4)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'punkte'), -3) + "\n";
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'tea_name'), 45)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gespielt'), -3)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gewonnen'), -4)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'verloren'), -3)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'satzgewonnen'), -4)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'satzverloren'), -3)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'punktgewonnen'), -5)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'punktverloren'), -4)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'punkte'), -3) + NL;
       }
 
       // save data for offline mode
@@ -84,7 +85,7 @@ function leagueResult(response) {
 
 function _save(txt) {
   // store data for offline reading
-  bhv.db.set('result:' + bhv.request.utils.getKey(), txt);
+  bhv.db.write('result:' + bhv.request.utils.getKey(), txt);
 }
 
 /**
@@ -106,5 +107,5 @@ function getResults() {
  * @return {void}
  */
 function getResultsOffline() {
-  bhv.request.utils.show('result', bhv.request.utils.inject);
+  bhv.request.utils.showOffline('result');
 }

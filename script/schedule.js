@@ -13,27 +13,27 @@ var map = {
 var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 
 // /**
-//  * Creates the results for a junior chamionship.
+//  * Creates the schedule for a junior chamionship.
 //  * @param {string} reponse The response from the web service.
 //  * @return {void}
 //  */
-// function kidsResult(response) {
+// function kidsSchedule(response) {
 //
 //   // create xml data
-//   var xml = bhv.request.utils.getXml(response);
+//   var xml = bhv.request.xml.fromText(response);
 //   if (xml) {
 //
 //     // get list of results
-//     var list = xml.getElementsByTagName('tabelle');
+//     var list = bhv.request.xml.getNodes(xml, 'termin');
 //     if (list && list.length) {
 //
 //       // create text
-//       var msg = _fill('', 47) + 'P  T\n';
+//       var msg = _fill('', 47) + 'P  T' + NL;
 //       for (var i = 0; i < list.length; ++i) {
 //         msg += _fill('' + (i + 1), -2) + '. '
 //             + _fill(_find(list[i].childNodes, 'tea_name'), 40)
 //             + _fill(_find(list[i].childNodes, 'punkte'), -4)
-//             + _fill(_find(list[i].childNodes, 'gespielt'), -3) + "\n";
+//             + _fill(_find(list[i].childNodes, 'gespielt'), -3) + NL;
 //       }
 //
 //       // save data for offline mode
@@ -52,11 +52,11 @@ var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 function leagueSchedule(response) {
 
   // create xml data
-  var xml = bhv.request.utils.getXml(response);
+  var xml = bhv.request.xml.fromText(response);
   if (xml) {
 
     // get list of results
-    var list = xml.getElementsByTagName('termin');
+    var list = bhv.request.xml.getNodes(xml, 'termin');
     if (list && list.length) {
 
       var L1 = 4,
@@ -66,16 +66,15 @@ function leagueSchedule(response) {
           fmt = bhv.request.utils.fillColumn;
 
       // create text
-      var msg = '\n' + fmt('Tag', L1) + fmt('Datum', L2) + fmt('Zeit', L3)
-          + fmt('Heim', L45 + 1) + fmt('Gast', L45 + 1) + 'Halle\n';
-      // Di  23.10.2018  18:15  ATSC Klagenfurt 4        Brückl hotvolleys 4       HS Hasnerschule (1. Stock) {KLAGENFURT}\n';
+      var msg = NL + fmt('Tag', L1) + fmt('Datum', L2) + fmt('Zeit', L3)
+          + fmt('Heim', L45 + 1) + fmt('Gast', L45 + 1) + 'Halle' + NL;
       for (var i = 0; i < list.length; ++i) {
-        msg += bhv.request.utils.fillColumn(days[bhv.request.utils.findNode(list[i].childNodes, 'tag')], L1)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'datum'), L2)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'zeit'), L3)
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'heimteamname'), L45) + ' '
-            + bhv.request.utils.fillColumn(bhv.request.utils.findNode(list[i].childNodes, 'gastteamname'), L45) + ' '
-            + bhv.request.utils.findNode(list[i].childNodes, 'spo_name') + "\n";
+        msg += bhv.request.utils.fillColumn(days[bhv.request.xml.findNode(list[i].childNodes, 'tag')], L1)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'datum'), L2)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'zeit'), L3)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'), L45) + ' '
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'), L45) + ' '
+            + bhv.request.xml.findNode(list[i].childNodes, 'spo_name') + NL;
       }
 
       // save data for offline mode
@@ -93,7 +92,7 @@ function leagueSchedule(response) {
  */
 function _save(txt) {
   // store data for offline reading
-  bhv.db.set('schedule:' + bhv.request.utils.getKey(), txt);
+  bhv.db.write('schedule:' + bhv.request.utils.getKey(), txt);
 }
 
 /**
@@ -117,5 +116,5 @@ function getSchedule() {
  * @return {void}
  */
 function getScheduleOffline() {
-  bhv.request.utils.show('schedule', bhv.request.utils.inject);
+  bhv.request.utils.showOffline('schedule');
 }
