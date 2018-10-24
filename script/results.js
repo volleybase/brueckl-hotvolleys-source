@@ -19,7 +19,7 @@ function kidsResult(response) {
 
 
   // create xml data
-  var xml = bhv.request.xml.fromText(response);
+  var xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
 
     // get list of results
@@ -52,7 +52,7 @@ function kidsResult(response) {
 function leagueResult(response) {
 
   // create xml data
-  var xml = bhv.request.xml.fromText(response);
+  var xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
 
     // get list of results

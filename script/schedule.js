@@ -1,32 +1,126 @@
-var map = {
-  // 'u10': [18858, kidsSchedule, 'Termine U10'],
-  // 'u11': [18865, kidsSchedule, 'Termine U11'],
-  // 'u12': [18863, kidsSchedule, 'Termine U12'],
-  // 'u13': [18861, kidsSchedule, 'Termine U13'],
-  // 'u15': [18859, kidsSchedule, 'Termine U15'],
-
+var mapLeague = {
   'br4': [22934, leagueSchedule, 'Termine Unterliga', 29075],
   'br3': [22934, leagueSchedule, 'Termine Unterliga', 28955],
   'br2': [22933, leagueSchedule, 'Termine Landesliga', 28951]
 };
+var mapKids = {
+  // 'u10': [18858, kidsSchedule, 'Termine U10'],
+  // 'u11': [18865, kidsSchedule, 'Termine U11'],
+  // 'u12': [18863, kidsSchedule, 'Termine U12'],
+  // 'u13': [18861, kidsSchedule, 'Termine U13'],
+  'u15': [20752, kidsSchedule, 'Termine U15', 'brückl']
+};
 
 var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 
-// /**
-//  * Creates the schedule for a junior chamionship.
-//  * @param {string} reponse The response from the web service.
-//  * @return {void}
-//  */
-// function kidsSchedule(response) {
-//
-//   // create xml data
-//   var xml = bhv.request.xml.fromText(response);
-//   if (xml) {
-//
-//     // get list of results
-//     var list = bhv.request.xml.getNodes(xml, 'termin');
-//     if (list && list.length) {
-//
+
+/**
+ * Starts the loading of the schedule.
+ * @return {void}
+ */
+function getSchedule() {
+  var IDX_BEW = 0,
+      IDX_TEA = 3,
+      IDX_ONSUCCESS = 1,
+      key = bhv.request.utils.getKey();
+
+  if (mapLeague && mapLeague[key]) {
+    bhv.request.querySchedule(mapLeague[key][IDX_BEW], mapLeague[key][IDX_TEA],
+      mapLeague[key][IDX_ONSUCCESS], getScheduleOffline);
+
+  } else if (mapKids && mapKids[key]) {
+    bhv.request.queryKidsSchedule(mapKids[key][IDX_BEW],
+      mapKids[key][IDX_ONSUCCESS], getScheduleOffline);
+
+  } else {
+    bhv.request.utils.inject('Ungültige Termine!');
+  }
+}
+
+/**
+ * Injects the stored Schedule if offline.
+ * @return {void}
+ */
+function getScheduleOffline() {
+  bhv.request.utils.showOffline('schedule');
+}
+
+
+/**
+ * Creates the schedule for a junior chamionship.
+ * @param {string} reponse The response from the web service.
+ * @return {void}
+ */
+function kidsSchedule(response) {
+  // create xml data
+  var xml = bhv.request.xml.fromText(response, 'html');
+  if (xml) {
+
+    // get list of results
+    // var tab = bhv.request.xml.getNodes(xml, 'table'),
+    //     trs = null;
+    // if (tab && tab.length) {
+    //   trs = bhv.request.xml.getNodes(tab[0], 'tr');
+    // }
+    var trs = bhv.request.xml.getNodes(xml, 'tr');
+    if (trs) {
+      var tournaments = [],
+          tournament = null,
+          key = bhv.request.utils.getKey(),
+          pattern = mapKids[key] ? mapKids[key][3] : '';
+
+      for (var t = 0; t < trs.length; ++t) {
+        var tr = trs[t];
+
+        // start of new tournament
+        if (tr.className === 'tablehead') {
+          tournament = {
+            name: tr.children[1].innerText,
+            date: tr.children[2].innerText.replace('&nbsp;', ' ').trim(),
+            time: tr.children[3].innerText.replace('&nbsp;', ' ').trim(),
+            location: tr.children[4].innerText.replace('&nbsp;', ' ').trim(),
+            own: false,
+            teams: []
+          };
+          tournaments.push(tournament);
+
+        // team of current tournament
+        } else if (tournament) {
+          var nam = tr.children[1].innerText.replace('&nbsp;', ' ').trim(),
+              own = false;
+          if (pattern && nam.toLowerCase().indexOf(pattern) > -1) {
+            own = tournament.own = true;
+          }
+          tournament.teams.push({
+            name: nam,
+            own: own
+          });
+        }
+      }
+
+      var msg = '';
+      for (var t2 = 0; t2 < tournaments.length; ++t2) {
+        var tour = tournaments[t2];
+        if (tour.own) {
+          if (msg != '') {
+            msg += NL;
+          }
+          msg += NL + '<b class="team">' + tour.name + ' (' + tour.date + ' '
+            + tour.time + ' ' + tour.location + ')</b>' + NL;
+          for (var t3 = 0; t3 < tour.teams.length; ++t3) {
+            msg += '- '
+              + (tour.teams[t3].own ? '<b class="team">' : '')
+              + tour.teams[t3].name
+              + (tour.teams[t3].own ? '</b>' : '')
+              + NL;
+          }
+        }
+      }
+      // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
+      bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
+    }
+  }
+}
 //       // create text
 //       var msg = _fill('', 47) + 'P  T' + NL;
 //       for (var i = 0; i < list.length; ++i) {
@@ -52,7 +146,7 @@ var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 function leagueSchedule(response) {
 
   // create xml data
-  var xml = bhv.request.xml.fromText(response);
+  var xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
 
     // get list of results
@@ -80,9 +174,9 @@ function leagueSchedule(response) {
       }
 
       // save data for offline mode
-      _save(bhv.request.utils.getTitle(new Date(), map) + msg);
+      _save(bhv.request.utils.getTitle(new Date(), mapLeague) + msg);
       // add created text to page
-      bhv.request.utils.inject(bhv.request.utils.getTitle(null, map) + msg);
+      bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapLeague) + msg);
     }
   }
 }
@@ -95,28 +189,4 @@ function leagueSchedule(response) {
 function _save(txt) {
   // store data for offline reading
   bhv.db.write('schedule:' + bhv.request.utils.getKey(), txt);
-}
-
-/**
- * Starts the loading of the schedule.
- * @return {void}
- */
-function getSchedule() {
-  var key = bhv.request.utils.getKey();
-
-  if (map && map[key]) {
-    //                        bew_id       tea_id       onSuccess,   onError
-    bhv.request.querySchedule(map[key][0], map[key][3], map[key][1],
-      getScheduleOffline);
-  } else {
-    bhv.request.utils.inject('Ungültige Termine!');
-  }
-}
-
-/**
- * Injects the stored Schedule if offline.
- * @return {void}
- */
-function getScheduleOffline() {
-  bhv.request.utils.showOffline('schedule');
 }

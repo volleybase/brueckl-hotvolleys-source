@@ -60,6 +60,17 @@ window.bhv.request = {
 
     // start request (add dummy timestamp to avoid caching)
     request.open('GET', url + (addDummy ? '&dummy=' + (new Date()).getTime() : ''), true);
+
+    // try to set a timeout handler
+    if (request.timeout !== undefined) {
+      request.timeout = 5000;
+      request.ontimeout = function(e) {
+        log('Timeout -> call error handler!');
+        onerror();
+      };
+    }
+
+    // send request
     request.send();
 
     // done
@@ -124,6 +135,28 @@ window.bhv.request = {
 
     // done
     return true;
+  },
+
+  queryKidsSchedule: function(idBew, onsuccess, onerror) {
+
+    // check id of competition and team
+    if (!this._checkId(idBew, 'competition')) {
+      onerror();
+      return false;
+    }
+
+    // the url to get the schedule
+    // http://localhost:5001/testdata/Turniere/20752/
+    var url = 'http://localhost:5001/testdata/Turniere/' + idBew;
+
+    // request data
+    if (!this._startRequest(url, onsuccess, onerror, false)) {
+      onerror();
+      return false;
+    }
+
+    // done
+    return true;
   }
 }
 
@@ -168,7 +201,7 @@ window.bhv.request.utils = {
     if (key !== '?') {
       var txt = bhv.db.read(type + ':' + key);
       if (txt) {
-        inject(txt);
+        bhv.request.utils.inject(txt);
       }
     }
   },
@@ -330,23 +363,29 @@ window.bhv.request.xml = {
    * @param {string} reponse The response from the web service.
    * @return {DOMDocument} The xml document.
    */
-  fromText: function(response) {
+  fromText: function(response, type) {
 
     try {
 
       // check for parser
-      if (window.DOMParser) {
+      if (window.DOMParser
+        && (!ie || type === 'xml' && ie >= 9 || type === 'html' && ie >= 10)) {
 
         // create the parser, if ok, parse xml document from text and return it
         var parser = new DOMParser();
         if (parser) {
-          return parser.parseFromString(response, "text/xml");
+          return parser.parseFromString(response, 'text/' + type);
         }
+
       } else if (ActiveXObject) {
-        var parserIE = new ActiveXObject('Microsoft.XMLDom');
-        if (parserIE && parserIE.loadXML(response)) {
-          return parserIE.documentElement;
-        }
+
+        var div = document.createElement('div'),
+            // extract content
+            posStart = response.indexOf('<!-- start of content -->'),
+            txt = response.substr(posStart + 25),
+            posEnd = txt.indexOf('<!-- end of content -->');
+        div.innerHTML = txt.substr(0, posEnd).trim();
+        return div.document;
       }
     } catch (err) {}
 
@@ -362,7 +401,12 @@ window.bhv.request.xml = {
    * @return {NodeList} The nodes.
    */
   getNodes: function(xml, name) {
-    return xml.getElementsByTagName(name);
+    if (xml.getElementsByTagName !== undefined) {
+      return xml.getElementsByTagName(name);
+    }
+    if (xml.querySelectorAll !== undefined) {
+      return xml.querySelectorAll(name);
+    }
   },
 
   /**
