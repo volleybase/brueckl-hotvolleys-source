@@ -1,5 +1,4 @@
-/* eslint-disable strict, one-var, no-sync, no-console, global-require,
-                  func-names, no-invalid-this */
+/* eslint-disable strict, one-var, no-sync, func-names, no-invalid-this */
 /* eslint-env node */
 
 'use strict';
@@ -20,28 +19,12 @@ module.exports = function init(grunt) {
       pad2(dat.getMinutes()) + ':' +
       pad2(dat.getSeconds())
 
-
   grunt.registerMultiTask('createmanifest', 'Create the manifest.', function() {
 
     const fs = require('fs'),
           path = require('path');
 
-    // const INDENT = 2,
-    //       options = this.data.options || {},
-    //       result = {},
-    //       { cwd } = this.data;
-
-    // create file name of destination
-    // if (cwd) {
-    //   dest += cwd;
-    //   if (!dest.endsWith('/')) {
-    //     dest += path.sep;
-    //   }
-    // }
-    // dest += this.data.dest;
-    // console.log(dest)
-
-    // console.log('-- xjs ---------------------------------------------------')
+    // console.log('-- create manifest ---------------------------------------')
     // console.log(this)
     // console.log('----------------------------------------------------------')
 
@@ -70,32 +53,6 @@ module.exports = function init(grunt) {
         // console.log(file2)
         // console.log('-----')
 
-        // let fn = '';
-        // // create file name
-        // if (cwd) {
-        //   fn += cwd;
-        //   if (!fn.endsWith('/')) {
-        //     fn += path.sep;
-        //   }
-        // }
-        // fn += file2;
-        //
-        // // read file
-        // const content = fs.readFileSync(fn, { 'encoding': 'utf-8' });
-        //
-        // // convert to json
-        // const data = JSON.parse(content),
-        //       keys = Object.keys(data),
-        //       keysCnt = keys.length;
-        //
-        // // add to result
-        // for (let i = 0; i < keysCnt; ++i) {
-        //   const k = keys[i];
-        //
-        //   result[k] = data[k];
-        // }
-        //
-        // console.log(`File "${fn}" added.`);
         const stat = fs.statSync(file2);
         if (stat.isFile()) {
           manifest += '/brueckl-hotvolleys/' + file2 + '\n'
@@ -106,8 +63,9 @@ module.exports = function init(grunt) {
         + 'NETWORK:\n'
         + '*\n\n'
         + 'FALLBACK:\n'
-        + '/brueckl-hotvolleys/infos/tabelle.html /brueckl-hotvolleys/infos/tabelleoffline.html\n'
-        + '/brueckl-hotvolleys/infos/imageview.html /brueckl-hotvolleys/infos/imageview.html\n'
+        + '/brueckl-hotvolleys/schedule.html /brueckl-hotvolleys/scheduleoffline.html\n'
+        + '/brueckl-hotvolleys/tabelle.html /brueckl-hotvolleys/tabelleoffline.html\n'
+        + '/brueckl-hotvolleys/imageview.html /brueckl-hotvolleys/imageview.html\n'
 
       // write the resulting file
       fs.writeFileSync(dest, manifest)
