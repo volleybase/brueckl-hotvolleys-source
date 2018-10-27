@@ -47,7 +47,6 @@ h4.expandable div.expander {
   border-top: 18px solid blue;
 }
 h4.expandable.up div.expander {
-  margin-top: -25px;
   border-top: 0 none;
   border-bottom: 18px solid blue;
 }
