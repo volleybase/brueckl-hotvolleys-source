@@ -51,6 +51,19 @@ h4.expandable.up div.expander {
   border-bottom: 18px solid blue;
 }
 
+h5.expandable div.expander {
+  margin-top: -9px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 18px solid blue;
+}
+h5.expandable.up div.expander {
+  border-top: 0 none;
+  border-bottom: 18px solid blue;
+}
+
+/* TODO h6 */
+
 a h1::after {
   content: ' ';
   position: absolute;
