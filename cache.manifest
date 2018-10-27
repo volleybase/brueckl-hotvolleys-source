@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 25.10.2018 01:54:40
+# 27.10.2018 20:12:15
 
 CACHE:
 /brueckl-hotvolleys/imageview.html
@@ -14,6 +14,8 @@ CACHE:
 /brueckl-hotvolleys/README.md
 /brueckl-hotvolleys/gesucht/gesucht.jpeg
 /brueckl-hotvolleys/gesucht/
+/brueckl-hotvolleys/elements/expander/script.js
+/brueckl-hotvolleys/elements/expander/styles.css
 /brueckl-hotvolleys/image/ball32.png
 /brueckl-hotvolleys/image/logo.png
 /brueckl-hotvolleys/info/alletermine.html
@@ -105,6 +107,7 @@ CACHE:
 /brueckl-hotvolleys/uld/grundlagen3/blockinfo/passiv.gif
 /brueckl-hotvolleys/uld/grundlagen3/blockinfo/zur_mitte.gif
 /brueckl-hotvolleys/uld/grundlagen3/
+/brueckl-hotvolleys/uld/statistics3.html
 
 NETWORK:
 *
