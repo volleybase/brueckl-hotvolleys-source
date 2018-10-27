@@ -16,10 +16,10 @@
   text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   position: relative;
   margin: 0;
-  padding: 50px;
+  padding: 0px;
   text-align: center;
   background: lightblue;
   margin-bottom: 10px;
@@ -31,9 +31,23 @@ h1 {
 }
 h2 {
   font-size: 32px;
+  padding: 50px;
 }
 h3 {
   font-size: 24px;
+  padding: 30px;
+}
+h4 {
+  font-size: 20px;
+  padding: 20px;
+}
+h5 {
+  font-size: 18px;
+  padding: 18px;
+}
+h6 {
+  font-size: 16px;
+  padding: 10px;
 }
 a {
   color: black;

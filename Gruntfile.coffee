@@ -7,6 +7,7 @@ files = [
   "README.md",
   "styles.css",
   "gesucht/**",
+  "elements/**",
   "image/**",
   "info/**",
   "lld/**",
