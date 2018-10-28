@@ -27,7 +27,8 @@ function kidsResult(response) {
     if (list && list.length) {
 
       // create text
-      var msg = bhv.request.utils.fillColumn('', 47) + 'P  T' + NL;
+      var msg = bhv.request.utils.fillColumn('', 47)
+        + 'P  T'.replace(/ /g, '&nbsp;') + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
             + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
@@ -61,8 +62,10 @@ function leagueResult(response) {
     if (list && list.length) {
 
       // create text
-      var msg = bhv.request.utils.fillColumn('', 56) + 'S/N  Sätze   Punkte' + NL
-          + bhv.request.utils.fillColumn('', 50) + 'Sp.  +  -   +  -    +   -  P' + NL;
+      var msg = bhv.request.utils.fillColumn('', 56)
+          + 'S/N  Sätze   Punkte'.replace(/ /g, '&nbsp;') + NL
+          + bhv.request.utils.fillColumn('', 50)
+          + 'Sp.  +  -   +  -    +   -  P'.replace(/ /g, '&nbsp;') + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
             + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(

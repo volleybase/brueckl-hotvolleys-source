@@ -28,6 +28,14 @@ window.bhv.request = {
       request = new XMLHttpRequest();
     }
 
+    // Ajax-CORS for IE8/9
+    var ie89 = false;
+    //if (request === null && (ie() === 8 || ie() === 9)) {
+    if (ie === 8 || ie === 9) {
+      request = new XDomainRequest();
+      ie89 = true;
+    }
+
     if (!request && window.ActiveXObject) {
       try {
         request = new ActiveXObject('MSXML2.XMLHTTP');
@@ -49,7 +57,13 @@ window.bhv.request = {
       }
     }
 
-    request.onreadystatechange = reqHandler;
+    if (ie89) {
+      request.onload = function() {
+        onsuccess(request.responseText);
+      };
+    } else {
+      request.onreadystatechange = reqHandler;
+    }
 
     function reqError(event) {
       log('Error handler called!');
@@ -240,7 +254,11 @@ window.bhv.request.utils = {
    * @return {string} The text.
    */
   checkBold: function(txt) {
-    if (txt.toLowerCase().indexOf('brückl hotvolleys') > -1) {
+    var check = 'brückl hotvolleys';
+    if (ie <= 8) {
+      check = 'brückl&nbsp;hotvolleys'
+    }
+    if (txt.toLowerCase().indexOf(check) > -1) {
       return '<b class="team">' + txt + '</b>';
     }
 
@@ -293,6 +311,11 @@ window.bhv.request.utils = {
           txt += num + ' ';
         }
       }
+    }
+
+    // IE8: special handling for 'pre'
+    if (ie <= 8) {
+      txt = txt.replace(/ /g, '&nbsp;');
     }
 
     // return result
@@ -383,13 +406,31 @@ window.bhv.request.xml = {
 
       } else if (ActiveXObject) {
 
-        var div = document.createElement('div'),
-            // extract content
-            posStart = response.indexOf('<!-- start of content -->'),
-            txt = response.substr(posStart + 25),
-            posEnd = txt.indexOf('<!-- end of content -->');
-        div.innerHTML = txt.substr(0, posEnd).trim();
-        return div.document;
+        if (type === 'xml') {
+
+          var doc = new ActiveXObject('Microsoft.XMLDOM');
+          doc.async = false;
+          try {
+            doc.loadXML(response);
+          } catch(e) {
+            doc = undefined;
+          }
+          // if (!doc || !doc.documentElement || doc.getElementsByTagName('parsererror').length) {
+          //   status.code = 500;
+          //   status.message = 'parseerror';
+          //   throw 'Invalid XML: ' + xdr.responseText;
+          // }
+          return doc;
+        } else {
+
+          var div = document.createElement('div'),
+              // extract content
+              posStart = response.indexOf('<!-- start of content -->'),
+              txt = response.substr(posStart + 25),
+              posEnd = txt.indexOf('<!-- end of content -->');
+          div.innerHTML = txt.substr(0, posEnd).trim();
+          return div.document;
+        }
       }
     } catch (err) {}
 
@@ -405,12 +446,23 @@ window.bhv.request.xml = {
    * @return {NodeList} The nodes.
    */
   getNodes: function(xml, name) {
+
+    // ie8: check with polyfilled own property
+    if (Object.prototype.hasOwnProperty.call(xml, 'getElementsByTagName')) {
+      return xml.getElementsByTagName(name);
+    }
+
+    // if (xml.querySelectorAll !== undefined) {
+    if (Object.prototype.hasOwnProperty.call(xml, 'querySelectorAll')) {
+      return xml.querySelectorAll(name);
+    }
+
+    // ie9: check
     if (xml.getElementsByTagName !== undefined) {
       return xml.getElementsByTagName(name);
     }
-    if (xml.querySelectorAll !== undefined) {
-      return xml.querySelectorAll(name);
-    }
+
+    return null;
   },
 
   /**
