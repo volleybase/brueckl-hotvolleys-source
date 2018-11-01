@@ -7,7 +7,8 @@ var map = {
 
   'br4': [22934, leagueResult, 'Tabelle Unterliga'],
   'br3': [22934, leagueResult, 'Tabelle Unterliga'],
-  'br2': [22933, leagueResult, 'Tabelle Landesliga']
+  'br2': [22933, leagueResult, 'Tabelle Landesliga'],
+  'br1': [22691, leagueResult, 'Tabelle Bundesliga']
 };
 
 /**

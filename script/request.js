@@ -255,10 +255,15 @@ window.bhv.request.utils = {
    */
   checkBold: function(txt) {
     var check = 'brückl hotvolleys';
+    var check2 = 'volleys brückl';
     if (ie <= 8) {
-      check = 'brückl&nbsp;hotvolleys'
+      check = 'brückl&nbsp;hotvolleys';
+      check2 = 'volleys&nbsp;brückl';
     }
     if (txt.toLowerCase().indexOf(check) > -1) {
+      return '<b class="team">' + txt + '</b>';
+    }
+    if (txt.toLowerCase().indexOf(check2) > -1) {
       return '<b class="team">' + txt + '</b>';
     }
 

@@ -1,7 +1,8 @@
 var mapLeague = {
   'br4': [22934, leagueSchedule, 'Termine Unterliga', 29075],
   'br3': [22934, leagueSchedule, 'Termine Unterliga', 28955],
-  'br2': [22933, leagueSchedule, 'Termine Landesliga', 28951]
+  'br2': [22933, leagueSchedule, 'Termine Landesliga', 28951],
+  'br1': [22691, leagueSchedule, 'Termine Bundesliga', 27423]
 };
 var mapKids = {
   // 'u10': [18858, kidsSchedule, 'Termine U10'],
