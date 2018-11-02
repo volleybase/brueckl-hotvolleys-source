@@ -5,13 +5,13 @@ files = [
   "*.css",
   "README.md",
   "styles.css",
+
   "elements/**",
   "favicons/**",
-  "gesucht/**",
   "image/**",
   "info/**",
-  "lld/**",
   "script/**",
+
   "u10/**",
   "u11/**",
   "u12/**",
