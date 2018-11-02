@@ -3,11 +3,11 @@ create_manifest = require('./_work/create.manifest.js')
 files = [
   "*.html",
   "*.css",
-  "favicon.ico",
   "README.md",
   "styles.css",
-  "gesucht/**",
   "elements/**",
+  "favicons/**",
+  "gesucht/**",
   "image/**",
   "info/**",
   "lld/**",
@@ -28,27 +28,6 @@ files_batch = files.concat([
 
 fnManifest = 'd:/workdir/brueckl-hotvolleys-source/cache.manifest'
 
-# pad2 = (nr) ->
-#   if (nr < 10)
-#     return '0' + nr
-#   return nr
-#
-# fmtDate = (dat) ->
-#   return pad2(dat.getDate()) + '.' +
-#     pad2(dat.getMonth() + 1) + '.' +
-#     dat.getFullYear() + ' ' +
-#     pad2(dat.getHours()) + ':' +
-#     pad2(dat.getMinutes()) + ':' +
-#     pad2(dat.getSeconds())
-
-
-# //
-# //  "!_*",
-# //  "!.git/**",
-# //  "!.gitignore",
-# //  "!**/node_modules/**"
-# //
-
 config = (grunt) ->
 
   clean:
@@ -58,6 +37,58 @@ config = (grunt) ->
       expand: true
       cwd: "/workdir/brueckl-hotvolleys"
       src: ["**/*", "!.git"]
+
+  realFavicon:
+    favicons:
+      src: '_work/favicons/bhv.svg'
+      dest: 'favicons'
+      options:
+        iconsPath: '/brueckl-hotvolleys/favicons'
+        html: [ '_work/favicons/index.html' ]
+        design:
+          ios:
+            pictureAspect: 'backgroundAndMargin'
+            backgroundColor: '#ffffff'
+            margin: '14%'
+            assets:
+              ios6AndPriorIcons: false
+              ios7AndLaterIcons: true
+              precomposedIcons: true
+              declareOnlyDefaultIcon: true
+          desktopBrowser: {}
+          windows:
+            pictureAspect: 'whiteSilhouette'
+            backgroundColor: '#b91d47'
+            onConflict: 'override'
+            assets:
+              windows80Ie10Tile: false
+              windows10Ie11EdgeTiles:
+                small: false
+                medium: true
+                big: false
+                rectangle: false
+          androidChrome:
+            pictureAspect: 'noChange'
+            themeColor: '#ffffff'
+            manifest:
+              name: 'Brückl hotvolleys'
+              display: 'standalone'
+              orientation: 'notSet'
+              onConflict: 'override'
+              declared: true
+            assets:
+              legacyIcon: false
+              lowResolutionIcons: false
+          safariPinnedTab:
+            pictureAspect: 'blackAndWhite'
+            threshold: 50
+            themeColor: '#5bbad5'
+        settings:
+          scalingAlgorithm: 'Mitchell'
+          errorOnImageTooSmall: false
+          readmeFile: false
+          htmlCodeFile: false
+          usePathAsIs: false
 
   copy:
     deploy:
@@ -135,6 +166,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-batch')
   grunt.loadNpmTasks('grunt-contrib-less')
   grunt.loadNpmTasks('grunt-newer')
+  grunt.loadNpmTasks('grunt-real-favicon')
   create_manifest(grunt)
 
   grunt.registerTask('default', ['build'])
