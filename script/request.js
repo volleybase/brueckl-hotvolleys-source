@@ -106,7 +106,7 @@ window.bhv.request = {
     return true;
   },
 
-  queryResults: function(id, onsuccess, onerror) {
+  queryStandings: function(id, onsuccess, onerror) {
 
     if (!this._checkId(id, 'competition')) {
       onerror();
@@ -175,6 +175,33 @@ window.bhv.request = {
 
     // done
     return true;
+  },
+
+  queryResults: function(idBew, idTea, onsuccess, onerror) {
+
+    // check id of competition and team
+    if (!this._checkId(idBew, 'competition') || !this._checkId(idTea, 'team')) {
+      onerror();
+      return false;
+    }
+
+    // the url to get the schedule
+    var url = location.protocol
+      + '//kvv.volleynet.at/volleynet/service/xml2.php'
+      + '?action=ergebnis&where='
+      + encodeURIComponent('bew_id=' + idBew
+        + 'and (vrn_id_a=21 or vrn_id_b=21) and (spi_tea_id_a=' + idTea
+        + ' or spi_tea_id_b=' + idTea + ')')
+      + '&orderBy=spi_datum';
+
+    // request data
+    if (!this._startRequest(url, onsuccess, onerror, false)) {
+      onerror();
+      return false;
+    }
+
+    // done
+    return true;
   }
 }
 
@@ -211,7 +238,7 @@ window.bhv.request.utils = {
 
   /**
    * Shows offline data.
-   * @param {string} type The type of the data (results, schedule).
+   * @param {string} type The type of the data (standings, schedule).
    * the page.
    */
   showOffline: function(type) {
@@ -225,7 +252,7 @@ window.bhv.request.utils = {
   },
 
   /**
-   * Returns the key of the current query (schedule, results).
+   * Returns the key of the current query (schedule, standings).
    * @return {string} The key of the team to query.
    */
   getKey: function() {
@@ -323,12 +350,12 @@ window.bhv.request.utils = {
       txt = txt.replace(/ /g, '&nbsp;');
     }
 
-    // return result
+    // return standings
     return txt;
   },
 
   /**
-   * Add the results to the page.
+   * Add the standings to the page.
    * @param {string} txt The text to add.
    * @return {void}
    */
@@ -440,7 +467,7 @@ window.bhv.request.xml = {
     } catch (err) {}
 
     // simple error handling
-    log('Cannot parse results!');
+    log('Cannot parse standings!');
     return null;
   },
 

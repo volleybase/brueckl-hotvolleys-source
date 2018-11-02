@@ -1,14 +1,16 @@
 CACHE MANIFEST
-# 02.11.2018 20:48:54
+# 02.11.2018 22:10:04
 
 CACHE:
 /brueckl-hotvolleys/imageview.html
 /brueckl-hotvolleys/
 /brueckl-hotvolleys/ov.html
+/brueckl-hotvolleys/results.html
+/brueckl-hotvolleys/resultsoffline.html
 /brueckl-hotvolleys/schedule.html
 /brueckl-hotvolleys/scheduleoffline.html
-/brueckl-hotvolleys/tabelle.html
-/brueckl-hotvolleys/tabelleoffline.html
+/brueckl-hotvolleys/standings.html
+/brueckl-hotvolleys/standingsoffline.html
 /brueckl-hotvolleys/styles.css
 /brueckl-hotvolleys/README.md
 /brueckl-hotvolleys/elements/expander/script.js
@@ -51,6 +53,7 @@ CACHE:
 /brueckl-hotvolleys/script/request.js
 /brueckl-hotvolleys/script/results.js
 /brueckl-hotvolleys/script/schedule.js
+/brueckl-hotvolleys/script/standings.js
 /brueckl-hotvolleys/u10/termine.html
 /brueckl-hotvolleys/u11/image/ich-zu-mir.png
 /brueckl-hotvolleys/u11/image/mickymaus.png
@@ -137,6 +140,7 @@ NETWORK:
 *
 
 FALLBACK:
+/brueckl-hotvolleys/results.html /brueckl-hotvolleys/resultsoffline.html
 /brueckl-hotvolleys/schedule.html /brueckl-hotvolleys/scheduleoffline.html
-/brueckl-hotvolleys/tabelle.html /brueckl-hotvolleys/tabelleoffline.html
+/brueckl-hotvolleys/standings.html /brueckl-hotvolleys/standingsoffline.html
 /brueckl-hotvolleys/imageview.html /brueckl-hotvolleys/imageview.html

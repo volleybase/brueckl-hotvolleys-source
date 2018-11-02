@@ -39,7 +39,7 @@ function getSchedule() {
 }
 
 /**
- * Injects the stored Schedule if offline.
+ * Injects the stored schedule if offline.
  * @return {void}
  */
 function getScheduleOffline() {
@@ -57,12 +57,7 @@ function kidsSchedule(response) {
   var xml = bhv.request.xml.fromText(response, 'html');
   if (xml) {
 
-    // get list of results
-    // var tab = bhv.request.xml.getNodes(xml, 'table'),
-    //     trs = null;
-    // if (tab && tab.length) {
-    //   trs = bhv.request.xml.getNodes(tab[0], 'tr');
-    // }
+    // get list of dates
     var trs = bhv.request.xml.getNodes(xml, 'tr');
     if (trs) {
       var tournaments = [],
@@ -122,25 +117,9 @@ function kidsSchedule(response) {
     }
   }
 }
-//       // create text
-//       var msg = _fill('', 47) + 'P  T' + NL;
-//       for (var i = 0; i < list.length; ++i) {
-//         msg += _fill('' + (i + 1), -2) + '. '
-//             + _fill(_find(list[i].childNodes, 'tea_name'), 40)
-//             + _fill(_find(list[i].childNodes, 'punkte'), -4)
-//             + _fill(_find(list[i].childNodes, 'gespielt'), -3) + NL;
-//       }
-//
-//       // save data for offline mode
-//       _save(bhv.request.utils.getTitle(new Date(), map) + msg);
-//       // add created text to page
-//       bhv.request.utils.inject(bhv.request.utils.getTitle(null, map) + msg);
-//     }
-//   }
-// }
 
 /**
- * Creates the results for a league.
+ * Creates the schedule of a league.
  * @param {string} reponse The response from the web service.
  * @return {void}
  */
@@ -150,28 +129,31 @@ function leagueSchedule(response) {
   var xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
 
-    // get list of results
+    // get list of dates
     var list = bhv.request.xml.getNodes(xml, 'termin');
     if (list && list.length) {
 
       var L1 = 4,
           L2 = 12,
           L3 = 7,
+          LNR = 4,
           L45 = 28,
           fmt = bhv.request.utils.fillColumn;
 
       // create text
       var msg = NL + fmt('Tag', L1) + fmt('Datum', L2) + fmt('Zeit', L3)
-          + fmt('Heim', L45 + 1) + fmt('Gast', L45 + 1) + 'Halle' + NL;
+          + fmt('Nr', LNR)
+          + fmt('Heim', L45 + 1) + fmt('Gast', L45 + 1) + 'Halle&nbsp;' + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn(days[bhv.request.xml.findNode(list[i].childNodes, 'tag')], L1)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'datum'), L2)
             + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'zeit'), L3)
+            + bhv.request.utils.fillColumn(bhv.request.xml.findNode(list[i].childNodes, 'spi_nummer'), LNR)
             + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
-              bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'), L45)) + ' '
+              bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'), L45)) + '&nbsp;'
             + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
-              bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'), L45)) + ' '
-            + bhv.request.xml.findNode(list[i].childNodes, 'spo_name') + NL;
+              bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'), L45)) + '&nbsp;'
+            + bhv.request.xml.findNode(list[i].childNodes, 'spo_name') + '&nbsp;' + NL;
       }
 
       // save data for offline mode

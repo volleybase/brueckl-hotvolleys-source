@@ -66,8 +66,9 @@ module.exports = function init(grunt) {
         + 'NETWORK:\n'
         + '*\n\n'
         + 'FALLBACK:\n'
+        + '/brueckl-hotvolleys/results.html /brueckl-hotvolleys/resultsoffline.html\n'
         + '/brueckl-hotvolleys/schedule.html /brueckl-hotvolleys/scheduleoffline.html\n'
-        + '/brueckl-hotvolleys/tabelle.html /brueckl-hotvolleys/tabelleoffline.html\n'
+        + '/brueckl-hotvolleys/standings.html /brueckl-hotvolleys/standingsoffline.html\n'
         + '/brueckl-hotvolleys/imageview.html /brueckl-hotvolleys/imageview.html\n'
 
       // write the resulting file

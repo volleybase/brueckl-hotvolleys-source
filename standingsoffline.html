@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html manifest="/brueckl-hotvolleys/cache.manifest">
+ <head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="/brueckl-hotvolleys/styles.css">
+  <link rel="shortcut icon" href="/brueckl-hotvolleys/favicons/favicon.ico">
+  <style>
+pre#content {
+  font-family: monospace;
+  text-align: left;
+  font-size: 16px;
+  padding: 16px;
+}
+b.team {
+  font-family: monospace;
+  text-align: left;
+  font-size: 16px;
+  padding: 0px;
+}
+  </style>
+  <script src="/brueckl-hotvolleys/script/caching.js"></script>
+  <script src="/brueckl-hotvolleys/script/db.js"></script>
+  <script src="/brueckl-hotvolleys/script/request.js"></script>
+  <script src="/brueckl-hotvolleys/script/standings.js"></script>
+ </head>
+ <body onload="getStandingsOffline();">
+  <pre id="content">Offline standings are not stored yet.</pre>
+ </body>
+</html>
