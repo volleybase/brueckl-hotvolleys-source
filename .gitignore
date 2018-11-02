@@ -1,6 +1,3 @@
 node_modules
-presence
-cmd.exe.lnk
-npm_config.txt
 package-lock.json
 .sonarlint
