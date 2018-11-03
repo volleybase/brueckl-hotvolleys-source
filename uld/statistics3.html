@@ -5,10 +5,13 @@
   <title>Brückl hotvolleys</title>
   <link rel="stylesheet" href="/brueckl-hotvolleys/styles.css">
   <link rel="stylesheet" href="/brueckl-hotvolleys/elements/expander/styles.css">
-  <link rel="shortcut icon" href="/brueckl-hotvolleys/favicons/favicon.ico">
   <style>
 h4, h5 {
   text-align: left;
+}
+/* no any margin for first header */
+h4:first-child, h4:first-of-type {
+  margin: 0;
 }
 /* -- match statistics ----------------------------------------------------- */
 div.match {
@@ -132,14 +135,53 @@ div.pt {
   <script>
 function init() {
   // var expanders = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12'];
-  var expanders = ['m1', 'mx1', 'm2', 'mx2', 'm3', 'mx3'];
+  var expanders = ['m1', 'm2', 'mx2', 'm3', 'mx3', 'm4', 'mx4'];
   bhv.elements.expander.init(expanders);
 }
   </script>
 </head>
 <body onload="init();">
-<h4 id="m1" class="expandable" style="">26.Okt Brückl hotvolleys 3 - Villach 4</h4>
+<h4 id="m1" class="expandable" style="">31.Okt Brückl hotvolleys 4 - Brückl hotvolleys 3</h4>
 <div id="m1_2" class="match">
+  <table class="match" cellspacing="0" cellpadding="2" border="1">
+    <tr>
+      <th>&nbsp;</th>
+      <th colspan="2" class="left">1. Satz</th>
+      <th colspan="2" class="left">2. Satz</th>
+      <th colspan="2" class="left">3. Satz</th>
+      <th colspan="2" class="left">4. Satz</th>
+      <th colspan="2" class="left">5. Satz</th>
+      <th>&nbsp;</th>
+      <th colspan="4" class="left">Gesamt</th>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th>&nbsp;</th>
+      <th class="center">+</th><th class="center">-</th>
+      <th class="center">Diff</th><th class="center">Quot</th>
+    </tr>
+    <tr class="footer">
+  <td class="name"></td>
+  <td class="right">17</td><td class="right">25</td>
+  <td class="right">19</td><td class="right">25</td>
+  <td class="right">14</td><td class="right">25</td>
+  <td class="right">&nbsp;</td><td class="right">&nbsp;</td>
+  <td class="right">&nbsp;</td><td class="right">&nbsp;</td>
+  <td>&nbsp;</td>
+  <td class="right sum">50</td><td class="right sum">75</td>
+  <td class="right sum">25</td><td class="right sumQ">1,500</td>
+</tr>
+
+  </table>
+  
+</div>
+<h4 id="m2" class="expandable" style="">26.Okt Brückl hotvolleys 3 - Villach 4</h4>
+<div id="m2_2" class="match">
   <table class="match" cellspacing="0" cellpadding="2" border="1">
     <tr>
       <th>&nbsp;</th>
@@ -307,8 +349,8 @@ function init() {
 </tr>
 
   </table>
-  <h5 id="mx1" class="expandable" style="">Verlauf</h5>
-<div id="mx1_2" class="container">
+  <h5 id="mx2" class="expandable" style="">Verlauf</h5>
+<div id="mx2_2" class="container">
 <div class="column">
   <div class="header">1. Satz</div>
   <div class="data">
@@ -462,8 +504,8 @@ function init() {
 </div>
 
 </div>
-<h4 id="m2" class="expandable" style="">20.Okt Brückl hotvolleys 3 - Atsc 4</h4>
-<div id="m2_2" class="match">
+<h4 id="m3" class="expandable" style="">20.Okt Brückl hotvolleys 3 - Atsc 4</h4>
+<div id="m3_2" class="match">
   <table class="match" cellspacing="0" cellpadding="2" border="1">
     <tr>
       <th>&nbsp;</th>
@@ -631,8 +673,8 @@ function init() {
 </tr>
 
   </table>
-  <h5 id="mx2" class="expandable" style="">Verlauf</h5>
-<div id="mx2_2" class="container">
+  <h5 id="mx3" class="expandable" style="">Verlauf</h5>
+<div id="mx3_2" class="container">
 <div class="column">
   <div class="header">1. Satz</div>
   <div class="data">
@@ -790,8 +832,8 @@ function init() {
 </div>
 
 </div>
-<h4 id="m3" class="expandable" style="">13.Okt Villach 3 - Brückl hotvolleys 3</h4>
-<div id="m3_2" class="match">
+<h4 id="m4" class="expandable" style="">13.Okt Villach 3 - Brückl hotvolleys 3</h4>
+<div id="m4_2" class="match">
   <table class="match" cellspacing="0" cellpadding="2" border="1">
     <tr>
       <th>&nbsp;</th>
@@ -816,19 +858,19 @@ function init() {
     </tr>
     <tr class="footer">
   <td class="name"></td>
-  <td class="right">15</td><td class="right">25</td>
-  <td class="right">22</td><td class="right">25</td>
-  <td class="right">19</td><td class="right">25</td>
+  <td class="right">25</td><td class="right">15</td>
+  <td class="right">25</td><td class="right">22</td>
+  <td class="right">25</td><td class="right">19</td>
   <td class="right">&nbsp;</td><td class="right">&nbsp;</td>
   <td class="right">&nbsp;</td><td class="right">&nbsp;</td>
   <td>&nbsp;</td>
-  <td class="right sum">56</td><td class="right sum">75</td>
+  <td class="right sum">75</td><td class="right sum">56</td>
   <td class="right sum">-19</td><td class="right sumQ">0,747</td>
 </tr>
 
   </table>
-  <h5 id="mx3" class="expandable" style="">Verlauf</h5>
-<div id="mx3_2" class="container">
+  <h5 id="mx4" class="expandable" style="">Verlauf</h5>
+<div id="mx4_2" class="container">
 <div class="column">
   <div class="header">1. Satz</div>
   <div class="data">
