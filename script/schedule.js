@@ -12,6 +12,15 @@ var mapKids = {
   'u15': [23063, kidsSchedule, 'Termine U15', 'brückl']
 };
 
+var finals = {
+  u10: "Finale (Do 30.05.2019  Brückl)",
+  u11: "Finale (So 19.05.2019  Brückl)",
+  u12: "Finale (So 07.04.2019  Klagenfurt)",
+  u13: "Finale (Sa 27.04.2019  Wolfsberg)",
+  u15: "Finale (So 05.05.2019  Klagenfurt)",
+  u17: "Finale (So 03.03.2019  Villach)",
+  u19: "Finale (So 27.01.2019  Klagenfurt)"
+}
 var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 
 
@@ -112,6 +121,12 @@ function kidsSchedule(response) {
           }
         }
       }
+
+      // add entry for finals
+      if (finals && finals[key]) {
+        msg += NL + NL + '<b class="team">' + finals[key] + '</b>' + NL;
+      }
+
       // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
       bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
     }
