@@ -164,11 +164,19 @@ window.bhv.request = {
 
     // the url to get the schedule
     // http://localhost:5001/testdata/Turniere/20752/
-    // location.protocol
-    var url = 'http://localhost:5001/testdata/Turniere/' + idBew;
+    // var url = 'http://localhost:5001/testdata/Turniere/' + idBew;
+    // var url = location.protocol + '//kvv.volleynet.at/Turniere/' + idBew;
+    var url = 'https://allorigins.me/get?url='
+      + encodeURIComponent('https://kvv.volleynet.at/Turniere/' + idBew);
+
+    var onsuccess2 = function(response) {
+      var data = JSON.parse(response);
+      onsuccess(data.contents);
+    }
 
     // request data
-    if (!this._startRequest(url, onsuccess, onerror, false)) {
+    // if (!this._startRequest(url, onsuccess, onerror, false)) {
+    if (!this._startRequest(url, onsuccess2, onerror, false)) {
       onerror();
       return false;
     }

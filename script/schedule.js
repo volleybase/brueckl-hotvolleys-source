@@ -5,11 +5,11 @@ var mapLeague = {
   'br1': [22691, leagueSchedule, 'Termine Bundesliga', 27423]
 };
 var mapKids = {
-  // 'u10': [18858, kidsSchedule, 'Termine U10'],
-  // 'u11': [18865, kidsSchedule, 'Termine U11'],
-  // 'u12': [18863, kidsSchedule, 'Termine U12'],
-  // 'u13': [18861, kidsSchedule, 'Termine U13'],
-  'u15': [20752, kidsSchedule, 'Termine U15', 'brückl']
+  'u10': [23058, kidsSchedule, 'Termine U10', 'brückl'],
+  'u11': [23059, kidsSchedule, 'Termine U11', 'brückl'],
+  'u12': [23060, kidsSchedule, 'Termine U12', 'brückl'],
+  'u13': [23061, kidsSchedule, 'Termine U13', 'brückl'],
+  'u15': [23063, kidsSchedule, 'Termine U15', 'brückl']
 };
 
 var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
