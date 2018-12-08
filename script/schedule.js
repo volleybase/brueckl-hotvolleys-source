@@ -10,6 +10,7 @@ var mapKids = {
   'u12': [23060, kidsSchedule, 'Termine U12', 'brückl'],
   'u13': [23061, kidsSchedule, 'Termine U13', 'brückl'],
   'u15': [23063, kidsSchedule, 'Termine U15', 'brückl']
+  // 'u15': [15116, kidsSchedule, 'Termine U15', 'brückl']
 };
 
 var finals = {
@@ -56,6 +57,83 @@ function getScheduleOffline() {
 }
 
 
+// /**
+//  * Creates the schedule for a junior chamionship.
+//  * @param {string} reponse The response from the web service.
+//  * @return {void}
+//  */
+// function kidsSchedule(response) {
+//   // create xml data
+//   var xml = bhv.request.xml.fromText(response, 'html');
+//   if (xml) {
+//
+//     // get list of dates
+//     var trs = bhv.request.xml.getNodes(xml, 'tr');
+//     if (trs) {
+//       var tournaments = [],
+//           tournament = null,
+//           key = bhv.request.utils.getKey(),
+//           pattern = mapKids[key] ? mapKids[key][3] : '';
+//
+//       for (var t = 0; t < trs.length; ++t) {
+//         var tr = trs[t];
+//
+//         // start of new tournament
+//         if (tr.className === 'tablehead') {
+//           tournament = {
+//             name: tr.children[1].innerText,
+//             date: tr.children[2].innerText.replace('&nbsp;', ' ').trim(),
+//             time: tr.children[3].innerText.replace('&nbsp;', ' ').trim(),
+//             location: tr.children[4].innerText.replace('&nbsp;', ' ').trim(),
+//             own: false,
+//             teams: []
+//           };
+//           tournaments.push(tournament);
+//
+//         // team of current tournament
+//         } else if (tournament) {
+//           var nam = tr.children[1].innerText.replace('&nbsp;', ' ').trim(),
+//               own = false;
+//           if (pattern && nam.toLowerCase().indexOf(pattern) > -1) {
+//             own = tournament.own = true;
+//           }
+//           tournament.teams.push({
+//             name: nam,
+//             own: own
+//           });
+//         }
+//       }
+//
+//       var msg = '';
+//       for (var t2 = 0; t2 < tournaments.length; ++t2) {
+//         var tour = tournaments[t2];
+//         if (tour.own) {
+//           if (msg != '') {
+//             msg += NL;
+//           }
+//           msg += NL + '<b class="team">' + tour.name + ' (' + tour.date + ' '
+//             + tour.time + ' ' + tour.location + ')</b>' + NL;
+//           for (var t3 = 0; t3 < tour.teams.length; ++t3) {
+//             msg += '- '
+//               + (tour.teams[t3].own ? '<b class="team">' : '')
+//               + tour.teams[t3].name
+//               + (tour.teams[t3].own ? '</b>' : '')
+//               + NL;
+//           }
+//         }
+//       }
+//
+//       // add entry for finals
+//       if (finals && finals[key]) {
+//         msg += NL + NL + '<b class="team">' + finals[key] + '</b>' + NL;
+//       }
+//
+//       // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
+//       bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
+//     }
+//   }
+// }
+
 /**
  * Creates the schedule for a junior chamionship.
  * @param {string} reponse The response from the web service.
@@ -63,60 +141,42 @@ function getScheduleOffline() {
  */
 function kidsSchedule(response) {
   // create xml data
-  var xml = bhv.request.xml.fromText(response, 'html');
+  var msg = '',
+      xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
 
-    // get list of dates
-    var trs = bhv.request.xml.getNodes(xml, 'tr');
-    if (trs) {
-      var tournaments = [],
-          tournament = null,
-          key = bhv.request.utils.getKey(),
-          pattern = mapKids[key] ? mapKids[key][3] : '';
+    // get list of tournaments
+    var tournaments = bhv.request.xml.getNodes(xml, 'turniere');
+    if (tournaments && tournaments.length) {
+      var key = bhv.request.utils.getKey(),
+          pattern = mapKids[key] && mapKids[key][3] ? mapKids[key][3] : '';
+      for (var t = 0; t < tournaments.length; ++t) {
+        var tournament = tournaments[t],
+            teams0 = bhv.request.xml.findNode(tournament.childNodes, 'anmerkung');
+        if (teams0
+          && (!pattern || teams0.toLowerCase().indexOf(pattern) > -1)) {
 
-      for (var t = 0; t < trs.length; ++t) {
-        var tr = trs[t];
+          var teams = teams0.split('|')
+            .filter(function(t) { return t.length > 0; })
+            .sort();
 
-        // start of new tournament
-        if (tr.className === 'tablehead') {
-          tournament = {
-            name: tr.children[1].innerText,
-            date: tr.children[2].innerText.replace('&nbsp;', ' ').trim(),
-            time: tr.children[3].innerText.replace('&nbsp;', ' ').trim(),
-            location: tr.children[4].innerText.replace('&nbsp;', ' ').trim(),
-            own: false,
-            teams: []
-          };
-          tournaments.push(tournament);
+          msg += NL + '<b class="team">'
+            + bhv.request.xml.findNode(tournament.childNodes, 'turnier_kurz')
+            + ' ('
+            + bhv.request.xml.findNode(tournament.childNodes, 'von')
+            + ' '
+            + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_kurz')
+            + '  '
+            + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_name')
+            + ')</b>' + NL;
 
-        // team of current tournament
-        } else if (tournament) {
-          var nam = tr.children[1].innerText.replace('&nbsp;', ' ').trim(),
-              own = false;
-          if (pattern && nam.toLowerCase().indexOf(pattern) > -1) {
-            own = tournament.own = true;
-          }
-          tournament.teams.push({
-            name: nam,
-            own: own
-          });
-        }
-      }
+          for (var tea = 0; tea < teams.length; ++tea) {
+            var own = pattern && teams[tea].toLowerCase().indexOf(pattern) > -1;
 
-      var msg = '';
-      for (var t2 = 0; t2 < tournaments.length; ++t2) {
-        var tour = tournaments[t2];
-        if (tour.own) {
-          if (msg != '') {
-            msg += NL;
-          }
-          msg += NL + '<b class="team">' + tour.name + ' (' + tour.date + ' '
-            + tour.time + ' ' + tour.location + ')</b>' + NL;
-          for (var t3 = 0; t3 < tour.teams.length; ++t3) {
             msg += '- '
-              + (tour.teams[t3].own ? '<b class="team">' : '')
-              + tour.teams[t3].name
-              + (tour.teams[t3].own ? '</b>' : '')
+              + (own ? '<b class="team">' : '')
+              + teams[tea]
+              + (own ? '</b>' : '')
               + NL;
           }
         }
@@ -126,11 +186,11 @@ function kidsSchedule(response) {
       if (finals && finals[key]) {
         msg += NL + NL + '<b class="team">' + finals[key] + '</b>' + NL;
       }
-
-      // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
-      bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
     }
   }
+
+  // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
+  bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
 }
 
 /**

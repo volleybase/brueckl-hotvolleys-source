@@ -30,7 +30,6 @@ window.bhv.request = {
 
     // Ajax-CORS for IE8/9
     var ie89 = false;
-    //if (request === null && (ie() === 8 || ie() === 9)) {
     if (ie === 8 || ie === 9) {
       request = new XDomainRequest();
       ie89 = true;
@@ -166,17 +165,20 @@ window.bhv.request = {
     // http://localhost:5001/testdata/Turniere/20752/
     // var url = 'http://localhost:5001/testdata/Turniere/' + idBew;
     // var url = location.protocol + '//kvv.volleynet.at/Turniere/' + idBew;
-    var url = 'https://allorigins.me/get?url='
-      + encodeURIComponent('https://kvv.volleynet.at/Turniere/' + idBew);
+    // var url = 'https://allorigins.me/get?url='
+    //   + encodeURIComponent('https://kvv.volleynet.at/Turniere/' + idBew);
+    var url = location.protocol
+      + '//kv2.volleynet.at/volleynet/service/xml2.php'
+      + '?action=turniere&bewerb_id=' + idBew;
 
-    var onsuccess2 = function(response) {
-      var data = JSON.parse(response);
-      onsuccess(data.contents);
-    }
+    // var onsuccess2 = function(response) {
+    //   var data = JSON.parse(response);
+    //   onsuccess(data.contents);
+    // }
 
     // request data
-    // if (!this._startRequest(url, onsuccess, onerror, false)) {
-    if (!this._startRequest(url, onsuccess2, onerror, false)) {
+    if (!this._startRequest(url, onsuccess, onerror, false)) {
+    // if (!this._startRequest(url, onsuccess2, onerror, false)) {
       onerror();
       return false;
     }

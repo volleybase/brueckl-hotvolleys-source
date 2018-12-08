@@ -1,4 +1,4 @@
-create_manifest = require('./_work/create.manifest.js')
+# create_manifest = require('./_work/create.manifest.js')
 
 files = [
   "*.html",
@@ -20,13 +20,14 @@ files = [
   "uld/**"
 ]
 
-files_copy = files.concat(["cache.manifest"])
+# files_copy = files.concat(["cache.manifest"])
+files_copy = files
 
-files_batch = files.concat([
-  "!cache.manifest"
-])
+# files_batch = files.concat([
+#   "!cache.manifest"
+# ])
 
-fnManifest = 'd:/workdir/brueckl-hotvolleys-source/cache.manifest'
+# fnManifest = 'd:/workdir/brueckl-hotvolleys-source/cache.manifest'
 
 config = (grunt) ->
 
@@ -100,25 +101,25 @@ config = (grunt) ->
         dest: "/workdir/brueckl-hotvolleys/"
       ]
 
-  # batch:
-  #   manifest:
-  #     options:
-  #
-  #       cmd: (files) ->
-  #         console.log(files.src[0] + ' -> ' + fnManifest)
-  #         return 'node d:/workdir/brueckl-hotvolleys-source/_work/manifest.js ' + fnManifest + ' ' + files.src[0]
-  #
-  #         # console.log(files.cwd);
-  #         # return 'd:\\workdir\\brueckl-hotvolleys-source\\_work\\create_manifest.cmd silent'
-  #
-  #       setup: (done) ->
-  #         # grunt.file.delete fn
-  #         manifest = 'CACHE MANIFEST\n'
-  #         # echo # %date% %time%>> ../cache.manifest
-  #         ts = Date.now()
-  #         manifest += '# ' + fmtDate(new Date()) + '\n\n'
-  #         grunt.file.write fnManifest, manifest
-  #         done()
+#  # batch:
+#  #   manifest:
+#  #     options:
+#  #
+#  #       cmd: (files) ->
+#  #         console.log(files.src[0] + ' -> ' + fnManifest)
+#  #         return 'node d:/workdir/brueckl-hotvolleys-source/_work/manifest.js ' + fnManifest + ' ' + files.src[0]
+#  #
+#  #         # console.log(files.cwd);
+#  #         # return 'd:\\workdir\\brueckl-hotvolleys-source\\_work\\create_manifest.cmd silent'
+#  #
+#  #       setup: (done) ->
+#  #         # grunt.file.delete fn
+#  #         manifest = 'CACHE MANIFEST\n'
+#  #         # echo # %date% %time%>> ../cache.manifest
+#  #         ts = Date.now()
+#  #         manifest += '# ' + fmtDate(new Date()) + '\n\n'
+#  #         grunt.file.write fnManifest, manifest
+#  #         done()
 
 #      files:
 #	      src: files
@@ -139,16 +140,16 @@ config = (grunt) ->
 #          console.log('setup2')
 #          done()
 
-  createmanifest:
-    manifest:
-      options:
-        dest: 'cache.manifest'
-      files: [
-        # expand: true
-        cwd: "/workdir/brueckl-hotvolleys-source/"
-        src: files_batch
-        dest: 'cache.manifest'
-      ]
+  # createmanifest:
+  #   manifest:
+  #     options:
+  #       dest: 'cache.manifest'
+  #     files: [
+  #       # expand: true
+  #       cwd: "/workdir/brueckl-hotvolleys-source/"
+  #       src: files_batch
+  #       dest: 'cache.manifest'
+  #     ]
 
   watch:
     copy:
@@ -167,13 +168,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-less')
   grunt.loadNpmTasks('grunt-newer')
   grunt.loadNpmTasks('grunt-real-favicon')
-  create_manifest(grunt)
+  # create_manifest(grunt)
 
   grunt.registerTask('default', ['build'])
 
   grunt.registerTask('build', [
-    # 'batch:manifest',
-    'createmanifest:manifest',
+    # # # 'batch:manifest',
+    # 'createmanifest:manifest',
     'clean:deploy',
     'copy:deploy'
   ])
