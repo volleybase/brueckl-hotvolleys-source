@@ -15,12 +15,13 @@ window.bhv.request = {
 
   /**
    * Creates the request object.
-   * @param {string} url Th eurl to query.
+   * @param {string} url The url to query.
+   * @param {number} wait The timeout.
    * @param {function} onsuccess The on success callback.
    * @param {function} onerror The on error callback.
    * @return {boolean} True if request has been stated, otherwise false.
    */
-  _startRequest: function(url, onsuccess, onerror, addDummy) {
+  _startRequest: function(url, wait, onsuccess, onerror, addDummy) {
 
     // create request object
     var request = null;
@@ -75,8 +76,8 @@ window.bhv.request = {
     request.open('GET', url + (addDummy ? '&dummy=' + (new Date()).getTime() : ''), true);
 
     // try to set a timeout handler
-    if (request.timeout !== undefined) {
-      request.timeout = 5000;
+    if (request.timeout !== undefined && wait > 0) {
+      request.timeout = wait;
       request.ontimeout = function(e) {
         log('Timeout -> call error handler!');
         onerror();
@@ -116,7 +117,7 @@ window.bhv.request = {
     var url = location.protocol
       + '//kvv.volleynet.at/volleynet/service/xml2.php?action=tabelle&bew_id='
       + id;
-    if (!this._startRequest(url, onsuccess, onerror, true)) {
+    if (!this._startRequest(url, 5000, onsuccess, onerror, true)) {
       onerror();
       return false;
     }
@@ -144,7 +145,7 @@ window.bhv.request = {
       + '&orderBy=spi_datum';
 
     // request data
-    if (!this._startRequest(url, onsuccess, onerror, false)) {
+    if (!this._startRequest(url, 5000, onsuccess, onerror, false)) {
       onerror();
       return false;
     }
@@ -168,7 +169,7 @@ window.bhv.request = {
     // var url = 'https://allorigins.me/get?url='
     //   + encodeURIComponent('https://kvv.volleynet.at/Turniere/' + idBew);
     var url = location.protocol
-      + '//kv2.volleynet.at/volleynet/service/xml2.php'
+      + '//kvv2.volleynet.at/volleynet/service/xml2.php'
       + '?action=turniere&bewerb_id=' + idBew;
 
     // var onsuccess2 = function(response) {
@@ -177,8 +178,8 @@ window.bhv.request = {
     // }
 
     // request data
-    if (!this._startRequest(url, onsuccess, onerror, false)) {
-    // if (!this._startRequest(url, onsuccess2, onerror, false)) {
+    if (!this._startRequest(url, 15000, onsuccess, onerror, false)) {
+    // if (!this._startRequest(url, 15000, onsuccess2, onerror, false)) {
       onerror();
       return false;
     }
@@ -205,7 +206,7 @@ window.bhv.request = {
       + '&orderBy=spi_datum';
 
     // request data
-    if (!this._startRequest(url, onsuccess, onerror, false)) {
+    if (!this._startRequest(url, 5000, onsuccess, onerror, false)) {
       onerror();
       return false;
     }
