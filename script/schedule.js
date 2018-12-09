@@ -155,9 +155,8 @@ function kidsSchedule(response) {
         if (teams0
           && (!pattern || teams0.toLowerCase().indexOf(pattern) > -1)) {
 
-          var teams = teams0.split('|')
-            .filter(function(t) { return t.length > 0; })
-            .sort();
+          var noTab = teams0.substr(0, 2) === '0:',
+              teams = teams0.split('|');
 
           msg += NL + '<b class="team">'
             + bhv.request.xml.findNode(tournament.childNodes, 'turnier_kurz')
@@ -170,13 +169,27 @@ function kidsSchedule(response) {
             + ')</b>' + NL;
 
           for (var tea = 0; tea < teams.length; ++tea) {
-            var own = pattern && teams[tea].toLowerCase().indexOf(pattern) > -1;
+            var parts = teams[tea].split(':'),
+                pts = parts.shift(),
+                nam = parts.join(':'),
+                own = pattern && nam.toLowerCase().indexOf(pattern) > -1;
 
-            msg += '- '
-              + (own ? '<b class="team">' : '')
-              + teams[tea]
-              + (own ? '</b>' : '')
-              + NL;
+            if (noTab) {
+              // entry list
+              msg += '- '
+                + (own ? '<b class="team">' : '')
+                + nam
+                + (own ? '</b>' : '')
+                + NL;
+            } else {
+              // standings of tournament
+              msg += (teams.length > 9 && tea < 9 ? '  ' : ' ')
+                + (own ? '<b class="team">' : '')
+                + (tea + 1) + '. ' + bhv.request.utils.fillColumn(nam, 40)
+                + bhv.request.utils.fillColumn(pts, -4)
+                + (own ? '</b>' : '')
+                + NL;
+            }
           }
         }
       }
