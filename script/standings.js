@@ -1,9 +1,9 @@
 var map = {
-  'u10': [18858, kidsStandings, 'Tabelle U10'],
-  'u11': [18865, kidsStandings, 'Tabelle U11'],
-  'u12': [18863, kidsStandings, 'Tabelle U12'],
-  'u13': [18861, kidsStandings, 'Tabelle U13'],
-  'u15': [18859, kidsStandings, 'Tabelle U15'],
+  'u10': [23058, kidsStandings, 'Tabelle U10'],
+  'u11': [23059, kidsStandings, 'Tabelle U11'],
+  'u12': [23060, kidsStandings, 'Tabelle U12'],
+  'u13': [23061, kidsStandings, 'Tabelle U13'],
+  'u15': [23063, kidsStandings, 'Tabelle U15'],
 
   'br4': [22934, leagueStandings, 'Tabelle Unterliga'],
   'br3': [22934, leagueStandings, 'Tabelle Unterliga'],
@@ -114,5 +114,6 @@ function getStandings() {
  * @return {void}
  */
 function getStandingsOffline() {
-  bhv.request.utils.showOffline('standings');
+  // bhv.request.utils.showOffline('standings');
+  bhv.request.utils.inject('Tabelle nicht gefunden!');
 }

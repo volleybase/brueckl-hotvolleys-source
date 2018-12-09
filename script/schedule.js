@@ -10,7 +10,6 @@ var mapKids = {
   'u12': [23060, kidsSchedule, 'Termine U12', 'brückl'],
   'u13': [23061, kidsSchedule, 'Termine U13', 'brückl'],
   'u15': [23063, kidsSchedule, 'Termine U15', 'brückl']
-  // 'u15': [15116, kidsSchedule, 'Termine U15', 'brückl']
 };
 
 var finals = {
