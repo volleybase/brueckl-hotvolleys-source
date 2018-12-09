@@ -23,19 +23,19 @@ window.bhv.request = {
    */
   _startRequest: function(url, wait, onsuccess, onerror, addDummy) {
 
-    // create request object
-    var request = null;
-    if (window.XMLHttpRequest) {
-      request = new XMLHttpRequest();
-    }
+    // prepare Ajax-CORS for IE8/9
+    var ie89 = ie === 8 || ie === 9,
+        // create request object
+        request = null;
 
-    // Ajax-CORS for IE8/9
-    var ie89 = false;
-    if (ie === 8 || ie === 9) {
+    if (ie89) {
       request = new XDomainRequest();
-      ie89 = true;
+    } else if (window.XMLHttpRequest) {
+      request = new XMLHttpRequest();
+      request.withCredentials = false;
     }
 
+    // old ie
     if (!request && window.ActiveXObject) {
       try {
         request = new ActiveXObject('MSXML2.XMLHTTP');
@@ -51,32 +51,46 @@ window.bhv.request = {
       return null;
     }
 
-    function reqHandler(evtXHR) {
-      if (request.readyState === 4 && request.status == 200) {
-        onsuccess(request.responseText);
-      }
-    }
-
     if (ie89) {
+      request.onprogress = function() {}; // avoid aborting
+      request.ontimeout = function() {};  // "
+
       request.onload = function() {
         onsuccess(request.responseText);
       };
+
+      request.onerror = function() {
+        log('Error handler called!');
+        onerror();
+      };
+
+      // request.open("POST", "http://somewhere.com/endpoint", true);
+      // request.send(data);
+
     } else {
+
+      function reqHandler(evtXHR) {
+        if (request.readyState === 4 && request.status == 200) {
+          onsuccess(request.responseText);
+        }
+      }
+
       request.onreadystatechange = reqHandler;
+
+      function reqError(event) {
+        log('Error handler called!');
+        onerror();
+      }
+
+      request.onerror = reqError;
     }
 
-    function reqError(event) {
-      log('Error handler called!');
-      onerror();
-    }
-
-    request.onerror = reqError;
 
     // start request (add dummy timestamp to avoid caching)
     request.open('GET', url + (addDummy ? '&dummy=' + (new Date()).getTime() : ''), true);
 
-    // try to set a timeout handler
-    if (request.timeout !== undefined && wait > 0) {
+    // try to set a timeout handler (not for old ie)
+    if (!ie89 && request.timeout !== undefined && wait > 0) {
       request.timeout = wait;
       request.ontimeout = function(e) {
         log('Timeout -> call error handler!');
