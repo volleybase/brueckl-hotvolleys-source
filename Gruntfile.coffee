@@ -32,11 +32,17 @@ files_copy = files
 config = (grunt) ->
 
   clean:
-    deploy:
+    deploy1:
       options:
         "force": true
       expand: true
       cwd: "/workdir/brueckl-hotvolleys"
+      src: ["**/*", "!.git"]
+    deploy2:
+      options:
+        "force": true
+      expand: true
+      cwd: "/workdir/BruecklHotvolleys.github.io"
       src: ["**/*", "!.git"]
 
   realFavicon:
@@ -92,13 +98,21 @@ config = (grunt) ->
           usePathAsIs: false
 
   copy:
-    deploy:
+    deploy1:
       options:
         "force": true
       files: [
         cwd: "/workdir/brueckl-hotvolleys-source/"
         src: files_copy
         dest: "/workdir/brueckl-hotvolleys/"
+      ]
+    deploy2:
+      options:
+        "force": true
+      files: [
+        cwd: "/workdir/brueckl-hotvolleys-source/"
+        src: files_copy
+        dest: "/workdir/BruecklHotvolleys.github.io/"
       ]
 
 #  # batch:
@@ -154,7 +168,7 @@ config = (grunt) ->
   watch:
     copy:
       files: files,
-      tasks: ['newer:copy:deploy']
+      tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
@@ -175,6 +189,8 @@ module.exports = (grunt) ->
   grunt.registerTask('build', [
     # # # 'batch:manifest',
     # 'createmanifest:manifest',
-    'clean:deploy',
-    'copy:deploy'
+    'clean:deploy1',
+    'clean:deploy2',
+    'copy:deploy1',
+    'copy:deploy2'
   ])
