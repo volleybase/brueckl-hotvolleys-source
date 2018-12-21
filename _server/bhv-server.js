@@ -59,7 +59,8 @@ bhv.use(express.static('D:/workdir/BruecklHotvolleys.github.io'))
 
 // error info
 bhv.use(function (req, res, next) {
-  res.status(404).send("BHV: Can't find that!")
+  // res.status(404).send("BHV: Can't find that!")
+  res.status(404).sendFile('D:/workdir/BruecklHotvolleys.github.io/404.html');
   console.log('BHV: %s %s %s %s', req.method, res.statusCode, req.url, req.path);
 })
 
