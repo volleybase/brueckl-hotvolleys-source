@@ -21,7 +21,11 @@ files = [
 ]
 
 # files_copy = files.concat(["cache.manifest"])
-files_copy = files
+# do not copy 'old' files!
+files_copy = files.concat([
+  "!**/*-old.*"
+])
+files_watch = files_copy
 
 # files_batch = files.concat([
 #   "!cache.manifest"
@@ -32,7 +36,7 @@ files_copy = files
 config = (grunt) ->
 
   clean:
-    deploy1:
+    deploy1_do_not_change:
       options:
         "force": true
       expand: true
@@ -50,7 +54,8 @@ config = (grunt) ->
       src: '_work/favicons/bhv.svg'
       dest: 'favicons'
       options:
-        iconsPath: '/brueckl-hotvolleys/favicons'
+        # old iconsPath: '/brueckl-hotvolleys/favicons'
+        iconsPath: '/favicons'
         html: [ '_work/favicons/index.html' ]
         design:
           ios:
@@ -98,7 +103,7 @@ config = (grunt) ->
           usePathAsIs: false
 
   copy:
-    deploy1:
+    deploy1_do_not_change:
       options:
         "force": true
       files: [
@@ -167,8 +172,9 @@ config = (grunt) ->
 
   watch:
     copy:
-      files: files,
-      tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
+      files: files_watch,
+      # tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
+      tasks: ['newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
@@ -189,8 +195,8 @@ module.exports = (grunt) ->
   grunt.registerTask('build', [
     # # # 'batch:manifest',
     # 'createmanifest:manifest',
-    'clean:deploy1',
+    # keep as is 'clean:deploy1',
     'clean:deploy2',
-    'copy:deploy1',
+    # keep as is 'copy:deploy1',
     'copy:deploy2'
   ])

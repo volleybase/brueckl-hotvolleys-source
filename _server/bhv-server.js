@@ -1,11 +1,4 @@
-//var connect = require('../mro1/node_modules/connect');
-//var serveStatic = require('../mro1/node_modules/serve-static');
-
-//var express = require('express')
-// var express = require('d:/github/brueckl-hotvolleys-source/node_modules/express')
 var express = require('d:/workdir/brueckl-hotvolleys-source/node_modules/express')
-//var fs = require('fs')
-
 var app = express()
 
 // logging
@@ -49,4 +42,28 @@ volleybase.use(function (req, res, next) {
 // start
 volleybase.listen(88, function () {
   console.log('Volleybase(88)!')
+})
+
+
+// bhv - new info pages
+var bhv = express()
+
+// logging
+bhv.use(function(req, res, next) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+  next();
+})
+
+// server
+bhv.use(express.static('D:/workdir/BruecklHotvolleys.github.io'))
+
+// error info
+bhv.use(function (req, res, next) {
+  res.status(404).send("BHV: Can't find that!")
+  console.log('BHV: %s %s %s %s', req.method, res.statusCode, req.url, req.path);
+})
+
+// start
+bhv.listen(5002, function () {
+  console.log('BHV Info pages(5002)!')
 })
