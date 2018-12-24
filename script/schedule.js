@@ -47,6 +47,101 @@ function getSchedule() {
   }
 }
 
+function getAllSchedules(keyEnabled, from, till, callback) {
+  var i, keys,
+      IDX_BEW = 0,
+      IDX_TEA = 3,
+      bewIds = [],
+      teaIds = [];
+
+  // leagues
+  if (mapLeague) {
+    keys = Object.keys(mapLeague);
+    for (i = 0; i < keys.length; ++i) {
+      bewIds.push(mapLeague[keys[i]][IDX_BEW]);
+      teaIds.push(mapLeague[keys[i]][IDX_TEA]);
+    }
+  }
+
+  if (bewIds.length) {
+    bhv.request.queryMultiSchedules(
+      from, till, bewIds.join(', '), teaIds.join(', '),
+      function(response) {
+
+        var i, list, bew, work, datKey, day, date, time, spNr, teams, gymn,
+            // fmt = bhv.request.utils.fillColumn,
+            res = [],
+            // create xml data
+            xml = bhv.request.xml.fromText(response, 'xml');
+        if (xml) {
+
+          // get list of dates
+          list = bhv.request.xml.getNodes(xml, 'termin');
+          if (list && list.length) {
+
+            for (i = 0; i < list.length; ++i) {
+
+              datKey = bhv.request.xml.findNode(list[i].childNodes, 'spi_datum');
+              if (datKey && datKey.length >= 10) {
+                work = datKey.substr(0, 10)
+                  .replace('2015', '2019')
+                  .split('.');
+                datKey = '' + work[2] + work[1] + work[0];
+
+                bew = bhv.request.xml.findNode(list[i].childNodes, 'bew_kurz');
+
+                spNr = bhv.request.xml.findNode(list[i].childNodes, 'spi_nummer');
+                day = days[bhv.request.xml.findNode(list[i].childNodes, 'tag')];
+                date = bhv.request.xml.findNode(list[i].childNodes, 'datum');
+                time = bhv.request.xml.findNode(list[i].childNodes, 'zeit');
+
+                teams = bhv.request.utils.checkBold(
+                  bhv.request.xml.findNode(list[i].childNodes, 'heimteamname'))
+                  + ' : '
+                  + bhv.request.utils.checkBold(
+                    bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'));
+                gymn = bhv.request.xml.findNode(list[i].childNodes, 'spo_name');
+
+                res.push({
+                  'date': datKey,
+                  'enabled': datKey.substr(0, keyEnabled.length) === keyEnabled,
+                  'text': bew,
+                  'info': spNr + ' ' + day + ' ' + date + ' ' + time + ' '
+                    + teams + ' ' + gymn
+                });
+              }
+            }
+          }
+        }
+
+        callback(res);
+
+      }, function(err) {
+        console.log('Cannot load data!');
+        console.log(err);
+      });
+  }
+
+  // junior leagues
+  bewIds = [];
+  if (mapKids) {
+    keys = Object.keys(mapKids);
+    for (i = 0; i < keys.length; ++i) {
+      bewIds.push(mapKids[keys[IDX_BEW]]);
+    }
+  }
+
+  // if (bewIds.length) {
+  //   bhv.request.queryAllSchedule(bewIds.join(', '),
+  //     function(response) {
+  //
+  //     }, function(err) {
+  //       console.log('Cannot load data!');
+  //       console.log(err);
+  //     });
+  // }
+}
+
 /**
  * Injects the stored schedule if offline.
  * @return {void}

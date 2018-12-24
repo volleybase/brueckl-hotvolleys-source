@@ -6,6 +6,7 @@ files = [
   "README.md",
   "styles.css",
 
+  "calendar/**",
   "elements/**",
   "favicons/**",
   "image/**",

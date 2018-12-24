@@ -168,6 +168,47 @@ window.bhv.request = {
     return true;
   },
 
+  queryMultiSchedules: function(from, till, idsBew, idsTea, onsuccess, onerror) {
+
+    // // check id of competition and team
+    // if (!this._checkId(idBew, 'competition') || !this._checkId(idTea, 'team')) {
+    //   onerror();
+    //   return false;
+    // }
+
+    // the url to get the schedule
+    var url = location.protocol
+      // + '//kvv.volleynet.at/volleynet/service/xml2.php'
+      + '//kv.volleynet.at/volleynet/service/xml2.php'
+      + '?action=termin&where='
+      + encodeURIComponent(
+        // 'bew_id IN (' + idsBew + ') '
+        'bew_id IN (14825, 14821, 15301)'
+        // + ' and (vrn_id_a=21 or vrn_id_b=21)'
+        + ' and (vrn_id_a=279 or vrn_id_b=279)'
+        // + ' and (spi_tea_id_a IN (' + idsTea + ') or spi_tea_id_b IN (' + idsTea + ')) '
+        + ' and (spi_tea_id_a IN (19248, 19256, 18575) or spi_tea_id_b IN (19248, 19256, 18575)) '
+
+        + " and spi_datum >= TO_TIMESTAMP('" + from + " 00:00', 'YYYY-MM-DD HH24:MI') - INTERVAL '4 years'"
+        + " and spi_datum <= TO_TIMESTAMP('" + till + " 23:59', 'YYYY-MM-DD HH24:MI') - INTERVAL '3 years'"
+        + ' order by spi_datum');
+
+// where spi_datum > (timestamp '2018-12-01 00:00' - INTERVAL '4 years')
+//   and spi_datum <= (timestamp '2018-12-31 23:59' - INTERVAL '3 years')
+//   and bew_id IN (14825, 14821, 15301)
+//   and (spi_tea_id_a in (19248, 19256, 18575) OR spi_tea_id_b in (19248, 19256, 18575))
+
+    // request data
+    if (!this._startRequest(url, 5000, onsuccess, onerror, false)) {
+      onerror();
+      return false;
+    }
+
+    // done
+    return true;
+  },
+
+
   queryKidsSchedule: function(idBew, onsuccess, onerror) {
 
     // check id of competition and team
