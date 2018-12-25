@@ -13,14 +13,44 @@ var mapKids = {
 };
 
 var finals = {
-  u10: "Finale (Do 30.05.2019  Brückl)",
-  u11: "Finale (So 19.05.2019  Brückl)",
-  u12: "Finale (So 07.04.2019  Klagenfurt)",
-  u13: "Finale (Sa 27.04.2019  Wolfsberg)",
-  u15: "Finale (So 05.05.2019  Klagenfurt)",
-  u17: "Finale (So 03.03.2019  Villach)",
-  u19: "Finale (So 27.01.2019  Klagenfurt)"
-}
+  'u10': "Finale (Do 30.05.2019  Brückl)",
+  'u11': "Finale (So 19.05.2019  Brückl)",
+  'u12': "Finale (So 07.04.2019  Klagenfurt)",
+  'u13': "Finale (Sa 27.04.2019  Wolfsberg)",
+  'u15': "Finale (So 05.05.2019  Klagenfurt)",
+  'u17': "Finale (So 03.03.2019  Villach)",
+  'u19': "Finale (So 27.01.2019  Klagenfurt)"
+};
+var finals2 = {
+  '20190530': {
+    'text': 'u10',
+    'info': 'u10 Finale: Do 30.05.2019  Brückl'
+  },
+  '20190519': {
+    'text': 'u11',
+    'info': 'u11 Finale: So 19.05.2019  Brückl'
+  },
+  '20190407': {
+    'text': 'u12',
+    'info': 'u12 Finale: So 07.04.2019  Klagenfurt'
+  },
+  '20190427': {
+    'text': 'u13',
+    'info': 'u13 Finale: Sa 27.04.2019  Wolfsberg'
+  },
+  '20190505': {
+    'text': 'u15',
+    'info': 'u15 Finale: So 05.05.2019  Klagenfurt'
+  },
+  '20190303': {
+    'text': 'u17',
+    'info': 'u17 Finale: So 03.03.2019  Villach'
+  },
+  '20190127': {
+    'text': 'u19',
+    'info': 'u19 Finale: So 27.01.2019  Klagenfurt'
+  }
+};
 var days = ['?0', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', '?8'];
 
 
@@ -47,44 +77,37 @@ function getSchedule() {
   }
 }
 
-function getAllSchedules(keyEnabled, from, till, callback) {
-  var i, keys,
-      IDX_BEW = 0,
-      IDX_TEA = 3,
-      bewIds = [],
-      teaIds = [];
+function getAllSchedules(keyEnabled, from, till, callbackLeague) {
 
-  // leagues
-  if (mapLeague) {
-    keys = Object.keys(mapLeague);
-    for (i = 0; i < keys.length; ++i) {
-      bewIds.push(mapLeague[keys[i]][IDX_BEW]);
-      teaIds.push(mapLeague[keys[i]][IDX_TEA]);
-    }
-  }
+  // query games
+  bhv.request.queryMultiSchedules(
+    from, till,
+    function(response) {
 
-  if (bewIds.length) {
-    bhv.request.queryMultiSchedules(
-      from, till, bewIds.join(', '), teaIds.join(', '),
-      function(response) {
+      var i, list, bew, id, work, datKey, day, date, time, spNr, teams, gymn,
+          gameRes,
+          res = [],
+          loaded = [],
+          // create xml data
+          xml = bhv.request.xml.fromText(response, 'xml');
+      if (xml) {
 
-        var i, list, bew, work, datKey, day, date, time, spNr, teams, gymn,
-            // fmt = bhv.request.utils.fillColumn,
-            res = [],
-            // create xml data
-            xml = bhv.request.xml.fromText(response, 'xml');
-        if (xml) {
+        // get list of dates
+        list = bhv.request.xml.getNodes(xml, 'termin');
+        if (list && list.length) {
 
-          // get list of dates
-          list = bhv.request.xml.getNodes(xml, 'termin');
-          if (list && list.length) {
+          for (i = 0; i < list.length; ++i) {
 
-            for (i = 0; i < list.length; ++i) {
+            // get id of next game to block if loaded twice
+            // (some games might belong to two leagues - mevza some years ago)
+            id = bhv.request.xml.findNode(list[i].childNodes, 'id');
+            if (loaded.indexOf(id) === -1) {
+              loaded.push(id);
 
               datKey = bhv.request.xml.findNode(list[i].childNodes, 'spi_datum');
               if (datKey && datKey.length >= 10) {
                 work = datKey.substr(0, 10)
-                  .replace('2015', '2019')
+                  // .replace('2015', '2019')
                   .split('.');
                 datKey = '' + work[2] + work[1] + work[0];
 
@@ -102,44 +125,86 @@ function getAllSchedules(keyEnabled, from, till, callback) {
                     bhv.request.xml.findNode(list[i].childNodes, 'gastteamname'));
                 gymn = bhv.request.xml.findNode(list[i].childNodes, 'spo_name');
 
+                gameRes = bhv.request.xml.createGameResult(list[i].childNodes);
+
                 res.push({
                   'date': datKey,
                   'enabled': datKey.substr(0, keyEnabled.length) === keyEnabled,
                   'text': bew,
                   'info': spNr + ' ' + day + ' ' + date + ' ' + time + ' '
-                    + teams + ' ' + gymn
+                    + teams + '  ' + (gameRes ? gameRes : gymn)
                 });
               }
             }
           }
         }
+      }
 
-        callback(res);
+      callbackLeague(res);
 
-      }, function(err) {
-        console.log('Cannot load data!');
-        console.log(err);
-      });
-  }
+    }, function(err) {
+      console.log('Cannot load data!');
+      console.log(err);
+    });
 
-  // junior leagues
-  bewIds = [];
-  if (mapKids) {
-    keys = Object.keys(mapKids);
-    for (i = 0; i < keys.length; ++i) {
-      bewIds.push(mapKids[keys[IDX_BEW]]);
-    }
-  }
+  // query kids tournaments
+  bhv.request.queryMultiKidsSchedules(
+    from, till, 'brückl',
+    function(response) {
 
-  // if (bewIds.length) {
-  //   bhv.request.queryAllSchedule(bewIds.join(', '),
-  //     function(response) {
-  //
-  //     }, function(err) {
-  //       console.log('Cannot load data!');
-  //       console.log(err);
-  //     });
-  // }
+      // create xml data
+      var tournament, tournaments, t, id, work, key, text, info,
+          teams0, teams, noTab,
+          res = [],
+          loaded = [],
+          xml = bhv.request.xml.fromText(response, 'xml');
+      if (xml) {
+
+        // get list of tournaments
+        tournaments = bhv.request.xml.getNodes(xml, 'turniere');
+        if (tournaments && tournaments.length) {
+          for (t = 0; t < tournaments.length; ++t) {
+            tournament = tournaments[t];
+
+            // get id of next tournament to block if loaded twice
+            // (some tournaments belong to two leagues - m + f)
+            id = bhv.request.xml.findNode(tournament.childNodes, 'id');
+            if (loaded.indexOf(id) === -1) {
+              loaded.push(id);
+
+              work = bhv.request.xml.findNode(tournament.childNodes, 'von')
+                .split('.');
+              key = '' + work[2] + work[1] + work[0];
+
+              text = bhv.request.xml.findNode(tournament.childNodes, 'turnier_kurz');
+              info = _tournamentInfo(tournament) + NL + NL;
+
+              teams0 = bhv.request.xml.findNode(tournament.childNodes, 'anmerkung');
+              if (teams0) {
+                noTab = teams0.substr(0, 2) === '0:';
+                teams = teams0.split('|');
+
+                for (var tea = 0; tea < teams.length; ++tea) {
+                  info += _teamInfo(teams, tea, noTab, 'brückl');
+                }
+              }
+
+              res.push({
+                'date': key,
+                'enabled': key.substr(0, keyEnabled.length) === keyEnabled,
+                'text': text,
+                'info': info
+              });
+            }
+          }
+        }
+
+        callbackLeague(res);
+      }
+    }, function(err) {
+      console.log('Cannot load data!');
+      console.log(err);
+    });
 }
 
 /**
@@ -150,7 +215,7 @@ function getScheduleOffline() {
   bhv.request.utils.showOffline('schedule');
 }
 
-
+// #region -- old --
 // /**
 //  * Creates the schedule for a junior chamionship.
 //  * @param {string} reponse The response from the web service.
@@ -227,6 +292,7 @@ function getScheduleOffline() {
 //     }
 //   }
 // }
+// #endregion -- old --
 
 /**
  * Creates the schedule for a junior chamionship.
@@ -253,38 +319,9 @@ function kidsSchedule(response) {
           var noTab = teams0.substr(0, 2) === '0:',
               teams = teams0.split('|');
 
-          msg += NL + '<b class="team">'
-            + bhv.request.xml.findNode(tournament.childNodes, 'turnier_kurz')
-            + ' ('
-            + bhv.request.xml.findNode(tournament.childNodes, 'von')
-            + ' '
-            + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_kurz')
-            + '  '
-            + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_name')
-            + ')</b>' + NL;
-
+          msg += NL + _tournamentInfo(tournament) + NL;
           for (var tea = 0; tea < teams.length; ++tea) {
-            var parts = teams[tea].split(':'),
-                pts = parts.shift(),
-                nam = parts.join(':'),
-                own = pattern && nam.toLowerCase().indexOf(pattern) > -1;
-
-            if (noTab) {
-              // entry list
-              msg += '- '
-                + (own ? '<b class="team">' : '')
-                + nam
-                + (own ? '</b>' : '')
-                + NL;
-            } else {
-              // standings of tournament
-              msg += (teams.length > 9 && tea < 9 ? '  ' : ' ')
-                + (own ? '<b class="team">' : '')
-                + (tea + 1) + '. ' + bhv.request.utils.fillColumn(nam, 40)
-                + bhv.request.utils.fillColumn(pts, -4)
-                + (own ? '</b>' : '')
-                + NL;
-            }
+            msg += _teamInfo(teams, tea, noTab, pattern);
           }
         }
       }
@@ -298,6 +335,42 @@ function kidsSchedule(response) {
 
   // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
   bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
+}
+
+function _tournamentInfo(tournament) {
+  return '<b class="team">'
+    + bhv.request.xml.findNode(tournament.childNodes, 'turnier_kurz')
+    + ' ('
+    + bhv.request.xml.findNode(tournament.childNodes, 'von')
+    + ' '
+    + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_kurz')
+    + '  '
+    + bhv.request.xml.findNode(tournament.childNodes, 'bewerb_name')
+    + ')</b>';
+}
+
+function _teamInfo(teams, tea, noTab, pattern) {
+  var parts = teams[tea].split(':'),
+      pts = parts.shift(),
+      nam = parts.join(':'),
+      own = pattern && nam.toLowerCase().indexOf(pattern) > -1;
+
+  if (noTab) {
+    // entry list
+    return '- '
+      + (own ? '<b class="team">' : '')
+      + nam
+      + (own ? '</b>' : '')
+      + NL;
+  }
+
+  // standings of tournament
+  return (teams.length > 9 && tea < 9 ? '  ' : ' ')
+    + (own ? '<b class="team">' : '')
+    + (tea + 1) + '. ' + bhv.request.utils.fillColumn(nam, 40)
+    + bhv.request.utils.fillColumn(pts, -4)
+    + (own ? '</b>' : '')
+    + NL;
 }
 
 /**

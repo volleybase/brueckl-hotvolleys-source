@@ -1,3 +1,452 @@
+// #region -- Calendar. -------------------------------------------------------
+
+var calendar = {
+
+  // #region -- The fields. ---------------------------------------------------
+
+  '_document': null,
+  '_tplHeader': '',
+  '_tplContent': '',
+  '_tplWeek': '',
+  '_tplDay': '',
+  '_tplEntry': '',
+  '_tplEntryInfo': '',
+  '_nextId': -99,
+  '_year': 0,
+  '_month': 0,
+  '_today': -999,
+
+  // #endregion -- The fields. ------------------------------------------------
+
+  // #region -- Init and create calendar. -------------------------------------
+
+  'init': function(document) {
+    var dat = new Date();
+
+    this._document = document;
+    this._loadTemplates();
+
+    this.show(DateUtil.datToYM(dat));
+  },
+
+  'show': function(key) {
+    this._nextId = 0;
+    this._initDate(key);
+    XDays.init(this._year);
+
+    this._injectHtml('header', this._createHeader());
+    this._inject('footer', 'tplFooter');
+    this._injectHtml('content', this._createContent());
+    // load games and tournaments asynchronously
+    this._loadDates();
+
+    // initialize event handling
+    setTimeout(this._initEvents.bind(this), 100);
+  },
+  '_initDate': function(key) {
+    var dat;
+
+    this._year = parseInt(key.substr(0, 4));
+    this._month = parseInt(key.substr(4, 2)) - 1;
+
+    if (isNaN(this._year) || isNaN(this._month)
+      || this._year <= 0 || this._year > 9999
+      || this._month < 0 || this._month > 11) {
+
+      dat = new Date();
+      this._year = dat.getFullYear();
+      this._month = dat.getMonth();
+    }
+  },
+  '_initEvents': function() {
+    var i,
+        elemsNav = this._document.querySelectorAll('#header > .nav'),
+
+        handlerNav = function(ev) {
+          var key = ev.currentTarget.getAttribute('data-dir');
+          this.show(key);
+        };
+
+    if (elemsNav) {
+      handlerNav = handlerNav.bind(this);
+      for (i = 0; i < elemsNav.length; ++i) {
+        elemsNav[i].addEventListener('click', handlerNav);
+      }
+    }
+
+    this._initDatesInfo();
+  },
+  '_initDatesInfo': function() {
+    var i,
+        elemMain = this._document.querySelector('#content > .main'),
+        elems = this._document.querySelectorAll('#content > .main > .week > .day.enabled > .entry.enabled'),
+        elemsInfo = this._document.querySelectorAll('#content > .entryInfo'),
+        handler = function(ev) {
+          var elem = ev.currentTarget,
+              id = elem.getAttribute('data-xid'),
+              info = this._document.getElementById(id);
+
+          elemMain.style.display = 'none';
+          info.style.display = 'block';
+        },
+        handlerHide = function(ev) {
+          ev.currentTarget.style.display = 'none';
+          elemMain.style.display = 'block';
+        };
+
+    if (elems && elemsInfo) {
+      handler = handler.bind(this);
+      for (i = 0; i < elems.length; ++i) {
+        elems[i].addEventListener('click', handler);
+      }
+      for (i = 0; i < elemsInfo.length; ++i) {
+        elemsInfo[i].addEventListener('click', handlerHide);
+      }
+    }
+  },
+
+
+  '_loadTemplates': function() {
+    this._tplHeader = this._loadTemplate('tplHeader');
+    this._tplContent = this._loadTemplate('tplContent');
+    this._tplWeek = this._loadTemplate('tplWeek');
+    this._tplDay = this._loadTemplate('tplDay');
+    this._tplEntry = this._loadTemplate('tplEntry');
+    this._tplEntryInfo = this._loadTemplate('tplEntryInfo');
+  },
+
+  // #endregion -- Init and create calendar. ----------------------------------
+
+  // #region -- Create the header. --------------------------------------------
+
+  '_createHeader': function() {
+    var dat2,
+        k1, k2, k3, k4;
+
+    dat2 = new Date(this._year - 1, this._month, 1);
+    k1 = DateUtil.datToYM(dat2);
+    dat2 = new Date(this._year, this._month - 1, 1);
+    k2 = DateUtil.datToYM(dat2);
+    dat2 = new Date(this._year, this._month + 1, 1);
+    k3 = DateUtil.datToYM(dat2);
+    dat2 = new Date(this._year + 1, this._month, 1);
+    k4 = DateUtil.datToYM(dat2);
+
+    return this._tplHeader.trim()
+      .replace('{{month}}', XDays.monthNames[this._month])
+      .replace('{{year}}', this._year)
+      .replace('{{dir-12}}', k1)
+      .replace('{{dir-1}}', k2)
+      .replace('{{dir+1}}', k3)
+      .replace('{{dir+12}}', k4);
+  },
+
+  // #endregion -- Create the header. -----------------------------------------
+
+  // #region -- Create the content. -------------------------------------------
+
+  '_createContent': function() {
+    var d, weekRes,
+        content = '',
+        infos = '',
+        days = this._loadData();
+
+    // create the days
+    for (d = 0; d < days.length; d += 7) {
+      weekRes = this._createWeek(d, days);
+      content += weekRes.content;
+      infos  += weekRes.infos;
+    }
+
+    // return result
+    return this._tplContent.trim()
+      .replace('{{weeks}}', content)
+      .replace('{{infos}}', infos);
+  },
+
+  '_createWeek': function(day, days) {
+    var d, dayRes,
+        content = '',
+        infos = '';
+
+    for (d = day; d < day + 7; ++d) {
+      dayRes = this._createDay(d, days);
+      content += dayRes.content;
+      infos += dayRes.infos;
+    }
+
+    // inject days into week and return result
+    return {
+      'content': this._tplWeek.trim().replace('{{days}}', content),
+      'infos': infos
+    };
+  },
+
+  '_createDay': function(day, days) {
+
+    var entries = this._createEntries(days[day]);
+
+    // inject data into template and return result
+    return {
+      'content': this._tplDay.trim()
+        .replace('{{key}}', days[day].key)
+        .replace('{{enabled}}', days[day].enabled ? ' enabled' : '')
+        .replace('{{date}}', days[day].date)
+        .replace('{{entries}}', entries.content),
+      'infos': entries.infos
+    };
+  },
+
+  '_createEntries': function(day) {
+    var e, id, enabled,
+        content = '',
+        infos = '';
+
+    for (e = 0; e < day.entries.length; ++e) {
+      enabled = day.enabled && day.entries[e].enabled;
+      id = enabled ? this._createId('info') : '';
+
+      content += this._tplEntry.trim()
+        .replace('{{enabled}}', enabled ? ' enabled' : '')
+        .replace('{{xid}}', enabled ? ' data-xid="' + id + '"' : '')
+        .replace('{{text}}', day.entries[e].text);
+      if (enabled) {
+        infos += this._tplEntryInfo.trim()
+          .replace('{{id}}', id)
+          .replace('{{info}}', day.entries[e].info);
+      }
+    }
+
+    return {
+      'content': content,
+      'infos': infos
+    };
+  },
+
+  // #endregion -- Create the content. ----------------------------------------
+
+  // #region -- Load the data. ------------------------------------------------
+
+  /**
+   * Loads the dates asynchronously from xml service (kvv2).
+   * @return {void}
+   */
+  '_loadDates': function() {
+
+    // check for dates of games
+    var dat1 = new Date(this._year, this._month, -7),
+        dat2 = new Date(this._year, this._month + 1, 7),
+        keyEnabled = DateUtil.toYM(this._year, this._month),
+
+        handlerL = function(data) {
+          var i, j, item, found, keys,
+              id, elemDay, elemContent, items, tpl, tpl2, enabled,
+              buf = {};
+
+          if (data && data.length) {
+
+            // consolidate data - prepare for printing
+            for (i = 0; i < data.length; ++i) {
+              item = data[i];
+              if (!buf[item.date]) {
+                buf[item.date] = [];
+              }
+
+              found = false;
+              for (j = 0; j < buf[item.date].length; ++j) {
+                if (buf[item.date][j].text == item.text) {
+                  buf[item.date][j].info += '\n\n' + item.info;
+                  found = true;
+                }
+              }
+              if (!found) {
+                buf[item.date].push({
+                  'text': item.text,
+                  'enabled': true,
+                  'info': item.info
+                });
+              }
+            }
+
+            keys = Object.keys(buf);
+            for (i = 0; i < keys.length; ++i) {
+              elemDay = this._document
+                .querySelector('div.day[data-key="' + keys[i] + '"]');
+              elemContent = this._document.querySelector('#content');
+              if (elemDay && elemContent) {
+                tpl = '';
+                tpl2 = '';
+                items = buf[keys[i]];
+                for (j = 0; j < items.length; ++j) {
+                  enabled = items[j].enabled;
+                  id = enabled ? this._createId() : '';
+
+                  tpl += this._tplEntry.trim()
+                    .replace('{{enabled}}', enabled ? ' enabled' : '')
+                    .replace('{{xid}}', enabled ? ' data-xid="' + id + '"' : '')
+                    .replace('{{text}}', items[j].text);
+
+                  if (enabled) {
+                    tpl2 += this._tplEntryInfo.trim()
+                      .replace('{{id}}', id)
+                      .replace('{{info}}', items[j].info);
+                  }
+                }
+                if (tpl) {
+                  elemDay.innerHTML += tpl;
+                }
+                if (tpl2) {
+                  elemContent.innerHTML += tpl2;
+                }
+              }
+            }
+
+            // initialize
+            setTimeout(this._initDatesInfo.bind(this), 100);
+          }
+        };
+
+    getAllSchedules(
+      keyEnabled,
+      DateUtil.datToY_M_D(dat1), DateUtil.datToY_M_D(dat2),
+      handlerL.bind(this)
+    );
+  },
+
+  /**
+   * Loads the xdays.
+   * @TODO rename to _loadXDays
+   * @return {void}
+   */
+  '_loadData': function() {
+    var i, lastFill,
+        dat = new Date(this._year, this._month, 1),
+        dat2 = new Date(this._year, this._month + 1, 0),
+        wd = dat.getDay(),
+        wdL = dat2.getDay(),
+        last = dat2.getDate(),
+        res = [],
+        y, m;
+
+    wd = (wd === 0 ? 7 : wd) - 1;
+    // fill first week
+    if (wd !== 0) {
+      dat2 = new Date(this._year, this._month, 0);
+      y = dat2.getFullYear();
+      m = dat2.getMonth();
+      lastFill = dat2.getDate();
+      for (i = lastFill - wd + 1; i <= lastFill; ++i) {
+        res.push({
+          'date': i,
+          'enabled': false,
+          'entries': this._loadEntries(y, m, i),
+          'key': DateUtil.toYMD(y, m + 1, i)
+        });
+      }
+    }
+
+    // month
+    for (i = 1; i <= last; ++i) {
+      res.push({
+        'date': i,
+        'enabled': true,
+        'entries': this._loadEntries(this._year, this._month, i),
+        'key': DateUtil.toYMD(this._year, this._month + 1, i)
+      });
+    }
+
+    // fill last week
+    wdL = wdL === 0 ? 7 : wdL;
+    for (i = 1; i <= 7 - wdL; ++i) {
+      y = this._year;
+      m = this._month + 1;
+      if (m > 11) {
+        m = 0;
+        ++y;
+      }
+      res.push({
+        'date': i,
+        'enabled': false,
+        'entries': this._loadEntries(y, m, i),
+        'key': DateUtil.toYMD(y, m + 1, i)
+      });
+    }
+
+    return res;
+  },
+
+  '_loadEntries': function(year, month, date) {
+    var i, key, xdays,
+        res = [];
+
+    // check for raw data entry
+    key = DateUtil.toYMD(year, month + 1, date);
+    xdays = XDays.get(key);
+    if (xdays && xdays.length) {
+      for (i = 0; i < xdays.length; ++i) {
+        res.push({
+          'enabled': false,
+          'info': '',
+          'text': xdays[i]
+        });
+      }
+    }
+
+    // dummy debug entries
+    // for (i = 0; i < date % 6; ++i) {
+    //   res.push({
+    //     'enabled': (i % 2) === 0 ? true : false,
+    //     'text': 'Termin ' + (i + 1),
+    //     'info': 'Termin ' + (i + 1) + '\n\n ba ble <b>bli</b> blo blub\n\nLetzte Zeile...'
+    //   });
+    // }
+
+    return res;
+  },
+
+  // #endregion -- Load the data. ---------------------------------------------
+
+  // #region -- Template handling. --------------------------------------------
+
+  '_loadTemplate': function(idTpl) {
+
+    var tpl = '',
+        // get template
+        elemTpl = this._document.getElementById(idTpl);
+
+    if (elemTpl) {
+      tpl = elemTpl.innerHTML;
+    }
+
+    return tpl ? tpl : '&nbsp;';
+  },
+
+  '_inject': function(idTarget, idTpl) {
+    this._injectHtml(idTarget, this._loadTemplate(idTpl));
+  },
+
+  '_injectHtml': function(idTarget, tpl) {
+
+    // set target
+    var elemTarget = this._document.getElementById(idTarget);
+    if (tpl && elemTarget) {
+      elemTarget.innerHTML = tpl;
+    }
+  },
+
+  // #endregion -- Template handling. -----------------------------------------
+
+  // #region -- Utilities. ----------------------------------------------------
+
+  '_createId': function(prefix) {
+    return (prefix ? prefix : 'id') + '_' + ++this._nextId;
+  }
+
+  // #endregion -- Utilities. -------------------------------------------------
+};
+
+// #endregion -- Calendar. ----------------------------------------------------
+
 // #region -- X-Days. ---------------------------------------------------------
 
 var XDays = {
@@ -122,514 +571,64 @@ var XDays = {
 
 // #endregion -- X-Days. ------------------------------------------------------
 
-// #region -- Calendar. -------------------------------------------------------
+// #region -- Date utilities. -------------------------------------------------
 
-var calendar = {
+/**
+ * Date utilities.
+ */
+var DateUtil = {
 
-  // #region -- The fields. ---------------------------------------------------
+  /**
+   * To yyyy-mm-dd.
+   * @param {Date} dat The date.
+   * @return {string} The formatted date.
+   */
+  'datToY_M_D': function(dat) {
+    var d = dat.getDate(),
+        m = dat.getMonth() + 1;
 
-  '_document': null,
-  '_tplHeader': '',
-  '_tplContent': '',
-  '_tplWeek': '',
-  '_tplDay': '',
-  '_tplEntry': '',
-  '_tplEntryInfo': '',
-  '_nextId': -99,
-  '_year': 0,
-  '_month': 0,
-  '_today': -999,
-
-  '_rawData': {},
-  '_rawDataKey': '',
-
-  // #endregion -- The fields. ------------------------------------------------
-
-  // #region -- Init and create calendar. -------------------------------------
-
-  'init': function(document) {
-    var dat = new Date();
-
-    this._document = document;
-    this._loadTemplates();
-
-    this.show(this._getKey(dat));
+    return dat.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-'
+      + (d < 10 ? '0' : '') + d;
   },
 
-  'show': function(key) {
-    this._nextId = 0;
-    this._initDate(key);
-    XDays.init(this._year);
-
-    this._loadRawData();
-
-    this._injectHtml('header', this._createHeader());
-    this._inject('footer', 'tplFooter');
-    this._injectHtml('content', this._createContent());
-    setTimeout(this._init2.bind(this), 100);
-  },
-  '_initDate': function(key) {
-    var dat;
-
-    this._year = parseInt(key.substr(0, 4));
-    this._month = parseInt(key.substr(4, 2)) - 1;
-
-    if (isNaN(this._year) || isNaN(this._month)
-      || this._year <= 0 || this._year > 9999
-      || this._month < 0 || this._month > 11) {
-
-      dat = new Date();
-      this._year = dat.getFullYear();
-      this._month = dat.getMonth();
-    }
-  },
-  '_init2': function() {
-    var i,
-        elemsNav = this._document.querySelectorAll('#header > .nav'),
-
-        handlerNav = function(ev) {
-          var key = ev.currentTarget.getAttribute('data-dir');
-          this.show(key);
-        };
-
-    if (elemsNav) {
-      handlerNav = handlerNav.bind(this);
-      for (i = 0; i < elemsNav.length; ++i) {
-        elemsNav[i].addEventListener('click', handlerNav);
-      }
-    }
-
-    this._init3();
-  },
-  '_init3': function() {
-    var i,
-        elemMain = this._document.querySelector('#content > .main'),
-        elems = this._document.querySelectorAll('#content > .main > .week > .day.enabled > .entry.enabled'),
-        elemsInfo = this._document.querySelectorAll('#content > .entryInfo'),
-        handler = function(ev) {
-          var elem = ev.currentTarget,
-              id = elem.getAttribute('data-xid'),
-              info = this._document.getElementById(id);
-
-          elemMain.style.display = 'none';
-          info.style.display = 'block';
-        },
-        handlerHide = function(ev) {
-          ev.currentTarget.style.display = 'none';
-          elemMain.style.display = 'block';
-        };
-
-    if (elems && elemsInfo) {
-      handler = handler.bind(this);
-      for (i = 0; i < elems.length; ++i) {
-        elems[i].addEventListener('click', handler);
-      }
-      for (i = 0; i < elemsInfo.length; ++i) {
-        elemsInfo[i].addEventListener('click', handlerHide);
-      }
-    }
+  /**
+   * To yyyymm.
+   * @param {Date} dat The date.
+   * @return {string} The formatted date used as key.
+   */
+  'datToYM': function(dat) {
+    return this.toYM(dat.getFullYear(), dat.getMonth() + 1);
   },
 
 
-  '_loadTemplates': function() {
-    this._tplHeader = this._loadTemplate('tplHeader');
-    this._tplContent = this._loadTemplate('tplContent');
-    this._tplWeek = this._loadTemplate('tplWeek');
-    this._tplDay = this._loadTemplate('tplDay');
-    this._tplEntry = this._loadTemplate('tplEntry');
-    this._tplEntryInfo = this._loadTemplate('tplEntryInfo');
+  /**
+   * To yyyymmdd.
+   * @param {number} year The year.
+   * @param {number} month The month.
+   * @param {number} day The day.
+   * @return {string} The formatted date used as key.
+   */
+  'toYMD': function(year, month, day) {
+    return this._pad(year, 4) + this._pad(month) + this._pad(day);
   },
 
-  // #endregion -- Init and create calendar. ----------------------------------
-
-  // #region -- Create the header. --------------------------------------------
-
-  '_createHeader': function() {
-    var dat2,
-        k1, k2, k3, k4;
-
-    dat2 = new Date(this._year - 1, this._month, 1);
-    k1 = this._getKey(dat2);
-    dat2 = new Date(this._year, this._month - 1, 1);
-    k2 = this._getKey(dat2);
-    dat2 = new Date(this._year, this._month + 1, 1);
-    k3 = this._getKey(dat2);
-    dat2 = new Date(this._year + 1, this._month, 1);
-    k4 = this._getKey(dat2);
-
-    return this._tplHeader.trim()
-      .replace('{{month}}', XDays.monthNames[this._month])
-      .replace('{{year}}', this._year)
-      .replace('{{dir-12}}', k1)
-      .replace('{{dir-1}}', k2)
-      .replace('{{dir+1}}', k3)
-      .replace('{{dir+12}}', k4);
-  },
-
-  '_getKey': function(dat) {
-    return this._getKeyYM(dat.getFullYear(), dat.getMonth() + 1);
-    // return dat.getFullYear() + '' + this._pad(dat.getMonth() + 1);
-  },
-
-  '_getKeyYM': function(year, month) {
+  /**
+   * To yyyymm.
+   * @param {number} year The year.
+   * @param {number} month The month.
+   * @return {string} The formatted date used as key.
+   */
+  'toYM': function(year, month) {
     return this._pad(year, 4) + this._pad(month);
   },
 
-  // #endregion -- Create the header. -----------------------------------------
-
-  // #region -- Create the content. -------------------------------------------
-
-  '_createContent': function() {
-    var d, weekRes,
-        content = '',
-        infos = '',
-        days = this._loadData();
-
-    // create the days
-    for (d = 0; d < days.length; d += 7) {
-      weekRes = this._createWeek(d, days);
-      content += weekRes.content;
-      infos  += weekRes.infos;
-    }
-
-    // return result
-    return this._tplContent.trim()
-      .replace('{{weeks}}', content)
-      .replace('{{infos}}', infos);
-  },
-
-  '_createWeek': function(day, days) {
-    var d, dayRes,
-        content = '',
-        infos = '';
-
-    for (d = day; d < day + 7; ++d) {
-      dayRes = this._createDay(d, days);
-      content += dayRes.content;
-      infos += dayRes.infos;
-    }
-
-    // inject days into week and return result
-    return {
-      'content': this._tplWeek.trim().replace('{{days}}', content),
-      'infos': infos
-    };
-  },
-
-  '_createDay': function(day, days) {
-
-    var entries = this._createEntries(days[day]);
-
-    // inject data into template and return result
-    return {
-      'content': this._tplDay.trim()
-        .replace('{{key}}', days[day].key)
-        .replace('{{enabled}}', days[day].enabled ? ' enabled' : '')
-        .replace('{{date}}', days[day].date)
-        .replace('{{entries}}', entries.content),
-      'infos': entries.infos
-    };
-  },
-
-  '_createEntries': function(day) {
-    var e, id, enabled,
-        content = '',
-        infos = '';
-
-    for (e = 0; e < day.entries.length; ++e) {
-      enabled = day.enabled && day.entries[e].enabled;
-      id = enabled ? this._createId('info') : '';
-
-      content += this._tplEntry.trim()
-        .replace('{{enabled}}', enabled ? ' enabled' : '')
-        // data-xid="{{xid}}"
-        .replace('{{xid}}', enabled ? ' data-xid="' + id + '"' : '')
-        .replace('{{text}}', (id ? id + ' ' : '') + day.entries[e].text);
-      if (enabled) {
-        infos += this._tplEntryInfo.trim()
-          .replace('{{id}}', id)
-          .replace('{{info}}', id + '\n' + day.entries[e].info);
-      }
-    }
-
-    return {
-      'content': content,
-      'infos': infos
-    };
-  },
-
-  // #endregion -- Create the content. ----------------------------------------
-
-  // #region -- Load the data. ------------------------------------------------
-
-  '_loadRawData': function() {
-    var dat1, dat2, last, i, j, key, keyEnabled,
-        handlerL = function(data) {
-          var i, j, item, found, keys,
-              id, elemDay, elemContent, items, tpl, tpl2, enabled,
-              buf = {};
-
-          if (data && data.length) {
-
-            // consolidate data - prepare for printing
-            for (i = 0; i < data.length; ++i) {
-              item = data[i];
-              if (!buf[item.date]) {
-                buf[item.date] = [];
-              }
-
-              found = false;
-              for (j = 0; j < buf[item.date].length; ++j) {
-                if (buf[item.date][j].text == item.text) {
-                  buf[item.date][j].info += '\n\n' + item.info;
-                  found = true;
-                }
-              }
-              if (!found) {
-                buf[item.date].push({
-                  'text': item.text,
-                  'enabled': true,
-                  'info': item.info
-                });
-              }
-            }
-
-            keys = Object.keys(buf);
-            for (i = 0; i < keys.length; ++i) {
-              // document.querySelector('#content > .main > .week > div.day[data-key="20190122"]')
-              elemDay = this._document.querySelector('div.day[data-key="' + keys[i] + '"]');
-              elemContent = this._document.querySelector('#content');
-              if (elemDay && elemContent) {
-                tpl = '';
-                tpl2 = '';
-                items = buf[keys[i]];
-                for (j = 0; j < items.length; ++j) {
-                  enabled = items[j].enabled;
-                  id = enabled ? this._createId() : '';
-
-                  tpl += this._tplEntry.trim()
-                    .replace('{{enabled}}', enabled ? ' enabled' : '')
-                    .replace('{{xid}}', enabled ? ' data-xid="' + id + '"' : '')
-                    .replace('{{text}}', (id ? id + ' ' : '') + items[j].text);
-
-                  if (enabled) {
-                    tpl2 += this._tplEntryInfo.trim()
-                      .replace('{{id}}', id)
-                      .replace('{{info}}', id + '\n' + items[j].info);
-                  }
-                }
-                if (tpl) {
-                  elemDay.innerHTML += tpl;
-                }
-                if (tpl2) {
-                  elemContent.innerHTML += tpl2;
-                }
-              }
-            }
-
-            // initialize
-            setTimeout(this._init3.bind(this), 100);
-          }
-        },
-        toStr = function(dat) {
-          var d = dat.getDate(),
-              m = dat.getMonth() + 1;
-
-          return dat.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-'
-            + (d < 10 ? '0' : '') + d;
-        }
-
-    if (this._rawDataKey !== key) {
-      this._rawData = {};
-
-      // fill first week
-      dat2 = new Date(this._year, this._month, 0);
-      last = dat2.getDate();
-      dat2 = new Date(this._year, this._month, -6);
-      for (i = dat2.getDate(); i <= last; ++i) {
-        key = this._pad(dat2.getFullYear(), 4)
-          + this._pad(dat2.getMonth() + 1) + this._pad(i);
-        this._addXDay(key);
-      }
-
-      // the month
-      dat2 = new Date(this._year, this._month + 1, 0);
-      last = dat2.getDate();
-      for (i = 1; i <= last; ++i) {
-        key = this._pad(this._year, 4) + this._pad(this._month + 1) + this._pad(i);
-        this._addXDay(key);
-      }
-
-      // fill last week
-      dat2 = new Date(this._year, this._month + 1, 6);
-      last = dat2.getDate();
-      for (i = 1; i <= last; ++i) {
-        key = this._pad(dat2.getFullYear(), 4)
-          + this._pad(dat2.getMonth() + 1) + this._pad(i);
-        this._addXDay(key);
-      }
-
-
-      // check for dates of games
-      dat1 = new Date(this._year, this._month, -7);
-      dat2 = new Date(this._year, this._month + 1, 7);
-      keyEnabled = this._pad(this._year, 4) + this._pad(this._month);
-      getAllSchedules(
-        keyEnabled,
-        // dat1.toISO String().substr(0, 10), dat2.toISO String().substr(0, 10),
-        toStr(dat1), toStr(dat2),
-        handlerL.bind(this)
-      );
-
-      this._rawDataKey = key;
-    }
-  },
-
-  '_addXDay': function(key) {
-    var i,
-        xdays = XDays.get(key);
-    log(key);
-
-    if (xdays && xdays.length) {
-
-      if (!this._rawData[key]) {
-        this._rawData[key] = [];
-      }
-
-      for (i = 0; i < xdays.length; ++i) {
-        this._rawData[key].push({
-          'enabled': false,
-          'text': xdays[i],
-          'info': ''
-        });
-      }
-    }
-  },
-
-  '_loadData': function() {
-    var i, lastFill,
-        dat = new Date(this._year, this._month, 1),
-        dat2 = new Date(this._year, this._month + 1, 0),
-        wd = dat.getDay(),
-        wdL = dat2.getDay(),
-        last = dat2.getDate(),
-        res = [],
-        y, m;
-
-    wd = (wd === 0 ? 7 : wd) - 1;
-    // fill first week
-    if (wd !== 0) {
-      dat2 = new Date(this._year, this._month, 0);
-      y = dat2.getFullYear();
-      m = dat2.getMonth();
-      lastFill = dat2.getDate();
-      for (i = lastFill - wd + 1; i <= lastFill; ++i) {
-        res.push({
-          'date': i,
-          'enabled': false,
-          'entries': this._loadEntries(y, m, i),
-          'key': this._pad(y, 4) + this._pad(m + 1) + this._pad(i)
-        });
-      }
-    }
-
-    // month
-    for (i = 1; i <= last; ++i) {
-      res.push({
-        'date': i,
-        'enabled': true,
-        'entries': this._loadEntries(this._year, this._month, i),
-        'key': this._pad(this._year, 4) + this._pad(this._month + 1) + this._pad(i)
-      });
-    }
-
-    // fill last week
-    wdL = wdL === 0 ? 7 : wdL;
-    for (i = 1; i <= 7 - wdL; ++i) {
-      y = this._year;
-      m = this._month + 1;
-      if (m > 11) {
-        m = 0;
-        ++y;
-      }
-      res.push({
-        'date': i,
-        'enabled': false,
-        'entries': this._loadEntries(y, m, i),
-        'key': this._pad(y, 4) + this._pad(m + 1) + this._pad(i)
-      });
-    }
-
-    return res;
-  },
-
-  '_loadEntries': function(year, month, date) {
-    var i, key, dat,
-        res = [];
-
-    // check for raw data entry
-    key = this._pad(year, 4) + this._pad(month + 1) + this._pad(date);
-    if (this._rawData[key]) {
-      for (i = 0; i < this._rawData[key].length; ++i) {
-        dat = this._rawData[key][i];
-        res.push({
-          'enabled': dat.enabled,
-          'info': dat.info,
-          'text': dat.text
-        });
-      }
-    }
-
-    // dummy debug entries
-    // for (i = 0; i < date % 6; ++i) {
-    //   res.push({
-    //     'enabled': (i % 2) === 0 ? true : false,
-    //     'text': 'Termin ' + (i + 1),
-    //     'info': 'Termin ' + (i + 1) + '\n\n ba ble <b>bli</b> blo blub\n\nLetzte Zeile...'
-    //   });
-    // }
-
-    return res;
-  },
-
-  // #endregion -- Load the data. ---------------------------------------------
-
-  // #region -- Template handling. --------------------------------------------
-
-  '_loadTemplate': function(idTpl) {
-
-    var tpl = '',
-        // get template
-        elemTpl = this._document.getElementById(idTpl);
-
-    if (elemTpl) {
-      tpl = elemTpl.innerHTML;
-    }
-
-    return tpl ? tpl : '&nbsp;';
-  },
-
-  '_inject': function(idTarget, idTpl) {
-    this._injectHtml(idTarget, this._loadTemplate(idTpl));
-  },
-
-  '_injectHtml': function(idTarget, tpl) {
-
-    // set target
-    var elemTarget = this._document.getElementById(idTarget);
-    if (tpl && elemTarget) {
-      elemTarget.innerHTML = tpl;
-    }
-  },
-
-  // #endregion -- Template handling. -----------------------------------------
-
-  // #region -- Utilities. ----------------------------------------------------
-
-  '_createId': function(prefix) {
-    return (prefix ? prefix : 'id') + '_' + ++this._nextId;
-  },
-
+  /**
+   * Fills a number with leading zeros.
+   * @param {mixed} nr The number to fill with leading zeros.
+   * @param {number} len The optional length of the resulting string
+   * (default 2).
+   * @return {string} The padded number.
+   */
   '_pad': function(nr, len) {
     var res = '' + nr;
 
@@ -643,10 +642,7 @@ var calendar = {
     }
 
     return res;
-    // return nr < 10 ? '0' + nr : nr;
   }
+}
 
-  // #endregion -- Utilities. -------------------------------------------------
-};
-
-// #endregion -- Calendar. ----------------------------------------------------
+// #endregion -- Date utilities. ----------------------------------------------
