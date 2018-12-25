@@ -339,10 +339,6 @@ window.bhv.request.utils = {
   checkBold: function(txt) {
     var check = 'brückl&nbsp;hotvolleys';
     var check2 = 'volleys&nbsp;brückl';
-    // if (ie > 0 && ie <= 8) {
-    //   check = 'brückl&nbsp;hotvolleys';
-    //   check2 = 'volleys&nbsp;brückl';
-    // }
     if (txt.toLowerCase().replace(/ /g, '&nbsp;').indexOf(check) > -1) {
       return '<b class="team">' + txt + '</b>';
     }
