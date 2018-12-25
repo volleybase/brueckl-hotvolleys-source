@@ -16,3 +16,4 @@
 -   [X] info Liga - Ergebnis, wenn vorhanden
 -   [X] info Liga - brückl fett
 -   [X] info NW (u12 7.12.2014 w + m) - turniere, die auch zugeordnet sind, tauchen im Ergebnis doppelt auf
+-   [X] info NW - finals

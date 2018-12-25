@@ -22,31 +22,31 @@ var finals = {
   'u19': "Finale (So 27.01.2019  Klagenfurt)"
 };
 var finals2 = {
-  '20190530': {
+  '2019-05-30': {
     'text': 'u10',
     'info': 'u10 Finale: Do 30.05.2019  Brückl'
   },
-  '20190519': {
+  '2019-05-19': {
     'text': 'u11',
     'info': 'u11 Finale: So 19.05.2019  Brückl'
   },
-  '20190407': {
+  '2019-04-07': {
     'text': 'u12',
     'info': 'u12 Finale: So 07.04.2019  Klagenfurt'
   },
-  '20190427': {
+  '2019-04-27': {
     'text': 'u13',
     'info': 'u13 Finale: Sa 27.04.2019  Wolfsberg'
   },
-  '20190505': {
+  '2019-05-05': {
     'text': 'u15',
     'info': 'u15 Finale: So 05.05.2019  Klagenfurt'
   },
-  '20190303': {
+  '2019-03-03': {
     'text': 'u17',
     'info': 'u17 Finale: So 03.03.2019  Villach'
   },
-  '20190127': {
+  '2019-01-27': {
     'text': 'u19',
     'info': 'u19 Finale: So 27.01.2019  Klagenfurt'
   }
@@ -78,6 +78,7 @@ function getSchedule() {
 }
 
 function getAllSchedules(keyEnabled, from, till, callbackLeague) {
+  var handlerFinals;
 
   // query games
   bhv.request.queryMultiSchedules(
@@ -205,6 +206,30 @@ function getAllSchedules(keyEnabled, from, till, callbackLeague) {
       console.log('Cannot load data!');
       console.log(err);
     });
+
+  // query kids finals
+  handlerFinals = function() {
+    var i, key, tour,
+        keys = Object.keys(finals2),
+        res = [];
+
+    for (i = 0; i < keys.length; ++i) {
+      if (keys[i] >= from && keys[i] <= till) {
+        key = keys[i].replace(/-/g, '');
+        tour = finals2[keys[i]];
+        res.push({
+          'date': key,
+          'enabled': key.substr(0, keyEnabled.length) === keyEnabled,
+          'text': tour.text,
+          'info': tour.info
+        });
+      }
+    }
+
+
+    callbackLeague(res);
+  };
+  setTimeout(handlerFinals.bind(this), 100);
 }
 
 /**
@@ -214,85 +239,6 @@ function getAllSchedules(keyEnabled, from, till, callbackLeague) {
 function getScheduleOffline() {
   bhv.request.utils.showOffline('schedule');
 }
-
-// #region -- old --
-// /**
-//  * Creates the schedule for a junior chamionship.
-//  * @param {string} reponse The response from the web service.
-//  * @return {void}
-//  */
-// function kidsSchedule(response) {
-//   // create xml data
-//   var xml = bhv.request.xml.fromText(response, 'html');
-//   if (xml) {
-//
-//     // get list of dates
-//     var trs = bhv.request.xml.getNodes(xml, 'tr');
-//     if (trs) {
-//       var tournaments = [],
-//           tournament = null,
-//           key = bhv.request.utils.getKey(),
-//           pattern = mapKids[key] ? mapKids[key][3] : '';
-//
-//       for (var t = 0; t < trs.length; ++t) {
-//         var tr = trs[t];
-//
-//         // start of new tournament
-//         if (tr.className === 'tablehead') {
-//           tournament = {
-//             name: tr.children[1].innerText,
-//             date: tr.children[2].innerText.replace('&nbsp;', ' ').trim(),
-//             time: tr.children[3].innerText.replace('&nbsp;', ' ').trim(),
-//             location: tr.children[4].innerText.replace('&nbsp;', ' ').trim(),
-//             own: false,
-//             teams: []
-//           };
-//           tournaments.push(tournament);
-//
-//         // team of current tournament
-//         } else if (tournament) {
-//           var nam = tr.children[1].innerText.replace('&nbsp;', ' ').trim(),
-//               own = false;
-//           if (pattern && nam.toLowerCase().indexOf(pattern) > -1) {
-//             own = tournament.own = true;
-//           }
-//           tournament.teams.push({
-//             name: nam,
-//             own: own
-//           });
-//         }
-//       }
-//
-//       var msg = '';
-//       for (var t2 = 0; t2 < tournaments.length; ++t2) {
-//         var tour = tournaments[t2];
-//         if (tour.own) {
-//           if (msg != '') {
-//             msg += NL;
-//           }
-//           msg += NL + '<b class="team">' + tour.name + ' (' + tour.date + ' '
-//             + tour.time + ' ' + tour.location + ')</b>' + NL;
-//           for (var t3 = 0; t3 < tour.teams.length; ++t3) {
-//             msg += '- '
-//               + (tour.teams[t3].own ? '<b class="team">' : '')
-//               + tour.teams[t3].name
-//               + (tour.teams[t3].own ? '</b>' : '')
-//               + NL;
-//           }
-//         }
-//       }
-//
-//       // add entry for finals
-//       if (finals && finals[key]) {
-//         msg += NL + NL + '<b class="team">' + finals[key] + '</b>' + NL;
-//       }
-//
-//       // msg += '<hr>' + JSON.stringify(tournaments, null, 2);
-//       bhv.request.utils.inject(bhv.request.utils.getTitle(null, mapKids) + msg);
-//     }
-//   }
-// }
-// #endregion -- old --
 
 /**
  * Creates the schedule for a junior chamionship.
