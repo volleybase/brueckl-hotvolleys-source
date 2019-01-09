@@ -1,4 +1,5 @@
 # create_manifest = require('./_work/create.manifest.js')
+create_svg = require('./_work/svg/create_svg.js');
 
 files = [
   "*.html",
@@ -26,7 +27,11 @@ files = [
 files_copy = files.concat([
   "!**/*-old.*"
 ])
-files_watch = files_copy
+# add svg work files for watching
+files_watch = files_copy.concat([
+  "_work/svg/source/*.html",
+  "_work/svg/container.html"
+]);
 
 # files_batch = files.concat([
 #   "!cache.manifest"
@@ -140,7 +145,6 @@ config = (grunt) ->
 #  #         manifest += '# ' + fmtDate(new Date()) + '\n\n'
 #  #         grunt.file.write fnManifest, manifest
 #  #         done()
-
 #      files:
 #	      src: files
 #      files: [
@@ -149,7 +153,6 @@ config = (grunt) ->
 #        src: files_batch
 #        dest: ''
 #      ]
-
 #    manifest2:
 #      options:
 #        setup: (done) ->
@@ -159,7 +162,6 @@ config = (grunt) ->
 #          grunt.file.write fnManifest, manifest
 #          console.log('setup2')
 #          done()
-
   # createmanifest:
   #   manifest:
   #     options:
@@ -171,11 +173,22 @@ config = (grunt) ->
   #       dest: 'cache.manifest'
   #     ]
 
+  createsvg:
+    uld_auf:
+      options:
+        container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
+      files: [
+        expand: true
+        cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
+        src: [ "*.html" ]
+        dest: 'uld/grundlagen3/aufspiel'
+      ]
+
   watch:
     copy:
       files: files_watch,
       # tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
-      tasks: ['newer:copy:deploy2']
+      tasks: ['createsvg', 'newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
@@ -190,6 +203,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-newer')
   grunt.loadNpmTasks('grunt-real-favicon')
   # create_manifest(grunt)
+  create_svg(grunt)
 
   grunt.registerTask('default', ['build'])
 
