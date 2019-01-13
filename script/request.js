@@ -378,7 +378,10 @@ window.bhv.request = {
   },
 
   '_urlXtraDates': function(dat) {
-    var url = 'https://api.github.com/repos/BruecklHotvolleys/data/contents/{{year}}.json',
+    // real data
+    // var url = 'https://api.github.com/repos/BruecklHotvolleys/data/contents/{{year}}.json',
+    // test data
+    var url = 'http://localhost:5001/testdata/githubdata/repos/BruecklHotvolleys/data/contents/{{year}}.json',
         year = dat.substr(0, 4);
 
     return url.replace('{{year}}', year);
