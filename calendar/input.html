@@ -259,7 +259,7 @@ function _showOV() {
   document.querySelector('#header').innerHTML = _tpl['tplHeaderOV']
     .replace('{{x}}', _dirty.length ? ' x' : '');
 
-  // load x-dates
+  // load x-dates (if not done previously)
   _loadDates();
 
   // init header
@@ -347,7 +347,8 @@ function _updateList() {
       html += _tpl['tplLineOV']
         .replace('{{line1}}', i % 2 === 0 ? ' line1' : '')
         .replace('{{key}}', key)
-        .replace('{{date}}', key.substr(8, 2) + '.' + key.substr(5, 2) + '.' + key.substr(0, 4))
+        // .replace('{{date}}', key.substr(8, 2) + '.' + key.substr(5, 2) + '.' + key.substr(0, 4))
+        .replace('{{date}}', ddmmyyyy(key))
         .replace('{{text}}', item.text);
     }
   }
@@ -361,6 +362,7 @@ function _updateList() {
 
   setTimeout(_initLinks, 0);
 }
+
 function _initLinks() {
   var i, lnk,
       lnks = document.querySelectorAll('#content > div.line'),
@@ -373,20 +375,31 @@ function _initLinks() {
       },
       handlerDelete = function(event) {
         var key = this.parentNode.getAttribute('data-key'),
-            y = '' + _year;
+            y = '' + _year,
+            msg;
 
         log('>>> Delete: ' + key);
         event.stopPropagation();
         event.preventDefault();
 
-        // delete the old item
+        // check if item exists
         if (_data[y][key]) {
-          delete _data[y][key];
-          _setDirty();
+
+          msg = 'Den Termin ' + ddmmyyyy(key) + ' ' + _data[y][key].text
+            + ' wirklich löschen?';
+
+          // query user
+          if (confirm(msg)) {
+
+            // delete the old item
+            delete _data[y][key];
+            _setDirty();
+          }
         }
 
         // show overview
-        _updateList();
+        // _updateList();
+        _showOV();
       };
 
   if (lnks && lnks.length) {
@@ -603,6 +616,18 @@ function _showItem2() {
 }
 
 // #endregion -- edit date ----------------------------------------------------
+
+// #region -- Utilities. ------------------------------------------------------
+
+function ddmmyyyy(key) {
+  if (key.length === 10) {
+    return key.substr(8, 2) + '.' + key.substr(5, 2) + '.' + key.substr(0, 4);
+  }
+
+  return '';
+}
+
+// #endregion -- Utilities. ---------------------------------------------------
 
   </script>
 </head>
