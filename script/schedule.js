@@ -79,6 +79,7 @@ function getSchedule() {
 
 function getAllSchedules(keyEnabled, from, till, callbackLeague) {
   // var handlerFinals,
+  // var fixUtf8, handlerXDates;
   var handlerXDates;
 
   // query games
@@ -232,26 +233,60 @@ function getAllSchedules(keyEnabled, from, till, callbackLeague) {
   setTimeout(handlerFinals.bind(this), 1000);
 */
 
+  // // utf8 handling for atob(...)
+  // fixUtf8 = function(string) {
+  //   var output = '',
+  //       i = 0,
+  //       charCode = 0;
+  //
+  //   while (i < string.length) {
+  //     charCode = string.charCodeAt(i);
+  //
+  //     if (charCode < 128) {
+  //       output += String.fromCharCode(charCode);
+  //       i++;
+  //     } else if ((charCode > 191) && (charCode < 224)) {
+  //       output += String.fromCharCode(((charCode & 31) << 6) | (string.charCodeAt(i + 1) & 63));
+  //       i += 2;
+  //     } else {
+  //       output += String.fromCharCode(((charCode & 15) << 12) | ((string.charCodeAt(i + 1) & 63) << 6) | (string.charCodeAt(i + 2) & 63));
+  //       i += 3;
+  //     }
+  //   }
+  //
+  //   return output;
+  // };
   // query extra dates from github
   handlerXDates = function(data) {
-    var dates, key, keys, i, item,
+    var dates0, dates, key, keys, i, item,
         res = [];
 
     if (data) {
-      dates = JSON.parse(data);
-      keys = Object.keys(dates);
-      for (i = 0; i < keys.length; ++i) {
-        key = keys[i];
-        if (key >= from && key <= till) {
-          item = dates[key];
-          key = key.replace(/-/g, '');
-          res.push({
-            'date': key,
-            'enabled': key.substr(0, keyEnabled.length) === keyEnabled && item.info,
-            'text': item.text,
-            'info': item.info ? item.info : ''
-          });
+      try {
+        dates0 = JSON.parse(data);
+        if (dates0 && dates0.content) {
+          // dates = JSON.parse(fixUtf8(atob(dates0.content)));
+          dates = JSON.parse(base64.decode(dates0.content));
+          keys = Object.keys(dates);
+          for (i = 0; i < keys.length; ++i) {
+            key = keys[i];
+            if (key >= from && key <= till) {
+              item = dates[key];
+              key = key.replace(/-/g, '');
+              res.push({
+                'date': key,
+                'enabled': key.substr(0, keyEnabled.length) === keyEnabled && item.info,
+                'text': item.text,
+                'info': item.info ? item.info : ''
+              });
+            }
+          }
         }
+      } catch (err) {
+        log('--------------------------------------------------------------');
+        log('Cannot parse x-dates!');
+        log(err);
+        log('--------------------------------------------------------------');
       }
     }
 

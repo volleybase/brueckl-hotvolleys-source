@@ -318,13 +318,11 @@ window.bhv.request = {
         keyData = '',
         oldData = null,
         headers = {
-          'Accept': 'application/vnd.github.v3.raw',
+          // 'Accept': 'application/vnd.github.v3.raw',
 
-          // TODO create personal access token in settings application and use it instaed of password
+          // TODO create personal access token in settings application and use it instead of password
 
-          // XMLReq.setRequestHeader("Authorization", "Basic " + btoa("username:password"));
           // 'Authorization': 'Basic ' + btoa('BruecklHotvolleys:bhv1bhv1bhv')
-          // new account -> test BruecklHotvolleys+1@gmx.at
           'Authorization': 'Basic ' + btoa('bhv-reader:bhv1reader')
         },
 
@@ -379,9 +377,9 @@ window.bhv.request = {
 
   '_urlXtraDates': function(dat) {
     // real data
-    // var url = 'https://api.github.com/repos/BruecklHotvolleys/data/contents/{{year}}.json',
+    var url = 'https://api.github.com/repos/BruecklHotvolleys/data/contents/{{year}}.json',
     // test data
-    var url = 'http://localhost:5001/testdata/githubdata/repos/BruecklHotvolleys/data/contents/{{year}}.json',
+    // var url = 'http://localhost:5001/testdata/githubdata/repos/BruecklHotvolleys/data/contents/{{year}}.json',
         year = dat.substr(0, 4);
 
     return url.replace('{{year}}', year);
