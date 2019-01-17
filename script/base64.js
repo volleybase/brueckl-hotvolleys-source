@@ -1,4 +1,5 @@
 // UTF8 Module
+// from: https://gist.github.com/Nijikokun/5192472
 var utf8 = {
 
   'encode': function(str) {

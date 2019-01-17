@@ -375,7 +375,6 @@ function _showOV2() {
 // query extra dates from github
 function _loadDates() {
   var y = '' + _year,
-      // fixUtf8,
       handlerXDates, handlerError;
 
   // reset
@@ -389,32 +388,6 @@ function _loadDates() {
   // else: load new info
   } else {
 
-    // // from: https://gist.github.com/Nijikokun/5192472
-    // fixUtf8 = function(str) {
-    //   var fixed = '',
-    //       index = 0,
-    //       charCode = 0;
-    //
-    //   while (index < str.length) {
-    //     charCode = str.charCodeAt(index);
-    //
-    //     if (charCode < 128) {
-    //       fixed += String.fromCharCode(charCode);
-    //       ++index;
-    //     } else if ((charCode > 191) && (charCode < 224)) {
-    //       fixed += String.fromCharCode(((charCode & 31) << 6) | (str.charCodeAt(index + 1) & 63));
-    //       index += 2;
-    //     } else {
-    //       fixed += String.fromCharCode(((charCode & 15) << 12)
-    //         | ((str.charCodeAt(index + 1) & 63) << 6)
-    //         | (str.charCodeAt(index + 2) & 63));
-    //       index += 3;
-    //     }
-    //   }
-    //
-    //   return fixed;
-    // };
-
     handlerXDates = function(data) {
       var dates0;
 
@@ -423,7 +396,6 @@ function _loadDates() {
         try {
           dates0 = JSON.parse(data);
           if (dates0 && dates0.sha && dates0.content) {
-            // _data[y] = JSON.parse(fixUtf8(atob(dates0.content)));
             _data[y] = JSON.parse(base64.decode(dates0.content));
             _sha[y] = dates0.sha;
           } else {

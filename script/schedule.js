@@ -78,8 +78,6 @@ function getSchedule() {
 }
 
 function getAllSchedules(keyEnabled, from, till, callbackLeague) {
-  // var handlerFinals,
-  // var fixUtf8, handlerXDates;
   var handlerXDates;
 
   // query games
@@ -209,53 +207,6 @@ function getAllSchedules(keyEnabled, from, till, callbackLeague) {
       console.log(err);
     });
 
-  /*/ query kids finals (internal; old)
-  handlerFinals = function() {
-    var i, key, tour,
-        keys = Object.keys(finals2),
-        res = [];
-
-    for (i = 0; i < keys.length; ++i) {
-      if (keys[i] >= from && keys[i] <= till) {
-        key = keys[i].replace(/-/g, '');
-        tour = finals2[keys[i]];
-        res.push({
-          'date': key,
-          'enabled': key.substr(0, keyEnabled.length) === keyEnabled,
-          'text': tour.text,
-          'info': tour.info
-        });
-      }
-    }
-
-    callbackLeague(res);
-  };
-  setTimeout(handlerFinals.bind(this), 1000);
-*/
-
-  // // utf8 handling for atob(...)
-  // fixUtf8 = function(string) {
-  //   var output = '',
-  //       i = 0,
-  //       charCode = 0;
-  //
-  //   while (i < string.length) {
-  //     charCode = string.charCodeAt(i);
-  //
-  //     if (charCode < 128) {
-  //       output += String.fromCharCode(charCode);
-  //       i++;
-  //     } else if ((charCode > 191) && (charCode < 224)) {
-  //       output += String.fromCharCode(((charCode & 31) << 6) | (string.charCodeAt(i + 1) & 63));
-  //       i += 2;
-  //     } else {
-  //       output += String.fromCharCode(((charCode & 15) << 12) | ((string.charCodeAt(i + 1) & 63) << 6) | (string.charCodeAt(i + 2) & 63));
-  //       i += 3;
-  //     }
-  //   }
-  //
-  //   return output;
-  // };
   // query extra dates from github
   handlerXDates = function(data) {
     var dates0, dates, key, keys, i, item,
@@ -265,7 +216,6 @@ function getAllSchedules(keyEnabled, from, till, callbackLeague) {
       try {
         dates0 = JSON.parse(data);
         if (dates0 && dates0.content) {
-          // dates = JSON.parse(fixUtf8(atob(dates0.content)));
           dates = JSON.parse(base64.decode(dates0.content));
           keys = Object.keys(dates);
           for (i = 0; i < keys.length; ++i) {

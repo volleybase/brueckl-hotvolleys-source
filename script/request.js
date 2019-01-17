@@ -450,6 +450,8 @@ window.bhv.request = {
     var headers = {
       // xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
       'Content-type': 'application/json; charset=utf-8',
+
+      // TODO create bhv writer
       'Authorization': 'Basic ' + btoa('BruecklHotvolleys:bhv1bhv1bhv')
       // 'Authorization': 'Basic ' + btoa('bhv-reader:bhv1reader')
     };
@@ -467,7 +469,8 @@ window.bhv.request = {
     var data = {
       'message': 'update dates ' + window.bhv.request.utils.dateInfo(new Date()),
       'committer': {
-        'name': 'bhv-reader',
+        // 'name': 'bhv-reader',
+        'name': 'bhv-writer',
         'email': 'bhv@der-ball-ist-rund.net'
       },
       'content': base64.encode(file),
