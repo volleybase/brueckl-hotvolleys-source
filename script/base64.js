@@ -8,7 +8,7 @@ var utf8 = {
       return str;
     } else {
       // new line
-      str = string.replace(/\r\n/g, '\n');
+      str = str.replace(/\r\n/g, '\n');
     }
 
     result = '';

@@ -269,9 +269,13 @@ function _showOV() {
 }
 function _showOV2() {
   var i, elem,
-      elemSel = document.querySelector('#header > #yearov');
+      elemSel = document.querySelector('#header > #yearov'),
+      elemUpload = document.querySelector('#header > div.dirty'),
+      elemUploadX = document.querySelector('#header > div.dirty.x');
 
-  if (elemSel) {
+  if (elemSel && elemUpload) {
+
+    // fill year-selection
     for (i = 2019; i < 2022; ++i) {
       elem = document.createElement('option');
       elem.setAttribute('value', '' + i);
@@ -280,10 +284,89 @@ function _showOV2() {
       elemSel.appendChild(elem);
     }
 
+    // handles selection of a year
     elemSel.addEventListener('change', function() {
       _year = parseInt(elemSel.options[elemSel.selectedIndex].value);
       _loadDates();
     });
+
+    if (elemUploadX) {
+      elemUploadX.addEventListener('click', function() {
+
+        var handlerXDates, handlerError,
+            msg, toDel = [],
+            y, year, years;
+
+        log('>>> Upload: ' + _dirty.join(', '));
+        event.stopPropagation();
+        event.preventDefault();
+
+        if (_dirty && _dirty.length) {
+          for (y = 0; y < _dirty.length; ++y) {
+
+            year = _dirty[y];
+            if (_data[year] !== undefined) {
+
+              handlerError = function(err) {
+                log('------------------------------------------------------');
+                log('Cannot update x-dates!');
+                log(err);
+                log('------------------------------------------------------');
+                _showOV();
+              };
+              handlerXDates = function(data) {
+                var dates0, err, idx,
+                    year = this.year;
+
+                log('X-dates have been updated for ' + year + '.');
+                if (data) {
+                  try {
+                    dates0 = JSON.parse(data);
+                    if (dates0 && dates0.content && dates0.content.sha) {
+                      _sha[year] = dates0.content.sha;
+                      idx = _dirty.indexOf(year);
+                      if (idx > -1) {
+                        _dirty.splice(idx, 1);
+                      }
+                    } else {
+                      log('------------------------------------------------------');
+                      log('Invalid update response for x-dates of ' + year + '!');
+                      log(data);
+                      log('------------------------------------------------------');
+                    }
+                  } catch (err) {
+                    log('------------------------------------------------------');
+                    log('Cannot update x-dates of ' + year + '!');
+                    log(err);
+                    log(data);
+                    log('------------------------------------------------------');
+                  }
+                }
+
+                // show/update overview
+                _showOV();
+              };
+
+              bhv.request.sendXtraDates(
+                year, JSON.stringify(_data[year]), _sha[year],
+                handlerXDates.bind({
+                  'year': year
+                }), handlerError
+              );
+
+            } else {
+              idx = _dirty.indexOf(year);
+              if (idx > -1) {
+                _dirty.splice(idx, 1);
+              }
+              _showOV();
+
+              break;
+            }
+          }
+        }
+      });
+    }
   } else {
     setTimeout(_showOV2, 100);
   }
@@ -388,7 +471,6 @@ function _updateList() {
       html += _tpl['tplLineOV']
         .replace('{{line1}}', i % 2 === 0 ? ' line1' : '')
         .replace('{{key}}', key)
-        // .replace('{{date}}', key.substr(8, 2) + '.' + key.substr(5, 2) + '.' + key.substr(0, 4))
         .replace('{{date}}', ddmmyyyy(key))
         .replace('{{text}}', item.text);
     }
