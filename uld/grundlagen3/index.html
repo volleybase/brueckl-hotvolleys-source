@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Brückl hotvolleys</title>
+  <link rel="stylesheet" href="/elements/expander/styles.css">
   <link rel="stylesheet" href="/styles.css">
   <style>
 a.line {
@@ -17,23 +18,31 @@ table.tactics img {
   // TODO width: 200px;
   width: 250px;
 }
+h1.tactics {
+  padding: 30px;
+}
 h3 sub {
   background: lightblue;
   font-size: 14px;
 }
+a h3::after {
+  border: 0 none;
+}
   </style>
   <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <script src="/elements/expander/script.js"></script>
+  <script>
+function init() {
+  var expanders = ['ann', 'auf', 'ang', 'bas', 'ver'];
+  bhv.elements.expander.init(expanders);
+}
+  </script>
 </head>
-<body>
+<body onload="init();">
 
-  <h1 class="tactics">Annahme</h1>
+  <h1 id="ann" class="tactics expandable">Annahme</h1>
+  <div id="ann_2">
   <table class="tactics" align="center" cellspacing="0" cellpadding="10">
-    <!--tr>
-      <td><a id="anchor_zudritt" href="/imageview.html?uld/grundlagen3/annahme/zudritt.png"><img src="annahme/zudritt.png" alt="3er Riegel"></a></td>
-    </tr>
-    <tr>
-      <td><a href="/imageview.html?uld/grundlagen3/annahme/zudritt.png"><div>3er Riegel</div></a></td>
-    </tr-->
     <tr>
       <td><a id="anchor_annahme" href="annahme/annahme.html"><img src="annahme/zudritt.png" alt="3er Riegel"></a></td>
     </tr>
@@ -41,9 +50,10 @@ h3 sub {
       <td><a href="annahme/annahme.html"><div>3er Riegel</div></a></td>
     </tr>
   </table>
+  </div>
 
-
-  <h1 class="tactics">Aufspiel + Angriff</h1>
+  <h1 id="auf" class="tactics expandable">Aufspiel + Angriff</h1>
+  <div id="auf_2">
   <table class="tactics" align="center" cellspacing="0" cellpadding="10">
     <tr>
       <td><a id="anchor_wann_1" href="aufspiel/wann_1.html"><h3>Wann 1</h3></a></td>
@@ -78,9 +88,11 @@ h3 sub {
       <td><a href="aufspiel"><img src="aufspiel/plan.png" alt="Codes und Varianten"></a></td>
     </tr>
   </table>
+  </div>
 
 
-  <h1 class="tactics">Angriff + Sicherung</h1>
+  <h1 id="ang" class="tactics expandable">Angriff + Sicherung</h1>
+  <div id="ang_2">
   <table class="tactics" align="center" cellspacing="0" cellpadding="10">
     <tr>
       <td><a id="anchor_angriff_06" href="aufspiel/angriff_06.html"><h3>Angriff 0/6</h3></a></td>
@@ -94,9 +106,11 @@ h3 sub {
       <td><a href="aufspiel/angriff_2.html"><img src="aufspiel/angriff2.png" alt="Angriff 2"></a></td>
     </tr>
   </table>
+  </div>
 
 
-  <h1 class="tactics">Basis</h1>
+  <h1 id="bas" class="tactics expandable">Basis</h1>
+  <div id="bas_2">
   <table class="tactics" align="center" cellspacing="0" cellpadding="10">
     <tr>
       <td><a id="anchor_basis_1" href="verteidigung/basis_1.html"><h3>Basis 1</h3></a></td>
@@ -115,9 +129,11 @@ h3 sub {
       <td><a href="verteidigung/basis_1b.html"><div>gegnerische Aufspielerin vorne</div></a></td>
     </tr>
   </table>
+  </div>
 
 
-  <h1 class="tactics">Block + Feldverteidigung</h1>
+  <h1 id="ver" class="tactics expandable">Block + Feldverteidigung</h1>
+  <div id="ver_2">
   <table class="tactics" align="center" cellspacing="0" cellpadding="10">
     <tr>
       <td><a id="anchor_block" href="blockinfo/block.html"><img src="blockinfo/block2.gif" alt="Der Block"></a></td>
@@ -183,5 +199,6 @@ h3 sub {
       <td><a href="verteidigung/ohne_2.html"><div>"Ohne" Block<br>(Aufspielerin vorne)</div></a></td>
     </tr>
   </table>
+  </div>
 </body>
 </html>
