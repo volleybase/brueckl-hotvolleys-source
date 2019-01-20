@@ -1,5 +1,5 @@
 # create_manifest = require('./_work/create.manifest.js')
-create_svg = require('./_work/svg/create_svg.js');
+create_svg = require('./_work/svg/create_svg.js')
 
 files = [
   "*.html",
@@ -29,7 +29,7 @@ files_copy = files.concat([
 ])
 # add svg work files for watching
 files_watch = files_copy.concat([
-  "_work/svg/source/*.html",
+  "_work/svg/source/**/*.html",
   "_work/svg/container.html"
 ]);
 
@@ -110,6 +110,8 @@ config = (grunt) ->
 
   copy:
     deploy1_do_not_change:
+      # nonull -> error if sorce does not exist
+      nonull: true
       options:
         "force": true
       files: [
@@ -118,6 +120,7 @@ config = (grunt) ->
         dest: "/workdir/brueckl-hotvolleys/"
       ]
     deploy2:
+      nonull: true
       options:
         "force": true
       files: [
@@ -125,6 +128,18 @@ config = (grunt) ->
         src: files_copy
         dest: "/workdir/BruecklHotvolleys.github.io/"
       ]
+    svgviewer:
+      nonull: true
+      options:
+        "force": true
+      files: [
+        expand: true
+        # get files from app
+        cwd: "/workdir/vb-statsone/www/sysmodules/controls/graphics/template/js"
+        src: [ "animator.js", "svgviewer.js" ]
+        dest: "/workdir/brueckl-hotvolleys-source/script"
+      ]
+
 
 #  # batch:
 #  #   manifest:
@@ -177,11 +192,12 @@ config = (grunt) ->
     uld_auf:
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
+        include: "D:/workdir/brueckl-hotvolleys-source/_work/svg/include/"
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
-        src: [ "*.html" ]
-        dest: 'uld/grundlagen3/aufspiel'
+        src: [ "**/*.html" ]
+        dest: 'uld/grundlagen3'
       ]
 
   watch:
@@ -212,6 +228,9 @@ module.exports = (grunt) ->
     # 'createmanifest:manifest',
     # keep as is 'clean:deploy1',
     'clean:deploy2',
+
+    'createsvg',
+
     # keep as is 'copy:deploy1',
     'copy:deploy2'
   ])

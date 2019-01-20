@@ -1,5 +1,6 @@
 /* eslint-disable strict, one-var, no-sync, func-names, no-invalid-this */
 /* eslint-env node */
+const fs = require('fs')
 
 'use strict';
 
@@ -11,8 +12,10 @@ module.exports = function init(grunt) {
     // console.log(this)
     // console.log('----------------------------------------------------------')
 
-    const fs = require('fs')
-    const tpl = fs.readFileSync(this.data.options.container, 'utf8');
+    const tpl = process(
+      fs.readFileSync(this.data.options.container, 'utf8'),
+      this.data.options.include
+    );
 
     // handle all definitions of files
     this.files.forEach((file) => {
@@ -31,4 +34,20 @@ module.exports = function init(grunt) {
     })
     grunt.log.ok()
   })
+}
+
+const process = (content, include) => {
+
+  const regExp = /\{include\{([^}]+)\}\}/g
+
+  let c = content, match
+  while ((match = regExp.exec(content))) {
+    if (match[1]) {
+      // console.log(match[1])
+      const tpl = fs.readFileSync(include + match[1] + '.html')
+      c = c.replace(new RegExp(match[0], 'g'), tpl)
+    }
+  }
+
+  return c
 }
