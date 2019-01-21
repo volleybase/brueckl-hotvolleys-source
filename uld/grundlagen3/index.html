@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="/elements/expander/styles.css">
   <link rel="stylesheet" href="/styles.css">
   <style>
+body {
+  margin: 60px 0 0 0;
+}
+
 a.line {
   padding: 5px 10px;
   display: block;
@@ -36,8 +40,12 @@ function init() {
   var expanders = ['ann', 'auf', 'ang', 'bas', 'ver'],
       keepOpen = {
         'ann': ['anchor_annahme', 'anchor_'],
-        'auf': ['anchor_wann_1', 'anchor_wann_2', 'anchor_wo', 'anchor_vorbereitung_1', 'anchor_vorbereitung_2'],
-        'ang': ['anchor_angriff_06', 'anchor_angriff_5v', 'anchor_angriff_2', 'anchor_', 'anchor_', 'anchor_', 'anchor_', 'anchor_'],
+        'auf': [
+          'anchor_wann_1', 'anchor_wann_2', 'anchor_wo',
+          'anchor_vorbereitung_1', 'anchor_vorbereitung_2',
+          'anchor_aufspiel'
+        ],
+        'ang': ['anchor_angriff_06', 'anchor_angriff_5v', 'anchor_angriff_2'],
         'bas': ['anchor_basis_1', 'anchor_basis_2', 'anchor_basis_1b'],
         'ver': [
           'anchor_block', 'anchor_block_4', 'anchor_block_33', 'anchor_block_2',
