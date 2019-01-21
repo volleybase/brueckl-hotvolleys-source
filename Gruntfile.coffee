@@ -192,7 +192,7 @@ config = (grunt) ->
     uld_auf:
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
-        include: "D:/workdir/brueckl-hotvolleys-source/_work/svg/include/"
+        include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
