@@ -79,8 +79,6 @@ table.tactics div {
 }
 
 /* -- header --------------------------------------------------------------- */
-/* TODO remove header styles from multiple files   */
-
 #header {
   box-sizing: border-box;
   position: absolute;
