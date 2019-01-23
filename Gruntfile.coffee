@@ -193,11 +193,25 @@ config = (grunt) ->
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
         include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        variables:
+          back: '/uld/grundlagen3/'
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
-        src: [ "**/*.html" ]
+        src: [ "aufspiel/*.html", "annahme/*.html", "verteidigung/*.html" ]
         dest: 'uld/grundlagen3'
+      ]
+    u11:
+      options:
+        container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
+        include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        variables:
+          back: '/u11/'
+      files: [
+        expand: true
+        cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
+        src: [ "u11/*.html" ]
+        dest: '.'
       ]
 
   watch:
