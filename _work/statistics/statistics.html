@@ -9,50 +9,46 @@
 h4, h5 {
   text-align: left;
 }
-/* no any margin for first header */
-h4:first-child, h4:first-of-type {
-  margin: 0;
-}
 /* -- match statistics ----------------------------------------------------- */
 div.match {
-  padding-bottom: 15px;
+  padding-bottom: 2em;
 }
 table.match {
-  padding: 10px 0px 25px 20px;
+  padding: 1em 0 1em 1em;
 }
 table.match th {
-  padding: 1px 2px;
-  font-size: 13px;
+  padding: 0.1em 0.2em;
+  font-size: 3em;
   font-weight: bold;
   text-align: center;
   background-color: lightgray;
 }
 table.match th.left {
-  padding: 1px 2px;
-  font-size: 13px;
+  padding: 0.1em 0.2em;
+  font-size: 3em;
   font-weight: bold;
   text-align: left;
 }
 table.match td {
-  padding: 0 2px;
-  font-size: 14px;
+  padding: 0 0.1em;
+  font-size: 3em;
   text-align: left;
 }
 table.match td.right {
   text-align: right;
 }
 table.match td.name {
-  padding-left: 8px;
+  padding-left: 0.4em;
   text-align: left;
   font-weight: bold;
 }
 table.match td.sum {
   font-weight: bold;
-  padding: 0 4px;
+  padding: 0 0.2em;
 }
 table.match td.sumQ {
   font-weight: bold;
-  padding: 0 8px;
+  padding: 0 0.4em;
 }
 table.match tr.plus td {
   background-color: lime;
@@ -70,22 +66,18 @@ table.match tr.footer td {
   background-color: lightgray;
 }
 /* -- points --------------------------------------------------------------- */
-div.container {
-  padding: 10px;
-}
-
 div.column {
   position: relative;
-  width: 100px;
+  width: 20em;
   float: left;
-  padding: 0 10px 10px;
+  padding: 0 1em 1em;
 }
 div.header {
   position: relative;
   width: 100%;
-  font-size: 14px;
+  font-size: 3em;
   font-weight: bold;
-  padding: 3px 0;
+  padding: 0.2em 0;
 }
 div.data {
   position: relative;
@@ -103,10 +95,13 @@ div.splitter {
 div.row {
   position: relative;
   width: 100%;
-  height: 25px;
+  height: 4em;
   background-color: yellow;
   background-color: palegoldenrod;
-  padding: 6px 0 0 0;
+  padding: 0.3em 0;
+}
+div.row:last-child {
+  padding: 0.3em 0 0.5em 0;
 }
 
 div.a {
@@ -126,40 +121,36 @@ div.b {
 div.pt {
   background-color: red;
   background-color: lightcoral;
-  font-size: 15px;
-  padding: 2px;
+  font-size: 3em;
+  padding: 0.1em;
 }
 div.to {
   background-color: lightgray;
-  font-size: 15px;
-  padding: 2px;
+  font-size: 3em;
+  padding: 0.1em;
 }
 div.subst > div.in {
-  font-size: 9px;
-  padding: 1px;
+  font-size: 1.8em;
   background-color: yellowgreen;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
 }
 div.subst > div.out {
-  font-size: 8px;
-  padding: 1px;
+  font-size: 1.6em;
   background-color: red;
   background-color: lightcoral;
   white-space: nowrap;
   overflow: hidden;
 }
 div.serv > div.srvheader {
-  font-size: 8px;
-  padding: 1px;
+  font-size: 1.6em;
   background-color: lightgray;
   white-space: nowrap;
   overflow: hidden;
 }
 div.serv > div.info {
-  font-size: 9px;
-  padding: 1px;
+  font-size: 1.8em;
   white-space: nowrap;
   overflow: hidden;
 
@@ -186,6 +177,8 @@ function init() {
   <a href="/ov.html#statistics_br3"><img src="/image/logo.png"/></a>
   </div>
 </div>
-{{matches}}
+</div>
+<div id="content_container">{{matches}}</div>
+<div id="footer">Brückl Hotvolleys<div>Brückl Hotvolleys</div></div>
 </body>
 </html>
