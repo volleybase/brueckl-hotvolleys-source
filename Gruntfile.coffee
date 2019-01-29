@@ -58,6 +58,11 @@ def =
       anchor: 'ich_zu_mir'
       target: 'ich_zu_mir.html'
       image:  'ich_zu_mir.png'
+    ann4:
+      title: '3x Spielen'
+      anchor: '3x_spielen'
+      target: '3x_spielen.html'
+      image:  '3x_spielen.png'
     ang1:
       title: 'Tom + Jerry'
       anchor: 'tomjerry'
@@ -84,6 +89,11 @@ def =
       anchor: 'ich_zu_mir'
       target: 'ich_zu_mir.html'
       image:  'ich_zu_mir.png'
+    ann4:
+      title: '3x Spielen'
+      anchor: '3x_spielen'
+      target: '3x_spielen.html'
+      image:  '3x_spielen.png'
     ang1:
       title: 'Tom + Jerry'
       anchor: 'tomjerry'
@@ -510,9 +520,19 @@ config = (grunt) ->
             title: 'Annahme und Verteidigung'
             table: [
               {
-                tableheader: [ def.u10.ann1, def.u10.ann2, def.u10.ann3 ]
-                tableimage: [ def.u10.ann1, def.u10.ann2, def.u10.ann3 ]
-                tableinfo: [ def.u10.ann1, def.u10.ann2, def.u10.ann3 ]
+                tableheader: [ def.u10.ann1 ]
+                tableimage: [ def.u10.ann1 ]
+                tableinfo: [ def.u10.ann1 ]
+              }
+              {
+                tableheader: [ def.u10.ann2, def.u10.ann3 ]
+                tableimage: [ def.u10.ann2, def.u10.ann3 ]
+                tableinfo: [ def.u10.ann2, def.u10.ann3 ]
+              }
+              {
+                tableheader: [ def.u10.ann4 ]
+                tableimage: [ def.u10.ann4 ]
+                tableinfo: [ def.u10.ann4 ]
               }
             ]
             table2: ''
@@ -546,9 +566,19 @@ config = (grunt) ->
             title: 'Annahme und Verteidigung'
             table: [
               {
-                tableheader: [ def.u11.ann1, def.u11.ann2, def.u11.ann3 ]
-                tableimage: [ def.u11.ann1, def.u11.ann2, def.u11.ann3 ]
-                tableinfo: [ def.u11.ann1, def.u11.ann2, def.u11.ann3 ]
+                tableheader: [ def.u11.ann1 ]
+                tableimage: [ def.u11.ann1 ]
+                tableinfo: [ def.u11.ann1 ]
+              }
+              {
+                tableheader: [ def.u11.ann2, def.u11.ann3 ]
+                tableimage: [ def.u11.ann2, def.u11.ann3 ]
+                tableinfo: [ def.u11.ann2, def.u11.ann3 ]
+              }
+              {
+                tableheader: [ def.u11.ann4 ]
+                tableimage: [ def.u11.ann4 ]
+                tableinfo: [ def.u11.ann4 ]
               }
             ]
             table2: ''
