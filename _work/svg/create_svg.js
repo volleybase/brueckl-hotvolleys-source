@@ -12,6 +12,9 @@ module.exports = function init(grunt) {
     // console.log('-- create svg --------------------------------------------')
     // console.log(this)
     // console.log('----------------------------------------------------------')
+    // console.log('----------------------------------------------------------')
+    // console.log(JSON.stringify(this.data.options.infoMap, null, 2))
+    // console.log('----------------------------------------------------------')
 
     // load template
     const tpl0 = fs.readFileSync(this.data.options.container, 'utf8')
@@ -19,6 +22,8 @@ module.exports = function init(grunt) {
     // handle all definitions of files
     this.files.forEach((file) => {
       // console.log(file)
+      const dest = file.dest;
+      // console.log(dest)
 
       // handle each file of current definition
       file.src.forEach((file2) => {
@@ -27,6 +32,13 @@ module.exports = function init(grunt) {
         const fn = path.basename(file2),
               ext = path.extname(fn),
               nam = fn.substr(0, fn.length - ext.length)
+
+        let footer = '';
+        if (this.data.options && this.data.options.infoMap
+          && this.data.options.infoMap[dest]) {
+          footer = this.data.options.infoMap[dest];
+        }
+
         const tpl = process(grunt, tpl0, this.data.options.include, {
           '\{\{FullFileName\}\}': file2,
           '\{\{FileName\}\}': fn,
@@ -44,7 +56,9 @@ module.exports = function init(grunt) {
           '\{\{FILENAME\}\}': fn.toUpperCase(),
           '\{\{NAME\}\}': nam.toUpperCase(),
           '\{\{PATH\}\}': path.dirname(file2).toUpperCase(),
-          '\{\{EXTENSION\}\}': ext ? ext.substr(1).toUpperCase() : ''
+          '\{\{EXTENSION\}\}': ext ? ext.substr(1).toUpperCase() : '',
+
+          '\{\{footer\}\}': footer
         }, this.data.options)
 
         // read data file

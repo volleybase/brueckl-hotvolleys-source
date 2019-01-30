@@ -48,21 +48,25 @@ def =
       anchor: '2x_spielen'
       target: '2x_spielen.html'
       image:  '2x_spielen.png'
+      info: 'Zusammenspiel - zusammen spielen'
     ann2:
       title: 'Außenfuß'
       anchor: 'aussenfuss'
       target: 'aussenfuss.html'
       image:  'aussenfuss.png'
+      info: 'Der Außenfuß stoppt die Bewegung zum Ball und erleichtert das Zielen zur Zielposition (Mitspieler).'
     ann3:
       title: 'Ich!  Zu mir!'
       anchor: 'ich_zu_mir'
       target: 'ich_zu_mir.html'
       image:  'ich_zu_mir.png'
+      info: 'Das Mitsprechen unterstützt die Entscheidung zur besseren Verteilung der Aufgaben zwischen den Spielerinnen.'
     ann4:
       title: '3x Spielen'
       anchor: '3x_spielen'
       target: '3x_spielen.html'
       image:  '3x_spielen.png'
+      info: '3x Spielen - Annahme/Verteidigung - Aufspiel - Angriff'
     ang1:
       title: 'Tom + Jerry'
       anchor: 'tomjerry'
@@ -79,21 +83,37 @@ def =
       anchor: '2x_spielen'
       target: '2x_spielen.html'
       image:  '2x_spielen.png'
+      info: 'Zusammenspiel - zusammen spielen'
     ann2:
       title: 'Außenfuß'
       anchor: 'aussenfuss'
       target: 'aussenfuss.html'
       image:  'aussenfuss.png'
+      info: 'Der Außenfuß stoppt die Bewegung zum Ball und erleichtert das Zielen zur Zielposition (Mitspieler).'
     ann3:
       title: 'Ich!  Zu mir!'
       anchor: 'ich_zu_mir'
       target: 'ich_zu_mir.html'
       image:  'ich_zu_mir.png'
+      info: 'Das Mitsprechen unterstützt die Entscheidung zur besseren Verteilung der Aufgaben zwischen den Spielerinnen.'
     ann4:
       title: '3x Spielen'
       anchor: '3x_spielen'
       target: '3x_spielen.html'
       image:  '3x_spielen.png'
+      info: '3x Spielen - Annahme/Verteidigung - Aufspiel - Angriff'
+    ann5:
+      title: '3x Spielen +'
+      anchor: '3x_spielen_x'
+      target: '3x_spielen_x.html'
+      image:  '3x_spielen_x.png'
+      info: '3x Spielen mit Angriff von außen'
+    ann6:
+      title: '3x Spielen ++'
+      anchor: '3x_spielen_xx'
+      target: '3x_spielen_xx.html'
+      image:  '3x_spielen_xx.png'
+      info: '3x Spielen, Angriff von außen mit Sicherung'
     ang1:
       title: 'Tom + Jerry'
       anchor: 'tomjerry'
@@ -299,6 +319,11 @@ def =
       back: '/uld/grundlagen'
 
 setTargetLinks = (def) ->
+  map = {}
+  keyMap = {
+    br3: 'uld/grundlagen3'
+  }
+
   keys1 = Object.keys(def)
   keys1.forEach((key1) ->
     block = def[key1]
@@ -312,9 +337,16 @@ setTargetLinks = (def) ->
         back = '&b=' + encodeURIComponent((tab.back ? '/' + key1) + '#' + tab.anchor)
 
         tab.target = '/imageview.html?' + img + tit + inf + back
+
+      if tab.target != undefined and tab.info != undefined
+        map[(keyMap[key1] ? key1) + '/' + tab.target] = tab.info
+          .replace('<br>', ', ')
+          .replace('<br />', ', ')
     )
   )
-setTargetLinks(def)
+  return map
+infoMap = setTargetLinks(def)
+
 
 config = (grunt) ->
 
@@ -470,6 +502,7 @@ config = (grunt) ->
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
         include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        infoMap: infoMap
         variables:
           back: '/uld/grundlagen3/'
       files: [
@@ -482,6 +515,7 @@ config = (grunt) ->
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
         include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        infoMap: infoMap
         variables:
           back: '/u10/'
       files: [
@@ -494,6 +528,7 @@ config = (grunt) ->
       options:
         container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
         include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        infoMap: infoMap
         variables:
           back: '/u11/'
       files: [
@@ -518,7 +553,8 @@ config = (grunt) ->
         block: [
           {
             title: 'Annahme und Verteidigung'
-            table: [
+            table: ''
+            table2: [
               {
                 tableheader: [ def.u10.ann1 ]
                 tableimage: [ def.u10.ann1 ]
@@ -535,7 +571,6 @@ config = (grunt) ->
                 tableinfo: [ def.u10.ann4 ]
               }
             ]
-            table2: ''
           }
           {
             title: 'Angriff'
@@ -564,7 +599,8 @@ config = (grunt) ->
         block: [
           {
             title: 'Annahme und Verteidigung'
-            table: [
+            table: ''
+            table2: [
               {
                 tableheader: [ def.u11.ann1 ]
                 tableimage: [ def.u11.ann1 ]
@@ -576,12 +612,11 @@ config = (grunt) ->
                 tableinfo: [ def.u11.ann2, def.u11.ann3 ]
               }
               {
-                tableheader: [ def.u11.ann4 ]
-                tableimage: [ def.u11.ann4 ]
-                tableinfo: [ def.u11.ann4 ]
+                tableheader: [ def.u11.ann4, def.u11.ann5, def.u11.ann6 ]
+                tableimage: [ def.u11.ann4, def.u11.ann5, def.u11.ann6 ]
+                tableinfo: [ def.u11.ann4, def.u11.ann5, def.u11.ann6 ]
               }
             ]
-            table2: ''
           }
           {
             title: 'Angriff'
@@ -796,6 +831,7 @@ config = (grunt) ->
           }
         ]
       target: 'D:/workdir/brueckl-hotvolleys-source/uld/grundlagen/index.html'
+
 
   watch:
     copy:
