@@ -863,9 +863,42 @@ module.exports = (grunt) ->
     # keep as is 'clean:deploy1',
     'clean:deploy2',
 
+    'copy:svgviewer',
+
     'createovsvg',
     'createsvg',
 
     # keep as is 'copy:deploy1',
     'copy:deploy2'
   ])
+
+  grunt.registerTask('info', () ->
+    i = (txt) ->
+      grunt.log.writeln(txt)
+
+    i('Usage')
+    i('')
+    i('  clean:deploy2')
+    i('    Ergebnis säubern')
+    i('')
+    i('  realFavicon (favicons)')
+    i('    die wichtigsten Icons erstellen')
+    i('')
+    i('  copy')
+    i('    deploy2')
+    i('      Ergebnis erstellen')
+    i('    svgviewer')
+    i('      Sourcen für svgviewer holen')
+    i('')
+    i('  createsvg')
+    i('    uld_auf, u10, u11')
+    i('      Views mit svg-viewer erstellen')
+    i('')
+    i('  createovsvg')
+    i('    u10, u11, u12, br3, br4')
+    i('      Überblicksseiten erstellen')
+    i('')
+    i('  build')
+    i('    Alles erstellen')
+    i('')
+  );
