@@ -90,8 +90,18 @@ var calendar = {
           info.style.display = 'block';
         },
         handlerHide = function(ev) {
-          ev.currentTarget.style.display = 'none';
+          var elem = ev.currentTarget,
+              id = elem.id,
+              elemDayEntry = elemMain.querySelector(`.week > .day > .entry[data-xid=${id}]`);
+
+          elem.style.display = 'none';
           elemMain.style.display = 'block';
+          if (elemDayEntry !== null) {
+            var elemDay = elemDayEntry.parentNode;
+            if (elemDay !== null) {
+              elemDay.scrollIntoView();
+            }
+          }
         };
 
     if (elems && elemsInfo) {
