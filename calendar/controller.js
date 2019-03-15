@@ -149,11 +149,13 @@ var calendar = {
     var d, weekRes,
         content = '',
         infos = '',
-        days = this._loadData();
+        days = this._loadData(),
+        today0 = new Date(),
+        today = DateUtil.toYMD(today0.getFullYear(), today0.getMonth() + 1, today0.getDate());
 
     // create the days
     for (d = 0; d < days.length; d += 7) {
-      weekRes = this._createWeek(d, days);
+      weekRes = this._createWeek(d, days, today);
       content += weekRes.content;
       infos  += weekRes.infos;
     }
@@ -164,13 +166,13 @@ var calendar = {
       .replace('{{infos}}', infos);
   },
 
-  '_createWeek': function(day, days) {
+  '_createWeek': function(day, days, today) {
     var d, dayRes,
         content = '',
         infos = '';
 
     for (d = day; d < day + 7; ++d) {
-      dayRes = this._createDay(d, days);
+      dayRes = this._createDay(d, days, today);
       content += dayRes.content;
       infos += dayRes.infos;
     }
@@ -182,7 +184,7 @@ var calendar = {
     };
   },
 
-  '_createDay': function(day, days) {
+  '_createDay': function(day, days, today) {
 
     var entries = this._createEntries(days[day]);
 
@@ -191,6 +193,7 @@ var calendar = {
       'content': this._tplDay.trim()
         .replace('{{key}}', days[day].key)
         .replace('{{enabled}}', days[day].enabled ? ' enabled' : '')
+        .replace('{{today}}', days[day].key === today ? ' today' : '')
         .replace('{{date}}', days[day].date)
         .replace('{{entries}}', entries.content),
       'infos': entries.infos
