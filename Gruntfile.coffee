@@ -22,7 +22,8 @@ files = [
   "u13/**",
   "u15/**",
   "u17/**",
-  "uld/**"
+  "uld/**",
+  "lld/**"
 ]
 
 # files_copy = files.concat(["cache.manifest"])
