@@ -24,7 +24,6 @@ var map = {
  */
 function kidsStandings(response) {
 
-
   // create xml data
   var xml = bhv.request.xml.fromText(response, 'xml');
   if (xml) {
@@ -33,9 +32,26 @@ function kidsStandings(response) {
     var list = bhv.request.xml.getNodes(xml, 'tabelle');
     if (list && list.length) {
 
+      var container
+        = '<div class="container" title="{{text2}}" alt="{{text2}}">'
+        + '<input id="info_{{idx}}" type="checkbox" class="info">'
+        + '<label for="info_{{idx}}">{{text}}<span>{{text2}}</span></label>'
+        + '</div>',
+          points = container
+            .replace(/\{\{idx\}\}/g, 'pt')
+            .replace(/\{\{text\}\}/g, 'P')
+            .replace(/\{\{text2\}\}/g, 'Punkte'),
+          tournaments = container
+            .replace(/\{\{idx\}\}/g, 'tour')
+            .replace(/\{\{text\}\}/g, 'T')
+            .replace(/\{\{text2\}\}/g, 'gespielte Turniere');
+
       // create text
+      // var msg = bhv.request.utils.fillColumn('', 47)
+      //   + 'P  T '.replace(/ /g, '&nbsp;') + NL;
       var msg = bhv.request.utils.fillColumn('', 47)
-        + 'P  T '.replace(/ /g, '&nbsp;') + NL;
+        .replace(/ /g, '&nbsp;')
+        + points + '&nbsp;&nbsp;&nbsp;' + tournaments + NL;
       for (var i = 0; i < list.length; ++i) {
         msg += bhv.request.utils.fillColumn('' + (i + 1), -2) + '. '
             + bhv.request.utils.checkBold(bhv.request.utils.fillColumn(
