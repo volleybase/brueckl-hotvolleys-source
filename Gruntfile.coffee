@@ -6,6 +6,7 @@ files = [
   "*.html",
   "*.css",
   "README.md",
+  "favicon.ico",
   "styles.css",
 
   "calendar/**",
