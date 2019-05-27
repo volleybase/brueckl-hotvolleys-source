@@ -1,0 +1,4 @@
+Wie bekomme ich den Bewerb im ÖVV?
+
+-- select * from tx_bew_bewerb where bew_bew_id = 23271 and txs_id = 'de' -- 23281 -> Endstand
+-- select * from bew_bewerb where bew_kurz = 'AChU13-D' and bew_sai_id = 35 -- 23271
