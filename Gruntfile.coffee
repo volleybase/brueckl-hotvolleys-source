@@ -26,6 +26,7 @@ files = [
   "uld/**",
   "lld/**",
 
+  "statistics/**",
   "teambuilding/**"
 ]
 
