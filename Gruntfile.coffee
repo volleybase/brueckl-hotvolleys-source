@@ -33,7 +33,7 @@ files = [
 # files_copy = files.concat(["cache.manifest"])
 # do not copy 'old' files!
 files_copy = files.concat([
-  "!**/*-old.*"
+  "!**/*_old.*"
 ])
 # add svg work files for watching
 files_watch = files_copy.concat([
