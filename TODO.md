@@ -1,7 +1,7 @@
 # Old info pages
 
 -   [X] Remove them
--   [ ] **remove \*-old.\* files from source**
+-   [X] remove \*-old.\* files from source
 
 
 # Kalender
@@ -17,3 +17,16 @@
 -   [X] info Liga - brückl fett
 -   [X] info NW (u12 7.12.2014 w + m) - turniere, die auch zugeordnet sind, tauchen im Ergebnis doppelt auf
 -   [X] info NW - finals
+
+
+# eps file
+
+-   [X] eps viewer
+-   [ ] irfan view with plugin
+
+
+# Logo (groß)
+
+-   [X] 404.html
+-   [X] imageview.html
+-   [X] index.html
