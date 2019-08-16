@@ -1,0 +1,32 @@
+# index.html
+
+-   <html>    ->   <html lang="de">
+-   landmarks: <main>...</main>\
+    main region (header/footer)
+-   link information\
+    aria-label="Read more about Seminole tax hike"
+-   viewport meta tag\
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+-   description meta\
+    <meta name="Description" content="Put your description here.">
+
+
+
+# zertifikat
+
+## simplecrawler
+kann https crawlen, wenn ignoreInvalidSSL 0 true
+
+## lighthouse
+scheitert beim Test wegen dem ungültigen Zertifikat
+
+Importieren unter Chrome -> Settings -> Advanced -> Manage Certificates\
+(ist Windows eigenes Tool Zertifikate)
+
+-   Eigene Zertifikate\
+    localhost\
+    Gültig bis 15.08.2028
+-   Vertrauenswürdige Stammzertifizierungsstellen\
+    (Englisch vermutlich Authorities)
+    Importiert\
+    => lighthouse kann testen
