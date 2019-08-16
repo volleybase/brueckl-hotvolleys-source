@@ -12,7 +12,7 @@
     "connect": "^3.5.0",
     "cors": "^2.8.5",
     "express": "~4.16.4",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.4",
     "grunt-batch": "^0.2.4",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
@@ -21,9 +21,10 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-newer": "^1.2.0",
     "grunt-real-favicon": "^0.2.3",
-    "serve-static": "^1.11.1"
     "lighthouse": "^5.2.0",
+    "serve-static": "^1.11.1",
     "simplecrawler": "^1.1.8",
+    "spdy": "^4.0.1"
   },
   "keywords": [
     "bhv",
