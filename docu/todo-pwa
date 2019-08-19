@@ -10,6 +10,19 @@
 -   description meta\
     <meta name="Description" content="Put your description here.">
 
+# ARIA roles
+
+(https://developer.paciellogroup.com/blog/2013/02/using-wai-aria-landmarks-2013/)
+
+Aria                 |HTML5 | #
+---------------------|------|---:
+role="banner"        |header|0-1
+role="complementary" |aside |0-n
+role="contentinfo"   |footer|0-1
+role="form"          |if not form(?!)|0-n
+role="main"          |main  |1
+role="navigation"    |nav   |?
+role="search"        |div/form/...|0-n
 
 
 # zertifikat
