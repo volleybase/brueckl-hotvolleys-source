@@ -1,8 +1,10 @@
 // var express = require('d:/workdir/brueckl-hotvolleys-source/node_modules/express')
 var express = require('express')
 
+var PORT_BHV_INFOAPP = 443;
 
-// -- BHV-Info - 5001 (currently not working) ---------------------------------
+
+// #region -- BHV-Info - 5001 (currently not working) -------------------------
 
 var app = express()
 var cors = require('cors')
@@ -29,8 +31,9 @@ app.listen(5001, function () {
   console.log('BHV-Info (5001)!')
 })
 
+// #endregion
 
-// -- volleybase --------------------------------------------------------------
+// #region -- volleybase ------------------------------------------------------
 
 var volleybase = express()
 
@@ -54,19 +57,74 @@ volleybase.listen(88, function () {
   console.log('Volleybase(88)!')
 })
 
+// #endregion
 
-// -- bhv - new info pages ----------------------------------------------------
+// #region -- bhv - redirect :80 ----------------------------------------------
+
+var bhv80 = express()
+
+// logging
+const logger80 = function(req, res, next) {
+  console.log('%s %s %s %s', '80->-' + PORT_BHV_INFOAPP, req.method, req.url, req.path);
+  next();
+}
+bhv80.use(logger80)
+
+bhv80.use (function (req, res, next) {
+	// request was via http, so redirect to https
+  const target = 'https://' + req.headers.host + ':' + PORT_BHV_INFOAPP + req.url;
+  console.log('redirect to %s', target);
+	res.redirect(target);
+});
+
+// start
+bhv80.listen(80, function () {
+  console.log('80 redirect!')
+})
+
+// #endregion
+
+
+
+// #region -- bhv - new info pages --------------------------------------------
+
+
 
 var bhv = express()
 var bhv2 = express()
 
+// https://github.com/aerwin/https-redirect-demo/blob/master/server.js
+
+// Enable reverse proxy support in Express. This causes the
+// the "X-Forwarded-Proto" header field to be trusted so its
+// value can be used to determine the protocol. See
+// http://expressjs.com/api#app-settings for more details.
+// bhv2.enable('trust proxy');
+
 // logging
 const logger = function(req, res, next) {
-  console.log('%s %s %s', req.method, req.url, req.path);
+  console.log(
+    '%s %s %s %s', req.method, req.protocol,
+    (req.headers && req.headers['host'] ? req.headers['host'] : req.hostname),
+    req.url
+  );
   next();
 }
 bhv.use(logger)
 bhv2.use(logger)
+
+// Add a handler to inspect the req.secure flag (see
+// http://expressjs.com/api#req.secure). This allows us
+// to know whether the request was via http or https.
+// bhv2.use (function (req, res, next) {
+// 	if (req.secure) {
+// 		// request was via https, so do no special handling
+// 		next();
+// 	} else {
+// 		// request was via http, so redirect to https
+// 		res.redirect('https://' + req.headers.host + req.url);
+// 	}
+// });
 
 // static files
 bhv.use(express.static('D:/workdir/BruecklHotvolleys.github.io'))
@@ -85,11 +143,14 @@ bhv.listen(5002, function () {
   console.log('BHV Info pages(5002)!')
 })
 
-// -- https server (BHV-Info-App) ---------------------------------------------
+// #endregion
+
+// #region -- https server (BHV-Info-App) -------------------------------------
 
 // https-server (http 1.1) or spdy-server (http 2)
 var useHttp2 = true
 var https = useHttp2 ? require('spdy') : require('https')
+var bhvServer = undefined
 
 var fs = require('fs');
 var options = {
@@ -101,19 +162,21 @@ if (useHttp2) {
 }
 
 if (useHttp2) {
-  https
+  bhvServer = https
     .createServer(options, bhv2)
-    .listen(5003, (error) => {
+    .listen(PORT_BHV_INFOAPP, (error) => {
       if (error) {
         console.error(error)
         return process.exit(1)
       } else {
-        console.log('BHV Info pages with http2(5003)!')
+        console.log('BHV Info pages with http2(' + PORT_BHV_INFOAPP + ')!')
       }
     })
 
 } else {
-  var httpsServer = https.createServer(options, bhv2);
-  httpsServer.listen(5003, 'localhost');
-  console.log('BHV Info pages with https(5003)!')
+  bhvServer = https.createServer(options, bhv2);
+  bhvServer.listen(PORT_BHV_INFOAPP, 'localhost');
+  console.log('BHV Info pages with https(' + PORT_BHV_INFOAPP + ')!')
 }
+
+// #endregion
