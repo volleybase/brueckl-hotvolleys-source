@@ -13,7 +13,8 @@ const chromeLauncher = require('chrome-launcher')
 
 const options = {
   // "url": "http://localhost:5002",
-  "url": "https://localhost:5003",
+  // "url": "https://localhost:5003",
+  "url": "https://localhost",
   "output": "_test/result"
 }
 
@@ -168,7 +169,7 @@ const config = {
   "extends": "lighthouse:full",
   "settings": {
     "crawler": {
-      "maxDepth": 3
+      "maxDepth": 22
     }
   }
 }
