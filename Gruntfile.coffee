@@ -1,30 +1,33 @@
 # create_manifest = require('./_work/create.manifest.js')
 create_svg = require('./_work/svg/create_svg.js')
 create_ovsvg = require('./_work/ovsvg/grunt/create_ovsvg.js')
+init_worker = require('./_work/serviceworker/initWorker.js')
 
 files = [
   "*.html",
   "*.css",
   "README.md",
   "favicon.ico",
+  "manifest.webmanifest",
   "styles.css",
 
   "calendar/**",
   "elements/**",
   "favicons/**",
+  "!favicons/site.webmanifest",
   "image/**",
   "info/**",
   "script/**",
-  "testvideo/**",
+  # "testvideo/**",
 
-  "u10/**",
-  "u11/**",
-  "u12/**",
-  "u13/**",
-  "u15/**",
-  "u17/**",
-  "uld/**",
-  "lld/**",
+  # "u10/**",
+  # "u11/**",
+  # "u12/**",
+  # "u13/**",
+  # "u15/**",
+  # "u17/**",
+  # "uld/**",
+  # "lld/**",
 
   "statistics/**",
   "teambuilding/**"
@@ -33,6 +36,7 @@ files = [
 # files_copy = files.concat(["cache.manifest"])
 # do not copy 'old' files!
 files_copy = files.concat([
+  "bhv-service-worker.js",
   "!**/*_old.*"
 ])
 # add svg work files for watching
@@ -423,6 +427,14 @@ config = (grunt) ->
           readmeFile: false
           htmlCodeFile: false
           usePathAsIs: false
+
+  initWorker:
+    sw:
+      options:
+        template: "D:/workdir/brueckl-hotvolleys-source/_work/serviceworker/serviceworker.js"
+      files:
+        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files_copy
+
 
   copy:
     deploy1_do_not_change:
@@ -841,10 +853,13 @@ config = (grunt) ->
 
 
   watch:
+    initWorker:
+      files: ['_work/serviceworker/serviceworker.js']
+      tasks: ['initWorker', 'newer:copy:deploy2']
     copy:
       files: files_watch,
       # tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
-      tasks: ['createsvg', 'newer:copy:deploy2']
+      tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
@@ -861,6 +876,7 @@ module.exports = (grunt) ->
   # create_manifest(grunt)
   create_svg(grunt)
   create_ovsvg(grunt)
+  init_worker(grunt)
 
   grunt.registerTask('default', ['build'])
 
@@ -874,6 +890,8 @@ module.exports = (grunt) ->
 
     'createovsvg',
     'createsvg',
+
+    'initWorker',
 
     # keep as is 'copy:deploy1',
     'copy:deploy2'
@@ -890,6 +908,10 @@ module.exports = (grunt) ->
     i('')
     i('  realFavicon (favicons)')
     i('    die wichtigsten Icons erstellen')
+    i('')
+    i('')
+    i('  initWorker')
+    i('    den Serviceworker erstellen')
     i('')
     i('  copy')
     i('    deploy2')
