@@ -26,6 +26,7 @@ class MyQueue {
     this.running = false
     this.handlerDone = undefined
     this.stopped = false
+    this.counter = 0
   }
 
   add(url) {
@@ -43,11 +44,14 @@ class MyQueue {
 
     if (this.urls.length > 0) {
       this.running = true
+      ++this.counter
       handler(this.urls.shift(), this.nextStep.bind(this))
       return true
     } else {
       this.running = false
-
+      console.log('===========================================================')
+      console.log('Testing completed - ' + this.counter + ' pages.')
+      console.log('===========================================================')
       if (this.handlerDone) {
         this.handlerDone()
       }
@@ -65,11 +69,29 @@ class MyQueue {
     this.handlerDone = handlerDone
   }
 }
+const encode = (url) => {
+  return encodeURIComponent(
+    url.replace('://', '--')
+       .replace(' ', '_')
+       .replace('?', '~~')
+       .replace(/&/g, '~~')
+       .replace(/%26/g, '~~')
 
+       .replace(/=/g, '~')
+       .replace(/%3D/g, '~')
+
+       .replace(/\//g, '-')
+       .replace(/%2F/g, '-')
+
+       // #
+       .replace(/#/g, '-')
+       .replace(/%23/g, '-')
+  );
+}
 const handler = (url, next) => {
   console.log('Start test of ' + url);
   launchChromeAndRunLighthouse(url, opts, config).then(results => {
-    const fn = path.resolve(options.output, encodeURIComponent(url)) + '.html'
+    const fn = path.resolve(options.output, encode(url)) + '.html'
 
     console.log('Write results of ' + url + ' to ' + fn);
     fs.writeFile(fn, results, (err) => {
@@ -84,6 +106,7 @@ queue.onDone(() => {
 })
 
 const crawler = (options) => {
+  let counter = 0
 
   const crawler = new Crawler(options.url)
   crawler.respectRobotsTxt = false
@@ -99,6 +122,7 @@ const crawler = (options) => {
   // console.log('Protocols ' + crawler.allowedProtocols)
 
   crawler.discoverResources = (buffer, item) => {
+    ++counter
 
     // load the html source into the parser
     const page = cheerio.load(buffer.toString('utf8'))
@@ -117,7 +141,9 @@ const crawler = (options) => {
   })
 
   crawler.once('complete', () => {
-    console.log('Crawling completed.')
+    console.log('-----------------------------------------------------------')
+    console.log('Crawling completed - ' + counter + ' pages found.')
+    console.log('-----------------------------------------------------------')
   })
 
   crawler.start()
