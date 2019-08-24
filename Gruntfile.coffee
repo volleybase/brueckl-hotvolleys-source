@@ -11,6 +11,8 @@ files = [
   "manifest.webmanifest",
   "styles.css",
 
+  "archive/**/*.zip",
+  "archive/**/*.gz",
   "calendar/**",
   "elements/**",
   "favicons/**",
@@ -23,7 +25,9 @@ files = [
   # "u10/**",
   # "u11/**",
   # "u12/**",
+  "u12/certificate.jpeg",
   # "u13/**",
+  "u13/certificate.jpeg",
   # "u15/**",
   # "u17/**",
   # "uld/**",

@@ -1,7 +1,7 @@
 'use strict';
 
 // the name of the cache
-const CACHE_NAME = 'bhv-infoapp-jzhp6v7s';
+const CACHE_NAME = 'bhv-infoapp-jzpv6tz4';
 
 // all the files
 const FILES_TO_CACHE = [
@@ -18,6 +18,9 @@ const FILES_TO_CACHE = [
   '/README.md',
   '/favicon.ico',
   '/manifest.webmanifest',
+  '/archive/19/kidsschedules.xml.gz',
+  '/archive/19/results.xml.gz',
+  '/archive/19/standings.xml.gz',
   '/calendar/calendar.html',
   '/calendar/controller.js',
   '/calendar/input.html',
@@ -65,12 +68,15 @@ const FILES_TO_CACHE = [
   '/script/animator.js',
   '/script/base64.js',
   '/script/db.js',
+  '/script/pako_inflate.min.js',
   '/script/polyfills.js',
   '/script/request.js',
   '/script/results.js',
   '/script/schedule.js',
   '/script/standings.js',
   '/script/svgviewer.js',
+  '/u12/certificate.jpeg',
+  '/u13/certificate.jpeg',
   '/statistics/19/br3.html',
   '/statistics/19/mpo.html',
   '/statistics/19/u12.html',

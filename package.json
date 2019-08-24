@@ -21,10 +21,13 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-newer": "^1.2.0",
     "grunt-real-favicon": "^0.2.3",
+    "gzipper": "^2.8.1",
     "lighthouse": "^5.2.0",
+    "pako": "^1.0.10",
     "serve-static": "^1.11.1",
     "simplecrawler": "^1.1.8",
-    "spdy": "^4.0.1"
+    "spdy": "^4.0.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "keywords": [
     "bhv",

@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<xml>
+<tournament key="u12_19" competition="23060" handler="kidsSchedules" title="Turniere U12 (30.6.2019)" team="brückl">
+<turniere>
+<id>23113</id>
+<turnier_kurz>u12/1</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-18:00</bewerb_kurz>
+<bewerb_name>BSH Sportpark {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>16.12.2018</von>
+<bis></bis>
+<nennfrist>10.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt m1|22:SK Posojilnica Aich/Dob m1|16:Brückl hotvolleys 1|16:Brückl hotvolleys 2|12:Volley eagles Villach 1|11:Wörtherseelöwen Klagenfurt 1|10:Brückl hotvolleys 3|9:Wörtherseelöwen Klagenfurt m2|6:Wörtherseelöwen Klagenfurt m3</anmerkung>
+</turniere>
+<turniere>
+<id>23114</id>
+<turnier_kurz>u12/2</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>Richard Wagner-Schule {VILLACH}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>12.01.2019</von>
+<bis></bis>
+<nennfrist>06.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>34:Wörtherseelöwen Klagenfurt m1|26:Volley eagles Villach 1|22:Brückl hotvolleys 1|18:Wörtherseelöwen Klagenfurt 1|16:Brückl hotvolleys 2|12:Volleystars Kärnten 1|9:Brückl hotvolleys 3</anmerkung>
+</turniere>
+<turniere>
+<id>23115</id>
+<turnier_kurz>u12/3</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>19.01.2019</von>
+<bis></bis>
+<nennfrist>13.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>5</spielfelder>
+<anmerkung>28:SK Posojilnica Aich/Dob m1|22:Wörtherseelöwen Klagenfurt m1|16:Brückl hotvolleys 1|16:ATSC Wildcats Klagenfurt 1|12:Brückl hotvolleys 2|11:Wörtherseelöwen Klagenfurt 1|9:Wörtherseelöwen Klagenfurt m2|6:Volleystars Kärnten 1|0:ATSC Wildcats Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23116</id>
+<turnier_kurz>u12/4</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>09:00-13:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>02.02.2019</von>
+<bis></bis>
+<nennfrist>27.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>5</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt m1|25:Brückl hotvolleys 1|21:SK Posojilnica Aich/Dob m1|17:Brückl hotvolleys 2|15:Wörtherseelöwen Klagenfurt 1|13:Brückl hotvolleys 3|12:ATSC Wildcats Klagenfurt 1|10:ATSC Wildcats Klagenfurt 2|10:Volleystars Kärnten 1|9:Brückl hotvolleys 4|7:Wörtherseelöwen Klagenfurt m2|6:TV St.Veit 1 (Brückl hotvolleys 7)|4:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23117</id>
+<turnier_kurz>u12/5</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>16.02.2019</von>
+<bis></bis>
+<nennfrist>10.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>33:Wörtherseelöwen Klagenfurt m1|27:Brückl hotvolleys 1|21:Wörtherseelöwen Klagenfurt 1|17:Volley eagles Villach 1|13:Brückl hotvolleys 2|11:Brückl hotvolleys 3|11:Wörtherseelöwen Klagenfurt m2|10:Brückl hotvolleys 4|8:TV St.Veit 1 (Brückl hotvolleys 7)|7:Wörtherseelöwen Klagenfurt 2|5:TV St.Veit 2 (Brückl hotvolleys 8)</anmerkung>
+</turniere>
+<turniere>
+<id>23118</id>
+<turnier_kurz>u12/6</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>Jugend &amp; Familiengästehaus {BLEIBURG}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>24.02.2019</von>
+<bis></bis>
+<nennfrist>18.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>33:Brückl hotvolleys 1|27:ATSC Wildcats Klagenfurt 1|21:SK Posojilnica Aich/Dob m1|17:Wörtherseelöwen Klagenfurt 1|13:Volley eagles Villach 1|11:Brückl hotvolleys 2|11:Wörtherseelöwen Klagenfurt m1|10:ATSC Wildcats Klagenfurt 2|8:TV St.Veit 1 (Brückl hotvolleys 7)|7:Volleystars Kärnten 1|5:Brückl hotvolleys m1</anmerkung>
+</turniere>
+<turniere>
+<id>23119</id>
+<turnier_kurz>u12/7</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>02.03.2019</von>
+<bis></bis>
+<nennfrist>24.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt m1|25:ATSC Wildcats Klagenfurt 1|19:Brückl hotvolleys 1|19:Brückl hotvolleys 2|15:Brückl hotvolleys 4|13:ATSC Wildcats Klagenfurt 2|12:Wörtherseelöwen Klagenfurt 1|12:Wörtherseelöwen Klagenfurt m2|11:Brückl hotvolleys 3|11:Brückl hotvolleys m1|8:TV St.Veit 1 (Brückl hotvolleys 7)|0:Volleystars Kärnten 1</anmerkung>
+</turniere>
+<turniere>
+<id>23120</id>
+<turnier_kurz>u12/8</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-18:00</bewerb_kurz>
+<bewerb_name>BSH Sportpark {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>10.03.2019</von>
+<bis></bis>
+<nennfrist>04.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>34:Brückl hotvolleys 1|28:Wörtherseelöwen Klagenfurt m1|22:ATSC Wildcats Klagenfurt 1|22:Volley eagles Villach 1|18:SK Posojilnica Aich/Dob m1|17:ATSC Wildcats Klagenfurt 2|16:Wörtherseelöwen Klagenfurt 1|15:Brückl hotvolleys 2|14:ATSC Wildcats Klagenfurt 3|12:Brückl hotvolleys 3|11:Wörtherseelöwen Klagenfurt m3|10:Volleystars Kärnten 1|9:Wörtherseelöwen Klagenfurt m2|8:Brückl hotvolleys m1|6:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23121</id>
+<turnier_kurz>u12/9</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23060</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>24.03.2019</von>
+<bis></bis>
+<nennfrist>18.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt m1|22:Wörtherseelöwen Klagenfurt 1|18:Brückl hotvolleys 1|14:Brückl hotvolleys 2|12:SK Posojilnica Aich/Dob m1|10:Brückl hotvolleys m1|9:Brückl hotvolleys 3|7:TV St.Veit 1 (Brückl hotvolleys 7)</anmerkung>
+</turniere>
+</tournament>
+<tournament key="u10_19" competition="23058" handler="kidsSchedules" title="Turniere U10 (30.6.2019)" team="brückl">
+<turniere>
+<id>23091</id>
+<turnier_kurz>u10/1</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>02.12.2018</von>
+<bis></bis>
+<nennfrist>26.11.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Brückl hotvolleys 1|22:Wörtherseelöwen Klagenfurt 1|16:Brückl hotvolleys 2|16:Brückl hotvolleys 5|12:SK Posojilnica Aich/Dob 2|11:SK Posojilnica Aich/Dob 1|10:Brückl hotvolleys 3|9:Brückl hotvolleys 4|6:Brückl hotvolleys 6</anmerkung>
+</turniere>
+<turniere>
+<id>23092</id>
+<turnier_kurz>u10/2</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>27.01.2019</von>
+<bis></bis>
+<nennfrist>21.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>30:Wörtherseelöwen Klagenfurt 1|24:TV St.Veit 1 (Brückl hotvolleys 7)|20:SK Posojilnica Aich/Dob 2|16:Brückl hotvolleys 1|14:SK Posojilnica Aich/Dob 1|12:Speedvolley Grafenstein 1|11:Brückl hotvolleys 2|9:Speedvolley Grafenstein 2|9:SK Posojilnica Aich/Dob 3|9:TV St.Veit 2 (Brückl hotvolleys 8)|8:TV St.Veit 3 (Brückl hotvolleys 9)|6:TV St.Veit 4 (Brückl hotvolleys 10)|4:Brückl hotvolleys 3</anmerkung>
+</turniere>
+<turniere>
+<id>23093</id>
+<turnier_kurz>u10/3</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>Jugend &amp; Familiengästehaus {BLEIBURG}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>03.02.2019</von>
+<bis></bis>
+<nennfrist>28.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>5</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt 1|25:SK Posojilnica Aich/Dob 1|19:Brückl hotvolleys 1|19:SK Posojilnica Aich/Dob 3|15:Brückl hotvolleys 2|13:Brückl hotvolleys 3|12:SK Posojilnica Aich/Dob 2|12:TV St.Veit 1 (Brückl hotvolleys 7)|11:Wörtherseelöwen Klagenfurt 2|11:TV St.Veit 3 (Brückl hotvolleys 9)|8:TV St.Veit 2 (Brückl hotvolleys 8)|6:SK Posojilnica Aich/Dob 4</anmerkung>
+</turniere>
+<turniere>
+<id>23094</id>
+<turnier_kurz>u10/4</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {FRIESACH}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>03.03.2019</von>
+<bis></bis>
+<nennfrist>25.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>4</spielfelder>
+<anmerkung>37:Wörtherseelöwen Klagenfurt 1|31:TV St.Veit 1 (Brückl hotvolleys 7)|27:Brückl hotvolleys 2|23:Brückl hotvolleys 1|21:VC Friesach 1|19:VC Friesach 2|18:Brückl hotvolleys 3|16:ATSC Wildcats Klagenfurt 2|15:ATSC Wildcats Klagenfurt 1|13:TV St.Veit 2 (Brückl hotvolleys 8)|12:Wörtherseelöwen Klagenfurt 2|10:Brückl hotvolleys 4|9:Speedvolley Grafenstein 1|7:Brückl hotvolleys 5</anmerkung>
+</turniere>
+<turniere>
+<id>23095</id>
+<turnier_kurz>u10/5</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>16.03.2019</von>
+<bis></bis>
+<nennfrist>10.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>37:Wörtherseelöwen Klagenfurt 1|31:ATSC Wildcats Klagenfurt 1|25:Brückl hotvolleys 2|23:TV St.Veit 3 (Brückl hotvolleys 9)|21:TV St.Veit 1 (Brückl hotvolleys 7)|19:Brückl hotvolleys 1|18:TV St.Veit 2 (Brückl hotvolleys 8)|17:Wörtherseelöwen Klagenfurt 2|16:Wörtherseelöwen Klagenfurt 3|13:ATSC Wildcats Klagenfurt 2|12:Speedvolley Grafenstein 1|10:Speedvolley Grafenstein 2|9:Wörtherseelöwen Klagenfurt 4|7:Brückl hotvolleys 3</anmerkung>
+</turniere>
+<turniere>
+<id>23096</id>
+<turnier_kurz>u10/6a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>16:00-18:00</bewerb_kurz>
+<bewerb_name>VS {GRAFENSTEIN}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>29.03.2019</von>
+<bis></bis>
+<nennfrist>23.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>31:Brückl hotvolleys 2|25:Speedvolley Grafenstein 1|19:SK Posojilnica Aich/Dob 1|19:Brückl hotvolleys 1|15:TV St.Veit 1 (Brückl hotvolleys 7)|14:SK Posojilnica Aich/Dob 2|13:Brückl hotvolleys 3|12:Brückl hotvolleys 6|11:Speedvolley Grafenstein 2|9:SK Posojilnica Aich/Dob 3|8:Brückl hotvolleys 4|6:Brückl hotvolleys 5</anmerkung>
+</turniere>
+<turniere>
+<id>23097</id>
+<turnier_kurz>u10/6b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>16:00-19:00</bewerb_kurz>
+<bewerb_name>HS Hasnerschule (Parterre) {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>05.04.2019</von>
+<bis></bis>
+<nennfrist>30.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt 1|22:ATSC Wildcats Klagenfurt 1|18:TV St.Veit 2 (Brückl hotvolleys 8)|14:Wörtherseelöwen Klagenfurt 2|12:ATSC Wildcats Klagenfurt 2|10:Wörtherseelöwen Klagenfurt 3|9:TV St.Veit 3 (Brückl hotvolleys 9)|7:Wörtherseelöwen Klagenfurt 4</anmerkung>
+</turniere>
+<turniere>
+<id>23098</id>
+<turnier_kurz>u10/7a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>16:00-19:00</bewerb_kurz>
+<bewerb_name>HS Hasnerschule (Parterre) {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>26.04.2019</von>
+<bis></bis>
+<nennfrist>20.04.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt 1|22:Speedvolley Grafenstein 2|16:ATSC Wildcats Klagenfurt 1|16:Wörtherseelöwen Klagenfurt 4|12:ATSC Wildcats Klagenfurt 2|11:Wörtherseelöwen Klagenfurt 5|10:Wörtherseelöwen Klagenfurt 2|9:Wörtherseelöwen Klagenfurt 3|6:Speedvolley Grafenstein 1</anmerkung>
+</turniere>
+<turniere>
+<id>23099</id>
+<turnier_kurz>u10/7b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23058</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>28.04.2019</von>
+<bis></bis>
+<nennfrist>22.04.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Brückl hotvolleys 2|22:Brückl hotvolleys 1|16:VC Friesach 1|16:TV St.Veit 2 (Brückl hotvolleys 8)|12:VC Friesach 2|11:Brückl hotvolleys 4|10:Brückl hotvolleys 5|9:Brückl hotvolleys 3|6:TV St.Veit 1 (Brückl hotvolleys 7)</anmerkung>
+</turniere>
+</tournament>
+<tournament key="u15_19" competition="23063" handler="kidsSchedules" title="Turniere U15 (30.6.2019)" team="brückl">
+<turniere>
+<id>23134</id>
+<turnier_kurz>u15w/1</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23063</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>09.12.2018</von>
+<bis></bis>
+<nennfrist>03.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>17:ATSC Wildcats Klagenfurt 1|13:Brückl hotvolleys 1|11:Volley eagles Villach 1|8:Wörtherseelöwen Klagenfurt 1|7:SG Volleystars/Speedvolley Grafenstein 1|4:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23135</id>
+<turnier_kurz>u15w/2</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23063</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>16.12.2018</von>
+<bis></bis>
+<nennfrist>10.12.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>17:Brückl hotvolleys 1|13:ATSC Wildcats Klagenfurt 1|9:Wörtherseelöwen Klagenfurt 1|6:SG Volleystars/Speedvolley Grafenstein 1</anmerkung>
+</turniere>
+<turniere>
+<id>23136</id>
+<turnier_kurz>u15w/3</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23063</bewerb_id>
+<bewerb_kurz>10:00-18:00</bewerb_kurz>
+<bewerb_name>BSH Sportpark {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>13.01.2019</von>
+<bis></bis>
+<nennfrist>07.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>20:Brückl hotvolleys 1|16:Volley eagles Villach 1|12:Wörtherseelöwen Klagenfurt 1|9:SG Volleystars/Speedvolley Grafenstein 1|6:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23137</id>
+<turnier_kurz>u15w/4a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23063</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>17.02.2019</von>
+<bis></bis>
+<nennfrist>11.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>14:Brückl hotvolleys 2|10:TV St.Veit 1 (Brückl hotvolleys 3)|6:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23138</id>
+<turnier_kurz>u15w/4b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23063</bewerb_id>
+<bewerb_kurz>13:00-17:00</bewerb_kurz>
+<bewerb_name>Richard Wagner-Schule {VILLACH}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>23.02.2019</von>
+<bis></bis>
+<nennfrist>17.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>17:ATSC Wildcats Klagenfurt 1|13:Wörtherseelöwen Klagenfurt 1|9:Brückl hotvolleys 1|6:Volley eagles Villach 1</anmerkung>
+</turniere>
+</tournament>
+<tournament key="u11_19" competition="23059" handler="kidsSchedules" title="Turniere U11 (30.6.2019)" team="brückl">
+<turniere>
+<id>23100</id>
+<turnier_kurz>u11/1</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>01.12.2018</von>
+<bis></bis>
+<nennfrist>25.11.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>29:Brückl hotvolleys 3|25:Brückl hotvolleys 4|21:Brückl hotvolleys m1|19:Brückl hotvolleys 1|15:Brückl hotvolleys 2|14:Wörtherseelöwen Klagenfurt 1|13:Volleystars Kärnten 2|12:Wörtherseelöwen Klagenfurt m1|11:TV St.Veit 3 (Brückl hotvolleys 11)|9:TV St.Veit 1 (Brückl hotvolleys 9)|8:TV St.Veit 2 (Brückl hotvolleys 10)|6:Volleystars Kärnten 1</anmerkung>
+</turniere>
+<turniere>
+<id>23101</id>
+<turnier_kurz>u11/2a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>14:00-17:00</bewerb_kurz>
+<bewerb_name>Richard Wagner-Schule {VILLACH}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>08.12.2018</von>
+<bis></bis>
+<nennfrist>02.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>11:Volley eagles Villach 1|7:Volley eagles Villach 2</anmerkung>
+</turniere>
+<turniere>
+<id>23102</id>
+<turnier_kurz>u11/2b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>09.12.2018</von>
+<bis></bis>
+<nennfrist>03.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt m1|25:Brückl hotvolleys 1|19:Brückl hotvolleys 3|17:SK Posojilnica Aich/Dob m1|15:Brückl hotvolleys 2|13:Brückl hotvolleys 4|12:Brückl hotvolleys m1|10:TV St.Veit m1 (Brückl hotvolleys m2)|10:TV St.Veit 1 (Brückl hotvolleys 9)|9:Brückl hotvolleys 5|7:TV St.Veit 3 (Brückl hotvolleys 11)|6:TV St. Veit 4 (Brückl hotvolleys 12)|4:TV St.Veit 2 (Brückl hotvolleys 10)</anmerkung>
+</turniere>
+<turniere>
+<id>23103</id>
+<turnier_kurz>u11/3a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>16:00-19:00</bewerb_kurz>
+<bewerb_name>HS Hasnerschule (Parterre) {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>21.12.2018</von>
+<bis></bis>
+<nennfrist>15.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:ATSC Wildcats Klagenfurt 1|22:Wörtherseelöwen Klagenfurt m1|16:Wörtherseelöwen Klagenfurt 1|16:Wörtherseelöwen Klagenfurt m2|12:ATSC Wildcats Klagenfurt 2|11:Wörtherseelöwen Klagenfurt m3|10:ATSC Wildcats Klagenfurt 3|9:Wörtherseelöwen Klagenfurt 2|6:Wörtherseelöwen Klagenfurt 3</anmerkung>
+</turniere>
+<turniere>
+<id>23104</id>
+<turnier_kurz>u11/3b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-16:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>22.12.2018</von>
+<bis></bis>
+<nennfrist>16.12.2108 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>34:Brückl hotvolleys 1|28:Brückl hotvolleys 2|24:Brückl hotvolleys 3|20:Brückl hotvolleys m1|18:Brückl hotvolleys 4|16:Brückl hotvolleys 5|15:TV St.Veit 1 (Brückl hotvolleys 9)|13:TV St.Veit 2 (Brückl hotvolleys 10)|12:TV St.Veit 3 (Brückl hotvolleys 11)|10:TV St. Veit 4 (Brückl hotvolleys 12)|9:Brückl hotvolleys 7|7:Brückl hotvolleys 6</anmerkung>
+</turniere>
+<turniere>
+<id>23105</id>
+<turnier_kurz>u11/4</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>Jugend &amp; Familiengästehaus {BLEIBURG}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>20.01.2019</von>
+<bis></bis>
+<nennfrist>14.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>5</spielfelder>
+<anmerkung>31:Brückl hotvolleys 1|25:Volley eagles Villach 1|21:Brückl hotvolleys m1|17:SK Posojilnica Aich/Dob m1|15:SK Posojilnica Aich/Dob m2|12:Volley eagles Villach 2|11:Brückl hotvolleys 3|11:TV St.Veit 1 (Brückl hotvolleys 9)|10:Brückl hotvolleys 2|7:TV St.Veit 2 (Brückl hotvolleys 10)</anmerkung>
+</turniere>
+<turniere>
+<id>23106</id>
+<turnier_kurz>u11/5</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>23.02.2019</von>
+<bis></bis>
+<nennfrist>17.02.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>33:ATSC Wildcats Klagenfurt 2|25:SK Posojilnica Aich/Dob m1|23:Wörtherseelöwen Klagenfurt m1|19:Wörtherseelöwen Klagenfurt m2|17:Brückl hotvolleys 1|15:ATSC Wildcats Klagenfurt 1|14:Wörtherseelöwen Klagenfurt 1|12:Brückl hotvolleys 2|11:Brückl hotvolleys 3|11:Brückl hotvolleys m1|11:TV St.Veit m1 (Brückl hotvolleys m2)|10:Wörtherseelöwen Klagenfurt m3|9:Volleystars Kärnten 1|8:TV St.Veit 1 (Brückl hotvolleys 9)|8:TV St. Veit 4 (Brückl hotvolleys 12)|7:TV St.Veit 2 (Brückl hotvolleys 10)|7:TV St.Veit 3 (Brückl hotvolleys 11)|6:ATSC Wildcats Klagenfurt 3|6:Wörtherseelöwen Klagenfurt 2|5:Brückl hotvolleys 4</anmerkung>
+</turniere>
+<turniere>
+<id>23107</id>
+<turnier_kurz>u11/6a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>16:00-19:00</bewerb_kurz>
+<bewerb_name>HS Hasnerschule (Parterre) {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>22.03.2019</von>
+<bis></bis>
+<nennfrist>16.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt m1|25:Wörtherseelöwen Klagenfurt 1|21:ATSC Wildcats Klagenfurt 1|17:ATSC Wildcats Klagenfurt 2|15:Wörtherseelöwen Klagenfurt m2|13:Wörtherseelöwen Klagenfurt 2|12:Wörtherseelöwen Klagenfurt m3|10:Wörtherseelöwen Klagenfurt 3|9:ATSC Wildcats Klagenfurt 3|7:Wörtherseelöwen Klagenfurt 4|0:Volleystars Kärnten 1</anmerkung>
+</turniere>
+<turniere>
+<id>23108</id>
+<turnier_kurz>u11/6b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>23.03.2019</von>
+<bis></bis>
+<nennfrist>17.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>33:Brückl hotvolleys 1|25:SK Posojilnica Aich/Dob m1|21:Volley eagles Villach 1|19:Volley eagles Villach 2|17:TV St.Veit m1 (Brückl hotvolleys m2)|16:Brückl hotvolleys 4|15:Brückl hotvolleys 3|13:Brückl hotvolleys 2|12:Brückl hotvolleys m1|9:TV St.Veit 1 (Brückl hotvolleys 9)|9:TV St.Veit 2 (Brückl hotvolleys 10)|8:TV St.Veit 3 (Brückl hotvolleys 11)|6:TV St. Veit 4 (Brückl hotvolleys 12)|5:Brückl hotvolleys 5|4:Brückl hotvolleys 6</anmerkung>
+</turniere>
+<turniere>
+<id>23109</id>
+<turnier_kurz>u11/7</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>30.03.2019</von>
+<bis></bis>
+<nennfrist>24.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>37:Wörtherseelöwen Klagenfurt m1|31:Brückl hotvolleys 1|25:Brückl hotvolleys 2|25:ATSC Wildcats Klagenfurt 1|21:Wörtherseelöwen Klagenfurt m2|20:Wörtherseelöwen Klagenfurt 1|19:Brückl hotvolleys 3|18:TV St.Veit 1 (Brückl hotvolleys 9)|17:Brückl hotvolleys 4|15:Volleystars Kärnten 1|14:TV St.Veit m1 (Brückl hotvolleys m2)|13:Brückl hotvolleys m1|12:ATSC Wildcats Klagenfurt 2|11:Wörtherseelöwen Klagenfurt m3|11:TV St.Veit 3 (Brückl hotvolleys 11)|9:ATSC Wildcats Klagenfurt 3|9:TV St.Veit 2 (Brückl hotvolleys 10)|7:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23110</id>
+<turnier_kurz>u11/8a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>06.04.2019</von>
+<bis></bis>
+<nennfrist>31.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>34:SK Posojilnica Aich/Dob m1|26:Brückl hotvolleys m1|24:Brückl hotvolleys 1|20:Brückl hotvolleys 3|18:Brückl hotvolleys 2|18:Brückl hotvolleys 4|15:Volley eagles Villach 1|13:Volley eagles Villach 2|12:TV St.Veit 1 (Brückl hotvolleys 9)|10:VC Friesach 1|10:TV St.Veit 2 (Brückl hotvolleys 10)|10:Brückl hotvolleys 7|8:Brückl hotvolleys 5|8:TV St.Veit m1 (Brückl hotvolleys m2)|6:Brückl hotvolleys 6|5:TV St.Veit 3 (Brückl hotvolleys 11)</anmerkung>
+</turniere>
+<turniere>
+<id>23111</id>
+<turnier_kurz>u11/8b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>16:00-19:00</bewerb_kurz>
+<bewerb_name>HS Hasnerschule (Parterre) {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>12.04.2019</von>
+<bis></bis>
+<nennfrist>06.04.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt m1|22:Wörtherseelöwen Klagenfurt 1|16:Wörtherseelöwen Klagenfurt m2|14:Volleystars Kärnten 1|12:Wörtherseelöwen Klagenfurt m3|10:Wörtherseelöwen Klagenfurt 3|7:Wörtherseelöwen Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23112</id>
+<turnier_kurz>u11/9</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23059</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>04.05.2019</von>
+<bis></bis>
+<nennfrist>28.04.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>6</spielfelder>
+<anmerkung>34:Brückl hotvolleys 1|28:Brückl hotvolleys 2|22:Brückl hotvolleys 3|22:ATSC Wildcats Klagenfurt 2|18:Brückl hotvolleys m1|17:Volley eagles Villach 1|16:TV St.Veit 1 (Brückl hotvolleys 9)|15:Volley eagles Villach 2|14:Brückl hotvolleys 4|12:ATSC Wildcats Klagenfurt 1|11:ATSC Wildcats Klagenfurt 3|10:TV St.Veit m1 (Brückl hotvolleys m2)|9:ATSC Wildcats Klagenfurt 4|8:TV St.Veit 2 (Brückl hotvolleys 10)|0:Volleystars Kärnten 1</anmerkung>
+</turniere>
+</tournament>
+<tournament key="u13_19" competition="23061" handler="kidsSchedules" title="Turniere U13 (30.6.2019)" team="brückl">
+<turniere>
+<id>23122</id>
+<turnier_kurz>u13/1</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>BSH Sportpark {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>25.11.2018</von>
+<bis></bis>
+<nennfrist>19.11.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>4</spielfelder>
+<anmerkung>31:Wörtherseelöwen Klagenfurt m2|25:Wörtherseelöwen Klagenfurt 1|19:Brückl hotvolleys 1|19:ATSC Wildcats Klagenfurt 1|15:Wörtherseelöwen Klagenfurt m1|14:Volley eagles Villach 1|13:Brückl hotvolleys 2|12:Wörtherseelöwen Klagenfurt 3|11:Speedvolley Grafenstein 1|9:Brückl hotvolleys 3|8:Wörtherseelöwen Klagenfurt 2|6:TV St.Veit (Brückl hotvolleys 4)</anmerkung>
+</turniere>
+<turniere>
+<id>23123</id>
+<turnier_kurz>u13/2</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>Jugend &amp; Familiengästehaus {BLEIBURG}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>02.12.2018</von>
+<bis></bis>
+<nennfrist>26.11.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>20:SK Posojilnica Aich/Dob m1|16:Brückl hotvolleys 1|10:Brückl hotvolleys 2|9:SK Posojilnica Aich/Dob 1|8:Speedvolley Grafenstein 1</anmerkung>
+</turniere>
+<turniere>
+<id>23124</id>
+<turnier_kurz>u13/3</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>BSH Sportpark {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>15.12.2018</von>
+<bis></bis>
+<nennfrist>09.12.2018 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>4</spielfelder>
+<anmerkung>17:Wörtherseelöwen Klagenfurt m1|13:Wörtherseelöwen Klagenfurt 1|11:VBK Wolfsberg 1|8:Wörtherseelöwen Klagenfurt 2|7:Wörtherseelöwen Klagenfurt m2|4:Wörtherseelöwen Klagenfurt 3</anmerkung>
+</turniere>
+<turniere>
+<id>23125</id>
+<turnier_kurz>u13/4</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>20.01.2019</von>
+<bis></bis>
+<nennfrist>14.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>28:Wörtherseelöwen Klagenfurt m1|22:SK Posojilnica Aich/Dob m1|16:ATSC Wildcats Klagenfurt 1|16:Wörtherseelöwen Klagenfurt 1|12:VBK Wolfsberg 1|11:Volleystars Kärnten 1|10:Wörtherseelöwen Klagenfurt m2|9:Wörtherseelöwen Klagenfurt 2|6:ATSC Wildcats Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23126</id>
+<turnier_kurz>u13/5a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>15:00-18:00</bewerb_kurz>
+<bewerb_name>Richard Wagner-Schule {VILLACH}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>26.01.2019</von>
+<bis></bis>
+<nennfrist>20.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>11:Volley eagles Villach 1|7:Volley eagles Villach m1</anmerkung>
+</turniere>
+<turniere>
+<id>23127</id>
+<turnier_kurz>u13/5b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-16:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>26.01.2019</von>
+<bis></bis>
+<nennfrist>20.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>17:SK Posojilnica Aich/Dob m1|13:Brückl hotvolleys 1|11:VBK Wolfsberg 1|8:Brückl hotvolleys 2|7:TV St.Veit m1 (Brückl hotvolleys m1)|4:TV St.Veit (Brückl hotvolleys 4)</anmerkung>
+</turniere>
+<turniere>
+<id>23128</id>
+<turnier_kurz>u13/6</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>VS {ST. MARGARETHEN/LAVANTTAL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>03.02.2019</von>
+<bis></bis>
+<nennfrist>28.01.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>2</spielfelder>
+<anmerkung>26:SK Posojilnica Aich/Dob m1|22:Wörtherseelöwen Klagenfurt m1|18:Wörtherseelöwen Klagenfurt 1|15:Brückl hotvolleys 1|12:VBK Wolfsberg 1|9:Volley eagles Villach 1|0:SK Posojilnica Aich/Dob 1</anmerkung>
+</turniere>
+<turniere>
+<id>23129</id>
+<turnier_kurz>u13/7</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-14:00</bewerb_kurz>
+<bewerb_name>BG Lerchenfeldstraße {KLAGENFURT}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>09.03.2019</von>
+<bis></bis>
+<nennfrist>03.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>3</spielfelder>
+<anmerkung>34:SK Posojilnica Aich/Dob m1|28:Wörtherseelöwen Klagenfurt m1|22:Brückl hotvolleys 1|22:Wörtherseelöwen Klagenfurt 1|18:ATSC Wildcats Klagenfurt 1|17:VBK Wolfsberg 1|16:Wörtherseelöwen Klagenfurt m2|15:Volley eagles Villach 1|12:Speedvolley Grafenstein 1|12:Volleystars Kärnten 1|11:Brückl hotvolleys 2|11:Wörtherseelöwen Klagenfurt 2|10:SK Posojilnica Aich/Dob 1|8:Wörtherseelöwen Klagenfurt 3|6:ATSC Wildcats Klagenfurt 2</anmerkung>
+</turniere>
+<turniere>
+<id>23130</id>
+<turnier_kurz>u13/8a</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>10:00-15:00</bewerb_kurz>
+<bewerb_name>NMS {BRÜCKL}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>31.03.2019</von>
+<bis></bis>
+<nennfrist>25.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>28:SK Posojilnica Aich/Dob m1|22:Brückl hotvolleys 1|16:Wörtherseelöwen Klagenfurt 1|16:Wörtherseelöwen Klagenfurt m1|12:ATSC Wildcats Klagenfurt 1|11:Wörtherseelöwen Klagenfurt m2|10:Volley eagles Villach 1|9:Brückl hotvolleys 2|0:VBK Wolfsberg 1</anmerkung>
+</turniere>
+<turniere>
+<id>23131</id>
+<turnier_kurz>u13/8b</turnier_kurz>
+<turnier_name></turnier_name>
+<bewerb_id>23061</bewerb_id>
+<bewerb_kurz>16:00-18:00</bewerb_kurz>
+<bewerb_name>VS {GRAFENSTEIN}</bewerb_name>
+<modus>nw</modus>
+<geschlecht>X</geschlecht>
+<status>indoor</status>
+<von>05.04.2019</von>
+<bis></bis>
+<nennfrist>30.03.2019 00:00:00</nennfrist>
+<nachnennfrist></nachnennfrist>
+<preisgeld>0.00</preisgeld>
+<veranstalter></veranstalter>
+<spielfelder>1</spielfelder>
+<anmerkung>17:Volleystars Kärnten 1|13:Speedvolley Grafenstein 1|9:Wörtherseelöwen Klagenfurt 2|6:SK Posojilnica Aich/Dob 1</anmerkung>
+</turniere>
+</tournament></xml>
