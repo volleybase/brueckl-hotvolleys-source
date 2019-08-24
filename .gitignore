@@ -1,6 +1,7 @@
 _test/result
 node_modules
 testvideo
+_-old/
 **/*-old/**
 package-lock.json
 .sonarlint
