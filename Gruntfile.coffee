@@ -11,7 +11,6 @@ files = [
   "manifest.webmanifest",
   "styles.css",
 
-  "archive/**/*.zip",
   "archive/**/*.gz",
   "calendar/**",
   "elements/**",
