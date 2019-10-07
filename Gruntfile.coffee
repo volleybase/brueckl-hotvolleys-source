@@ -33,7 +33,8 @@ files = [
   # "lld/**",
 
   "statistics/**",
-  "teambuilding/**"
+  "teambuilding/**",
+  "training/**"
 ]
 
 # files_copy = files.concat(["cache.manifest"])

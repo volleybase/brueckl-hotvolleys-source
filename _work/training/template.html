@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Brückl hotvolleys</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+table.training {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+table.training td {
+  padding: 1px;
+  border: 1px solid darkgray;
+}
+td.header1 {
+  font-size: 2em;
+  font-weight: bold;
+  background-color: lightgray;
+  text-align: left;
+}
+td.header2X, td.header2, td.lineheader {
+  background-color: lightgray;
+  font-weight: bold;
+  text-align: center;
+}
+td.header2X, td.header2 {
+  text-align: center;
+}
+td.lineheader {
+  text-align: right;
+  font-weight: bold;
+}
+td.data {
+  text-align: center;
+  min-width: 1em;
+  color: #222;
+}
+  </style>
+</head>
+<body>
+<div id="header">
+  <div class="left">
+  <a href="/ov.html#training_{{back}}"><img src="/image/bhv1.gif"/></a>
+  <div>Anwesenheit</div>
+  </div><div class="right">
+  <a href="/ov.html#training_{{back}}"><img src="/image/bhv1.gif"/></a>
+  </div>
+</div>
+<div id="content_container">{{training}}</div>
+<div id="footer">Brückl Hotvolleys<div>Brückl Hotvolleys</div></div>
+</body>
+</html>
