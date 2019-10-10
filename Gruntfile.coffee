@@ -33,16 +33,21 @@ files = [
   # "lld/**",
 
   "statistics/**",
-  "teambuilding/**",
-  "training/**"
+  "teambuilding/**"
+  # "training/**"
 ]
 
-# files_copy = files.concat(["cache.manifest"])
-# do not copy 'old' files!
-files_copy = files.concat([
+# ignore 'old' files!
+files_manifest = files.concat([
   "bhv-service-worker.js",
   "!**/*_old.*"
 ])
+
+# files to copy
+files_copy = files_manifest.concat([
+  "data/**"
+])
+
 # add svg work files for watching
 files_watch = files_copy.concat([
   "_work/svg/source/**/*.html",
@@ -437,7 +442,7 @@ config = (grunt) ->
       options:
         template: "D:/workdir/brueckl-hotvolleys-source/_work/serviceworker/serviceworker.js"
       files:
-        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files_copy
+        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files_manifest
 
 
   copy:
