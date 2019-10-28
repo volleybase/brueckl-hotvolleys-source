@@ -34,31 +34,36 @@ files = [
 
   "statistics/**",
   "teambuilding/**"
-  # "training/**"
+  # "training/**",
+
+  # ignore the old files
+  "!**/*_old.*"
 ]
 
-# ignore 'old' files!
-files_manifest = files.concat([
-  "bhv-service-worker.js",
-  "!**/*_old.*"
-])
+# the service worker
+file_service_worker = ["bhv-service-worker.js"]
 
-# files to copy
-files_copy = files_manifest.concat([
+# data to copy only
+files_data = [
   "data/**"
-])
+]
 
-# add svg work files for watching
-files_watch = files_copy.concat([
+# watch svg files
+files_svg = [
   "_work/svg/source/**/*.html",
   "_work/svg/container.html"
-]);
+];
 
-# files_batch = files.concat([
-#   "!cache.manifest"
-# ])
+# the files to copy
+files_copy = files.concat(files_data).concat(file_service_worker);
 
-# fnManifest = 'd:/workdir/brueckl-hotvolleys-source/cache.manifest'
+
+# # add svg work files for watching
+# files_watch = files_copy.concat([
+#   "_work/svg/source/**/*.html",
+#   "_work/svg/container.html"
+# ]);
+
 
 # grundlagen
 def =
@@ -442,8 +447,7 @@ config = (grunt) ->
       options:
         template: "D:/workdir/brueckl-hotvolleys-source/_work/serviceworker/serviceworker.js"
       files:
-        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files_manifest
-
+        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files
 
   copy:
     deploy1_do_not_change:
@@ -476,7 +480,6 @@ config = (grunt) ->
         src: [ "animator.js", "svgviewer.js" ]
         dest: "/workdir/brueckl-hotvolleys-source/script"
       ]
-
 
 #  # batch:
 #  #   manifest:
@@ -865,10 +868,15 @@ config = (grunt) ->
     initWorker:
       files: ['_work/serviceworker/serviceworker.js']
       tasks: ['initWorker', 'newer:copy:deploy2']
-    copy:
-      files: files_watch,
-      # tasks: ['newer:copy:deploy1', 'newer:copy:deploy2']
+    svg:
+      files: files_svg,
       tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
+    for_manifest:
+      files: files,
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    data:
+      files: files_data,
+      tasks: ['newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
