@@ -19,6 +19,7 @@ files = [
   "image/**",
   "info/**",
   "script/**",
+  "system6/**",
   # "testvideo/**",
 
   # "u10/**",
@@ -209,38 +210,38 @@ def =
     ann:
       title: '3er Riegel'
       anchor: '3er_riegel'
-      image: '/uld/grundlagen3/annahme/zudritt.png'
-      target: '/uld/grundlagen3/annahme/zudritt.html'
+      image: '/system6/annahme/zudritt.png'
+      target: '/system6/annahme/zudritt.html'
     auf1:
       title: 'Wann 1'
       anchor: 'wann_1'
-      image: '/uld/grundlagen3/aufspiel/wann1.png'
-      target: '/uld/grundlagen3/aufspiel/wann_1.html'
+      image: '/system6/aufspiel/wann1.png'
+      target: '/system6/aufspiel/wann_1.html'
     auf2:
       title: 'Wann 2'
       anchor: 'wann_2'
-      image: '/uld/grundlagen3/aufspiel/wann2.png'
-      target: '/uld/grundlagen3/aufspiel/wann_2.html'
+      image: '/system6/aufspiel/wann2.png'
+      target: '/system6/aufspiel/wann_2.html'
     auf3:
       title: 'Wo'
       anchor: 'wo'
-      image: '/uld/grundlagen3/aufspiel/wo.png'
-      target: '/uld/grundlagen3/aufspiel/wo.html'
+      image: '/system6/aufspiel/wo.png'
+      target: '/system6/aufspiel/wo.html'
     vor2:
       title: 'Vorbereitung 2'
       anchor: 'vorbereitung_2'
-      image: '/uld/grundlagen3/aufspiel/vorbereitung2.png'
-      target: '/uld/grundlagen3/aufspiel/vorbereitung_2.html'
+      image: '/system6/aufspiel/vorbereitung2.png'
+      target: '/system6/aufspiel/vorbereitung_2.html'
     vor1:
       title: 'Vorbereitung 1'
       anchor: 'vorbereitung_1'
-      image: '/uld/grundlagen3/aufspiel/vorbereitung1.png'
-      target: '/uld/grundlagen3/aufspiel/vorbereitung_1.html'
+      image: '/system6/aufspiel/vorbereitung1.png'
+      target: '/system6/aufspiel/vorbereitung_1.html'
     code:
       title: 'Die Codes'
       anchor: 'aufspiel'
       image: 'aufspiel/plan.png'
-      target: '/uld/grundlagen3/aufspiel/'
+      target: '/system6/aufspiel/'
     ang1:
       title: 'Angriff 0/6'
       anchor: 'angriff_06'
@@ -327,26 +328,40 @@ def =
       image: 'verteidigung/ohne2.png'
       target: 'verteidigung/ohne_2.html'
       info: '"Ohne" Block<br>(Aufspielerin vorne)'
+    feld:
+      title: 'Spielfeld'
+      anchor: 'spielfeld'
+      image: 'spielfeld/spielfeld.png'
+      imagepath: 'system6/spielfeld'
+      info: 'Das Spielfeld.'
+      back: '/system6'
+    pos:
+      title: 'Positionen'
+      anchor: 'positionen'
+      image: 'spielfeld/positionen.png'
+      imagepath: 'system6/spielfeld'
+      info: 'Die Positionen der Spielerinnen.'
+      back: '/system6'
   br4:
     feld:
       title: 'Spielfeld'
       anchor: 'spielfeld'
       image: 'spielfeld.png'
-      imagepath: 'uld/grundlagen'
+      imagepath: 'system6/spielfeld'
       info: 'Das Spielfeld.'
-      back: '/uld/grundlagen'
+      back: '/system6/spielfeld'
     pos:
       title: 'Positionen'
       anchor: 'positionen'
       image: 'positionen.png'
-      imagepath: 'uld/grundlagen'
+      imagepath: 'system6/spielfeld'
       info: 'Die Positionen der Spielerinnen.'
-      back: '/uld/grundlagen'
+      back: '/system6/spielfeld'
 
 setTargetLinks = (def) ->
   map = {}
   keyMap = {
-    br3: 'uld/grundlagen3'
+    br3: 'system6'
   }
 
   keys1 = Object.keys(def)
@@ -535,12 +550,12 @@ config = (grunt) ->
         include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
         infoMap: infoMap
         variables:
-          back: '/uld/grundlagen3/'
+          back: '/system6/'
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
         src: [ "aufspiel/*.html", "annahme/*.html", "verteidigung/*.html" ]
-        dest: 'uld/grundlagen3'
+        dest: 'system6'
       ]
     u10:
       options:
@@ -749,7 +764,7 @@ config = (grunt) ->
         templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
-          name: 'grundlagen_br3'
+          name: 'system6'
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -835,8 +850,19 @@ config = (grunt) ->
               }
             ]
           }
+          {
+            title: 'Spielfeld'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.br3.feld, def.br3.pos ]
+                tableimage: [ def.br3.feld, def.br3.pos ]
+                tableinfo: [ def.br3.feld, def.br3.pos ]
+              }
+            ]
+          }
         ]
-      target: 'D:/workdir/brueckl-hotvolleys-source/uld/grundlagen3/index.html'
+      target: 'D:/workdir/brueckl-hotvolleys-source/system6/index.html'
     br4:
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
@@ -844,13 +870,13 @@ config = (grunt) ->
         templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
-          name: 'grundlagen_br4'
+          name: 'spielfeld6'
       content:
         template: 'main'
         title: 'Grundlagen'
         block: [
           {
-            title: 'Grundlagen'
+            title: 'Spielfeld'
             table: ''
             table2: [
               {
@@ -861,7 +887,7 @@ config = (grunt) ->
             ]
           }
         ]
-      target: 'D:/workdir/brueckl-hotvolleys-source/uld/grundlagen/index.html'
+      target: 'D:/workdir/brueckl-hotvolleys-source/system6/spielfeld/index.html'
 
 
   watch:
