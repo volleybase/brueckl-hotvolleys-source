@@ -1,7 +1,7 @@
 'use strict';
 
 // the name of the cache
-const CACHE_NAME = 'bhv-infoapp-k5a2b4an';
+const CACHE_NAME = 'bhv-infoapp-k5b2sxcn';
 
 // all the files
 const FILES_TO_CACHE = [
@@ -159,6 +159,24 @@ const FILES_TO_CACHE = [
   '/system6/verteidigung/ohne_2.html',
   '/system6/verteidigung/ohne1.png',
   '/system6/verteidigung/ohne2.png',
+  '/system4/angriff2.png',
+  '/system4/angriff3.png',
+  '/system4/angriff4.png',
+  '/system4/annahme.png',
+  '/system4/aufspiel.png',
+  '/system4/aufspiel2.png',
+  '/system4/basis.png',
+  '/system4/block2.png',
+  '/system4/block3l.png',
+  '/system4/block3r.png',
+  '/system4/block4.png',
+  '/system4/index_.html',
+  '/system4/',
+  '/system4/index.html',
+  '/system4/ohne.png',
+  '/system4/ohne2.png',
+  '/system4/ohne3.png',
+  '/system4/ohne4.png',
   '/u12/certificate.jpeg',
   '/u13/certificate.jpeg',
   '/statistics/19/br3.html',

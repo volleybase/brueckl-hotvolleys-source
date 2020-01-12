@@ -20,6 +20,7 @@ files = [
   "info/**",
   "script/**",
   "system6/**",
+  "system4/**",
   # "testvideo/**",
 
   # "u10/**",
@@ -206,6 +207,119 @@ def =
       anchor: 'ohne2'
       image: 'ohne2.png'
       info: 'Geschenkter Ball bei Position 2.'
+  sys4:
+    ann:
+      title: 'Annahme'
+      anchor: 'annahme'
+      image: 'annahme.png'
+      imagepath: 'system4'
+      info: 'Die Annahme des gegnerischen Service.'
+      back: '/system4'
+    auf:
+      title: 'Aufspiel'
+      anchor: 'aufspiel'
+      image: 'aufspiel.png'
+      imagepath: 'system4'
+      info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff.'
+      back: '/system4'
+    ang4:
+      title: 'Links: Position 4'
+      anchor: 'angriff4'
+      image: 'angriff4.png'
+      imagepath: 'system4'
+      info: 'Der Angriff über die Position 4 mit Sicherung.'
+      back: '/system4'
+    ang3:
+      title: 'Mitte: Position 3'
+      anchor: 'angriff3'
+      image: 'angriff3.png'
+      imagepath: 'system4'
+      info: 'Der Angriff durch die Mitte mit Sicherung.'
+      back: '/system4'
+    ang2:
+      title: 'Rechts: Position 2'
+      anchor: 'angriff2'
+      image: 'angriff2.png'
+      imagepath: 'system4'
+      info: 'Der Angriff über die Position 2 mit Sicherung.'
+      back: '/system4'
+    bas:
+      title: 'Basis'
+      anchor: 'basis'
+      image: 'basis.png'
+      imagepath: 'system4'
+      info: 'Wir gehen in die Basis, sobald der Ball beim Gegner ist.'
+      back: '/system4'
+    blo4:
+      title: 'Links: Position 4'
+      anchor: 'block4'
+      image: 'block4.png'
+      imagepath: 'system4'
+      info: 'Der Block auf der Position 4 gegen einen gegnerischen Angriff.'
+      back: '/system4'
+    blo3l:
+      title: 'Mitte: Position 3L'
+      anchor: 'block3l'
+      image: 'block3l.png'
+      imagepath: 'system4'
+      info: 'Der Block auf der Position 3 gegen einen gegnerischen Angriff.'
+      back: '/system4'
+    blo3r:
+      title: 'Mitte: Position 3R'
+      anchor: 'block3r'
+      image: 'block3r.png'
+      imagepath: 'system4'
+      info: 'Der Block auf der Position 3 gegen einen gegnerischen Angriff.'
+      back: '/system4'
+    blo2:
+      title: 'Rechts: Position 2'
+      anchor: 'block2'
+      image: 'block2.png'
+      imagepath: 'system4'
+      info: 'Der Block auf der Position 2 gegen einen gegnerischen Angriff.'
+      back: '/system4'
+    ohn4:
+      title: 'Links: Position 4'
+      anchor: 'ohne4'
+      image: 'ohne4.png'
+      imagepath: 'system4'
+      info: 'Geschenkter Ball bei Position 4.'
+      back: '/system4'
+    ohn3:
+      title: 'Mitte: Position 3'
+      anchor: 'ohne3'
+      image: 'ohne3.png'
+      imagepath: 'system4'
+      info: 'Geschenkter Ball bei Position 3.'
+      back: '/system4'
+    ohn2:
+      title: 'Rechts: Position 2'
+      anchor: 'ohne2'
+      image: 'ohne2.png'
+      imagepath: 'system4'
+      info: 'Geschenkter Ball bei Position 2.'
+      back: '/system4'
+    auf2:
+      title: 'Aufspiel'
+      anchor: 'aufspiel2'
+      image: 'aufspiel2.png'
+      imagepath: 'system4'
+      info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff nach einer Verteidigung.'
+      back: '/system4'
+    weg:
+      title: 'Ohne - Weg!'
+      anchor: 'weg'
+      image: 'ohne.png'
+      imagepath: 'system4'
+      info: 'Geschenkter Ball nach früher Entscheidung.'
+      back: '/system4'
+    auf3:
+      title: 'Aufspiel'
+      anchor: 'aufspiel3'
+      image: 'aufspiel.png'
+      imagepath: 'system4'
+      info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff nach einer Verteidigung. Wir haben es früh erkannt und darauf reagiert!'
+      back: '/system4'
   br3:
     ann:
       title: '3er Riegel'
@@ -332,14 +446,14 @@ def =
       title: 'Spielfeld'
       anchor: 'spielfeld'
       image: 'spielfeld/spielfeld.png'
-      imagepath: 'system6/spielfeld'
+      imagepath: 'system6'
       info: 'Das Spielfeld.'
       back: '/system6'
     pos:
       title: 'Positionen'
       anchor: 'positionen'
       image: 'spielfeld/positionen.png'
-      imagepath: 'system6/spielfeld'
+      imagepath: 'system6'
       info: 'Die Positionen der Spielerinnen.'
       back: '/system6'
   br4:
@@ -371,7 +485,8 @@ setTargetLinks = (def) ->
     keys2.forEach((key2) ->
       tab = block[key2]
       if tab.target == undefined
-        img = 'i=' + encodeURIComponent((tab.imagepath ? key1) + '/' + tab.anchor + '.png')
+        #img = 'i=' + encodeURIComponent((tab.imagepath ? key1) + '/' + tab.anchor + '.png')
+        img = 'i=' + encodeURIComponent((tab.imagepath ? key1) + '/' + tab.image)
         tit = '&t=' + encodeURIComponent(tab.title)
         inf = '&x=' + encodeURIComponent(tab.info)
         back = '&b=' + encodeURIComponent((tab.back ? '/' + key1) + '#' + tab.anchor)
@@ -757,6 +872,119 @@ config = (grunt) ->
           }
         ]
       target: 'D:/workdir/brueckl-hotvolleys-source/u12/index.html'
+    system4:
+      options:
+        include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
+        templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
+        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        vars:
+          back: '/ov.html'
+          name: 'system4'
+      content:
+        template: 'main'
+        title: 'Grundlagen'
+        block: [
+          {
+            title: 'Annahme'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.ann ]
+                tableimage: [ def.sys4.ann ]
+                tableinfo: [ def.sys4.ann ]
+              }
+            ]
+          }
+          {
+            title: 'Aufspiel'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.auf ]
+                tableimage: [ def.sys4.auf ]
+                tableinfo: [ def.sys4.auf ]
+              }
+            ]
+          }
+          {
+            title: 'Angriff'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.ang4, def.sys4.ang3, def.sys4.ang2 ]
+                tableimage: [ def.sys4.ang4, def.sys4.ang3, def.sys4.ang2 ]
+                tableinfo: [ def.sys4.ang4, def.sys4.ang3, def.sys4.ang2 ]
+              }
+            ]
+          }
+          {
+            title: 'Basis'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.bas ]
+                tableimage: [ def.sys4.bas ]
+                tableinfo: [ def.sys4.bas ]
+              }
+            ]
+          }
+          {
+            title: 'Verteidigung (mit Block)'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
+                tableimage: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
+                tableinfo: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
+              }
+            ]
+          }
+          {
+            title: 'Verteidigung (ohne Block)'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.ohn4,  def.sys4.ohn3, def.sys4.ohn2 ]
+                tableimage: [ def.sys4.ohn4,  def.sys4.ohn3, def.sys4.ohn2 ]
+                tableinfo: [ def.sys4.ohn4,  def.sys4.ohn3, def.sys4.ohn2 ]
+              }
+            ]
+          }
+          {
+            title: 'Aufspiel (nach Verteidigung)'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.auf2 ]
+                tableimage: [ def.sys4.auf2 ]
+                tableinfo: [ def.sys4.auf2 ]
+              }
+            ]
+          }
+          {
+            title: 'Verteidigung (ohne Block, frühes Erkennen)'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.weg ]
+                tableimage: [ def.sys4.weg ]
+                tableinfo: [ def.sys4.weg ]
+              }
+            ]
+          }
+          {
+            title: 'Aufspiel (nach Verteidigung, frühes Erkennen)'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.auf3 ]
+                tableimage: [ def.sys4.auf3 ]
+                tableinfo: [ def.sys4.auf3 ]
+              }
+            ]
+          }
+        ]
+      target: 'D:/workdir/brueckl-hotvolleys-source/system4/index.html'
     br3:
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'

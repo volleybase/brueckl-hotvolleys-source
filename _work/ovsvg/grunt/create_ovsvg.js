@@ -7,7 +7,7 @@ const path = require('path')
 
 module.exports = function init(grunt) {
 
-  grunt.registerMultiTask('createovsvg', 'Create the overfiew of the svg image viewers.', function() {
+  grunt.registerMultiTask('createovsvg', 'Create the overview of the svg image viewers.', function() {
 
     // console.log('-- create ov svg -----------------------------------------')
     // console.log(this)
