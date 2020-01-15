@@ -209,100 +209,128 @@ def =
       info: 'Geschenkter Ball bei Position 2.'
   sys4:
     ann:
-      title: 'Annahme'
+      title: 'Läufer 1'
       anchor: 'annahme'
       image: 'annahme.png'
       imagepath: 'system4'
       info: 'Die Annahme des gegnerischen Service.'
       back: '/system4'
+    an2:
+      title: 'Läufer 2'
+      anchor: 'annahme2'
+      image: 'annahme2.png'
+      imagepath: 'system4'
+      info: 'Die Annahme des gegnerischen Service.'
+      back: '/system4'
     auf:
-      title: 'Aufspiel'
+      title: 'Läufer 1'
       anchor: 'aufspiel'
       image: 'aufspiel.png'
       imagepath: 'system4'
       info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff.'
       back: '/system4'
+    auf2:
+      title: 'Läufer 2'
+      anchor: 'aufspiel2'
+      image: 'aufspiel2.png'
+      imagepath: 'system4'
+      info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff.'
+      back: '/system4'
     ang4:
-      title: 'Links: Position 4'
+      title: 'Links: Pos 4'
       anchor: 'angriff4'
       image: 'angriff4.png'
       imagepath: 'system4'
       info: 'Der Angriff über die Position 4 mit Sicherung.'
       back: '/system4'
     ang3:
-      title: 'Mitte: Position 3'
+      title: 'Mitte: Pos 3'
       anchor: 'angriff3'
       image: 'angriff3.png'
       imagepath: 'system4'
       info: 'Der Angriff durch die Mitte mit Sicherung.'
       back: '/system4'
     ang2:
-      title: 'Rechts: Position 2'
+      title: 'Rechts: Pos 2'
       anchor: 'angriff2'
       image: 'angriff2.png'
       imagepath: 'system4'
       info: 'Der Angriff über die Position 2 mit Sicherung.'
       back: '/system4'
     bas:
-      title: 'Basis'
+      title: 'Vorbereitung'
       anchor: 'basis'
       image: 'basis.png'
       imagepath: 'system4'
       info: 'Wir gehen in die Basis, sobald der Ball beim Gegner ist.'
       back: '/system4'
+    bas2:
+      title: 'Vorbereitung'
+      anchor: 'basis2'
+      image: 'basis2.png'
+      imagepath: 'system4'
+      info: 'Die Basis, sofern auf Position 2 ein Doppelblock nötig ist.'
+      back: '/system4'
     blo4:
-      title: 'Links: Position 4'
+      title: 'Links: Pos 4'
       anchor: 'block4'
       image: 'block4.png'
       imagepath: 'system4'
       info: 'Der Block auf der Position 4 gegen einen gegnerischen Angriff.'
       back: '/system4'
     blo3l:
-      title: 'Mitte: Position 3L'
+      title: 'Mitte: Pos 3L'
       anchor: 'block3l'
       image: 'block3l.png'
       imagepath: 'system4'
       info: 'Der Block auf der Position 3 gegen einen gegnerischen Angriff.'
       back: '/system4'
     blo3r:
-      title: 'Mitte: Position 3R'
+      title: 'Mitte: Pos 3R'
       anchor: 'block3r'
       image: 'block3r.png'
       imagepath: 'system4'
       info: 'Der Block auf der Position 3 gegen einen gegnerischen Angriff.'
       back: '/system4'
     blo2:
-      title: 'Rechts: Position 2'
+      title: 'Einzelblock'
       anchor: 'block2'
       image: 'block2.png'
       imagepath: 'system4'
       info: 'Der Block auf der Position 2 gegen einen gegnerischen Angriff.'
       back: '/system4'
+    blo22:
+      title: 'Doppelblock'
+      anchor: 'block22'
+      image: 'block22.png'
+      imagepath: 'system4'
+      info: 'Der Doppelblock auf der Position 2 gegen einen (starken) gegnerischen Angriff.'
+      back: '/system4'
     ohn4:
-      title: 'Links: Position 4'
+      title: 'Links: Pos 4'
       anchor: 'ohne4'
       image: 'ohne4.png'
       imagepath: 'system4'
       info: 'Geschenkter Ball bei Position 4.'
       back: '/system4'
     ohn3:
-      title: 'Mitte: Position 3'
+      title: 'Mitte: Pos 3'
       anchor: 'ohne3'
       image: 'ohne3.png'
       imagepath: 'system4'
       info: 'Geschenkter Ball bei Position 3.'
       back: '/system4'
     ohn2:
-      title: 'Rechts: Position 2'
+      title: 'Rechts: Pos 2'
       anchor: 'ohne2'
       image: 'ohne2.png'
       imagepath: 'system4'
       info: 'Geschenkter Ball bei Position 2.'
       back: '/system4'
-    auf2:
+    aufv:
       title: 'Aufspiel'
-      anchor: 'aufspiel2'
-      image: 'aufspiel2.png'
+      anchor: 'aufspielv'
+      image: 'aufspiel_v.png'
       imagepath: 'system4'
       info: 'Das Aufspiel und die Vorbereitung auf den eigenen Angriff nach einer Verteidigung.'
       back: '/system4'
@@ -889,9 +917,9 @@ config = (grunt) ->
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.ann ]
-                tableimage: [ def.sys4.ann ]
-                tableinfo: [ def.sys4.ann ]
+                tableheader: [ def.sys4.ann, def.sys4.an2 ]
+                tableimage: [ def.sys4.ann, def.sys4.an2 ]
+                tableinfo: [ def.sys4.ann, def.sys4.an2 ]
               }
             ]
           }
@@ -900,9 +928,9 @@ config = (grunt) ->
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.auf ]
-                tableimage: [ def.sys4.auf ]
-                tableinfo: [ def.sys4.auf ]
+                tableheader: [ def.sys4.auf, def.sys4.auf2 ]
+                tableimage: [ def.sys4.auf, def.sys4.auf2 ]
+                tableinfo: [ def.sys4.auf, def.sys4.auf2 ]
               }
             ]
           }
@@ -922,9 +950,9 @@ config = (grunt) ->
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.bas ]
-                tableimage: [ def.sys4.bas ]
-                tableinfo: [ def.sys4.bas ]
+                tableheader: [ def.sys4.bas, def.sys4.bas2 ]
+                tableimage: [ def.sys4.bas, def.sys4.bas2 ]
+                tableinfo: [ def.sys4.bas, def.sys4.bas2 ]
               }
             ]
           }
@@ -933,9 +961,20 @@ config = (grunt) ->
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
-                tableimage: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
-                tableinfo: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r,  def.sys4.blo2 ]
+                tableheader: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r ]
+                tableimage: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r ]
+                tableinfo: [ def.sys4.blo4,  def.sys4.blo3l, def.sys4.blo3r ]
+              }
+            ]
+          }
+          {
+            title: 'Verteidigung (mit Block) - Position 2'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys4.blo2, def.sys4.blo22 ]
+                tableimage: [ def.sys4.blo2, def.sys4.blo22 ]
+                tableinfo: [ def.sys4.blo2, def.sys4.blo22 ]
               }
             ]
           }
@@ -955,31 +994,20 @@ config = (grunt) ->
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.auf2 ]
-                tableimage: [ def.sys4.auf2 ]
-                tableinfo: [ def.sys4.auf2 ]
+                tableheader: [ def.sys4.aufv ]
+                tableimage: [ def.sys4.aufv ]
+                tableinfo: [ def.sys4.aufv ]
               }
             ]
           }
           {
-            title: 'Verteidigung (ohne Block, frühes Erkennen)'
+            title: 'ohne Block, frühes Erkennen'
             table: ''
             table2: [
               {
-                tableheader: [ def.sys4.weg ]
-                tableimage: [ def.sys4.weg ]
-                tableinfo: [ def.sys4.weg ]
-              }
-            ]
-          }
-          {
-            title: 'Aufspiel (nach Verteidigung, frühes Erkennen)'
-            table: ''
-            table2: [
-              {
-                tableheader: [ def.sys4.auf3 ]
-                tableimage: [ def.sys4.auf3 ]
-                tableinfo: [ def.sys4.auf3 ]
+                tableheader: [ def.sys4.weg, def.sys4.auf3 ]
+                tableimage: [ def.sys4.weg, def.sys4.auf3 ]
+                tableinfo: [ def.sys4.weg, def.sys4.auf3 ]
               }
             ]
           }

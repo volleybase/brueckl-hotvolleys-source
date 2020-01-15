@@ -1,7 +1,7 @@
 'use strict';
 
 // the name of the cache
-const CACHE_NAME = 'bhv-infoapp-k5b2sxcn';
+const CACHE_NAME = 'bhv-infoapp-k5eksivr';
 
 // all the files
 const FILES_TO_CACHE = [
@@ -163,10 +163,14 @@ const FILES_TO_CACHE = [
   '/system4/angriff3.png',
   '/system4/angriff4.png',
   '/system4/annahme.png',
+  '/system4/annahme2.png',
+  '/system4/aufspiel_v.png',
   '/system4/aufspiel.png',
   '/system4/aufspiel2.png',
   '/system4/basis.png',
+  '/system4/basis2.png',
   '/system4/block2.png',
+  '/system4/block22.png',
   '/system4/block3l.png',
   '/system4/block3r.png',
   '/system4/block4.png',
