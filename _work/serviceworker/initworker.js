@@ -19,7 +19,7 @@ function FileList() {
   };
 
   this.result = () => {
-    return this._list.join(',\n  ');
+    return this._list.join(',\n    ');
   };
 
   this.count = () => {
@@ -30,50 +30,96 @@ function FileList() {
 module.exports = function init(grunt) {
 
   grunt.registerMultiTask('initWorker', 'Create the service worker from template and files.', function() {
+    grunt.log.debug('initWorker started...')
 
     let msg = '';
+
+    const source = this.data.options.source,
+          target = source + this.data.options.target,
+          ignoreTarget = path.basename(target)
+    grunt.log.debug('target: ' + target)
 
     // load template
     let template = fs.readFileSync(this.data.options.template, 'utf8')
     grunt.log.debug('template ' + this.data.options.template + ' loaded.')
 
+    // all keys and names
+    let cache_keys = ''
+    // files
+    const tplFiles = "'{{region}}': [\n    {{files}}\n  ]"
+    let cache_files = ''
+
     // handle all definitions of files
     this.files.forEach((file) => {
-      // grunt.log.debug('Fileinfo: ' + JSON.stringify(file))
-      const dest = file.dest;
-      grunt.log.debug('Target: ' + dest)
-      const ignoreDest = path.basename(dest)
+      grunt.log.debug('')
 
-      // handle each file of current definition
-      let filelist = new FileList()
-      file.src.forEach((file2) => {
-        // grunt.log.debug('--> ' + (++index) + ' ' + file2)
+      // region
+      const region = file.dest;
+      grunt.log.debug('Region: ' + region)
+      let regionDate = new Date(0)
 
-        const stats = fs.statSync(file2)
+      // the files
+      const filelist = new FileList()
+      file.src.forEach((filename) => {
+        grunt.log.debug('--> ' + filename)
 
-        if ((stats.isFile() || stats.isSymbolicLink()) && file2 !== ignoreDest) {
-          filelist.add('/' + file2)
-        } else {
-          grunt.log.debug('Ignore ' + file2);
+        // get max file time
+        grunt.log.debug('--> ' + source + filename)
+        const fd = fs.openSync(source + filename),
+              fstat = fs.fstatSync(fd),
+              stat = fs.statSync(source + filename)
+        fs.closeSync(fd)
+        if (regionDate < fstat.mtime) {
+          regionDate = fstat.mtime
         }
-      })
-      grunt.log.debug(filelist.count() + ' entries collected:\n  ' + filelist.result());
 
-      const key = Date.now().toString(36);
-      grunt.log.debug('set key: ' + key)
-      let re = new RegExp('{{key}}', 'g')
-      template = template.replace(re, key)
+        // create file list
+        if ((stat.isFile() || stat.isSymbolicLink()) && filename !== ignoreTarget) {
+          filelist.add('/' + filename)
+        } else {
+          grunt.log.debug('Ignore ' + filename);
+        }
+        grunt.log.debug('--> ' + filename)
+      })
+      grunt.log.debug(filelist.count() + ' entries collected for ' + region + ':\n  ' + filelist.result());
+
+      // create key of data cache for region
+      const key = region + '-' + regionDate.getTime().toString(36),
+            keyInfo = regionDate.toString()
+      grunt.log.debug('key(' + keyInfo + '): ' + key)
+      // let re = new RegExp('{{key_' + region + '}}', 'g')
+      // template = template.replace(re, key)
+
+      if (cache_keys != '') {
+        cache_keys += ',\n  '
+      }
+      cache_keys += "'" + region + "': 'bhv-infoapp-" + key + "'"
 
       grunt.log.debug('set ' + filelist.count() + ' entries')
-      re = new RegExp('{{FILES_TO_CACHE}}', 'g')
-      template = template.replace(re, filelist.result())
-
-      // write resulting file
-      msg += '\n' + ignoreDest + ' with ' + filelist.count() + ' entries';
-      grunt.log.debug('Create: ' + file.dest)
-      fs.writeFileSync(file.dest, template);
+      // re = new RegExp('{{FILES_TO_CACHE_' + region + '}}', 'g')
+      // template = template.replace(re, filelist.result())
+      if (cache_files != '') {
+        cache_files += ',\n  '
+      }
+      cache_files += tplFiles
+        .replace('{{region}}', region)
+        .replace('{{files}}', filelist.result())
     })
 
-    grunt.log.ok('Service worker created:' + (msg ? msg : ' none?!'))
+    // add all keys
+    let re = new RegExp('{{keys}}', 'g')
+    template = template.replace(re, cache_keys)
+
+    // add all files
+    re = new RegExp('{{files}}', 'g')
+    template = template.replace(re, cache_files)
+
+
+    // write resulting file
+    //msg += '\n' + target + ' with ' + filelist.count() + ' entries'
+    msg += target
+    grunt.log.debug('Create: ' + target)
+    fs.writeFileSync(target, template)
+    grunt.log.ok('Service worker created: ' + (msg ? msg : 'none?!'))
   })
 }

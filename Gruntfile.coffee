@@ -14,13 +14,8 @@ files = [
   "archive/**/*.gz",
   "calendar/**",
   "elements/**",
-  "favicons/**",
-  "!favicons/site.webmanifest",
   "image/**",
-  "info/**",
   "script/**",
-  "system6/**",
-  "system4/**",
   # "testvideo/**",
 
   # "u10/**",
@@ -34,21 +29,43 @@ files = [
   # "uld/**",
   # "lld/**",
 
-  "statistics/**",
-  "teambuilding/**"
   # "training/**",
 
   # ignore the old files
   "!**/*_old.*"
 ]
+files_system4 = [
+  "system4/**"
+]
+files_system6 = [
+  "system6/**",
+  "!**/*_old.*"
+]
+# data
+files_data = [
+  "data/**",
+  "!**/*_old.*"
+]
+files_favicons = [
+  "favicons/**",
+  "!favicons/site.webmanifest",
+  "!**/*_old.*"
+]
+files_info = [
+  "info/**",
+  "!**/*_old.*"
+]
+files_statistics_19 = [
+  "statistics/19/**",
+  "!**/*_old.*"
+]
+files_teambuilding_19 = [
+  "teambuilding/br3_19/**",
+  "!**/*_old.*"
+]
 
 # the service worker
 file_service_worker = ["bhv-service-worker.js"]
-
-# data to copy only
-files_data = [
-  "data/**"
-]
 
 # watch svg files
 files_svg = [
@@ -57,14 +74,15 @@ files_svg = [
 ];
 
 # the files to copy
-files_copy = files.concat(files_data).concat(file_service_worker);
-
-
-# # add svg work files for watching
-# files_watch = files_copy.concat([
-#   "_work/svg/source/**/*.html",
-#   "_work/svg/container.html"
-# ]);
+files_copy = files
+  .concat(files_data)
+  .concat(files_system4)
+  .concat(files_system6)
+  .concat(files_favicons)
+  .concat(files_info)
+  .concat(files_statistics_19)
+  .concat(files_teambuilding_19)
+  .concat(file_service_worker);
 
 
 # grundlagen
@@ -603,9 +621,18 @@ config = (grunt) ->
   initWorker:
     sw:
       options:
-        template: "D:/workdir/brueckl-hotvolleys-source/_work/serviceworker/serviceworker.js"
+        source: "D:/workdir/brueckl-hotvolleys-source/"
+        template: "_work/serviceworker/serviceworker.js"
+        target: "bhv-service-worker.js"
       files:
-        "D:/workdir/brueckl-hotvolleys-source/bhv-service-worker.js": files
+        main: files
+        data: files_data
+        system4: files_system4
+        system6: files_system6
+        favicons: files_favicons
+        info: files_info
+        statistics_19: files_statistics_19
+        teambuilding_19: files_teambuilding_19
 
   copy:
     deploy1_do_not_change:
