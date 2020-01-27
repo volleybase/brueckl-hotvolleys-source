@@ -2,7 +2,7 @@
 /* eslint-env node */
 const fs = require('fs')
 const path = require('path')
-
+const crypto = require('crypto')
 'use strict';
 
 function FileList() {
@@ -33,7 +33,6 @@ module.exports = function init(grunt) {
     grunt.log.debug('initWorker started...')
 
     let msg = '';
-
     const source = this.data.options.source,
           target = source + this.data.options.target,
           ignoreTarget = path.basename(target)
@@ -56,26 +55,34 @@ module.exports = function init(grunt) {
       // region
       const region = file.dest;
       grunt.log.debug('Region: ' + region)
-      let regionDate = new Date(0)
+      //let regionDate = new Date(0)
+      let sums = ''
 
       // the files
       const filelist = new FileList()
       file.src.forEach((filename) => {
         grunt.log.debug('--> ' + filename)
 
-        // get max file time
+        // -- get max file time
+        // get file info
         grunt.log.debug('--> ' + source + filename)
         const fd = fs.openSync(source + filename),
-              fstat = fs.fstatSync(fd),
+              //fstat = fs.fstatSync(fd),
               stat = fs.statSync(source + filename)
         fs.closeSync(fd)
-        if (regionDate < fstat.mtime) {
-          regionDate = fstat.mtime
-        }
+        //if (regionDate < fstat.mtime) {
+        //  regionDate = fstat.mtime
+        //}
 
         // create file list
         if ((stat.isFile() || stat.isSymbolicLink()) && filename !== ignoreTarget) {
           filelist.add('/' + filename)
+          // read file content
+          const buffer = fs.readFileSync(source + filename)
+          sums += crypto
+            .createHash('md5')
+            .update(buffer)
+            .digest('hex');
         } else {
           grunt.log.debug('Ignore ' + filename);
         }
@@ -84,11 +91,14 @@ module.exports = function init(grunt) {
       grunt.log.debug(filelist.count() + ' entries collected for ' + region + ':\n  ' + filelist.result());
 
       // create key of data cache for region
-      const key = region + '-' + regionDate.getTime().toString(36),
-            keyInfo = regionDate.toString()
-      grunt.log.debug('key(' + keyInfo + '): ' + key)
-      // let re = new RegExp('{{key_' + region + '}}', 'g')
-      // template = template.replace(re, key)
+      //const key = region + '-' + regionDate.getTime().toString(36),
+      //      keyInfo = regionDate.toString()
+      //grunt.log.debug('key(' + keyInfo + '): ' + key)
+      const key = crypto
+        .createHash('md5')
+        .update(sums, 'ascii')
+        .digest('hex');
+      grunt.log.debug('key(' + region + '): ' + key)
 
       if (cache_keys != '') {
         cache_keys += ',\n  '
@@ -96,8 +106,6 @@ module.exports = function init(grunt) {
       cache_keys += "'" + region + "': 'bhv-infoapp-" + key + "'"
 
       grunt.log.debug('set ' + filelist.count() + ' entries')
-      // re = new RegExp('{{FILES_TO_CACHE_' + region + '}}', 'g')
-      // template = template.replace(re, filelist.result())
       if (cache_files != '') {
         cache_files += ',\n  '
       }
@@ -116,7 +124,6 @@ module.exports = function init(grunt) {
 
 
     // write resulting file
-    //msg += '\n' + target + ' with ' + filelist.count() + ' entries'
     msg += target
     grunt.log.debug('Create: ' + target)
     fs.writeFileSync(target, template)
