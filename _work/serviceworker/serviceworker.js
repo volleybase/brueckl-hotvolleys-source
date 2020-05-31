@@ -66,6 +66,8 @@ self.addEventListener('fetch', (evt) => {
     nameCache = CACHE['statistics_19']
   } else if (evt.request.url.indexOf('/teambuilding/br3_19/') > -1) {
     nameCache = CACHE['teambuilding_19']
+  } else if (evt.request.url.indexOf('/teambuilding/herzhirn_21/') > -1) {
+    nameCache = CACHE['teambuilding_21']
   }
 
   // fetch a ressource

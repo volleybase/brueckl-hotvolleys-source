@@ -63,6 +63,10 @@ files_teambuilding_19 = [
   "teambuilding/br3_19/**",
   "!**/*_old.*"
 ]
+files_teambuilding_21 = [
+  "teambuilding/herzhirn_21/**",
+  "!**/*_old.*"
+]
 
 # the service worker
 file_service_worker = ["bhv-service-worker.js"]
@@ -82,6 +86,7 @@ files_copy = files
   .concat(files_info)
   .concat(files_statistics_19)
   .concat(files_teambuilding_19)
+  .concat(files_teambuilding_21)
   .concat(file_service_worker);
 
 
@@ -531,7 +536,6 @@ setTargetLinks = (def) ->
     keys2.forEach((key2) ->
       tab = block[key2]
       if tab.target == undefined
-        #img = 'i=' + encodeURIComponent((tab.imagepath ? key1) + '/' + tab.anchor + '.png')
         img = 'i=' + encodeURIComponent((tab.imagepath ? key1) + '/' + tab.image)
         tit = '&t=' + encodeURIComponent(tab.title)
         inf = '&x=' + encodeURIComponent(tab.info)
@@ -633,10 +637,11 @@ config = (grunt) ->
         info: files_info
         statistics_19: files_statistics_19
         teambuilding_19: files_teambuilding_19
+        teambuilding_21: files_teambuilding_21
 
   copy:
     deploy1_do_not_change:
-      # nonull -> error if sorce does not exist
+      # nonull -> error if source does not exist
       nonull: true
       options:
         "force": true
