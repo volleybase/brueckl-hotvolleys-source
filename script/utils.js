@@ -24,7 +24,51 @@ window.bhv.utils = {
 
   // -- toolbox for service worker -------------------------------------------
 
-  // helper function
+  /**
+   * Registers the service worker.
+   * @return {void}
+   */
+  registerSW: function() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+
+        navigator.serviceWorker
+          .register('/bhv-service-worker.js')
+          .then((reg) => {
+            console.log('BHV Info App service worker registered.', reg);
+
+            bhv.utils.listenForWaitingServiceWorker(reg, bhv.utils.promptUserToRefresh);
+          });
+
+        bhv.utils.initReload();
+      });
+    }
+  },
+
+  /**
+   * Connects to the service worker.
+   * @return {void}
+   */
+  connectSW: function() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+
+        navigator.serviceWorker
+          .getRegistration()
+          .then((reg) => {
+            console.log('BHV Info App service worker connected.', reg);
+            bhv.utils.listenForWaitingServiceWorker(reg, bhv.utils.promptUserToRefresh);
+          });
+
+        bhv.utils.initReload();
+      });
+    }
+  },
+
+  /**
+   * A helper function to listen for a waiting service worker.
+   * @return {void}
+   */
   listenForWaitingServiceWorker: function(reg, callback) {
     function awaitStateChange() {
       reg.installing.addEventListener('statechange', function() {
@@ -51,10 +95,9 @@ window.bhv.utils = {
   initReload: function() {
     navigator.serviceWorker.addEventListener('controllerchange',
       function() {
-        // if (!refreshing) {
-        //   refreshing = true;
         if (!window.bhv.utils.refreshing) {
           window.bhv.utils.refreshing = true;
+          console.log('[sw] reload page');
           window.location.reload();
         }
       }

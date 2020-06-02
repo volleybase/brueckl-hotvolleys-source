@@ -42,20 +42,7 @@ a {
   <script src="/script/utils.js"></script>
   <script>
 // register service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-
-    navigator.serviceWorker
-      .register('/bhv-service-worker.js')
-      .then((reg) => {
-        console.log('BHV Info App service worker registered.', reg);
-
-        bhv.utils.listenForWaitingServiceWorker(reg, bhv.utils.promptUserToRefresh);
-      });
-
-    bhv.utils.initReload();
-  });
-}
+bhv.utils.registerSW();
   </script>
 </head>
 <body>
