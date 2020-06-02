@@ -1185,12 +1185,15 @@ config = (grunt) ->
     svg:
       files: files_svg,
       tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
-    for_manifest:
-      files: files,
-      tasks: ['initWorker', 'newer:copy:deploy2']
+    #for_manifest:
+    #  files: files,
+    #  tasks: ['initWorker', 'newer:copy:deploy2']
     data:
       files: files_data,
-      tasks: ['newer:copy:deploy2']
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    teambuilding_21:
+      files: files_teambuilding_21,
+      tasks: ['initWorker', 'newer:copy:deploy2']
 
 
 module.exports = (grunt) ->
