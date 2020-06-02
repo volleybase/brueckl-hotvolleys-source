@@ -20,5 +20,44 @@ window.bhv.utils = {
         }
       }
     }
+  },
+
+  // -- toolbox for service worker -------------------------------------------
+
+  // helper function
+  listenForWaitingServiceWorker: function(reg, callback) {
+    function awaitStateChange() {
+      reg.installing.addEventListener('statechange', function() {
+        if (this.state === 'installed') callback(reg);
+      });
+    }
+    if (!reg) return;
+    if (reg.waiting) return callback(reg);
+    if (reg.installing) awaitStateChange();
+    reg.addEventListener('updatefound', awaitStateChange);
+  },
+
+  promptUserToRefresh: function(reg) {
+    // todo use notification instead of confirm
+    if (window.confirm("New version available! OK to refresh?")) {
+      // post to activate new service worker
+      reg.waiting.postMessage('skipWaiting');
+    }
+  },
+
+  // reload once when the new Service Worker starts activating
+  refreshing: false,
+
+  initReload: function() {
+    navigator.serviceWorker.addEventListener('controllerchange',
+      function() {
+        // if (!refreshing) {
+        //   refreshing = true;
+        if (!window.bhv.utils.refreshing) {
+          window.bhv.utils.refreshing = true;
+          window.location.reload();
+        }
+      }
+    );
   }
 }
