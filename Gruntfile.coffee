@@ -574,7 +574,6 @@ config = (grunt) ->
       src: '_work/favicons/bhv.svg'
       dest: 'favicons'
       options:
-        # old iconsPath: '/brueckl-hotvolleys/favicons'
         iconsPath: '/favicons'
         html: [ '_work/favicons/index.html' ]
         design:
@@ -1183,13 +1182,31 @@ config = (grunt) ->
       files: ['_work/serviceworker/serviceworker.js']
       tasks: ['initWorker', 'newer:copy:deploy2']
     svg:
-      files: files_svg,
+      files: files_svg
       tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
-    #for_manifest:
-    #  files: files,
-    #  tasks: ['initWorker', 'newer:copy:deploy2']
+    main:
+      files: files
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    system4:
+      files: files_system4
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    system6:
+      files: files_system6
+      tasks: ['initWorker', 'newer:copy:deploy2']
     data:
-      files: files_data,
+      files: files_data
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    favicons:
+      files: files_favicons
+      tasks: ['realFavicon:favicons', 'initWorker', 'newer:copy:deploy2']
+    info:
+      files: files_info
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    statistics_19:
+      files: files_statistics_19
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    teambuilding_19:
+      files: files_teambuilding_19
       tasks: ['initWorker', 'newer:copy:deploy2']
     teambuilding_21:
       files: files_teambuilding_21,
