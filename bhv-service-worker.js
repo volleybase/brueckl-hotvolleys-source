@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 // the names and the files of the cache
 const CACHE = {
-  'main': 'bhv-infoapp-c5d391ef86ed30ecde5939515c099e2b',
+  'main': 'bhv-infoapp-efb242d1aa0fcb1ef7b02f8adae119bb',
   'data': 'bhv-infoapp-4643ba8e72625237c69999b2b62f64c7',
   'system4': 'bhv-infoapp-3a74649350f1923a75308d111795c28c',
   'system6': 'bhv-infoapp-ae27fd018f4793588733f92091e95965',
@@ -319,7 +319,7 @@ self.addEventListener('fetch', (evt) => {
 self.addEventListener('message', messageEvent => {
   // start the waiting for new serviceworker
   if (messageEvent.data === 'skipWaiting') {
-    console.log('[sw] start waiting service worker');
+    console.log('[sw] start waiting for service worker');
     return skipWaiting();
   }
 });

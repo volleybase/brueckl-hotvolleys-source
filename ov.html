@@ -17,8 +17,14 @@ body {
   <script src="/elements/expander/script.js"></script>
   <script src="/script/utils.js"></script>
   <script>
+// connects the service worker
+bhv.utils.connectSW();
+
+/**
+ * Initializes the overview (expanders).
+ * return {void}
+ */
 function init() {
-  bhv.utils.connectSW();
   var expanders = [
     'nw',
     'u12_21', 'u13_21', 'u14_21', 'u15_21', 'u16_21', 'u18_21', 'u20_21',

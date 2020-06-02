@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // the names and the files of the cache
 const CACHE = {
@@ -88,7 +88,7 @@ self.addEventListener('fetch', (evt) => {
 self.addEventListener('message', messageEvent => {
   // start the waiting for new serviceworker
   if (messageEvent.data === 'skipWaiting') {
-    console.log('[sw] start waiting service worker');
+    console.log('[sw] start waiting for service worker');
     return skipWaiting();
   }
 });

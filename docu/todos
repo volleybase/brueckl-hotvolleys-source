@@ -2,8 +2,10 @@
 
 - [ ] Wie einen automatischen reload nach dem Update provozieren?
 - [x] index.html (mit utils.js -> bhv.utils.registerSW())
-- [ ] all anderen pages - ov.html, usw.
-      geht nicht ?! (mit utils.js -> bhv.utils.connectSW() in ov.html)
+- [ ] all anderen pages - ov.html, usw.\
+    mit utils.js -> bhv.utils.connectSW()
+    - [x] ov.html
+    - [ ] ...
 
 # autobuild
 
