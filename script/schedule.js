@@ -255,7 +255,7 @@ window.bhv.schedule = {
   },
 
   /**
-   * Creates the schedules for a junior chamionship.
+   * Creates the schedules for a junior championship.
    * @param {string} reponse The response from the web service.
    * @return {void}
    */
@@ -271,7 +271,7 @@ window.bhv.schedule = {
         var key = window.bhv.request.utils.getKey(),
             pattern = activeSeason && mapKids[activeSeason]
               && mapKids[activeSeason][key] && mapKids[activeSeason][key][3]
-              ? mapKids[activeSeason][key][3] : '';
+              ? mapKids[activeSeason][key][3] : 'brückl';
         for (var t = 0; t < tournaments.length; ++t) {
           var tournament = tournaments[t],
               teams0 = window.bhv.request.xml.findNode(tournament.childNodes, 'anmerkung');
@@ -423,7 +423,7 @@ if (window.bhv.archive) {
 
 // #endregion -- create archive mode ------------------------------------------
 
-var activeSeason = '20';
+var activeSeason = '21';
 
 var mapLeague = {
   // dont forget to set the ids of the clubs in calendar/controller -> 21, 1220

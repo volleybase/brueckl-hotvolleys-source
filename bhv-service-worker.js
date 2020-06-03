@@ -2,7 +2,7 @@
 
 // the names and the files of the cache
 const CACHE = {
-  'main': 'bhv-infoapp-13426a823e46a35d32757b16103af58c',
+  'main': 'bhv-infoapp-16ba1fe3f828d690e84f6bf94e668dbc',
   'data': 'bhv-infoapp-03603f5fbe755b3840b2955097fcf41a',
   'system4': 'bhv-infoapp-3a74649350f1923a75308d111795c28c',
   'system6': 'bhv-infoapp-ae27fd018f4793588733f92091e95965',
@@ -32,6 +32,7 @@ const FILES = {
     '/archive/19/kidsschedules.xml.gz',
     '/archive/19/results.xml.gz',
     '/archive/19/standings.xml.gz',
+    '/archive/20/kidsschedules.xml.gz',
     '/archive/20/results.xml.gz',
     '/archive/20/standings.xml.gz',
     '/calendar/calendar.html',

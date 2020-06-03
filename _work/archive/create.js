@@ -21,8 +21,8 @@ const pako = require('pako')
 const withMap = false
 const load = {
   results: false,
-  standings: true,
-  schedules: false
+  standings: false,
+  schedules: true
 }
 
 // #endregion
@@ -564,25 +564,39 @@ if (load.schedules) {
   function leagueKidsSchedules(response, key, comp, fun, tit, team) {
     console.log((++counterSch2) + ' - create xml data of schedules for ' + key + '.')
 
-    // console.log(response)
+    // create a html parser to read the schedules
     const xmlSchedules = cheerio.load(response, {
       xmlMode: true
     })
 
-    // get all the results
-    const arr = xmlSchedules('xml > turniere')
-    let str = ''
-    arr.each((idx, res) => {
-      str += handleEntities(cheerio.xml(res)) + '\n';
-    })
-    // create xml entry for a competition
-    const result = new Item('tournament', '\n' + str);
+    // create xml entry for a schedule
+    const result = new Item('tournament', []);
     xmlSch.add(result);
     result.addAttribute('key', key);
     result.addAttribute('competition', comp);
     result.addAttribute('handler', fun);
     result.addAttribute('title', tit);
     result.addAttribute('team', team);
+
+    // get all the tournaments
+    const arr = xmlSchedules('xml > turniere')
+    arr.each((idx, res) => {
+      // str += handleEntities(cheerio.xml(res)) + '\n';
+
+      // create a tournament
+      const tournament = new Item('turniere', [])
+      result.add(tournament)
+
+      // create a data item
+      const arrItems = xmlSchedules('turniere > *', res)
+      arrItems.each((idx2, item) => {
+        if (item.type == 'tag') {
+          tournament.add(new Item(item.name, cheerio.text(item.children)))
+        } else {
+          console.log('Invalid entry in xml: ', item)
+        }
+      })
+    })
 
     // if all competition read and written: output resulting xml file
     if (counterSch2 === counterSch1) {
