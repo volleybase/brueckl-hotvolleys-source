@@ -7,7 +7,6 @@
 
 // #endregion
 
-
 // #region -- Load libraries, main config -------------------------------------
 
 // html loader
@@ -21,8 +20,8 @@ const pako = require('pako')
 // which data to load
 const withMap = false
 const load = {
-  results: true,
-  standings: false,
+  results: false,
+  standings: true,
   schedules: false
 }
 
@@ -438,24 +437,38 @@ if (load.standings) {
   function handleStandings(response, key, comp, fun, tit) {
     console.log((++counterS2) + ' - create xml data of standings for ' + key + '.')
 
-    // console.log(response)
+    // create a html parser to read the standings
     const xmlStandings = cheerio.load(response, {
       xmlMode: true
     })
 
-    // get all the standings
-    const arr = xmlStandings('xml > tabelle')
-    let str = ''
-    arr.each((idx, res) => {
-      str += cheerio.xml(res) + '\n';
-    })
     // create xml entry for a competition
-    const standings = new Item('standings', '\n' + str);
+    const standings = new Item('standings', []);
     xmlSt.add(standings);
     standings.addAttribute('key', key);
     standings.addAttribute('competition', comp);
     standings.addAttribute('handler', fun);
     standings.addAttribute('title', tit);
+
+    // get all the standings
+    const arr = xmlStandings('xml > tabelle')
+    arr.each((idx, res) => {
+      // str += cheerio.xml(res) + '\n';
+
+      // create an entry
+      const st = new Item('tabelle', [])
+      standings.add(st)
+
+      // create a data item
+      const arrItems = xmlStandings('tabelle > *', res)
+      arrItems.each((idx2, item) => {
+        if (item.type == 'tag') {
+          st.add(new Item(item.name, cheerio.text(item.children)))
+        } else {
+          console.log('Invalid entry in xml: ', item)
+        }
+      })
+    })
 
     // if all competition read and written: output standings xml file
     if (counterS2 === counterS1) {

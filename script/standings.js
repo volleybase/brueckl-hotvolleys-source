@@ -1,4 +1,4 @@
-var activeSeason = '20';
+var activeSeason = '21';
 var map = {
   '20': {
     'br4g_20': [24971, leagueStandings, 'Tabelle Unterliga'],
