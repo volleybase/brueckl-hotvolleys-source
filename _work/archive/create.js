@@ -1,14 +1,27 @@
+// #region -- TODOS -----------------------------------------------------------
+
+// TODO load players -> create archive
+// TODO combine old data into archive
+//      statistics
+//      ...
+
+// #endregion
+
+
 // #region -- Load libraries, main config -------------------------------------
 
+// html loader
 const cheerio = require('cheerio')
+// io
 const path = require('path')
 const fs = require('fs')
-// const zlib = require('zlib');
+// file compressor
 const pako = require('pako')
 
+// which data to load
 const withMap = false
 const load = {
-  results: false,
+  results: true,
   standings: false,
   schedules: false
 }
@@ -19,18 +32,22 @@ console.log('Create archive.')
 
 // #region -- simulate a browser - not beautiful, but it works ----------------
 
+// window is the main namespace of a browser
 window = {
   bhv: {
     archive: {}
   }
 }
 
+// simulate location of browser
 location = {
   protocol: 'http:'
 }
 
+// its not an IE
 ie = 0  // NOSONAR  make var global!
 
+// simulate AJAX of browser
 window.XMLHttpRequest = XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 // #endregion
@@ -46,10 +63,12 @@ var standings = require('../../script/standings.js')
 // load schedules handler
 var schedules = require('../../script/schedule.js')
 
+// the season to load
+const currentSeason = '20';
 // the directory where to create the archive
-const archiveDir19 = 'D:/workdir/brueckl-hotvolleys-source/archive/19';
-// the final date of season 18/19
-const title19 = ' (30.6.2019)';
+const archiveDir = 'D:/workdir/brueckl-hotvolleys-source/archive/' + currentSeason;
+// the final date of the season
+const title = ' (31.3.2020)';
 
 /**
  * A dummy offline handler to output an error info.
@@ -79,7 +98,15 @@ class Item {
    */
   constructor(tag, content) {
     this.tag = tag;
-    this.content = content;
+    var cont = content;
+    if (typeof cont === 'string') {
+      cont = cont
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+    }
+    this.content = cont;
     this.attr = [];
   }
 
@@ -92,10 +119,8 @@ class Item {
    * @return {void}
    */
   addAttribute(key, value) {
-    if (value === null || value === undefined) {
-      value = key;
-    }
-    this.attr.push(key + '="' + value + '"');
+    var val = value === null || value === undefined ? '' + key : '' + value;
+    this.attr.push(key + '="' + val.replace('"', "&quot;") + '"');
   }
 
   /**
@@ -126,7 +151,6 @@ class Item {
    */
   toStr() {
     const content = this.contentToStr();
-
     return this.startTag() + (content ? content : '') + this.endTag();
   }
 
@@ -181,7 +205,12 @@ class Item {
    * @return {string} The end tag, or empty if items has not any content.
    */
   endTag() {
-    return this.content ? '</' + this.tag + '>' : '';
+    if (this.content) {
+      return (this.content instanceof Item || Array.isArray(this.content)
+              ? '\n' : '') + '</' + this.tag + '>';
+    }
+
+    return '';
   }
 }
 
@@ -208,19 +237,11 @@ class Xml extends Item {
   }
 }
 
-// /**
-//  * Compresses the given file.
-//  * @param {string} fn The name of the file to compress.
-//  * @return {void}
-//  */
-// function compress(fn) {
-//   const fnGz = fn + '.gz'
-//   const gzip = zlib.createGzip();
-//   const inp = fs.createReadStream(fn);
-//   const out = fs.createWriteStream(fnGz);
-//   inp.pipe(gzip).pipe(out);
-// }
-
+/**
+ * Handles the html entities (currently only &).
+ * @param {string} str The input string.
+ * @return {string} The updated string.
+ */
 function handleEntities(str) {
   return str.replace('&', '&amp;');
 }
@@ -231,18 +252,7 @@ function handleEntities(str) {
  * @return {void}
  */
 function compress(fn) {
-  // fs.readFile(fn, (err, data) => {
-  //   if (err) throw err;
-  //
-  //   const compressed = pako.deflate(data);
-  //
-  //   fs.writeFile(fn + '.gz', compressed, (err) => {
-  //     if (err) throw err;
-  //
-  //     console.log('The file ' + fn + '.gz has been saved!');
-  //   });
-  // });
-
+  // load, compress, and save a file.
   const data = fs.readFileSync(fn);
   const compressed = pako.deflate(data);
   fs.writeFileSync(fn + '.gz', compressed);
@@ -254,7 +264,7 @@ function compress(fn) {
 // #region -- Load the results. -----------------------------------------------
 
 if (load.results) {
-  console.log('Create results 19.')
+  console.log('Create results ' + currentSeason + '.')
 
   // create xml data
   const xmlRes = new Xml()
@@ -265,7 +275,7 @@ if (load.results) {
   }
 
   // load the map of results
-  var mapResults = window.bhv.archive.getResultsMap('19');
+  var mapResults = window.bhv.archive.getResultsMap(currentSeason);
   // console.log(mapResults);
 
   // 'br1_19': [23666, leagueResults, 'Ergebnisse Bundesliga (MR)', 27423],
@@ -275,6 +285,7 @@ if (load.results) {
       IDX_FUN = 1,
       IDX_TIT = 2,
       IDX_TEA = 3,
+      IDX_CLUB = 4,
       limitR = 999,
       // the counter of the enries of the map
       counterR1 = 0,
@@ -294,20 +305,13 @@ if (load.results) {
   function leagueResults(response, key, comp, fun, tit, team) {
     console.log((++counterR2) + ' - create xml data of results for ' + key + '.')
 
-    // console.log(response)
-    // var xml = bhv.request.xml.fromText(response, 'xml');
+    // create a html parser to read the results
     const xmlResults = cheerio.load(response, {
       xmlMode: true
     })
 
-    // get all the results
-    const arr = xmlResults('xml > ergebnis')
-    let str = ''
-    arr.each((idx, res) => {
-      str += cheerio.xml(res) + '\n';
-    })
-    // create xml entry for a competition
-    const result = new Item('result', '\n' + str);
+    // create xml entry for a result
+    const result = new Item('result', []);
     xmlRes.add(result);
     result.addAttribute('key', key);
     result.addAttribute('competition', comp);
@@ -315,10 +319,28 @@ if (load.results) {
     result.addAttribute('title', tit);
     result.addAttribute('team', team);
 
-    // if all competition read and written: output resulting xml file
+    // get all the results
+    const arr = xmlResults('xml > ergebnis')
+    arr.each((idx, res) => {
+
+      // create an entry
+      const ergebnis = new Item('ergebnis', [])
+      result.add(ergebnis)
+
+      // create a data item
+      const arrItems = xmlResults('ergebnis > *', res)
+      arrItems.each((idx2, item) => {
+        if (item.type == 'tag') {
+          ergebnis.add(new Item(item.name, cheerio.text(item.children)))
+        } else {
+          console.log('Invalid entry in xml: ', item)
+        }
+      })
+    })
+
+    // if all results read and written: output resulting xml file
     if (counterR2 === counterR1) {
-      // console.log(xml.toStr())
-      const fn = path.join(archiveDir19, 'results.xml')
+      const fn = path.join(archiveDir, 'results.xml')
 
       fs.writeFile(fn, xmlRes.toStr(), 'utf8', (err) => {
         if (err) throw err;
@@ -328,7 +350,7 @@ if (load.results) {
     }
   }
 
-  // handle each entry of map of competitions
+  // handle each entry of map of results
   Object.keys(mapResults).forEach((key0) => {
     const key = key0
 
@@ -340,11 +362,13 @@ if (load.results) {
     const fun = mapResults[key][IDX_FUN].name;
 
     // title
-    const tit = mapResults[key][IDX_TIT] + title19;
+    const tit = mapResults[key][IDX_TIT] + title;
 
-    // affected team(s)
+    // affected team(s) of club
     const team0 = mapResults[key][IDX_TEA];
     const team = Array.isArray(team0) ? team0.join('|') : team0;
+    const idClub = mapResults[key][IDX_CLUB] === undefined
+      ? 21 : mapResults[key][IDX_CLUB];
 
     // map entry if necessary
     if (withMap) {
@@ -361,7 +385,7 @@ if (load.results) {
       // start query of kvv server
       console.log((++counterR1) + ' - create results for ' + key + '.')
       window.bhv.request.queryResults(
-        comp0, team0,
+        comp0, team0, idClub,
         // handle the response to create xml entries
         function res(response) {
           leagueResults(response, key, comp, fun, tit, team)
@@ -373,10 +397,10 @@ if (load.results) {
 
 // #endregion
 
-// #region -- Load the standings. -----------------------------------------------
+// #region -- Load the standings. ---------------------------------------------
 
 if (load.standings) {
-  console.log('Create standings 19.')
+  console.log('Create standings ' + currentSeason + '.')
 
   // create xml data
   const xmlSt = new Xml()
@@ -387,7 +411,7 @@ if (load.standings) {
   }
 
   // load the map of standings
-  var mapStandings = window.bhv.archive.getStandingsMap('19');
+  var mapStandings = window.bhv.archive.getStandingsMap(currentSeason);
   // console.log(mapStandings);
 
   // 'br1_19': [23666, leagueStandings, 'Tabelle Bundesliga (MR)'],
@@ -435,7 +459,7 @@ if (load.standings) {
 
     // if all competition read and written: output standings xml file
     if (counterS2 === counterS1) {
-      const fn = path.join(archiveDir19, 'standings.xml')
+      const fn = path.join(archiveDir, 'standings.xml')
 
       fs.writeFile(fn, xmlSt.toStr(), 'utf8', (err) => {
         if (err) throw err;
@@ -457,7 +481,7 @@ if (load.standings) {
     const fun = mapStandings[key][IDXS_FUN].name;
 
     // title
-    const tit = mapStandings[key][IDXS_TIT] + title19;
+    const tit = mapStandings[key][IDXS_TIT] + title;
 
     // map entry if necessary
     if (withMap) {
@@ -488,7 +512,7 @@ if (load.standings) {
 // #region -- Load the schedules. ---------------------------------------------
 
 if (load.schedules) {
-  console.log('Create schedules 19.')
+  console.log('Create schedules ' + currentSeason + '.')
 
   // create xml data
   const xmlSch = new Xml()
@@ -499,7 +523,7 @@ if (load.schedules) {
   }
 
   // load the map of results
-  var mapSchedules = window.bhv.archive.getSchedulesMaps('19'),
+  var mapSchedules = window.bhv.archive.getSchedulesMaps(currentSeason),
       mapKids = mapSchedules['kids'];
 
   // kids schedules
@@ -550,7 +574,7 @@ if (load.schedules) {
     // if all competition read and written: output resulting xml file
     if (counterSch2 === counterSch1) {
       // console.log(xml.toStr())
-      const fn = path.join(archiveDir19, 'kidsschedules.xml')
+      const fn = path.join(archiveDir, 'kidsschedules.xml')
 
       fs.writeFile(fn, xmlSch.toStr(), 'utf8', (err) => {
         if (err) throw err;
@@ -572,7 +596,7 @@ if (load.schedules) {
     const fun = mapKids[key][IDXSCH_FUN].name;
 
     // title
-    const tit = mapKids[key][IDXSCH_TIT] + title19;
+    const tit = mapKids[key][IDXSCH_TIT] + title;
 
     // affected team(s)
     const team0 = mapKids[key][IDXSCH_TEA];

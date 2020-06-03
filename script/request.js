@@ -706,7 +706,7 @@ window.bhv.request = {
     return true;
   },
 
-  '_checkResultIds': function(idBew, idTea, idClub) {
+  '_checkResultIds': function(idBew, idTea, idClub, onerror) {
     var ok = true;
 
     if (Array.isArray(idBew)) {
