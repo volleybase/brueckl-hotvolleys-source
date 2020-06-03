@@ -109,8 +109,8 @@ window.bhv.request = {
 
             case 304:
               found = false;
-              if (bhv.db && request.responseURL) {
-                data = bhv.db.readObj(request.responseURL);
+              if (window.bhv.db && request.responseURL) {
+                data = window.bhv.db.readObj(request.responseURL);
                 if (data && data.data) {
                   // if any headers given: query response headers
                   if (headers !== undefined) {
@@ -254,17 +254,17 @@ window.bhv.request = {
               uncompressed = pako.inflate(response, { 'to': 'string' });
 
           // create xml data
-          var xml = bhv.request.xml.fromText(uncompressed, 'xml');
+          var xml = window.bhv.request.xml.fromText(uncompressed, 'xml');
           if (xml) {
             // get list of standings
-            var data = bhv.request.xml.getNodes(xml, 'standings');
+            var data = window.bhv.request.xml.getNodes(xml, 'standings');
             if (data) {
               // search for results of given competition(s)
               for (var i = 0; i < data.length; ++i) {
                 var item = data[i];
                 // if found: handle them
                 if (item.getAttribute('key') === key) {
-                  bhv.request.utils.storeTitle(
+                  window.bhv.request.utils.storeTitle(
                     'standings', key,
                     item.getAttribute('title')
                   );
@@ -345,7 +345,7 @@ window.bhv.request = {
         + 'and (vrn_id_a=' + idClub + ' or vrn_id_b=' + idClub + ')'
         + ' and (spi_tea_id_a=' + idTea + ' or spi_tea_id_b=' + idTea + ')'
         + " and (spi_datum >= timestamp '"
-        + bhv.request.utils.yyyymmdd(new Date())
+        + window.bhv.request.utils.yyyymmdd(new Date())
         + " 00:00' or spi_datum is NULL)")
       + '&orderBy=spi_datum';
 
@@ -473,17 +473,17 @@ window.bhv.request = {
               uncompressed = pako.inflate(response, { 'to': 'string' });
 
           // create xml data
-          var xml = bhv.request.xml.fromText(uncompressed, 'xml');
+          var xml = window.bhv.request.xml.fromText(uncompressed, 'xml');
           if (xml) {
             // get list of standings
-            var data = bhv.request.xml.getNodes(xml, 'tournament');
+            var data = window.bhv.request.xml.getNodes(xml, 'tournament');
             if (data) {
               // search for results of given competition(s)
               for (var i = 0; i < data.length; ++i) {
                 var item = data[i];
                 // if found: handle them
                 if (item.getAttribute('key') === key) {
-                  bhv.request.utils.storeTitle(
+                  window.bhv.request.utils.storeTitle(
                     'schedules', key,
                     item.getAttribute('title')
                   );
@@ -531,8 +531,8 @@ window.bhv.request = {
         handlerSuccess = function(response, headersResponse) {
 
           // get etag from response headers
-          if (keyData && bhv.db && headersResponse && headersResponse['etag']) {
-            bhv.db.writeObj(keyData, {
+          if (keyData && window.bhv.db && headersResponse && headersResponse['etag']) {
+            window.bhv.db.writeObj(keyData, {
               'etag': headersResponse['etag'],
               'data': response
             });
@@ -547,8 +547,8 @@ window.bhv.request = {
 
     // request data
     keyData = addrFrom;
-    if (bhv.db) {
-      oldData = bhv.db.readObj(addrFrom);
+    if (window.bhv.db) {
+      oldData = window.bhv.db.readObj(addrFrom);
       if (oldData && oldData.etag) {
         headers['If-None-Match'] = oldData.etag;
       }
@@ -562,8 +562,8 @@ window.bhv.request = {
     if (addrTill !== addrFrom) {
       // request data again
       keyData = addrTill;
-      if (bhv.db) {
-        oldData = bhv.db.readObj(addrTill);
+      if (window.bhv.db) {
+        oldData = window.bhv.db.readObj(addrTill);
         if (oldData && oldData.etag) {
           headers['If-None-Match'] = oldData.etag;
         }
@@ -663,17 +663,17 @@ window.bhv.request = {
               uncompressed = pako.inflate(response, { 'to': 'string' });
 
           // create xml data
-          var xml = bhv.request.xml.fromText(uncompressed, 'xml');
+          var xml = window.bhv.request.xml.fromText(uncompressed, 'xml');
           if (xml) {
             // get list of results
-            var data = bhv.request.xml.getNodes(xml, 'result');
+            var data = window.bhv.request.xml.getNodes(xml, 'result');
             if (data) {
               // search for results of given competition(s)
               for (var i = 0; i < data.length; ++i) {
                 var item = data[i];
                 // if found: handle them
                 if (item.getAttribute('key') === key) {
-                  bhv.request.utils.storeTitle(
+                  window.bhv.request.utils.storeTitle(
                     'results', key,
                     item.getAttribute('title')
                   );
@@ -874,9 +874,9 @@ window.bhv.request.utils = {
   showOffline: function(type) {
     var key = this.getKey();
     if (key !== '?') {
-      var txt = bhv.db.read(type + ':' + key);
+      var txt = window.bhv.db.read(type + ':' + key);
       if (txt) {
-        bhv.request.utils.inject(txt);
+        window.bhv.request.utils.inject(txt);
       }
     }
   },
@@ -1163,21 +1163,21 @@ window.bhv.request.xml = {
   'createGameResult': function(nodes) {
     var setAa, setBb, sets, s,
         res = '',
-        setA = bhv.request.xml.findNode(nodes, 'spi_saetze_a'),
-        setB = bhv.request.xml.findNode(nodes, 'spi_saetze_b'),
+        setA = window.bhv.request.xml.findNode(nodes, 'spi_saetze_a'),
+        setB = window.bhv.request.xml.findNode(nodes, 'spi_saetze_b'),
         ptA = [
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz1_a'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz2_a'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz3_a'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz4_a'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz5_a')
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz1_a'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz2_a'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz3_a'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz4_a'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz5_a')
         ],
         ptB = [
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz1_b'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz2_b'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz3_b'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz4_b'),
-          bhv.request.xml.findNode(nodes, 'spi_punkte_satz5_b')
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz1_b'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz2_b'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz3_b'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz4_b'),
+          window.bhv.request.xml.findNode(nodes, 'spi_punkte_satz5_b')
         ];
 
     if (!isNaN(setA) && !isNaN(setB)) {

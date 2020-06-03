@@ -18,7 +18,7 @@ body {
   <script src="/script/utils.js"></script>
   <script>
 // connects the service worker
-bhv.utils.connectSW();
+window.bhv.utils.connectSW();
 
 /**
  * Initializes the overview (expanders).
@@ -118,7 +118,7 @@ function init() {
   );
   keepOpen.archive = keepOpen.a19.concat(keepOpen.a20);
 
-  bhv.elements.expander.init(expanders, keepOpen);
+  window.bhv.elements.expander.init(expanders, keepOpen);
 }
   </script>
 </head>
