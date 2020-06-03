@@ -10,8 +10,15 @@
 
 # Archiv 2019/20
 
-- [ ] noch nicht befüllt -> Daten werden noch online geholt
-- [ ] immer window. dazuschreiben
+- [>] noch nicht befüllt -> Daten werden noch online geholt
+    - [x] results
+    - [x] standings
+    - [x] schedules - junior tournaments
+    - [>] players
+        - [x] players.xml
+        - [ ] Daten für Archiv aus xml lesen
+        - [ ] OV.html - Junior players
+- [x] immer window. dazuschreiben
 
 # Libraries
 
