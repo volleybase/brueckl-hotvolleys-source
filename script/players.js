@@ -1,13 +1,23 @@
 var activeSeason = '20';
+
 var map = {
   '20': {
-    // UL
-    'br4g_20': [31662, null, 'Spielerinnen Unterliga 4'],
-    'br3g_20': [31661, null, 'Spielerinnen Unterliga 3'],
+    // UL      tea_id, -,    title
+    'br4g_20': [31662, null, 'Unterliga 4'],
+    'br3g_20': [31661, null, 'Unterliga 3'],
     // LLD
-    'br2g_20': [31654, null, 'Spielerinnen Landesliga'],
+    'br2g_20': [31654, null, 'Landesliga'],
     // BL
-    'br1g_20': [30505, null, 'Spielerinnen Bundesliga']
+    'br1g_20': [30505, null, 'Bundesliga'],
+
+    'br12_20': [32221, null, 'Supermini II'],
+    'br13_20': [32189, null, 'Supermini I'],
+    'br13m_20': [32215, null, 'Supermini I Burschen'],
+    'br14_20': [32168, null, 'Mini'],
+    'br14m_20': [32186, null, 'Mini Burschen'],
+    'br15_20': [32158, null, 'Midi'],
+    'br16_20': [32141, null, 'Schülerinnen'],
+    'br20_20': [32117, null, 'Juniorinnen']
   }
 }
 
@@ -57,8 +67,9 @@ function handlePlayers(response) {
         msg += window.bhv.request.xml.findNode(players[i].childNodes, 'vorname') + ' '
           + window.bhv.request.xml.findNode(players[i].childNodes, 'name');
 
-        if (xplayer > 0) {
-          msg += ' (' + funktion + ')';
+        // if (xplayer > 0) {
+        if (xplayer) {
+          msg += ' (-' + funktion + ')';
         }
       }
 
@@ -88,3 +99,15 @@ function _save(txt) {
 function getPlayersOffline() {
   window.bhv.request.utils.showOffline('players');
 }
+
+
+// #region -- create archive mode ---------------------------------------------
+
+// if to create the archive
+if (window.bhv.archive) {
+  window.bhv.archive.getPlayersMap = function(key) {
+    return map[key];
+  }
+}
+
+// #endregion -- create archive mode ------------------------------------------

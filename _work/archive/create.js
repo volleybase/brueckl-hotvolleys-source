@@ -22,7 +22,8 @@ const withMap = false
 const load = {
   results: false,
   standings: false,
-  schedules: true
+  schedules: false,
+  players: true
 }
 
 // #endregion
@@ -61,13 +62,15 @@ var results = require('../../script/results.js')
 var standings = require('../../script/standings.js')
 // load schedules handler
 var schedules = require('../../script/schedule.js')
+// load players handler
+var players = require('../../script/players.js')
 
 // the season to load
 const currentSeason = '20';
 // the directory where to create the archive
 const archiveDir = 'D:/workdir/brueckl-hotvolleys-source/archive/' + currentSeason;
 // the final date of the season
-const title = ' (31.3.2020)';
+const titlePostfix = ' (31.3.2020)';
 
 /**
  * A dummy offline handler to output an error info.
@@ -360,8 +363,8 @@ if (load.results) {
     // handler
     const fun = mapResults[key][IDX_FUN].name;
 
-    // title
-    const tit = mapResults[key][IDX_TIT] + title;
+    // title + date
+    const tit = mapResults[key][IDX_TIT] + titlePostfix;
 
     // affected team(s) of club
     const team0 = mapResults[key][IDX_TEA];
@@ -493,8 +496,8 @@ if (load.standings) {
     // handler
     const fun = mapStandings[key][IDXS_FUN].name;
 
-    // title
-    const tit = mapStandings[key][IDXS_TIT] + title;
+    // title + date
+    const tit = mapStandings[key][IDXS_TIT] + titlePostfix;
 
     // map entry if necessary
     if (withMap) {
@@ -622,8 +625,8 @@ if (load.schedules) {
     // handler
     const fun = mapKids[key][IDXSCH_FUN].name;
 
-    // title
-    const tit = mapKids[key][IDXSCH_TIT] + title;
+    // title + date
+    const tit = mapKids[key][IDXSCH_TIT] + titlePostfix;
 
     // affected team(s)
     const team0 = mapKids[key][IDXSCH_TEA];
@@ -648,6 +651,104 @@ if (load.schedules) {
         // handle the response to create xml entries
         function res(response) {
           leagueKidsSchedules(response, key, comp, fun, tit, team)
+        }, offline
+      )
+    }
+  })
+}
+
+// #endregion
+
+// #region -- Load the players. -----------------------------------------------
+
+if (load.players) {
+  console.log('Create players ' + currentSeason + '.')
+
+  // create xml data
+  const xmlPla = new Xml()
+
+  // load the map of players
+  var mapPlayers = window.bhv.archive.getPlayersMap(currentSeason);
+
+  var IDXP_TEA = 0,
+      IDXP_TIT = 2,
+      limitP = 999,
+      // the counter of the enries of the map
+      counterP1 = 0,
+      // the counter of the read results
+      counterP2 = 0;
+
+  /**
+   * The handler to add the read players to the xml data.
+   * @param {string} response The response from server.
+   * @param {string} key The key of the competition.
+   * @param {string} team The id the affected team.
+   * @param {string} tit The title of the players.
+   * @return {void}
+   */
+  function handlePlayers(response, key, team, tit) {
+    console.log((++counterP2) + ' - create xml data of players for ' + key + '.')
+
+    // create a html parser to read the results
+    const xmlPlayers = cheerio.load(response, {
+      xmlMode: true
+    })
+
+    // create xml entry for a result
+    const result = new Item('players', []);
+    xmlPla.add(result);
+    result.addAttribute('key', key);
+    result.addAttribute('team', team);
+    result.addAttribute('title', tit);
+
+    // get all the results
+    const arr = xmlPlayers('xml > kader')
+    arr.each((idx, res) => {
+
+      // create an entry
+      const player = new Item('kader', [])
+      result.add(player)
+
+      // create a data item
+      const arrItems = xmlPlayers('kader > *', res)
+      arrItems.each((idx2, item) => {
+        if (item.type == 'tag') {
+          player.add(new Item(item.name, cheerio.text(item.children)))
+        } else {
+          console.log('Invalid entry in xml: ', item)
+        }
+      })
+    })
+
+    // if all players read and written: output resulting xml file
+    if (counterP2 === counterP1) {
+      const fn = path.join(archiveDir, 'players.xml')
+
+      fs.writeFile(fn, xmlPla.toStr(), 'utf8', (err) => {
+        if (err) throw err;
+        compress(fn)
+        console.log('Archive has been created for players.');
+      });
+    }
+  }
+
+  // handle each entry of map of results
+  Object.keys(mapPlayers).forEach((key0) => {
+    const key = key0
+
+    // id of team
+    const team = mapPlayers[key][IDXP_TEA];
+
+    // title + date
+    const tit = mapPlayers[key][IDXP_TIT] + titlePostfix;
+
+    if (--limitP >= 0) {
+      // start query of kvv server
+      console.log((++counterP1) + ' - create players for ' + key + '.')
+      window.bhv.request.queryPlayers(team,
+        // handle the response to create xml entries
+        function res(response) {
+          handlePlayers(response, key, team, tit)
         }, offline
       )
     }
