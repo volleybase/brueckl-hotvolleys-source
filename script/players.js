@@ -1,4 +1,4 @@
-var activeSeason = '20';
+var activeSeason = '21';
 
 var map = {
   '20': {
@@ -31,55 +31,90 @@ function getPlayers() {
       if (keys[k1] === activeSeason) {
         window.bhv.request.queryPlayers(
           mm[key][0],
-          handlePlayers, getPlayersOffline
+          handlePlayersCur, getPlayersOffline
         );
       } else {
         // TODO
         window.bhv.request.queryPlayersArchiveGz(
           keys[k1], key,
-          handlePlayers, getPlayersOffline
+          handlePlayersArchive, onErrorArchive
         );
       }
     }
   }
 }
 
-function handlePlayers(response) {
+/**
+ * Create the html view of the players and inject it into page for current
+ * season.
+ * @param {string} response The response from volleynet server.
+ * @return {void}
+ */
+function handlePlayersCur(response) {
+  _handlePlayers(response, true);
+}
+
+/**
+ * Create the html view of the players and inject it into page for previous
+ * seasons.
+ * @param {string} response The response read from archive.
+ * @return {void}
+ */
+function handlePlayersArchive(response) {
+  _handlePlayers(response, false);
+}
+
+/**
+ * Create the html view of the players and inject it into page.
+ * @param {string} response The response from volleynet server (or from
+ * archive).
+ * @param {bool} curSeason True for current season, false for archive mode.
+ * @return {void}
+ */
+function _handlePlayers(response, curSeason) {
 
   // create xml data
   var msg = '',
       xml = window.bhv.request.xml.fromText(response, 'xml');
+
   if (xml) {
-    // get list of players
+    // get list of players and staff
     var players = window.bhv.request.xml.getNodes(xml, 'kader');
+
     if (players && players.length) {
       var xplayer = false, funktion;
 
       for (var i = 0; i < players.length; ++i) {
         msg += NL;
 
-        funktion = window.bhv.request.xml.findNode(players[i].childNodes, 'funktion');
+        funktion = window.bhv.request.xml.findNode(players[i].childNodes,
+          'funktion');
         if (funktion !== 'Spieler' && !xplayer) {
           xplayer = true;
           msg += NL;
         }
 
-        msg += window.bhv.request.xml.findNode(players[i].childNodes, 'vorname') + ' '
+        msg += window.bhv.request.xml.findNode(players[i].childNodes, 'vorname')
+          + ' '
           + window.bhv.request.xml.findNode(players[i].childNodes, 'name');
 
-        // if (xplayer > 0) {
+        // if not player: add info
         if (xplayer) {
-          msg += ' (-' + funktion + ')';
+          msg += ' (' + funktion + ')';
         }
       }
 
-      // save data for offline mode
-      _save(window.bhv.request.utils.getTitle('players', new Date(), map) + msg);
+      // save data for offline mode (only in current season)
+      if (curSeason) {
+        _save(window.bhv.request.utils.getTitle(
+          'players', new Date(), map) + msg);
+      }
     }
   }
 
   // add created text to page
-  window.bhv.request.utils.inject(window.bhv.request.utils.getTitle('players', null, map) + msg);
+  window.bhv.request.utils.inject(
+    window.bhv.request.utils.getTitle('players', null, map) + msg);
 }
 
 /**
@@ -98,6 +133,14 @@ function _save(txt) {
  */
 function getPlayersOffline() {
   window.bhv.request.utils.showOffline('players');
+}
+
+function onErrorArchive(info) {
+  log('---------------------------------------------------------------------');
+  log('Cannot read players from archive!');
+  log('---------------------------------------------------------------------');
+  log(info);
+  log('---------------------------------------------------------------------');
 }
 
 

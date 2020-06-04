@@ -16,9 +16,14 @@
     - [x] schedules - junior tournaments
     - [>] players
         - [x] players.xml
-        - [ ] Daten für Archiv aus xml lesen
+        - [x] Daten für Archiv aus xml lesen
         - [ ] OV.html - Junior players
+
 - [x] immer window. dazuschreiben
+
+- [ ] do not save offline data for archive
+    - [x] players
+    - [ ] ...
 
 # Libraries
 

@@ -13,6 +13,8 @@ if (window.bhv === undefined) {
  */
 window.bhv.request = {
 
+  // #region -- do request ----------------------------------------------------
+
   /**
    * Creates the request object and sends the data. If headers are given, they
    * will be added to the request and the reponse headers will be querued and
@@ -204,21 +206,9 @@ window.bhv.request = {
     return headersResponse;
   },
 
+  // #endregion
 
-  /**
-   * Checks if id is valid.
-   * @param {string} id The id to check.
-   * @param {string} info An info for error logging.
-   * @return {boolean} Ok or Nok.
-   */
-  '_checkId': function(id, info) {
-    if (!id || !Number.isFinite(id)) {
-      log('Invalid id ' + id + ' for ' + info + '!');
-      return false;
-    }
-
-    return true;
-  },
+  // #region -- standings -----------------------------------------------------
 
   'queryStandings': function(id, onsuccess, onerror) {
 
@@ -297,6 +287,9 @@ window.bhv.request = {
     return true;
   },
 
+  // #endregion
+
+  // #region -- schedules -----------------------------------------------------
 
   /**
    * Queries the schedules from server.
@@ -587,6 +580,9 @@ window.bhv.request = {
     return url.replace('{{year}}', year);
   },
 
+  // #endregion
+
+  // #region -- results -------------------------------------------------------
 
   'queryResults': function(idBew, idTea, idClub, onsuccess, onerror) {
 
@@ -740,6 +736,9 @@ window.bhv.request = {
     return ok;
   },
 
+  // #endregion
+
+  // #region -- calendar ------------------------------------------------------
 
   /**
    * Sends a file of x-dates.
@@ -787,6 +786,10 @@ window.bhv.request = {
     return true;
   },
 
+  // #endregion
+
+  // #region -- players -------------------------------------------------------
+
   // view-source:http://kvv.volleynet.at/volleynet/service/xml2.php?action=kader&tea_id=30505&pw=a6335ee9f3a27260e61c90928f8f3ba8
   queryPlayers: function(idTea, onsuccess, onerror) {
 
@@ -809,7 +812,85 @@ window.bhv.request = {
 
     // done
     return true;
+  },
+
+  queryPlayersArchiveGz: function(season, key, onsuccess, onerror) {
+    var url = location.protocol + '//' + location.hostname
+      + '/archive/' + season + '/players.xml.gz';
+
+    // request data
+    if (!this._startRequest(
+      url, 5000,
+      function(response) {
+        // extract results of players
+        try {
+          var ok = false,
+              uncompressed = pako.inflate(response, { 'to': 'string' });
+
+          // create xml data
+          var xml = window.bhv.request.xml.fromText(uncompressed, 'xml');
+          if (xml) {
+            // get list of results
+            var data = window.bhv.request.xml.getNodes(xml, 'players');
+            if (data) {
+              // search for results of given competition(s)
+              for (var i = 0; i < data.length; ++i) {
+                var item = data[i];
+                // if found: handle them
+                if (item.getAttribute('key') === key) {
+                  window.bhv.request.utils.storeTitle(
+                    'players', key,
+                    item.getAttribute('title')
+                  );
+
+                  var str = '<xml>' + item.innerHTML + '</xml>';
+                  onsuccess(str);
+                  ok = true;
+                }
+              }
+            }
+          }
+
+          if (!ok) {
+            onerror();
+          }
+
+        } catch (err) {
+          console.log(err);
+          onerror();
+        }
+      },
+      onerror, false, undefined, 'GET-BINARY')) {
+
+      // cannot start request of compressed data
+      onerror();
+      return false;
+    }
+
+    // request of data has been started
+    return true;
+  },
+
+  // #endregion
+
+  // #region -- utilities -----------------------------------------------------
+
+  /**
+   * Checks if id is valid.
+   * @param {string} id The id to check.
+   * @param {string} info An info for error logging.
+   * @return {boolean} Ok or Nok.
+   */
+  '_checkId': function(id, info) {
+    if (!id || !Number.isFinite(id)) {
+      log('Invalid id ' + id + ' for ' + info + '!');
+      return false;
+    }
+
+    return true;
   }
+
+  // #endregion
 }
 
 /**
@@ -817,9 +898,15 @@ window.bhv.request = {
  */
 window.bhv.request.utils = {
 
+  // #region -- archive -------------------------------------------------------
+
   archive: {
     titles: {}
   },
+
+  // #endregion
+
+  // #region -- title ---------------------------------------------------------
 
   storeTitle: function(region, key, title) {
     this.archive.titles[region + '-' + key] = title;
@@ -866,6 +953,10 @@ window.bhv.request.utils = {
     return '';
   },
 
+  // #endregion
+
+  // #region -- offline -------------------------------------------------------
+
   /**
    * Shows offline data.
    * @param {string} type The type of the data (standings, schedules).
@@ -880,6 +971,10 @@ window.bhv.request.utils = {
       }
     }
   },
+
+  // #endregion
+
+  // #region  -- utilities ----------------------------------------------------
 
   /**
    * Returns the key of the current query (schedules, standings).
@@ -1042,12 +1137,16 @@ window.bhv.request.utils = {
 
     return '';
   }
+
+  // #endregion
 }
 
 /**
  * Xml utilities.
  */
 window.bhv.request.xml = {
+
+  // #region -- xml from text -------------------------------------------------
 
   /**
    * Creates a xml document from the response text.
@@ -1155,6 +1254,10 @@ window.bhv.request.xml = {
     return '';
   },
 
+  // #endregion
+
+  // #region -- game result ---------------------------------------------------
+
   /**
    * Creates the result info from the xml data.
    * @param {NodeList} nodes The infos about a game containing the result info.
@@ -1198,4 +1301,6 @@ window.bhv.request.xml = {
 
     return res;
   }
+
+  // #endregion
 }
