@@ -10,14 +10,14 @@ var map = {
     // BL
     'br1g_20': [30505, null, 'Bundesliga'],
 
-    'br12_20': [32221, null, 'Supermini II'],
-    'br13_20': [32189, null, 'Supermini I'],
-    'br13m_20': [32215, null, 'Supermini I Burschen'],
-    'br14_20': [32168, null, 'Mini'],
-    'br14m_20': [32186, null, 'Mini Burschen'],
-    'br15_20': [32158, null, 'Midi'],
-    'br16_20': [32141, null, 'Schülerinnen'],
-    'br20_20': [32117, null, 'Juniorinnen']
+    'u12_20': [32221, null, 'Supermini II'],
+    'u13_20': [32189, null, 'Supermini'],
+    'u13m_20': [32215, null, 'Supermini Burschen'],
+    'u14_20': [32168, null, 'Mini'],
+    'u14m_20': [32186, null, 'Mini Burschen'],
+    'u15_20': [32158, null, 'Midi'],
+    'u16_20': [32141, null, 'Schülerinnen'],
+    'u20_20': [32117, null, 'Juniorinnen']
   }
 }
 
