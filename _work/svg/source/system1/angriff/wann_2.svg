@@ -1,0 +1,205 @@
+<svg id="svg_root" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1300 2200" width="1300" heigth="2200">
+  <g class="court">
+    <rect fill="lime" x="0" y="0" width="1300" height="2200"/>
+    <rect fill="#FFBF00" stroke="darkblue" stroke-width="10px" x="200" y="200" width="900" height="1800"/>
+    <line stroke="darkblue" stroke-width="10px" x1="200" y1="1100.0" x2="1100" y2="1100.0"/>
+    <line stroke="darkblue" stroke-width="10px" x1="200" y1="800.0" x2="1100" y2="800.0"/>
+    <line stroke="darkblue" stroke-width="10px" x1="200" y1="1400.0" x2="1100" y2="1400.0"/>
+    <line stroke="darkblue" stroke-width="10px" stroke-dasharray="15 15" stroke-linecap="butt" x1="185" y1="1400.0" x2="80" y2="1400.0"/>
+    <line stroke="darkblue" stroke-width="10px" stroke-dasharray="15 15" stroke-linecap="butt" x1="1115" y1="1400.0" x2="1220" y2="1400.0"/>
+    <line stroke="darkblue" stroke-width="10px" stroke-dasharray="15 15" stroke-linecap="butt" x1="185" y1="800.0" x2="80" y2="800.0"/>
+    <line stroke="darkblue" stroke-width="10px" stroke-dasharray="15 15" stroke-linecap="butt" x1="1115" y1="800.0" x2="1220" y2="800.0"/>
+    <g transform="translate(200 1100.0)">
+      <g id="player_actor_1" transform="translate(650 75) rotate(90)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_1-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_1-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_1-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_1-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_1-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_1-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_1-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_1-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">Auf</text>
+      </g>
+      <g id="ball_actor_2" transform="translate(625 75)">
+        <circle fill="whitesmoke" stroke="none" cx="0" cy="0" r="25.0"/>
+      </g>
+      <g id="player_actor_3" transform="translate(550 400) rotate(4)" data-optimize-text="true">
+        <circle style="fill: lightgray; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_3-prepareblock" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_3-block" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_3-preparereception" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-reception" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_3-attack" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-attackleft" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-set" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_3-text" style="fill: gray; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">1. T</text>
+      </g>
+      <g id="player_actor_4" transform="translate(565 145) rotate(4)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_4-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_4-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_4-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_4-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_4-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_4-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_4-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_4-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">1. T</text>
+      </g>
+      <g id="player_actor_5" transform="translate(350 400) rotate(10)" data-optimize-text="true">
+        <circle style="fill: lightgray; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_5-prepareblock" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_5-block" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_5-preparereception" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_5-reception" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_5-attack" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_5-attackleft" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_5-set" style="display: none;">
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: lightgray; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_5-text" style="fill: gray; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">2. T</text>
+      </g>
+      <g id="player_actor_6" transform="translate(365 300) rotate(10)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_6-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_6-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_6-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_6-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_6-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_6-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_6-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_6-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">2. T</text>
+      </g>
+      <g id="player_actor_7" transform="translate(-100 400) rotate(25)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_7-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_7-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_7-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_7-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_7-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_7-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_7-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_7-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">3. T</text>
+      </g>
+      <g class="actions"/>
+    </g>
+  </g>
+</svg>
