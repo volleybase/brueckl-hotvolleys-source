@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Brückl hotvolleys</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <script src="/script/polyfills.js"></script>
+  <script src="/script/animator.js"></script>
+  <script src="/script/svgviewer.js"></script>
+  <style>
+body {
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div#svgcanvas {
+  position: absolute;
+  left: 1em;
+  top: 11em;
+  right: 1em;
+  min-width: 10em;
+  bottom: 4.8em;
+  background-color: aliceblue;
+}
+div#svgcanvas > svg {
+  height: 100%;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+div#svgcanvas > div.animation_cmds {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 5em;
+  width: 9.9em;
+  border-radius: 0.1em;
+  background-color: darkgray;
+  display: none;
+}
+div#svgcanvas > div.animation_cmds > div {
+  position: absolute;
+  top: 0.1em;
+  left: 0.1em;
+  height: 4.8em;
+  width: 4.8em;
+  border-radius: 0.1em;
+  background-color: lightgray;
+  overflow: hidden;
+}
+div#svgcanvas > div.animation_cmds > div.stop {
+  left: 5em;
+}
+div#svgcanvas > div.animation_cmds > div > div {
+  position: absolute;
+  left: 1em;
+  top: 0.8em;
+  z-index: 1;
+  background-color: lightgray;
+}
+
+div#svgcanvas > div.animation_cmds > div.play {
+  cursor: pointer;
+}
+div#svgcanvas > div.animation_cmds > div.play > div {
+  width: 0;
+  height: 0;
+  border-top: 1.5em solid transparent;
+  border-left: 3em solid gray;
+  border-bottom: 1.5em solid transparent;
+}
+
+div#svgcanvas > div.animation_cmds > div.pause {
+  cursor: pointer;
+  display: none;
+}
+div#svgcanvas > div.animation_cmds > div.pause > div {
+  box-sizing: border-box;
+  width: 2.8em;
+  height: 3em;
+  border: 1em solid gray;
+  border-width: 0 1em;
+}
+
+div#svgcanvas > div.animation_cmds > div.stop > div {
+  top: 0.9em;
+  width: 2.8em;
+  height: 2.8em;
+  background-color: gray;
+  opacity: 0.5;
+}
+
+div#svgcanvas > div.animation_cmds.play > div.play {
+  display: none;
+}
+div#svgcanvas > div.animation_cmds.play > div.pause {
+  display: block;
+}
+div#svgcanvas > div.animation_cmds.play > div.stop {
+  cursor: pointer;
+}
+div#svgcanvas > div.animation_cmds.play > div.stop > div {
+  opacity: 1;
+}
+
+div#svgcanvas > div.animation_cmds.pause > div.stop {
+  cursor: pointer;
+}
+div#svgcanvas > div.animation_cmds.pause > div.stop > div {
+  opacity: 1;
+}
+
+#svgmenu {
+  background-color: transparent;
+}
+
+/* -- aufspiel ------------------------------------------------------------- */
+div#svgcanvas > svg rect#bg {
+  fill: #eee
+}
+div#svgcanvas > svg  .set_main path {
+  stroke: black;
+  fill: none;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+div#svgcanvas > svg  .set_other path {
+  stroke: darkgray;
+  fill: none;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+div#svgcanvas > svg  .set_main:hover path,
+div#svgcanvas > svg  .set_main:focus path,
+div#svgcanvas > svg  .set_main:active path {
+  stroke: darkred;
+  stroke-width: 5px;
+}
+div#svgcanvas > svg  .set_other:hover path,
+div#svgcanvas > svg  .set_other:focus path,
+div#svgcanvas > svg  .set_other:active path {
+  stroke: darkred;
+  stroke-width: 3px;
+}
+
+div#svgcanvas > svg  text {
+  font-weight: bold;
+  text-anchor: middle;
+  font-family: Helvetica, Arial, sans-serif;
+  fill: black;
+  stroke: none;
+  font-size: 40px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+div#svgcanvas > svg  text.version {
+  font-weight: normal;
+  font-size: 6px;
+}
+div#svgcanvas > svg  .set_main:hover text,
+div#svgcanvas > svg  .set_other:hover text,
+div#svgcanvas > svg  .set_main:focus text,
+div#svgcanvas > svg  .set_other:focus text,
+div#svgcanvas > svg  .set_main:active text,
+div#svgcanvas > svg  .set_other:active text {
+ fill: firebrick;
+}
+div#svgcanvas > svg  .set_main image,
+div#svgcanvas > svg  .set_other image {
+  display: block;
+}
+div#svgcanvas > svg  .set_main image.hi,
+div#svgcanvas > svg  .set_other image.hi {
+  display: none;
+}
+div#svgcanvas > svg  .set_main:hover image.hi,
+div#svgcanvas > svg  .set_other:hover image.hi,
+div#svgcanvas > svg  .set_main:focus image.hi,
+div#svgcanvas > svg  .set_other:focus image.hi,
+div#svgcanvas > svg  .set_main:active image.hi,
+div#svgcanvas > svg  .set_other:active image.hi {
+  display: block;
+}
+
+div#svgcanvas > svg  text.subtitle {
+  font-size: 28px;
+  font-weight: normal;
+  display: none;
+}
+div#svgcanvas > svg  .set_main:hover text.subtitle,
+div#svgcanvas > svg  .set_other:hover text.subtitle,
+div#svgcanvas > svg  .set_main:focus text.subtitle,
+div#svgcanvas > svg  .set_other:focus text.subtitle,
+div#svgcanvas > svg  .set_main:active text.subtitle,
+div#svgcanvas > svg  .set_other:active text.subtitle {
+  display: block;
+  fill: black;
+}
+div#svgcanvas > svg  text.subtitle tspan.bold {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+div#svgcanvas > svg  .set_main > .info {
+  stroke: black;
+  stroke-width: 3px;
+  fill: yellow;
+}
+div#svgcanvas > svg  .set_other > .info {
+  stroke: black;
+  stroke-width: 3px;
+  fill: lightgray;
+}
+
+div#svgcanvas > svg  #netz line {
+  stroke: black;
+  stroke-width: 1px;
+}
+div#svgcanvas > svg  #netz line.top {
+  stroke-width: 8px;
+  stroke: white;
+}
+div#svgcanvas > svg  #netz line.antenna {
+  stroke: white;
+}
+div#svgcanvas > svg  #netz line.antennaX {
+  stroke: red;
+  stroke-dasharray: 9,11;
+  stroke-dashoffset: 10;
+}
+div#svgcanvas > svg  #netz line.antenna_bag {
+  stroke-width: 6px;
+  stroke: white;
+}
+  </style>
+  <script>
+function init() {
+  // block default context menu
+  window.addEventListener('contextmenu', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  });
+
+  // init footer (if any text to set)
+  var footer = '{{footer}}';
+  if (footer) {
+    var elemFooter = document.querySelector('#footer');
+    if (elemFooter) {
+      elemFooter.innerHTML = footer;
+      elemFooter.style.textAlign = 'center';
+    }
+  }
+
+  // get scripts and evaluate them
+  var elemTpl = document.querySelector('#svg_script');
+  if (elemTpl) {
+    eval(elemTpl.innerText);
+  }
+
+  // check for menu, if any: init it
+  var elemCanvas = document.querySelector('div#svgcanvas'),
+      elemMenu = document.querySelector('#svgmenu');
+  if (elemCanvas && elemMenu) {
+    svgviewer.menuHandler = menuHandler;
+    svgviewer.initContextMenu(elemCanvas);
+  }
+
+  // handle animation
+  var i, mode = '',
+      anim = document.querySelector('div#svgcanvas > div.animation_cmds'),
+      btns = anim.querySelectorAll('div'),
+      handler = function(event) {
+        var mode = anim.className.indexOf('play') > -1 ? 'play'
+          : (anim.className.indexOf('pause') > -1 ? 'pause' : 'stop'),
+            cmd = '',
+            nextMode = '';
+
+        switch (this.className) {
+          case 'play':
+            if (mode == 'stop' || mode == 'pause') {
+              cmd = 'play';
+              nextMode = 'animation_cmds play';
+            }
+            break;
+          case 'pause':
+            if (mode == 'play') {
+              cmd = 'pause';
+              nextMode = 'animation_cmds pause';
+            }
+            break;
+          case 'stop':
+            if (mode == 'play' || mode == 'pause') {
+              cmd = 'stop';
+              nextMode = 'animation_cmds';
+            }
+            break;
+          // no-default
+        }
+
+        if (nextMode && cmd) {
+          console.log(cmd);
+          anim.className = nextMode;
+
+          // TODO set animation mode
+        }
+      };
+  for (i = 0; i < btns.length; ++i) {
+    btns[i].addEventListener('click', handler);
+  }
+
+  // init viewer
+  svgviewer.init('svgcanvas');
+}
+
+function menuHandler(fullkey, state) {
+  // console.log('Menuitem: ' + fullkey + ' -> ' + state);
+  svgviewer.setOption(fullkey, state);
+}
+  </script>
+</head>
+<body onload="init();">
+<div class="container">
+<div id="header">{include{header}}</div>
+<div id="svgcanvas">{include{animation}}{{svg}}</div>
+<div id="footer">{include{footer}}</div>
+</div>
+</body>
+</html>

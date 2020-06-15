@@ -3,4 +3,4 @@
 echo chrome://inspect
 echo .
 
-node --inspect-brk node_modules\grunt-cli\bin\grunt
+node --inspect-brk node_modules\grunt-cli\bin\grunt %1

@@ -1,3 +1,5 @@
+fs = require('fs')
+
 # create_manifest = require('./_work/create.manifest.js')
 create_svg = require('./_work/svg/create_svg.js')
 create_ovsvg = require('./_work/ovsvg/grunt/create_ovsvg.js')
@@ -33,6 +35,9 @@ files = [
 
   # ignore the old files
   "!**/*_old.*"
+]
+files_system1 = [
+  "system1/**"
 ]
 files_system4 = [
   "system4/**"
@@ -80,6 +85,7 @@ files_svg = [
 # the files to copy
 files_copy = files
   .concat(files_data)
+  .concat(files_system1)
   .concat(files_system4)
   .concat(files_system6)
   .concat(files_favicons)
@@ -522,11 +528,213 @@ def =
       imagepath: 'system6/spielfeld'
       info: 'Die Positionen der Spielerinnen.'
       back: '/system6/spielfeld'
+  sys1:
+    r:
+      ann:
+        #title: '3er Riegel'
+        anchor: '3er_riegel'
+        image: 'annahme/3er_riegel.png'
+        target: 'annahme/3er_riegel.svg'
+        #info: '3 Spielerinnen nehmen an'
+        infos: 'annahme/3er_riegel.json'
+      l1:
+        #title: 'Läufer 1'
+        anchor: 'l1'
+        image: 'annahme/l1.png'
+        target: 'annahme/l1.svg'
+        #info: 'Aufspielerin Pos 1'
+        infos: 'annahme/l1.json'
+      l6:
+        #title: 'Läufer 6'
+        anchor: 'l6'
+        image: 'annahme/l6.png'
+        target: 'annahme/l6.svg'
+        #info: 'Aufspielerin Pos 6'
+        infos: 'annahme/l6.json'
+      l5:
+        #title: 'Läufer 5'
+        anchor: 'l5'
+        image: 'annahme/l5.png'
+        target: 'annahme/l5.svg'
+        #info: 'Aufspielerin Pos 5'
+        infos: 'annahme/l5.json'
+      l4:
+        #title: 'Läufer 4'
+        anchor: 'l4'
+        image: 'annahme/l4.png'
+        target: 'annahme/l4.svg'
+        #info: 'Aufspielerin Pos 4'
+        infos: 'annahme/l4.json'
+      l3:
+        #title: 'Läufer 3'
+        anchor: 'l3'
+        image: 'annahme/l3.png'
+        target: 'annahme/l3.svg'
+        #info: 'Aufspielerin Pos 3'
+        infos: 'annahme/l3.json'
+      l2:
+        #title: 'Läufer 2'
+        anchor: 'l2'
+        image: 'annahme/l2.png'
+        target: 'annahme/l2.svg'
+        #info: 'Aufspielerin Pos 2'
+        infos: 'annahme/l2.json'
+    s:
+      aufw1:
+        #title: 'Wann 1'
+        anchor: 'wann_1'
+        image: 'angriff/wann_1.png'
+        target: 'angriff/wann_1.svg'
+        #info: 'Wann soll ich loslaufen?'
+        infos: 'angriff/wann_1.json'
+      aufw2:
+        #title: 'Wann 2'
+        anchor: 'wann_2'
+        image: 'angriff/wann_2.png'
+        target: 'angriff/wann_2.svg'
+        #info: 'Wann soll ich loslaufen?'
+        infos: 'angriff/wann_2.json'
+      aufwo:
+        #title: 'Wo'
+        anchor: 'wo'
+        image: 'angriff/wo.png'
+        target: 'angriff/wo.svg'
+        #info: 'Wo soll ich laufen?'
+        infos: 'angriff/wo.json'
+      vor2:
+        #title: 'Vorbereitung 2'
+        anchor: 'vorbereitung_2'
+        image: 'angriff/vorbereitung_2.png'
+        target: 'angriff/vorbereitung_2.svg'
+        #info: 'Aufspielerin vorne<br>Wo bereite ich mich auf den Angriff vor?'
+        infos: 'angriff/vorbereitung_2.json'
+      vor1:
+        #title: 'Vorbereitung 1'
+        anchor: 'vorbereitung_1'
+        image: 'angriff/vorbereitung_1.png'
+        target: 'angriff/vorbereitung_1.svg'
+        #info: 'Aufspielerin hinten<br>Wo bereite ich mich auf den Angriff vor?'
+        infos: 'angriff/vorbereitung_1.json'
+      code:
+        title: 'Die Codes'
+        anchor: 'aufspiel'
+        image: 'angriff/aufspiel.png'
+        target: 'angriff/aufspiel.svg'
+        info: 'Die Nummerncodes und ihre Zeichen.'
+        container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container_aufspiel.html"
+    a:
+      ang0:
+        #title: 'Angriff 0/6'
+        anchor: 'angriff_0_6'
+        image: 'angriff/angriff_0_6.png'
+        target: 'angriff/angriff_0_6.svg'
+        #info: 'Angriff und Sicherung Pos 4'
+        infos: 'angriff/angriff_0_6.json'
+      ang2:
+        #title: 'Angriff 2'
+        anchor: 'angriff_2'
+        image: 'angriff/angriff_2.png'
+        target: 'angriff/angriff_2.svg'
+        #info: 'Angriff und Sicherung Pos 2'
+        infos: 'angriff/angriff_2.json'
+      ang5:
+        #title: 'Angriff 5v'
+        anchor: 'angriff_5v'
+        image: 'angriff/angriff_5v.png'
+        target: 'angriff/angriff_5v.svg'
+        #info: 'Angriff und Sicherung Pos 3'
+        infos: 'angriff/angriff_5v.json'
+      ang1:
+        #title: 'Schnellangriff'
+        anchor: 'schnellangriff'
+        image: 'angriff/schnellangriff.png'
+        target: 'angriff/schnellangriff.svg'
+        #info: 'Angriff und Sicherung bei Schnellangriff'
+        infos: 'angriff/schnellangriff.json'
+    b:
+      bas1:
+        #title: 'Basis 1'
+        anchor: 'basis_1'
+        image: 'verteidigung/basis_1.png'
+        target: 'verteidigung/basis_1.svg'
+        #info: 'Aufspielerin hinten'
+        infos: 'verteidigung/basis_1.json'
+      bas2:
+        #title: 'Basis 2'
+        anchor: 'basis_2'
+        image: 'verteidigung/basis_2.png'
+        target: 'verteidigung/basis_2.svg'
+        #info: 'Aufspielerin vorne'
+        infos: 'verteidigung/basis_2.json'
+    v:
+      bloinf:
+        title: 'Block'
+        anchor: 'block'
+        image: 'blockinfo/block2.gif'
+        target: 'blockinfo/block.svg'
+        info: 'Infos zum Block'
+      blo24:
+        #title: 'Doppelblock 4'
+        anchor: 'block_4'
+        image: 'verteidigung/block_4.png'
+        target: 'verteidigung/block_4.svg'
+        #info: 'Doppelblock<br>(links, Pos. 4)'
+        infos: 'verteidigung/block_4.json'
+      blo23:
+        #title: 'Doppelblock 3'
+        anchor: 'block_3'
+        image: 'verteidigung/block_3.png'
+        target: 'verteidigung/block_3.svg'
+        #info: 'Doppelblock<br>(Mitte, Pos. 3)'
+        infos: 'verteidigung/block_3.json'
+      blo22:
+        #title: 'Doppelblock 2'
+        anchor: 'block_2'
+        image: 'verteidigung/block_2.png'
+        target: 'verteidigung/block_2.svg'
+        #info: 'Doppelblock<br>(rechts, Pos. 2)'
+        infos: 'verteidigung/block_2.json'
+      blo3:
+        #title: 'Block 3'
+        anchor: 'block_3_schnellangriff'
+        image: 'verteidigung/block_3_schnellangriff.png'
+        target: 'verteidigung/block_3_schnellangriff.svg'
+        #info: 'Block auf Pos. 3<br>(Schnellangriff)'
+        infos: 'verteidigung/block_3_schnellangriff.json'
+      blo31:
+        #title: 'Block 3<sub>(1)</sub>'
+        anchor: 'block_3_1_schnellangriff'
+        image: 'verteidigung/block_3_1_schnellangriff.png'
+        target: 'verteidigung/block_3_1_schnellangriff.svg'
+        #info: 'Variante 1'
+        infos: 'verteidigung/block_3_1_schnellangriff.json'
+      blo35:
+        #title: 'Block 3<sub>(5)</sub>'
+        anchor: 'block_3_5_schnellangriff'
+        image: 'verteidigung/block_3_5_schnellangriff.png'
+        target: 'verteidigung/block_3_5_schnellangriff.svg'
+        #info: 'Variante 5'
+        infos: 'verteidigung/block_3_5_schnellangriff.json'
+      ohn1:
+        #title: 'Ohne 1'
+        anchor: 'ohne_1'
+        image: 'verteidigung/ohne_1.png'
+        target: 'verteidigung/ohne_1.svg'
+        #info: '"Ohne" Block<br>(Aufspielerin hinten)'
+        infos: 'verteidigung/ohne_1.json'
+      ohn2:
+        #title: 'Ohne 2'
+        anchor: 'ohne_2'
+        image: 'verteidigung/ohne_2.png'
+        target: 'verteidigung/ohne_2.svg'
+        #info: '"Ohne" Block<br>(Aufspielerin vorne)'
+        infos: 'verteidigung/ohne_2.json'
 
 setTargetLinks = (def) ->
   map = {}
   keyMap = {
     br3: 'system6'
+    sys1: 'system1'
   }
 
   keys1 = Object.keys(def)
@@ -547,10 +755,37 @@ setTargetLinks = (def) ->
         map[(keyMap[key1] ? key1) + '/' + tab.target] = tab.info
           .replace('<br>', ', ')
           .replace('<br />', ', ')
+
+      # system 1 is one level deeper
+      keys3 = Object.keys(tab)
+      keys3.forEach((key3) ->
+        tab3 = tab[key3]
+        # todo imageviewer (if necessary)
+        #if tab3.target != undefined and tab3.info != undefined
+        #  tgt = tab3.target.replace('.svg', '.html')
+        #  map[(keyMap[key1] ? key1) + '/' + tgt] = tab3.info
+        #    .replace('<br>', ', ')
+        #    .replace('<br />', ', ')
+
+        if tab3.target != undefined
+          infos = JSON.parse(JSON.stringify(tab3))
+          if tab3.infos != undefined
+            fn = './_work/svg/source/' + (keyMap[key1] ? key1) + '/' + tab3.infos
+            json = fs.readFileSync(fn, 'utf8')
+            infos.infos = JSON.parse(json)
+            #copy data for overview
+            if infos.infos.title != undefined
+              tab3.title = infos.infos.title
+            if infos.infos.subtitle != undefined
+              tab3.info = infos.infos.subtitle
+          tgt = tab3.target.replace('.svg', '.html')
+          map[(keyMap[key1] ? key1) + '/' + tgt] = infos
+      )
     )
   )
   return map
 infoMap = setTargetLinks(def)
+#console.log(infoMap)
 
 
 config = (grunt) ->
@@ -630,6 +865,7 @@ config = (grunt) ->
       files:
         main: files
         data: files_data
+        system1: files_system1
         system4: files_system4
         system6: files_system6
         favicons: files_favicons
@@ -756,6 +992,20 @@ config = (grunt) ->
         cwd: 'D:/workdir/brueckl-hotvolleys-source/_work/svg/source'
         src: [ "u11/*.html" ]
         dest: '.'
+      ]
+    system1:
+      options:
+        container: "D:/workdir/brueckl-hotvolleys-source/_work/svg/container.html"
+        include: "D:/workdir/brueckl-hotvolleys-source/_work/include/"
+        infoMap: infoMap
+        variables:
+          back: '/system1/'
+      files: [
+        expand: true
+        cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source/system1"
+        src: [ "**/*.svg" ]
+        dest: 'system1'
+        ext: '.html'
       ]
 
   createovsvg:
@@ -1175,7 +1425,117 @@ config = (grunt) ->
           }
         ]
       target: 'D:/workdir/brueckl-hotvolleys-source/system6/spielfeld/index.html'
-
+    system1:
+      options:
+        include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
+        templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
+        templates: ['main.html', 'block.html', 'blockX.html',
+                    'table.html', 'table2.html',
+                    'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        vars:
+          back: '/ov.html'
+          name: 'system1'
+      content:
+        template: 'main'
+        title: 'Spielsystem'
+        block: [
+          {
+            title: 'Annahme'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys1.r.ann ]
+                tableimage: [ def.sys1.r.ann ]
+                tableinfo: [ def.sys1.r.ann ]
+              }
+              {
+                tableheader: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                tableimage: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                tableinfo: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+              }
+              {
+                tableheader: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                tableimage: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                tableinfo: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+              }
+            ]
+          }
+          {
+            title: 'Aufspiel + Angriff'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys1.s.aufw1, def.sys1.s.aufw2, def.sys1.s.aufwo ]
+                tableimage: [ def.sys1.s.aufw1, def.sys1.s.aufw2, def.sys1.s.aufwo ]
+                tableinfo: [ def.sys1.s.aufw1, def.sys1.s.aufw2, def.sys1.s.aufwo ]
+              }
+              {
+                tableheader: [ def.sys1.s.vor2, def.sys1.s.vor1 ]
+                tableimage: [ def.sys1.s.vor2, def.sys1.s.vor1 ]
+                tableinfo: [ def.sys1.s.vor2, def.sys1.s.vor1 ]
+              }
+              {
+                tableheader: [ def.sys1.s.code ]
+                tableimage: [ def.sys1.s.code ]
+                tableinfo: [ def.sys1.s.code ]
+              }
+            ]
+          }
+          {
+            title: 'Angriff + Sicherung'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys1.a.ang0, def.sys1.a.ang2 ]
+                tableimage: [ def.sys1.a.ang0, def.sys1.a.ang2 ]
+                tableinfo: [ def.sys1.a.ang0, def.sys1.a.ang2 ]
+              }
+              {
+                tableheader: [ def.sys1.a.ang5, def.sys1.a.ang1 ]
+                tableimage: [ def.sys1.a.ang5, def.sys1.a.ang1 ]
+                tableinfo: [ def.sys1.a.ang5, def.sys1.a.ang1 ]
+              }
+            ]
+          }
+          {
+            title: 'Basis'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys1.b.bas1, def.sys1.b.bas2 ]
+                tableimage: [ def.sys1.b.bas1, def.sys1.b.bas2 ]
+                tableinfo: [ def.sys1.b.bas1, def.sys1.b.bas2 ]
+              }
+            ]
+          }
+          {
+            title: 'Block + Feldverteidigung'
+            table: ''
+            table2: [
+              {
+                tableheader: [ def.sys1.v.bloinf ]
+                tableimage: [ def.sys1.v.bloinf ]
+                tableinfo: [ def.sys1.v.bloinf ]
+              }
+              {
+                tableheader: [ def.sys1.v.blo24, def.sys1.v.blo23, def.sys1.v.blo22 ]
+                tableimage: [ def.sys1.v.blo24, def.sys1.v.blo23, def.sys1.v.blo22 ]
+                tableinfo: [ def.sys1.v.blo24, def.sys1.v.blo23, def.sys1.v.blo22 ]
+              }
+              {
+                tableheader: [ def.sys1.v.blo3, def.sys1.v.blo31, def.sys1.v.blo35 ]
+                tableimage: [ def.sys1.v.blo3, def.sys1.v.blo31, def.sys1.v.blo35 ]
+                tableinfo: [ def.sys1.v.blo3, def.sys1.v.blo31, def.sys1.v.blo35 ]
+              }
+              {
+                tableheader: [ def.sys1.v.ohn1, def.sys1.v.ohn2 ]
+                tableimage: [ def.sys1.v.ohn1, def.sys1.v.ohn2 ]
+                tableinfo: [ def.sys1.v.ohn1, def.sys1.v.ohn2 ]
+              }
+            ]
+          }
+        ]
+      target: 'D:/workdir/brueckl-hotvolleys-source/system1/index.html'
 
   watch:
     initWorker:
@@ -1186,6 +1546,9 @@ config = (grunt) ->
       tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
     main:
       files: files
+      tasks: ['initWorker', 'newer:copy:deploy2']
+    system1:
+      files: files_system1
       tasks: ['initWorker', 'newer:copy:deploy2']
     system4:
       files: files_system4
@@ -1271,7 +1634,7 @@ module.exports = (grunt) ->
     i('      Sourcen für svgviewer holen')
     i('')
     i('  createsvg')
-    i('    uld_auf, u10, u11')
+    i('    uld_auf, u10, u11, system1')
     i('      Views mit svg-viewer erstellen')
     i('')
     i('  createovsvg')

@@ -21,7 +21,7 @@ module.exports = function init(grunt) {
             nam = tpl.substr(0, tpl.length - ext.length)
       tpls[nam] = fs.readFileSync(tplDir + tpl, 'utf8')
     })
-    console.log('templates:' + Object.keys(tpls))
+    grunt.verbose.writeln('templates:' + Object.keys(tpls))
 
     if (this.data && this.data.content && this.data.content.template
       && tpls[this.data.content.template]) {
@@ -54,6 +54,9 @@ module.exports = function init(grunt) {
             }
           } else {
             res = data[key]
+            if (key == 'target') {
+              res = res.replace('.svg', '.html')
+            }
           }
 
           cont = cont.replace(new RegExp('{{' + key + '}}', 'g'), res)
@@ -64,16 +67,16 @@ module.exports = function init(grunt) {
 
       // get main keys from property content
       let keys = Object.keys(this.data.content)
-      console.log('######################')
-      console.log(keys)
+      // console.log('######################')
+      // console.log(keys)
       const pos = keys.indexOf('template')
       if (pos > -1) {
         keys.splice(pos, 1)
       }
-      console.log(keys)
+      // console.log(keys)
 
       // create content
-      console.log('start: ' + this.data.content.template)
+      // console.log('start: ' + this.data.content.template)
       const content = handler(this.data.options.include, this.data.options.vars,
         tpls[this.data.content.template], this.data.content, keys)
 

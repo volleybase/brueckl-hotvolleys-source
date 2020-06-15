@@ -55,12 +55,14 @@ self.addEventListener('fetch', (evt) => {
   let nameCache = CACHE['main'];
   if (evt.request.url.indexOf('/data/') > -1) {
     nameCache = CACHE['data'];
+  } else if (evt.request.url.indexOf('/system1') > -1) {
+    nameCache = CACHE['system1'];
   } else if (evt.request.url.indexOf('/system4') > -1) {
     nameCache = CACHE['system4'];
   } else if (evt.request.url.indexOf('/system6') > -1) {
     nameCache = CACHE['system6'];
   } else if (evt.request.url.indexOf('/favicons/') > -1) {
-    nameCache = CACHE['system6'];
+    nameCache = CACHE['favicons'];
   } else if (evt.request.url.indexOf('/info/') > -1) {
     nameCache = CACHE['info'];
   } else if (evt.request.url.indexOf('/statistics/19/') > -1) {
