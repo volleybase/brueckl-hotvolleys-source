@@ -1,3 +1,19 @@
+- initContextMenu
+    - ein-/ausschalten des Zusatzmenüs im AnmationControl
+    - detect menu -> check for svg-menu
+- initAnimation
+    - hier werden die AnimationControls eingeschaltet
+- init
+    -
+
+- breiten
+    - nur Anim: width 2.05em
+    - nur Menu: width 0.91em
+
+- sonstiges
+    - header buttons -> background #eee
+
+
 # Reload nach Update
 
 - [x] Wie einen automatischen reload nach dem Update provozieren?

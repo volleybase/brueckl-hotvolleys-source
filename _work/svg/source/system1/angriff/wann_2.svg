@@ -199,7 +199,25 @@
         </g>
         <text id="player_actor_7-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">3. T</text>
       </g>
-      <g class="actions"/>
+      <g class="actions">
+        <line x1="552.9361010975736" y1="350.0862813412502" x2="562.0638989024264" y2="194.9137186587498" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="562.0638989024264" y1="194.9137186587498" x2="573.0742780183272" y2="220.60460326251805" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="562.0638989024264" y1="194.9137186587498" x2="548.1174186889522" y2="219.13655271373133" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="356.79900103650084" y1="350.46442101977954" x2="385" y2="145" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="385" y1="145" x2="393.9843942268047" y2="171.46753974923544" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="385" y1="145" x2="369.2166047366945" y2="168.06803923098502" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="-75.7178534410684" y1="356.2921361939231" x2="50" y2="130" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="50" y1="130" x2="48.78589267205342" y2="157.92446854277134" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+        <line x1="50" y1="130" x2="26.931960769014978" y2="145.78339526330555" style="stroke: black; stroke-width: 1; stroke-dasharray: 3, 4;"/>
+      </g>
     </g>
   </g>
 </svg>
+<script id="svg_script">
+svgviewer.addAnimation0('player_actor_3', {'x': 550, 'y': 400, 'angle': 4, 'visible': 'true', 'text': '1. T', 'type': ''});
+svgviewer.addAnimation('player_actor_3', [{'type': 'M', 'start': 0.0, 'duration': 0.0, 'end': 0.0, 'val1': 15, 'val2': -255, 'val3': 'ssee'}]);
+svgviewer.addAnimation0('player_actor_5', {'x': 350, 'y': 400, 'angle': 10, 'visible': 'true', 'text': '2. T', 'type': ''});
+svgviewer.addAnimation('player_actor_5', [{'type': 'M', 'start': 0.0, 'duration': 0.0, 'end': 0.0, 'val1': 35, 'val2': -255, 'val3': 'ss'}]);
+svgviewer.addAnimation0('player_actor_7', {'x': -100, 'y': 400, 'angle': 25, 'visible': 'true', 'text': '3. T', 'type': ''});
+svgviewer.addAnimation('player_actor_7', [{'type': 'M', 'start': 0.0, 'duration': 0.0, 'end': 0.0, 'val1': 150, 'val2': -270, 'val3': 'ss'}]);
+</script>
