@@ -1,0 +1,73 @@
+<html>
+<head>
+ <title>Lock & Unlock</title>
+ <style>
+html, body, * {
+  /*font-size: 10px;*/
+}
+div.lock, div.unlock {
+  font-size: 14px;
+  position: absolute;
+  left: 100px;
+  top: 200px;
+  background-color: black;
+  width: 5em;
+  height: 4em;
+  border-radius: 20%;
+  cursor: pointer;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+div.unlock {
+  left: 300px;  
+}
+div.lock:before, div.unlock:before {
+  content: '';
+  position: absolute;
+  top: -3em;
+  left: 0.75em;
+  width: 3.5em;
+  height: 3.5em;
+  box-sizing: border-box;
+  border: 1em solid black;
+  border-radius: 50%;
+  border-bottom: 1em solid transparent;
+  border-right: 1em solid transparent;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+div.lock:after {
+  content: '';
+  position: absolute;
+  top: -1.5em;
+  left: 0.75em;
+  width: 3.5em;
+  height: 4em;
+  box-sizing: border-box;
+  border: 1em solid black;
+  border-top: 0 none;
+}
+div.unlock:after {
+  content: '';
+  position: absolute;
+  top: -1.5em;
+  left: 0.75em;
+  width: 3.5em;
+  height: 2.25em;
+  box-sizing: border-box;
+  border: 0 none;
+  border-left: 1em solid black;
+}
+ </style>
+</head>
+<body>
+ <div class="lock">&nbsp;</div>
+ <div class="unlock">&nbsp;</div>
+</body>
+</html>

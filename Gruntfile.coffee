@@ -4,6 +4,7 @@ fs = require('fs')
 create_svg = require('./_work/svg/create_svg.js')
 create_ovsvg = require('./_work/ovsvg/grunt/create_ovsvg.js')
 init_worker = require('./_work/serviceworker/initWorker.js')
+encoder = require('./_work/code/encode.js')
 
 files = [
   "*.html",
@@ -1575,6 +1576,22 @@ config = (grunt) ->
       files: files_teambuilding_21,
       tasks: ['initWorker', 'newer:copy:deploy2']
 
+  encode:
+    admin:
+      pw: 'obmib'
+      values: ['bhv.bhv']
+    bhv1:
+      pw: 'bhv1'
+      values: ['bhv.bhv']
+    bhv2:
+      pw: '2@bhv'
+      values: ['bhv.bhv']
+    bhv3:
+      pw: '3@bhv'
+      values: ['bhv.bhv']
+    bhv4:
+      pw: 'b4'
+      values: ['bhv.bhv']
 
 module.exports = (grunt) ->
 
@@ -1591,6 +1608,7 @@ module.exports = (grunt) ->
   create_svg(grunt)
   create_ovsvg(grunt)
   init_worker(grunt)
+  encoder(grunt)
 
   grunt.registerTask('default', ['build'])
 
