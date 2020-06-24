@@ -1,3 +1,8 @@
+# Passwort
+
+- [ ] Passwortschutz für Bilder (svg)
+- [ ] Test ovsvg - {{pw_key}}
+
 # Reload nach Update
 
 - [x] Wie einen automatischen reload nach dem Update provozieren?

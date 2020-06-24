@@ -907,53 +907,6 @@ config = (grunt) ->
         dest: "/workdir/brueckl-hotvolleys-source/script"
       ]
 
-#  # batch:
-#  #   manifest:
-#  #     options:
-#  #
-#  #       cmd: (files) ->
-#  #         console.log(files.src[0] + ' -> ' + fnManifest)
-#  #         return 'node d:/workdir/brueckl-hotvolleys-source/_work/manifest.js ' + fnManifest + ' ' + files.src[0]
-#  #
-#  #         # console.log(files.cwd);
-#  #         # return 'd:\\workdir\\brueckl-hotvolleys-source\\_work\\create_manifest.cmd silent'
-#  #
-#  #       setup: (done) ->
-#  #         # grunt.file.delete fn
-#  #         manifest = 'CACHE MANIFEST\n'
-#  #         # echo # %date% %time%>> ../cache.manifest
-#  #         ts = Date.now()
-#  #         manifest += '# ' + fmtDate(new Date()) + '\n\n'
-#  #         grunt.file.write fnManifest, manifest
-#  #         done()
-#      files:
-#	      src: files
-#      files: [
-#        expand: true
-#        cwd: "/workdir/brueckl-hotvolleys-source/"
-#        src: files_batch
-#        dest: ''
-#      ]
-#    manifest2:
-#      options:
-#        setup: (done) ->
-#          console.log('setup2')
-#          manifest = grunt.file.read fnManifest
-#          manifest += 'setup2...\n'
-#          grunt.file.write fnManifest, manifest
-#          console.log('setup2')
-#          done()
-  # createmanifest:
-  #   manifest:
-  #     options:
-  #       dest: 'cache.manifest'
-  #     files: [
-  #       # expand: true
-  #       cwd: "/workdir/brueckl-hotvolleys-source/"
-  #       src: files_batch
-  #       dest: 'cache.manifest'
-  #     ]
-
   createsvg:
     uld_auf:
       options:
@@ -962,6 +915,7 @@ config = (grunt) ->
         infoMap: infoMap
         variables:
           back: '/system6/'
+          pw_key: 3
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source"
@@ -975,6 +929,7 @@ config = (grunt) ->
         infoMap: infoMap
         variables:
           back: '/u10/'
+          pw_key: 3
       files: [
         expand: true
         cwd: 'D:/workdir/brueckl-hotvolleys-source/_work/svg/source'
@@ -988,6 +943,7 @@ config = (grunt) ->
         infoMap: infoMap
         variables:
           back: '/u11/'
+          pw_key: 3
       files: [
         expand: true
         cwd: 'D:/workdir/brueckl-hotvolleys-source/_work/svg/source'
@@ -1001,6 +957,7 @@ config = (grunt) ->
         infoMap: infoMap
         variables:
           back: '/system1/'
+          pw_key: 1
       files: [
         expand: true
         cwd: "D:/workdir/brueckl-hotvolleys-source/_work/svg/source/system1"
@@ -1018,6 +975,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'grundlagen_u10'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1064,6 +1022,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'grundlagen_u11'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1110,6 +1069,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'grundlagen_u12'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1190,6 +1150,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'system4'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1303,6 +1264,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'system6'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1409,6 +1371,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'spielfeld6'
+          pw_key: 3
       content:
         template: 'main'
         title: 'Grundlagen'
@@ -1436,6 +1399,7 @@ config = (grunt) ->
         vars:
           back: '/ov.html'
           name: 'system1'
+          pw_key: 1
       content:
         template: 'main'
         title: 'Spielsystem'

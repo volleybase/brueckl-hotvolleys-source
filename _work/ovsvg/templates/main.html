@@ -5,10 +5,27 @@
   <title>Brückl hotvolleys</title>
   <link rel="stylesheet" href="/styles.css">
   <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <script src="/script/code.js"></script>
+  <script>
+function init() {
+  var cont = document.getElementById('content_container'),
+      check = window.bhv.code.check();
+  if (check === {{pw_key}} || check === 0) {
+    var loader = document.getElementById('loader');
+    if (loader && cont) {
+      loader.style.display = 'none';
+      cont.style.display = 'block';
+    }
+  } else {
+    cont.parentNode.removeChild(cont);
+  }
+}
+  </script>
 </head>
-<body>
+<body onload="init();">
   <div id="header">{include{header}}</div>
-  <div id="content_container">{{block}}</div>
+  <div id="loader">Loading...</div>
+  <div id="content_container" class="locked">{{block}}</div>
   <div id="footer">{include{footer}}</div>
 </body>
 </html>
