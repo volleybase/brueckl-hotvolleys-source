@@ -19,7 +19,7 @@ div.container {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 div.title {
   position: absolute;
@@ -74,6 +74,7 @@ p {
 }
 #footer {
   padding: 0;
+  white-space: nowrap;
 }
 #footer > div {
   position: relative;
@@ -220,9 +221,10 @@ function centerImages() {
     for (var i = 0; i < imgs.length; ++i) {
       var w = imgs[i].width;
       if (isFinite(w) && w > 0) {
-        imgs[i].style.position = 'absolute';
-        imgs[i].style.left = '50%';
-        imgs[i].style.marginLeft = '-' + Math.floor(w / 2) + 'px';
+        // imgs[i].style.position = 'relative';
+        // imgs[i].style.left = '50%';
+        // imgs[i].style.marginLeft = '-' + Math.floor(w / 2) + 'px';
+        imgs[i].parentNode.style.textAlign = 'center';
       } else {
         retry = true;
       }
@@ -273,6 +275,5 @@ function handleBackLink(event) {
      <div id="footer" class="links footer">Links</div>
     </div>
   </div>
-  <!--div id="footer">Brückl Hotvolleys<div>Brückl Hotvolleys</div></div-->
 </body>
 </html>

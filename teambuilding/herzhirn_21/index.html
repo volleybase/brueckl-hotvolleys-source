@@ -19,7 +19,7 @@ div.container {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 div.title {
   position: absolute;
@@ -74,6 +74,7 @@ p {
 }
 #footer {
   padding: 0;
+  white-space: nowrap;
 }
 #footer > div {
   position: relative;
@@ -132,11 +133,11 @@ var data = {
   "items": [
     {
       "title": "Technik",
-      "info": "<p>Aufspiel: Tempo + Daumen<br>Mitte: Richtung geben mit dem Handgelenk, nicht mit dem Körper<br>Außen: Runterziehen -&gt; 3m-Linie, Tempo<br>ein Trick für jede Spielerin</p>",
+      "info": "<ul><li><p><strong>Aufspiel:</strong> Tempo + Daumen</p></li><li><p><strong>Mitte:</strong> Richtung geben mit dem Handgelenk, nicht mit dem Körper</p></li><li><p><strong>Außen:</strong> Runterziehen -&gt; 3m-Linie, Tempo</p></li><li><p><strong>Trick:</strong> ein Trick für jede Spielerin</p></li></ul>",
       "items": [
         {
           "title": "Aufspiel",
-          "info": "<p>Vorbereitung - Körbchenstellung, Daumen zurück,<br>Spannung aus den Fingern und den Zehen(!),<br>die Daumen beschleunigen den Ball.</p>"
+          "info": "<p>Vorbereitung - Körbchenstellung, Daumen zurück<br>Spannung aus den Fingern und den Zehen(!)<br>Die Daumen beschleunigen den Ball</p>"
         },
         {
           "title": "Mitte",
@@ -144,7 +145,7 @@ var data = {
         },
         {
           "title": "Außen",
-          "info": "<ul><li>Von außen anlaufen,</li><li>min 4m vom Netz starten,</li><li>gerade und schnell laufen.</li><li>Je weiter innen der Ball ist, umso agressiver in den Ball<br>hineinspringen und extrem diagonal schlagen!</li></ul>"
+          "info": "<ul><li><p>Von außen anlaufen,</p></li><li><p>min 4m vom Netz starten,</p></li><li><p>gerade und schnell laufen.</p></li><li><p>Je weiter innen der Ball ist, umso agressiver in den Ball<br>hineinspringen und extrem diagonal schlagen!</p></li></ul>"
         },
         {
           "title": "Tricks",
@@ -159,7 +160,7 @@ var data = {
               "info": "<p>Wenn es mir gelingt den Block oben zu treffen,<br>wird der Ball nach oben abgefälscht<br>und damit schwieriger zu verteidigen.</p>"
             },
             {
-              "title": "Ball in den Block + Sichern",
+              "title": "In den Block + Sichern",
               "info": "<p>Wenn der Ball zu nah am Block ist,<br>kann ich ihn mittelfest hoch in den Block schlagen<br>und damit eine 'einfache' Sicherung ermöglichen.</p>"
             }
           ]
@@ -182,11 +183,11 @@ var data = {
     },
     {
       "title": "Verteidigung",
-      "info": "<p>Unterschiede Damen - Herren<br>Auswirkungen: Zonen, Laufbereitschaft</p>",
+      "info": "<p>Unterschiede Damen - Herren<br>Auswirkungen</p><ul><li>Zonen</li><li>Laufbereitschaft</li></ul>",
       "items": [
         {
           "title": "Damen - Herren",
-          "info": "<p>Körpergröße, Kraft, Reichweite</p>"
+          "info": "<ul><li>Körpergröße</li><li>Kraft</li><li>Reichweite</li></ul>"
         },
         {
           "title": "Zonen",
@@ -194,7 +195,7 @@ var data = {
         },
         {
           "title": "Laufbereitschaft",
-          "info": "<p>Da der Raum vor einer Spielerin im<br>Damenbereich größer ist, wird der<br>Schupfer über den Block 'einfacher'<br>für die Angreiferin.<br>Deshalb ist die Bereitschaft einen<br>Ball zu erlaufen im Damenbereich<br>noch wichtiger als bei den Herren!</p>"
+          "info": "<p>Da der Raum vor einer Spielerin im Damenbereich größer ist, wird der Schupfer über den Block 'einfacher' für die Angreiferin.</p><p>Deshalb ist die Bereitschaft einen Ball zu erlaufen im Damenbereich noch wichtiger als bei den Herren!</p>"
         }
       ]
     },
@@ -325,9 +326,10 @@ function centerImages() {
     for (var i = 0; i < imgs.length; ++i) {
       var w = imgs[i].width;
       if (isFinite(w) && w > 0) {
-        imgs[i].style.position = 'absolute';
-        imgs[i].style.left = '50%';
-        imgs[i].style.marginLeft = '-' + Math.floor(w / 2) + 'px';
+        // imgs[i].style.position = 'relative';
+        // imgs[i].style.left = '50%';
+        // imgs[i].style.marginLeft = '-' + Math.floor(w / 2) + 'px';
+        imgs[i].parentNode.style.textAlign = 'center';
       } else {
         retry = true;
       }
