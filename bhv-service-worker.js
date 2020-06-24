@@ -3,15 +3,15 @@
 // the names and the files of the cache
 const CACHE = {
   'main': 'bhv-infoapp-bf9c6df064ec897148e1b1b9b8426477',
-  'data': 'bhv-infoapp-0dae642bf9f6f3de0213bbe5113dd33d',
+  'data': 'bhv-infoapp-0c71f3ddaf757e96758d7d881a235475',
   'system1': 'bhv-infoapp-d3a015bf3df64aba589e7ef98ca5cc5d',
-  'system4': 'bhv-infoapp-3a74649350f1923a75308d111795c28c',
-  'system6': 'bhv-infoapp-8e724531abf8496a7a79c563e9ff6afb',
+  'system4': 'bhv-infoapp-484cc7a9aa4171e0adad98e5d986996d',
+  'system6': 'bhv-infoapp-93b1fc02f6e7ed99d205872532f26142',
   'favicons': 'bhv-infoapp-330b73fc504d548333704fb32f4ddb85',
   'info': 'bhv-infoapp-14545db906177853eedc9ed447cbd3db',
   'statistics_19': 'bhv-infoapp-1721c54a73e426c061a4da259e61d823',
   'teambuilding_19': 'bhv-infoapp-9aeecfc5514d12fd7a4ac6ca488835d7',
-  'teambuilding_21': 'bhv-infoapp-6693665e08a00d1e2f60df8a13c9dce6'
+  'teambuilding_21': 'bhv-infoapp-0d551d71200cd05ce0e25ea7bd06d24f'
 };
 const FILES = {
   'main': [
@@ -336,7 +336,8 @@ const FILES = {
     '/teambuilding/herzhirn_21/2005242.jpeg',
     '/teambuilding/herzhirn_21/',
     '/teambuilding/herzhirn_21/index.html',
-    '/teambuilding/herzhirn_21/info.png'
+    '/teambuilding/herzhirn_21/info.png',
+    '/teambuilding/herzhirn_21/zonen.png'
   ]
 };
 
