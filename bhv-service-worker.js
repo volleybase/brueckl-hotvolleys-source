@@ -11,7 +11,7 @@ const CACHE = {
   'info': 'bhv-infoapp-14545db906177853eedc9ed447cbd3db',
   'statistics_19': 'bhv-infoapp-1721c54a73e426c061a4da259e61d823',
   'teambuilding_19': 'bhv-infoapp-9aeecfc5514d12fd7a4ac6ca488835d7',
-  'teambuilding_21': 'bhv-infoapp-01f3b0317168e0394f5b3dcc9d428dd7'
+  'teambuilding_21': 'bhv-infoapp-265a8dcbec62919f159b4f0611fa0f39'
 };
 const FILES = {
   'main': [
