@@ -895,17 +895,17 @@ config = (grunt) ->
         src: files_copy
         dest: "/workdir/BruecklHotvolleys.github.io/"
       ]
-    svgviewer:
-      nonull: true
-      options:
-        "force": true
-      files: [
-        expand: true
-        # get files from app
-        cwd: "/workdir/vb-statsone/www/sysmodules/controls/graphics/template/js"
-        src: [ "animator.js", "svgviewer.js" ]
-        dest: "/workdir/brueckl-hotvolleys-source/script"
-      ]
+    # svgviewer:
+    #   nonull: true
+    #   options:
+    #     "force": true
+    #   files: [
+    #     expand: true
+    #     # get files from app
+    #     cwd: "/workdir/vb-statsone/www/sysmodules/controls/graphics/template/js"
+    #     src: [ "animator.js", "svgviewer.js" ]
+    #     dest: "/workdir/brueckl-hotvolleys-source/script"
+    #   ]
 
   createsvg:
     uld_auf:
@@ -1582,7 +1582,7 @@ module.exports = (grunt) ->
     # keep as is 'clean:deploy1',
     'clean:deploy2',
 
-    'copy:svgviewer',
+    #'copy:svgviewer',
 
     'createovsvg',
     'createsvg',
@@ -1612,11 +1612,11 @@ module.exports = (grunt) ->
     i('  copy')
     i('    deploy2')
     i('      Ergebnis erstellen')
-    i('    svgviewer')
-    i('      Sourcen für svgviewer holen')
+    # i('    svgviewer')
+    # i('      Sourcen für svgviewer holen')
     i('')
     i('  createsvg')
-    i('    uld_auf, u10, u11, system1')
+    i('    u10, u11, u12, system4, system6, system1')
     i('      Views mit svg-viewer erstellen')
     i('')
     i('  createovsvg')
