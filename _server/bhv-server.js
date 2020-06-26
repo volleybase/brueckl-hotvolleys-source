@@ -1,8 +1,6 @@
 // var express = require('d:/workdir/brueckl-hotvolleys-source/node_modules/express')
 var express = require('express')
-
 var PORT_BHV_INFOAPP = 443;
-
 
 // #region -- BHV-Info - 5001 (currently not working) -------------------------
 
@@ -88,8 +86,6 @@ bhv80.listen(80, function () {
 
 // #region -- bhv - new info pages --------------------------------------------
 
-
-
 var bhv = express()
 var bhv2 = express()
 
@@ -172,7 +168,6 @@ if (useHttp2) {
         console.log('BHV Info pages with http2(' + PORT_BHV_INFOAPP + ')!')
       }
     })
-
 } else {
   bhvServer = https.createServer(options, bhv2);
   bhvServer.listen(PORT_BHV_INFOAPP, 'localhost');
