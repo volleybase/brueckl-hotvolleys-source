@@ -2,8 +2,8 @@
 
 // the names and the files of the cache
 const CACHE = {
-  'main': 'bhv-infoapp-main-297ed451bb7720938dcf5409a6fbca99',
-  'data': 'bhv-infoapp-data-c8179f54873a3a399d0b3cf71410eed0',
+  'main': 'bhv-infoapp-main-25ce4d578c9c96ff5cf4a7ea6445e365',
+  'data': 'bhv-infoapp-data-83783950dde048eb4fd66c8256b08578',
   'system1': 'bhv-infoapp-system1-d3a015bf3df64aba589e7ef98ca5cc5d',
   'system4': 'bhv-infoapp-system4-966cb466748ba1a4f164e68bc109a97d',
   'system6': 'bhv-infoapp-system6-441a37770d4478069e05424f06c180ba',
@@ -11,7 +11,7 @@ const CACHE = {
   'info': 'bhv-infoapp-info-14545db906177853eedc9ed447cbd3db',
   'statistics_19': 'bhv-infoapp-statistics_19-1721c54a73e426c061a4da259e61d823',
   'teambuilding_19': 'bhv-infoapp-teambuilding_19-9aeecfc5514d12fd7a4ac6ca488835d7',
-  'teambuilding_21': 'bhv-infoapp-teambuilding_21-aeebb32ee640ad136c8e7551611610ca'
+  'teambuilding_21': 'bhv-infoapp-teambuilding_21-f9d92bf1577fc549fadbf8b90cb0303d'
 };
 const FILES = {
   'main': [
@@ -19,7 +19,6 @@ const FILES = {
     '/diary.html',
     '/imageview.html',
     '/',
-    '',
     '/index.html',
     '/ov.html',
     '/players.html',
@@ -139,7 +138,6 @@ const FILES = {
     '/system1/blockinfo/passiv.gif',
     '/system1/blockinfo/zur_mitte.gif',
     '/system1/',
-    '/system1',
     '/system1/index.html',
     '/system1/verteidigung/basis_1.html',
     '/system1/verteidigung/basis_1.png',
@@ -180,7 +178,6 @@ const FILES = {
     '/system4/block4.png',
     '/system4/index_.html',
     '/system4/',
-    '/system4',
     '/system4/index.html',
     '/system4/ohne.png',
     '/system4/ohne2.png',
@@ -217,7 +214,6 @@ const FILES = {
     '/system6/aufspiel/images/set_8_hi.png',
     '/system6/aufspiel/images/set_8.png',
     '/system6/aufspiel/',
-    '/system6/aufspiel',
     '/system6/aufspiel/index.html',
     '/system6/aufspiel/plan.png',
     '/system6/aufspiel/vorbereitung_1.html',
@@ -242,10 +238,8 @@ const FILES = {
     '/system6/blockinfo/passiv.gif',
     '/system6/blockinfo/zur_mitte.gif',
     '/system6/',
-    '/system6',
     '/system6/index.html',
     '/system6/spielfeld/',
-    '/system6/spielfeld',
     '/system6/spielfeld/index.html',
     '/system6/spielfeld/positionen.png',
     '/system6/spielfeld/spielfeld.png',
@@ -327,7 +321,6 @@ const FILES = {
   ],
   'teambuilding_19': [
     '/teambuilding/br3_19/',
-    '/teambuilding/br3_19',
     '/teambuilding/br3_19/index.html',
     '/teambuilding/br3_19/item1_small.jpg',
     '/teambuilding/br3_19/item1.jpg',
@@ -343,7 +336,6 @@ const FILES = {
     '/teambuilding/herzhirn_21/2005242.jpeg',
     '/teambuilding/herzhirn_21/angriff_auf.jpeg',
     '/teambuilding/herzhirn_21/',
-    '/teambuilding/herzhirn_21',
     '/teambuilding/herzhirn_21/index.html',
     '/teambuilding/herzhirn_21/info.png',
     '/teambuilding/herzhirn_21/zonen.png'
@@ -414,8 +406,7 @@ self.addEventListener('fetch', (evt) => {
   } else if (evt.request.url.indexOf('/teambuilding/herzhirn_21') > -1) {
     nameCache = CACHE['teambuilding_21'];
   }
-  console.log('[sw] fetch', evt.request.url, '->', nameCache);
-  
+
   // fetch a ressource
   evt.respondWith(
     caches.open(nameCache)
