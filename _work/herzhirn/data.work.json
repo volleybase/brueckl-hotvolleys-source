@@ -1,0 +1,179 @@
+﻿{
+  "title": "Herz + Hirn",
+  "info": "![Herz + Hirn](info.png)",
+  "items": [
+    {
+      "title": "Technik",
+      "info": "* **Aufspiel:** Tempo + Daumen\n* **Mitte:** Richtung geben mit dem Handgelenk, nicht mit dem Körper\n* **Außen:** Runterziehen -> 3m-Linie, Tempo\n* **Trick:** ein Trick für jede Spielerin",
+      "items": [
+        {
+          "title": "Aufspiel",
+          "info": "Vorbereitung - Körbchenstellung, Daumen zurück\nSpannung aus den Fingern und den Zehen(!)\nDie Daumen beschleunigen den Ball",
+          "expanded": false,
+          "expandedContent": true,
+          "height": 146
+        },
+        {
+          "title": "Mitte",
+          "info": "Hinter dem Ball bleiben, den Ball aus dem Handgelenk Richtung geben:\n* Drehung um den Zeigefinger (1 Uhr)\nder Ball soll links am Block vorbeistreifen\n* Drehung um den kleinen Finger (11 Uhr)\nder Ball soll rechts am Block vorbeistreifen",
+          "expanded": false,
+          "expandedContent": true,
+          "height": 150
+        },
+        {
+          "title": "Außen",
+          "info": "* Von außen anlaufen,\n* min 4m vom Netz starten,\n* gerade und schnell laufen.\n* Je weiter innen der Ball ist, umso agressiver in den Ball\nhineinspringen und extrem diagonal schlagen!",
+          "expanded": false,
+          "expandedContent": true,
+          "height": 150
+        },
+        {
+          "title": "Tricks",
+          "info": "**Aufspiel**\n* Angriff der Aufspielerin\n\n**Angriff**\n* Block-Out provozieren\n* Block hoch anschlagen\n* Ball hoch in den Block + Sichern",
+          "items": [
+            {
+              "title": "Angriff der Aufspielerin",
+              "info": "![Angriff der Aufspielerin?](angriff_auf.jpeg)\n\nDie Aufspielerin muss das Blockverhalten beobachten oder 'spüren' und wissen, wo die Gegnerinnen stehen.\nDer Angriff muss ansatzlos gespielt werden - ~~eine Hand zum Ball~~ oder Angriff verstecken.",
+              "expanded": false,
+              "expandedContent": false,
+              "height": 150
+            },
+            {
+              "title": "Block-Out",
+              "info": "Wenn der Ball nah am Netz und weit genug außen ist,\nkann ich den Ball mit der Schlaghand nach außen drücken\nund so den Ball vom Block ins Out spielen => **Punkt für uns**.",
+              "expanded": false,
+              "expandedContent": false,
+              "height": 150
+            },
+            {
+              "title": "Block hoch anschlagen",
+              "info": "Wenn es mir gelingt den Block oben zu treffen,\nwird der Ball nach oben abgefälscht\nund damit schwieriger zu verteidigen.",
+              "expanded": false,
+              "expandedContent": false,
+              "height": 150
+            },
+            {
+              "title": "In den Block + Sichern",
+              "info": "Wenn der Ball zu nah am Block ist,\nkann ich ihn mittelfest hoch in den Block schlagen\nund damit eine 'einfache' Sicherung ermöglichen.",
+              "expanded": true,
+              "expandedContent": false,
+              "height": 150
+            }
+          ],
+          "expanded": true,
+          "expandedContent": false,
+          "height": 283
+        }
+      ],
+      "expanded": true,
+      "expandedContent": false,
+      "height": 150
+    },
+    {
+      "title": "Infos zum Angriff",
+      "info": "* **Wann:** Zeitpunkt des Absprungs\n* **Wo:** Ort des Absprung\n\n(siehe auch Spielsystem)",
+      "items": [
+        {
+          "title": "Wann",
+          "info": "1. Tempo - Schnellangriff\n   1, 3, 4\nDie Angreiferin springt, wenn die Aufspielerin den Ball berührt.\nDie Angreiferin orientiert sich an der \"Schulter\" der Aufspielerin.\n\n2. Tempo - Meter-, Kombinationsangriff\n   5v, 6, 8, 9(Mitte oder Pipe)\nDie Angreiferin hat den 1. Schritt gemacht, wenn die Aufspielerin den Ball berührt.\n\"Die Angreiferin ist am linken Fuß.\"\n\n3. Tempo - Hoher Ball\n   0, 2, 9(1)\nDie Angreiferin startet nachdem die Aufspielerin gespielt hat.",
+          "expanded": false,
+          "expandedContent": false,
+          "height": 150
+        },
+        {
+          "title": "Wo",
+          "info": "1: bei der Aufspielerin(vor ihr)\n3: bei der Aufspielerin (hinter ihr)\n4: ca. 2-3m vor der Aufspielerin\n\n5v: ca.1-1,5m vor der Aufspielerin\n6: Pos. 4 - \"bei der Antenne\"\n8: ca. 3,5-4m vor der Aufspielerin\n\n0: Pos. 4 - \"bei der Antenne links\"\n2: Pos. 2 - \"bei der Antenne rechts\"\n\n9er - Hinterfeld\nimmer knapp(!) hinter der 3m-Linie\nMitte: genau in der Mitte\nPipe: hinter der Aufspielerin\n1: rechts, knapp innerhalb der Seitenlinie",
+          "expanded": false,
+          "expandedContent": false,
+          "height": 150
+        }
+      ],
+      "expanded": false,
+      "expandedContent": false,
+      "height": 150
+    },
+    {
+      "title": "Verteidigung",
+      "info": "Unterschiede Damen - Herren\nAuswirkungen\n\n* Zonen\n* Laufbereitschaft",
+      "items": [
+        {
+          "title": "Damen - Herren",
+          "info": "* Körpergröße\n* Kraft\n* Reichweite",
+          "expanded": false,
+          "expandedContent": false,
+          "height": 150
+        },
+        {
+          "title": "Zonen",
+          "info": "![Zonen](zonen.png)\n\n* **a** Blockschatten\n* **b** In dieser Zone besteht bei harten Bällen kaum eine Chance zur Verteidigung - hierher kann aber (hoffentlich) auch niemand hart schlagen\n* **c** Angriffe in diese Zone kommen häufig vor, sind aber schwierig zu verteidigen\n* **d** Angriffe in diese Zone sind (etwas) leichter zu verteidigen...\n\n**Spielerinnen (müssen) weiter weg vom Netz starten**",
+          "expanded": false,
+          "expandedContent": false,
+          "height": 150
+        },
+        {
+          "title": "Laufbereitschaft",
+          "info": "Da der Raum vor einer Spielerin im Damenbereich größer ist, wird der Schupfer über den Block 'einfacher' für die Angreiferin.\n\nDeshalb ist die Bereitschaft einen Ball zu erlaufen im Damenbereich noch wichtiger als bei den Herren!",
+          "expanded": false,
+          "expandedContent": false,
+          "height": 150
+        }
+      ],
+      "expanded": false,
+      "expandedContent": false,
+      "height": 150
+    },
+    {
+      "title": "Stimmung",
+      "info": "Mannschaftstreffen Mai 2020",
+      "items": [
+        {
+          "title": "Teambuilding",
+          "info": "Sind erfolgreiche Mannschaften eher laut oder leise?\nWas könnte es bringen laut zu sein?\nWas kann ich dazu beitragen, dass wir so richtig laut werden?",
+          "items": [
+            {
+              "title": "Warum laut?",
+              "info": "![Warum laut?](2005241.jpeg)",
+              "items": [
+                {
+                  "title": "Danke für Deine Mitarbeit!",
+                  "info": "",
+                  "expanded": true,
+                  "expandedContent": false,
+                  "height": 150
+                }
+              ],
+              "expanded": true,
+              "expandedContent": false,
+              "height": 150
+            },
+            {
+              "title": "Wir werden laut!",
+              "info": "![Warum laut?](2005242.jpeg)",
+              "items": [
+                {
+                  "title": "Danke für Deine Mitarbeit!",
+                  "info": "",
+                  "expanded": true,
+                  "expandedContent": false,
+                  "height": 150
+                }
+              ],
+              "expanded": true,
+              "expandedContent": false,
+              "height": 150
+            }
+          ],
+          "expanded": true,
+          "expandedContent": false,
+          "height": 150
+        }
+      ],
+      "expanded": true,
+      "expandedContent": false,
+      "height": 150
+    }
+  ],
+  "expanded": true,
+  "expandedContent": false,
+  "height": 150
+}

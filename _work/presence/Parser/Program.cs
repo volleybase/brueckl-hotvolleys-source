@@ -45,7 +45,7 @@ namespace Parser
         private static string fnOut = @"D:\workdir\brueckl-hotvolleys-source\teambuilding\herzhirn_21\index.html";
 
         private static string fnTargetsA = @"D:\workdir\brueckl-hotvolleys-source\data\training\targets_a.json";
-
+        private static bool rawMode = false;
         #endregion
 
         #region -- The main entry point. --------------------------------------
@@ -53,17 +53,19 @@ namespace Parser
         static void Main(string[] args)
         {
             Log("--------------------------------------------------------------------------------------");
-            //Log("" + args.Length);
-            //foreach (string arg in args)
-            //{
-            //    Log(arg);
-            //}
 
             bool ok = false;
-            if (args.Length == 2)
+            if (args.Length >= 2)
             {
                 string filename = args[0],
                     mode = args[1];
+                for (int i = 2; i < args.Length; ++i)
+                {
+                    if (args[i] == "--raw")
+                    {
+                        rawMode = true;
+                    }
+                }
                 if (File.Exists(filename))
                 {
                     switch (mode)
@@ -104,11 +106,6 @@ namespace Parser
         {
             bool ok = false;
 
-            //Application xlApp = new Application();
-            ////Workbook workbook = xlApp.Workbooks.Open("D:\\i\\VB\\VB-20-21\\Training.xlsm", 0, true, 5, "", "", true, XlPlatform.xlWindows, "\t", false, false, 0, false, 1, 0);
-            ////Worksheet worksheet = (Worksheet)workbook.Worksheets["HerzHirn"];
-            //Workbook workbook = xlApp.Workbooks.Open(filename, 0, true, 5, "", "", true, XlPlatform.xlWindows, "\t", false, false, 0, false, 1, 0);
-            //Worksheet worksheet = (Worksheet)workbook.Worksheets[sheetname];
             ExcelReader er = new ExcelReader();
             er.Open(filename, sheetname);
 
@@ -235,6 +232,11 @@ namespace Parser
 
         private static string _txt(string txt)
         {
+            if (rawMode)
+            {
+                return txt;
+            }
+
             var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             return Markdown.ToHtml(txt, pipeline)
                 .TrimEnd('\n')

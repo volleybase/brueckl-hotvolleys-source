@@ -13,7 +13,7 @@ function FileList() {
     // add page without default 'index.html', too
     if (file.endsWith('/index.html')) {
       this._list.push("'" + file.substr(0, file.length - 10) + "'");
-      this._list.push("'" + file.substr(0, file.length - 11) + "'");
+      // this._list.push("'" + file.substr(0, file.length - 11) + "'");
     }
 
     this._list.push("'" + file + "'");
