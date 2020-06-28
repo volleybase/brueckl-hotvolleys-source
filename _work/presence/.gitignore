@@ -1,5 +1,8 @@
 packages
-Parser/bin
-Parser/obj
+Parser/Parser/bin
+Parser/Parser/obj
 .vs
 Parser.csproj.user
+TreeMd/TreeMd/bin
+TreeMd/TreeMd/obj
+TreeMd.csproj.user
