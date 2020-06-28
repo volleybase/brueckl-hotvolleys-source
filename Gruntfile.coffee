@@ -1,6 +1,7 @@
 fs = require('fs')
 
 # create_manifest = require('./_work/create.manifest.js')
+xcopy = require('./_work/_grunt/xcopy.js')
 create_svg = require('./_work/svg/create_svg.js')
 create_ovsvg = require('./_work/ovsvg/grunt/create_ovsvg.js')
 init_worker = require('./_work/serviceworker/initWorker.js')
@@ -67,6 +68,27 @@ files_statistics_19 = [
 ]
 files_teambuilding_19 = [
   "teambuilding/br3_19/**",
+  "!**/*_old.*"
+]
+
+files_teambuilding_21_source1 = [
+  "_work/herzhirn/herzhirn.html"
+]
+files_teambuilding_21_source1_watch = [
+  "_work/herzhirn/data.json",
+  "_work/herzhirn/herzhirn.html"
+]
+files_teambuilding_21_source2 = [
+  "**/*.*",
+  "!*.json",
+  "!*.docx",
+  "!herzhirn.html",
+  "!**/*_old.*"
+]
+files_teambuilding_21_source2_watch = [
+  "_work/herzhirn/**/*.*",
+  "!_work/herzhirn/data.json",
+  "!_work/herzhirn/herzhirn.html",
   "!**/*_old.*"
 ]
 files_teambuilding_21 = [
@@ -798,6 +820,13 @@ config = (grunt) ->
       expand: true
       cwd: "/workdir/brueckl-hotvolleys"
       src: ["**/*", "!.git"]
+    herzhirn:
+      options:
+        "force": true
+      expand: true
+      cwd: "/workdir/brueckl-hotvolleys-source/teambuilding/herzhirn_21/"
+      src: ["*"]
+
     deploy2:
       options:
         "force": true
@@ -876,6 +905,17 @@ config = (grunt) ->
         teambuilding_21: files_teambuilding_21
 
   copy:
+    herzhirn2:
+      nonull: true
+      options:
+        "force": true
+      files: [
+        expand: true
+        cwd: "/workdir/brueckl-hotvolleys-source/_work/herzhirn/"
+        src: files_teambuilding_21_source2
+        dest: "/workdir/brueckl-hotvolleys-source/teambuilding/herzhirn_21"
+      ]
+
     deploy1_do_not_change:
       # nonull -> error if source does not exist
       nonull: true
@@ -906,6 +946,14 @@ config = (grunt) ->
     #     src: [ "animator.js", "svgviewer.js" ]
     #     dest: "/workdir/brueckl-hotvolleys-source/script"
     #   ]
+
+  xcopy:
+    herzhirn1:
+      files: [
+        cwd: "/workdir/brueckl-hotvolleys-source/"
+        src: files_teambuilding_21_source1
+        dest: "/workdir/brueckl-hotvolleys-source/teambuilding/herzhirn_21/index.html"
+      ]
 
   createsvg:
     uld_auf:
@@ -1536,6 +1584,13 @@ config = (grunt) ->
     teambuilding_19:
       files: files_teambuilding_19
       tasks: ['initWorker', 'newer:copy:deploy2']
+
+    teambuilding_21_source1:
+      files: files_teambuilding_21_source1,
+      tasks: ['xcopy:herzhirn1']
+    teambuilding_21_source2:
+      files: files_teambuilding_21_source1_watch,
+      tasks: ['copy:herzhirn1']
     teambuilding_21:
       files: files_teambuilding_21,
       tasks: ['initWorker', 'newer:copy:deploy2']
@@ -1570,6 +1625,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-real-favicon')
   # create_manifest(grunt)
   create_svg(grunt)
+  xcopy(grunt)
   create_ovsvg(grunt)
   init_worker(grunt)
   encoder(grunt)
@@ -1582,6 +1638,9 @@ module.exports = (grunt) ->
     # keep as is 'clean:deploy1',
     'clean:deploy2',
 
+    'clean:herzhirn',
+    'xcopy:herzhirn1',
+    'copy:herzhirn2',
     #'copy:svgviewer',
 
     'createovsvg',

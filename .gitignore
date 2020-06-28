@@ -6,4 +6,5 @@ _-old/
 package-lock.json
 .sonarlint
 ~*.xlsx
+~*.xlsm
 **/*_old.*
