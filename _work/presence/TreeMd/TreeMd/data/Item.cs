@@ -9,20 +9,10 @@ namespace TreeMd
 {
 #pragma warning disable CS0649, IDE1006
 
-    ///// <summary>
-    ///// An item of the data to export.
-    ///// </summary>
-    //public interface IBaseItem
-    //{
-    //    string title { get; }
-    //    string info { get; }
-    //    List<IBaseItem> items { get; }
-    //}
-
     /// <summary>
     /// An item of the data (with the internal data).
     /// </summary>
-    internal class Item
+    public class Item
     {
         [Newtonsoft.Json.JsonProperty(Order=1)]
         public string title { get; set; }
@@ -41,6 +31,9 @@ namespace TreeMd
 
         [Newtonsoft.Json.JsonProperty(Order = 6)]
         public int height;
+
+        [Newtonsoft.Json.JsonProperty(Order = 7)]
+        public bool presentation;
     }
 
     /// <summary>
@@ -49,12 +42,15 @@ namespace TreeMd
     internal class ItemExport
     {
         [Newtonsoft.Json.JsonProperty(Order = 1)]
-        public string title { get; set; }
+        public string type { get; set; }
 
         [Newtonsoft.Json.JsonProperty(Order = 2)]
-        public string info { get; set; }
+        public string title { get; set; }
 
         [Newtonsoft.Json.JsonProperty(Order = 3)]
+        public string info { get; set; }
+
+        [Newtonsoft.Json.JsonProperty(Order = 4)]
         public List<ItemExport> items { get; set; }
     }
 

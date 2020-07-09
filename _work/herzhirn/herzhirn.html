@@ -120,6 +120,61 @@ div.w33 {
 div.w25 {
   width: 25%;
 }
+
+/* -- presentation --------------------------------------------------------- */
+div.presentation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+div.presentation img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+}
+div.presentation_text {
+  position: absolute;
+  left: 52%;
+  width: 48%;
+
+  top: 1em;
+  font-size: 2.5em;
+  text-align: left;
+}
+@media (orientation: portrait) {
+  div.presentation img {
+    position: relative;
+    width: 100%;
+  }
+
+  div.presentation_text {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 1em 0.5em;
+    box-sizing: border-box;
+    font-size: 2.5em;
+  }
+}
+@media (max-width: 450px) {
+  div.presentation img {
+    position: relative;
+    width: 100%;
+  }
+
+  div.presentation_text {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 1em 0.5em;
+    box-sizing: border-box;
+    font-size: 2.5em;
+  }
+}
   </style>
   <script src="/script/code.js"></script>
   <script>
@@ -191,6 +246,14 @@ function createLink(item, index, cnt) {
       lnk = '<div' + id + ' class="column w' + Math.round(100 / cnt) + clazz + '">'
     + item.title
     + '</div>';
+
+/* TODO: presentation
+  var clazz = '',
+      id = '',
+      lnk;
+
+  if
+*/
 
   return lnk;
 }

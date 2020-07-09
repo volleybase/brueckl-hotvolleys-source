@@ -33,7 +33,7 @@ files = [
   # "uld/**",
   # "lld/**",
 
-  # "training/**",
+  "training/**",
 
   # ignore the old files
   "!**/*_old.*"
@@ -92,8 +92,9 @@ files_teambuilding_21_source2_watch = [
   "!**/*_old.*"
 ]
 files_teambuilding_21 = [
-  "teambuilding/herzhirn_21/**",
+  "teambuilding/herzhirn_21/**"
   "!**/*_old.*"
+  "!**/uz/**"
 ]
 
 # the service worker
@@ -826,7 +827,6 @@ config = (grunt) ->
       expand: true
       cwd: "/workdir/brueckl-hotvolleys-source/teambuilding/herzhirn_21/"
       src: ["*"]
-
     deploy2:
       options:
         "force": true

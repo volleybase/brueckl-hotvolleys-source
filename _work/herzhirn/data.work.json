@@ -11,21 +11,140 @@
           "info": "Vorbereitung - Körbchenstellung, Daumen zurück\nSpannung aus den Fingern und den Zehen(!)\nDie Daumen beschleunigen den Ball",
           "expanded": false,
           "expandedContent": true,
-          "height": 146
+          "height": 146,
+          "presentation": false
         },
         {
-          "title": "Mitte",
-          "info": "Hinter dem Ball bleiben, den Ball aus dem Handgelenk Richtung geben:\n* Drehung um den Zeigefinger (1 Uhr)\nder Ball soll links am Block vorbeistreifen\n* Drehung um den kleinen Finger (11 Uhr)\nder Ball soll rechts am Block vorbeistreifen",
+          "title": "Angriff",
+          "info": "* **Mitte**\n* **Außen**",
+          "items": [
+            {
+              "title": "Mitte",
+              "info": "Hinter dem Ball bleiben, den Ball aus dem Handgelenk Richtung geben:\n* Drehung um den Zeigefinger (1 Uhr),\nder Ball soll links am Block vorbeistreifen,\n* Drehung um den kleinen Finger (11 Uhr),\nder Ball soll rechts am Block vorbeistreifen.",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Außen",
+              "info": "* Von außen anlaufen,\n* min 4m vom Netz starten,\n* gerade und schnell laufen.\r\n\n- Je weiter innen der Ball ist, umso agressiver in den Ball hineinspringen und extrem diagonal schlagen!",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            }
+          ],
           "expanded": false,
           "expandedContent": true,
-          "height": 150
+          "height": 146,
+          "presentation": false
         },
         {
-          "title": "Außen",
-          "info": "* Von außen anlaufen,\n* min 4m vom Netz starten,\n* gerade und schnell laufen.\n* Je weiter innen der Ball ist, umso agressiver in den Ball\nhineinspringen und extrem diagonal schlagen!",
+          "title": "Verteidigung",
+          "info": "",
+          "items": [
+            {
+              "title": "UZ - „Baggern“",
+              "info": "<center style=\"font-size: 3em;\">Das Untere Zuspiel\r\n„Baggern“\r\n \r\n<b>Annahme + Verteidigung</b>\r\n</center>",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 230,
+              "presentation": false
+            },
+            {
+              "title": "Technik 1",
+              "info": "![Technik 1](uz/technik1.png)\r\n* Die Arme sind völlig gestreckt und geschlossen.\r\n* Die Daumen fixieren die Hände.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 533,
+              "presentation": false
+            },
+            {
+              "title": "Technik 2",
+              "info": "![Technik 2](uz/technik2.png)\r\n* Der Ball wird mit den Unterarmen gespielt.\r\n* Knapp über den Handgelenken, ca. im 1. Drittel.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 349,
+              "presentation": false
+            },
+            {
+              "title": "Technik 3",
+              "info": "![Technik 3](uz/technik3.png)\r\n\r\n**Bewegungsablauf**\r\nDer Ball wird so gespielt, dass die Kraft der Beine mit ruhigen Armen auf ihn übetragen wird.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Technik 4",
+              "info": "![Technik 4](uz/technik4.png)\r\n\r\nDas Körpergewicht wird auf den vorderen Fuß verlagert.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Technik 5",
+              "info": "![Technik 5](uz/technik5.png)\r\n\r\nDie Arme werden nicht aktiv eingesetzt, nur die Schultergelenke werden angehoben.\r\nDer Ball wird quasi in die gewünschte Spielrichtung „gedrückt“.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Technik 6",
+              "info": "![Technik 6](uz/technik6.png)\r\n\r\nDer Oberkörper bleibt in leichter Vorlage, der Körper befindet sich hinter dem Ball.\r\nBeide Schultern müssen in die gewünschte Spielrichtung zeigen.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Abwehrbagger",
+              "info": "![Abbwehrbagger](uz/abwehrbagger1.png)",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Abwehrbagger seitlich",
+              "info": "![Abbwehrbagger seitlich](uz/abwehrbagger2.png)",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Damen - Herren",
+              "info": "**Unterschiede**\r\n* Körpergröße\n* Kraft\n* Reichweite\r\n* unterschiedliche Konzentrationsfähigkeit\r\n  Verteilte Aufmerksamkeite - Punktkonzentration\r\n\r\n**Folgen**\r\n- Abschlaghöhe\r\n- Schlaghärte\r\n- Taktische Variabilität\r\n",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 191,
+              "presentation": false
+            },
+            {
+              "title": "Die Zonen",
+              "info": "![Die Zonen](uz/zonen.png)\r\n\r\n* **a** Blockschatten\n* **b** In dieser Zone besteht bei harten Bällen kaum eine Chance zur Verteidigung - hierher kann aber (hoffentlich) auch niemand hart schlagen\n* **c** Angriffe in diese Zone kommen häufig vor, sind aber schwierig zu verteidigen\n* **d** Angriffe in diese Zone sind (etwas) leichter zu verteidigen...\n\r\n+ Männer verteidigen als erstes im Bereich von 5-8m vom Angriffsort,\r\n+ Frauen im Bereich von 6-9m.\r\n\n**Die Spielerinnen müssen(!) weiter weg vom Netz starten.**\n",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 293,
+              "presentation": false
+            },
+            {
+              "title": "Laufbereitschaft",
+              "info": "Da der Raum vor einer Spielerin im Damenbereich größer ist, wird der Schupfer über den Block 'einfacher' für die Angreiferin.\n\nDeshalb ist die Bereitschaft einen Ball zu erlaufen im Damenbereich noch wichtiger als bei den Herren!",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            }
+          ],
           "expanded": false,
-          "expandedContent": true,
-          "height": 150
+          "expandedContent": false,
+          "height": 150,
+          "presentation": true
         },
         {
           "title": "Tricks",
@@ -35,39 +154,45 @@
               "title": "Angriff der Aufspielerin",
               "info": "![Angriff der Aufspielerin?](angriff_auf.jpeg)\n\nDie Aufspielerin muss das Blockverhalten beobachten oder 'spüren' und wissen, wo die Gegnerinnen stehen.\nDer Angriff muss ansatzlos gespielt werden - ~~eine Hand zum Ball~~ oder Angriff verstecken.",
               "expanded": false,
-              "expandedContent": false,
-              "height": 150
+              "expandedContent": true,
+              "height": 330,
+              "presentation": false
             },
             {
               "title": "Block-Out",
-              "info": "Wenn der Ball nah am Netz und weit genug außen ist,\nkann ich den Ball mit der Schlaghand nach außen drücken\nund so den Ball vom Block ins Out spielen => **Punkt für uns**.",
+              "info": "Wenn der Ball nah am Netz und weit genug außen ist, kann ich den Ball mit der Schlaghand nach außen drücken und so den Ball vom Block ins Out spielen => **Punkt für uns**.",
               "expanded": false,
-              "expandedContent": false,
-              "height": 150
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
             },
             {
               "title": "Block hoch anschlagen",
-              "info": "Wenn es mir gelingt den Block oben zu treffen,\nwird der Ball nach oben abgefälscht\nund damit schwieriger zu verteidigen.",
+              "info": "Wenn es mir gelingt den Block oben zu treffen, wird der Ball nach oben abgefälscht und damit schwieriger zu verteidigen.",
               "expanded": false,
-              "expandedContent": false,
-              "height": 150
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
             },
             {
               "title": "In den Block + Sichern",
-              "info": "Wenn der Ball zu nah am Block ist,\nkann ich ihn mittelfest hoch in den Block schlagen\nund damit eine 'einfache' Sicherung ermöglichen.",
-              "expanded": true,
-              "expandedContent": false,
-              "height": 150
+              "info": "Wenn der Ball zu nah am Block ist, kann ich ihn mittelfest hoch in den Block schlagen und damit eine 'einfache' Sicherung ermöglichen.",
+              "expanded": false,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
             }
           ],
-          "expanded": true,
+          "expanded": false,
           "expandedContent": false,
-          "height": 283
+          "height": 283,
+          "presentation": false
         }
       ],
       "expanded": true,
       "expandedContent": false,
-      "height": 150
+      "height": 150,
+      "presentation": false
     },
     {
       "title": "Infos zum Angriff",
@@ -78,49 +203,22 @@
           "info": "1. Tempo - Schnellangriff\n   1, 3, 4\nDie Angreiferin springt, wenn die Aufspielerin den Ball berührt.\nDie Angreiferin orientiert sich an der \"Schulter\" der Aufspielerin.\n\n2. Tempo - Meter-, Kombinationsangriff\n   5v, 6, 8, 9(Mitte oder Pipe)\nDie Angreiferin hat den 1. Schritt gemacht, wenn die Aufspielerin den Ball berührt.\n\"Die Angreiferin ist am linken Fuß.\"\n\n3. Tempo - Hoher Ball\n   0, 2, 9(1)\nDie Angreiferin startet nachdem die Aufspielerin gespielt hat.",
           "expanded": false,
           "expandedContent": false,
-          "height": 150
+          "height": 150,
+          "presentation": false
         },
         {
           "title": "Wo",
           "info": "1: bei der Aufspielerin(vor ihr)\n3: bei der Aufspielerin (hinter ihr)\n4: ca. 2-3m vor der Aufspielerin\n\n5v: ca.1-1,5m vor der Aufspielerin\n6: Pos. 4 - \"bei der Antenne\"\n8: ca. 3,5-4m vor der Aufspielerin\n\n0: Pos. 4 - \"bei der Antenne links\"\n2: Pos. 2 - \"bei der Antenne rechts\"\n\n9er - Hinterfeld\nimmer knapp(!) hinter der 3m-Linie\nMitte: genau in der Mitte\nPipe: hinter der Aufspielerin\n1: rechts, knapp innerhalb der Seitenlinie",
           "expanded": false,
           "expandedContent": false,
-          "height": 150
+          "height": 150,
+          "presentation": false
         }
       ],
       "expanded": false,
       "expandedContent": false,
-      "height": 150
-    },
-    {
-      "title": "Verteidigung",
-      "info": "Unterschiede Damen - Herren\nAuswirkungen\n\n* Zonen\n* Laufbereitschaft",
-      "items": [
-        {
-          "title": "Damen - Herren",
-          "info": "* Körpergröße\n* Kraft\n* Reichweite",
-          "expanded": false,
-          "expandedContent": false,
-          "height": 150
-        },
-        {
-          "title": "Zonen",
-          "info": "![Zonen](zonen.png)\n\n* **a** Blockschatten\n* **b** In dieser Zone besteht bei harten Bällen kaum eine Chance zur Verteidigung - hierher kann aber (hoffentlich) auch niemand hart schlagen\n* **c** Angriffe in diese Zone kommen häufig vor, sind aber schwierig zu verteidigen\n* **d** Angriffe in diese Zone sind (etwas) leichter zu verteidigen...\n\n**Spielerinnen (müssen) weiter weg vom Netz starten**",
-          "expanded": false,
-          "expandedContent": false,
-          "height": 150
-        },
-        {
-          "title": "Laufbereitschaft",
-          "info": "Da der Raum vor einer Spielerin im Damenbereich größer ist, wird der Schupfer über den Block 'einfacher' für die Angreiferin.\n\nDeshalb ist die Bereitschaft einen Ball zu erlaufen im Damenbereich noch wichtiger als bei den Herren!",
-          "expanded": false,
-          "expandedContent": false,
-          "height": 150
-        }
-      ],
-      "expanded": false,
-      "expandedContent": false,
-      "height": 150
+      "height": 150,
+      "presentation": false
     },
     {
       "title": "Stimmung",
@@ -139,12 +237,14 @@
                   "info": "",
                   "expanded": true,
                   "expandedContent": false,
-                  "height": 150
+                  "height": 150,
+                  "presentation": false
                 }
               ],
               "expanded": true,
-              "expandedContent": false,
-              "height": 150
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
             },
             {
               "title": "Wir werden laut!",
@@ -155,25 +255,30 @@
                   "info": "",
                   "expanded": true,
                   "expandedContent": false,
-                  "height": 150
+                  "height": 150,
+                  "presentation": false
                 }
               ],
               "expanded": true,
               "expandedContent": false,
-              "height": 150
+              "height": 150,
+              "presentation": false
             }
           ],
           "expanded": true,
           "expandedContent": false,
-          "height": 150
+          "height": 150,
+          "presentation": false
         }
       ],
-      "expanded": true,
-      "expandedContent": false,
-      "height": 150
+      "expanded": false,
+      "expandedContent": true,
+      "height": 150,
+      "presentation": false
     }
   ],
   "expanded": true,
   "expandedContent": false,
-  "height": 150
+  "height": 150,
+  "presentation": false
 }

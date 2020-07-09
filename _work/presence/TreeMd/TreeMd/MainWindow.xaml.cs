@@ -20,9 +20,28 @@ namespace TreeMd
 
         private static Item data;
         private static string caption;
-        private bool showRoot = true;
+        // private bool showRoot = true;
 
         #endregion
+
+        internal bool IsDirty
+        {
+            get
+            {
+                foreach (object obj in tree.Items)
+                {
+                    if (obj is TVI tvi)
+                    {
+                        if (tvi.IsDirty)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
 
         #region -- The constructor. --------------------------------------------
 
@@ -57,21 +76,44 @@ namespace TreeMd
             InitializeComponent();
             tree.ContextMenu = MainWindow._createCM(true, tree);
 
-            if (showRoot)
-            {
-                TVI tvi1 = new TVI(data.title, data.info, data.expanded, data.expandedContent, data.height);
+            //if (showRoot)
+            //{
+                TVI tvi1 = new TVI(data.title, data.info, data.expanded, data.expandedContent, data.height, data.presentation);
                 tree.Items.Add(tvi1);
                 _addItems(tvi1, data.items);
                 tvi1.IsExpanded = data.expanded;
-            }
-            else
+            //}
+            //else
+            //{
+            //    foreach (Item it in data.items)
+            //    {
+            //        TVI tvi1 = new TVI(it.title, it.info, it.expanded, it.expandedContent, it.height, it.presentation);
+            //        tree.Items.Add(tvi1);
+            //        _addItems(tvi1, it.items);
+            //        tvi1.IsExpanded = it.expanded;
+            //    }
+            //}
+
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsDirty)
             {
-                foreach (Item it in data.items)
+                MessageBoxResult answer = MessageBox.Show("Es gibt ungespeicherte Daten - wollen Sie speichern?", 
+                    caption, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                switch (answer)
                 {
-                    TVI tvi1 = new TVI(it.title, it.info, it.expanded, it.expandedContent, it.height);
-                    tree.Items.Add(tvi1);
-                    _addItems(tvi1, it.items);
-                    tvi1.IsExpanded = it.expanded;
+                    // save
+                    case MessageBoxResult.Yes:
+                        _save(tree, true);
+                        break;
+
+                    // cancel closing
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
                 }
             }
         }
@@ -82,7 +124,7 @@ namespace TreeMd
             {
                 foreach (Item it in items)
                 {
-                    TVI tvi = new TVI(it.title, it.info, it.expanded, it.expandedContent, it.height);
+                    TVI tvi = new TVI(it.title, it.info, it.expanded, it.expandedContent, it.height, it.presentation);
                     tviP.Items.Add(tvi);
                     _addItems(tvi, it.items);
                     tvi.IsExpanded = it.expanded;
@@ -96,19 +138,21 @@ namespace TreeMd
 
         internal static ContextMenu _createCM(bool main, object target)
         {
+            MenuItem mi;
             ContextMenu cm = new ContextMenu();
             cm.Opened += Cm_Opened;
-            MenuItem mi = new MenuItem()
-            {
-                Name = "add",
-                Header = main ? "Neues Hauptitem" : "Neues Item",
-                Tag = target
-            };
-            cm.Items.Add(mi);
-            mi.Click += Mi_Click;
 
             if (main)
             {
+                mi = new MenuItem()
+                {
+                    Name = "add",
+                    Header = "Neues Hauptitem",
+                    Tag = target
+                };
+                cm.Items.Add(mi);
+                mi.Click += Mi_Click;
+
                 mi = new MenuItem()
                 {
                     Name = "save",
@@ -133,6 +177,24 @@ namespace TreeMd
                 {
                     mi = new MenuItem()
                     {
+                        Name = "add",
+                        Header = "Neues Item",
+                        Tag = target
+                    };
+                    cm.Items.Add(mi);
+                    mi.Click += Mi_Click;
+
+                    mi = new MenuItem()
+                    {
+                        Name = "add_presentation",
+                        Header = "Neue Präsentation",
+                        Tag = target
+                    };
+                    cm.Items.Add(mi);
+                    mi.Click += Mi_Click;
+
+                    mi = new MenuItem()
+                    {
                         Name = "del",
                         Header = "Lösche " + tvi.title,
                         Tag = target
@@ -140,10 +202,7 @@ namespace TreeMd
                     cm.Items.Add(mi);
                     mi.Click += Mi_Click;
                 }
-            }
-
-            if (!main)
-            {
+            
                 cm.Items.Add(new Separator());
 
                 mi = new MenuItem()
@@ -176,36 +235,37 @@ namespace TreeMd
                     if (mi0 is MenuItem mi)
                     {
                         TVI tvi = mi.Tag as TVI;
+                        TreeView tvP = tvi?.Parent as TreeView;
+                        TVI tviP = tvi?.Parent as TVI;
                         switch (mi.Name)
                         {
                             case "move_up":
                                 bool enabled = false;
-                                TreeView tvP = tvi?.Parent as TreeView;
-                                TVI tviP = tvi?.Parent as TVI;
                                 ItemCollection items = tvP != null ? tvP.Items : tviP?.Items;
-
                                 if (items != null)
                                 {
                                     // index 0 is container of editor, but not for level 1
                                     int limit = tvP != null ? 0 : 1;
                                     enabled = items.IndexOf(tvi) > limit;
                                 }
-
                                 mi.IsEnabled = enabled;
                                 break;
 
                             case "move_down":
                                 enabled = false;
-                                tvP = tvi?.Parent as TreeView;
-                                tviP = tvi?.Parent as TVI;
                                 items = tvP != null ? tvP.Items : tviP?.Items;
-
                                 if (items != null)
                                 {
                                     enabled = items.IndexOf(tvi) < items.Count - 1;
                                 }
-
                                 mi.IsEnabled = enabled;
+                                break;
+                            
+                            //case "add":
+                            //    mi.IsEnabled = tviP == null || !tviP.presentation;
+                            //    break;
+                            case "add_presentation":
+                                mi.IsEnabled = !tvi.presentation && (tviP == null || !tviP.presentation);
                                 break;
                         }
                     }
@@ -225,12 +285,19 @@ namespace TreeMd
                     case "add":
                         if (tv != null)
                         {
-                            tv.Items.Add(new TVI("Neu", "", true, true, 0));
+                            tv.Items.Add(new TVI("Neu", "", true, true, 0, false));
                             return;
                         }
                         if (tvi != null)
                         {
-                            tvi.Items.Add(new TVI("Neu", "", false, false, 0));
+                            tvi.Items.Add(new TVI("Neu", "", false, false, 0, false));
+                            return;
+                        }
+                        break;
+                    case "add_presentation":
+                        if (tvi != null)
+                        {
+                            tvi.Items.Add(new TVI("Neue Präsentation", "", false, false, 0, true));
                             return;
                         }
                         break;
@@ -291,39 +358,53 @@ namespace TreeMd
                         break;
 
                     case "save":
+                        _save(tv, true);
+                        break;
                     case "export":
-                        try
-                        {
-                            string res, fn, msg;
-                            JsonSerializerSettings settings = new JsonSerializerSettings()
-                            {
-                                Formatting = Formatting.Indented,
-                                NullValueHandling = NullValueHandling.Ignore
-                            };
-
-                            if (mi.Name == "save")
-                            {
-                                res = JsonConvert.SerializeObject(((TVI)tv.Items[0]).AsItem(), settings);
-                                fn = App.filename;
-                                msg = "Gespeichert:" + Environment.NewLine + fn;
-                            }
-                            else
-                            {
-                                res = JsonConvert.SerializeObject(((TVI)tv.Items[0]).AsExportItem(), settings);
-                                fn = App.filename.Replace(".work.", ".");
-                                msg = "Exportiert:" + Environment.NewLine + fn;
-                            }
-
-                            File.WriteAllText(fn, res, Encoding.UTF8);
-                            MessageBox.Show(msg, caption, MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace,
-                                caption + " - Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        _save(tv, false);
                         break;
                 }
+            }
+        }
+
+        private static void _save(TreeView tv, bool save)
+        {
+            try
+            {
+                string res, fn, msg;
+                JsonSerializerSettings settings = new JsonSerializerSettings()
+                {
+                    Formatting = Formatting.Indented,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+
+                if (save)
+                {
+                    res = JsonConvert.SerializeObject(((TVI)tv.Items[0]).AsItem(), settings);
+                    fn = App.filename;
+                    msg = "Gespeichert:" + Environment.NewLine + fn;
+                }
+                else
+                {
+                    res = JsonConvert.SerializeObject(((TVI)tv.Items[0]).AsExportItem(), settings);
+                    fn = App.filename.Replace(".work.", ".");
+                    msg = "Exportiert:" + Environment.NewLine + fn;
+                }
+
+                File.WriteAllText(fn, res, Encoding.UTF8);
+
+                if (save)
+                {
+                    TVI tvi = (TVI)tv.Items[0];
+                    tvi.ResetDirty();
+                }
+
+                MessageBox.Show(msg, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace,
+                    caption + " - Fehler", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
