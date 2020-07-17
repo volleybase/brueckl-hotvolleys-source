@@ -202,7 +202,7 @@
           "title": "Wann",
           "info": "1. Tempo - Schnellangriff\n   1, 3, 4\nDie Angreiferin springt, wenn die Aufspielerin den Ball berührt.\nDie Angreiferin orientiert sich an der \"Schulter\" der Aufspielerin.\n\n2. Tempo - Meter-, Kombinationsangriff\n   5v, 6, 8, 9(Mitte oder Pipe)\nDie Angreiferin hat den 1. Schritt gemacht, wenn die Aufspielerin den Ball berührt.\n\"Die Angreiferin ist am linken Fuß.\"\n\n3. Tempo - Hoher Ball\n   0, 2, 9(1)\nDie Angreiferin startet nachdem die Aufspielerin gespielt hat.",
           "expanded": false,
-          "expandedContent": false,
+          "expandedContent": true,
           "height": 150,
           "presentation": false
         },
@@ -210,19 +210,19 @@
           "title": "Wo",
           "info": "1: bei der Aufspielerin(vor ihr)\n3: bei der Aufspielerin (hinter ihr)\n4: ca. 2-3m vor der Aufspielerin\n\n5v: ca.1-1,5m vor der Aufspielerin\n6: Pos. 4 - \"bei der Antenne\"\n8: ca. 3,5-4m vor der Aufspielerin\n\n0: Pos. 4 - \"bei der Antenne links\"\n2: Pos. 2 - \"bei der Antenne rechts\"\n\n9er - Hinterfeld\nimmer knapp(!) hinter der 3m-Linie\nMitte: genau in der Mitte\nPipe: hinter der Aufspielerin\n1: rechts, knapp innerhalb der Seitenlinie",
           "expanded": false,
-          "expandedContent": false,
+          "expandedContent": true,
           "height": 150,
           "presentation": false
         }
       ],
-      "expanded": false,
+      "expanded": true,
       "expandedContent": false,
       "height": 150,
       "presentation": false
     },
     {
       "title": "Stimmung",
-      "info": "Mannschaftstreffen Mai 2020",
+      "info": "- Mannschaftstreffen Mai 2020\r\n- Eisessen (14. Juli)\r\n ",
       "items": [
         {
           "title": "Teambuilding",
@@ -230,7 +230,7 @@
           "items": [
             {
               "title": "Warum laut?",
-              "info": "![Warum laut?](2005241.jpeg)",
+              "info": "![Warum laut?](tb1/2005241.jpeg)",
               "items": [
                 {
                   "title": "Danke für Deine Mitarbeit!",
@@ -241,14 +241,14 @@
                   "presentation": false
                 }
               ],
-              "expanded": true,
+              "expanded": false,
               "expandedContent": true,
               "height": 150,
               "presentation": false
             },
             {
               "title": "Wir werden laut!",
-              "info": "![Warum laut?](2005242.jpeg)",
+              "info": "![Warum laut?](tb1/2005242.jpeg)",
               "items": [
                 {
                   "title": "Danke für Deine Mitarbeit!",
@@ -259,19 +259,53 @@
                   "presentation": false
                 }
               ],
-              "expanded": true,
-              "expandedContent": false,
+              "expanded": false,
+              "expandedContent": true,
               "height": 150,
               "presentation": false
             }
           ],
           "expanded": true,
-          "expandedContent": false,
+          "expandedContent": true,
           "height": 150,
+          "presentation": false
+        },
+        {
+          "title": "Eisessen",
+          "info": "Die ersten Wochen sind vorüber.\r\n* Was hat mir bisher gefallen?\r\n* Was erwarte ich mir von den nächsten Wochen und Monaten?\r\n* Was will und kann ich dazu beitragen, dass es gelingt?",
+          "items": [
+            {
+              "title": "Bisher",
+              "info": "![Was hat mir bisher gefallen?](tb2/tb1.jpeg)",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 187,
+              "presentation": false
+            },
+            {
+              "title": "Erwartungen",
+              "info": "![Was erwarte ich mir von den nächsten Wochen und Monaten?](tb2/tb2.jpeg)",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 211,
+              "presentation": false
+            },
+            {
+              "title": "Gemeinsam",
+              "info": "![Was will und kann ich dazu beitragen, dass es gelingt?](tb2/tb3a.jpeg)\r\n![Was will und kann ich dazu beitragen, dass es gelingt?](tb2/tb3b.jpeg)",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 215,
+              "presentation": false
+            }
+          ],
+          "expanded": true,
+          "expandedContent": true,
+          "height": 103,
           "presentation": false
         }
       ],
-      "expanded": false,
+      "expanded": true,
       "expandedContent": true,
       "height": 150,
       "presentation": false

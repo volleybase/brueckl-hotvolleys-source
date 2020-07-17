@@ -11,7 +11,7 @@ const CACHE = {
   'info': 'bhv-infoapp-info-14545db906177853eedc9ed447cbd3db',
   'statistics_19': 'bhv-infoapp-statistics_19-1721c54a73e426c061a4da259e61d823',
   'teambuilding_19': 'bhv-infoapp-teambuilding_19-9aeecfc5514d12fd7a4ac6ca488835d7',
-  'teambuilding_21': 'bhv-infoapp-teambuilding_21-1310cb89497932701ae3cbfc6a1c3008'
+  'teambuilding_21': 'bhv-infoapp-teambuilding_21-26e5b28127caad08dcf8451e57cdf1c8'
 };
 const FILES = {
   'main': [
@@ -333,12 +333,16 @@ const FILES = {
     '/teambuilding/br3_19/item3.jpg'
   ],
   'teambuilding_21': [
-    '/teambuilding/herzhirn_21/2005241.jpeg',
-    '/teambuilding/herzhirn_21/2005242.jpeg',
     '/teambuilding/herzhirn_21/angriff_auf.jpeg',
     '/teambuilding/herzhirn_21/',
     '/teambuilding/herzhirn_21/index.html',
     '/teambuilding/herzhirn_21/info.png',
+    '/teambuilding/herzhirn_21/tb1/2005241.jpeg',
+    '/teambuilding/herzhirn_21/tb1/2005242.jpeg',
+    '/teambuilding/herzhirn_21/tb2/tb1.jpeg',
+    '/teambuilding/herzhirn_21/tb2/tb2.jpeg',
+    '/teambuilding/herzhirn_21/tb2/tb3a.jpeg',
+    '/teambuilding/herzhirn_21/tb2/tb3b.jpeg',
     '/teambuilding/herzhirn_21/zonen.png'
   ]
 };
