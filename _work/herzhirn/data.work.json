@@ -21,7 +21,7 @@
             {
               "title": "Mitte",
               "info": "Hinter dem Ball bleiben, den Ball aus dem Handgelenk Richtung geben:\n* Drehung um den Zeigefinger (1 Uhr),\nder Ball soll links am Block vorbeistreifen,\n* Drehung um den kleinen Finger (11 Uhr),\nder Ball soll rechts am Block vorbeistreifen.",
-              "expanded": true,
+              "expanded": false,
               "expandedContent": true,
               "height": 150,
               "presentation": false
@@ -29,7 +29,7 @@
             {
               "title": "Außen",
               "info": "* Von außen anlaufen,\n* min 4m vom Netz starten,\n* gerade und schnell laufen.\r\n\n- Je weiter innen der Ball ist, umso agressiver in den Ball hineinspringen und extrem diagonal schlagen!",
-              "expanded": true,
+              "expanded": false,
               "expandedContent": true,
               "height": 150,
               "presentation": false
@@ -190,33 +190,7 @@
         }
       ],
       "expanded": true,
-      "expandedContent": false,
-      "height": 150,
-      "presentation": false
-    },
-    {
-      "title": "Infos zum Angriff",
-      "info": "* **Wann:** Zeitpunkt des Absprungs\n* **Wo:** Ort des Absprung\n\n(siehe auch Spielsystem)",
-      "items": [
-        {
-          "title": "Wann",
-          "info": "1. Tempo - Schnellangriff\n   1, 3, 4\nDie Angreiferin springt, wenn die Aufspielerin den Ball berührt.\nDie Angreiferin orientiert sich an der \"Schulter\" der Aufspielerin.\n\n2. Tempo - Meter-, Kombinationsangriff\n   5v, 6, 8, 9(Mitte oder Pipe)\nDie Angreiferin hat den 1. Schritt gemacht, wenn die Aufspielerin den Ball berührt.\n\"Die Angreiferin ist am linken Fuß.\"\n\n3. Tempo - Hoher Ball\n   0, 2, 9(1)\nDie Angreiferin startet nachdem die Aufspielerin gespielt hat.",
-          "expanded": false,
-          "expandedContent": true,
-          "height": 150,
-          "presentation": false
-        },
-        {
-          "title": "Wo",
-          "info": "1: bei der Aufspielerin(vor ihr)\n3: bei der Aufspielerin (hinter ihr)\n4: ca. 2-3m vor der Aufspielerin\n\n5v: ca.1-1,5m vor der Aufspielerin\n6: Pos. 4 - \"bei der Antenne\"\n8: ca. 3,5-4m vor der Aufspielerin\n\n0: Pos. 4 - \"bei der Antenne links\"\n2: Pos. 2 - \"bei der Antenne rechts\"\n\n9er - Hinterfeld\nimmer knapp(!) hinter der 3m-Linie\nMitte: genau in der Mitte\nPipe: hinter der Aufspielerin\n1: rechts, knapp innerhalb der Seitenlinie",
-          "expanded": false,
-          "expandedContent": true,
-          "height": 150,
-          "presentation": false
-        }
-      ],
-      "expanded": true,
-      "expandedContent": false,
+      "expandedContent": true,
       "height": 150,
       "presentation": false
     },
@@ -265,7 +239,7 @@
               "presentation": false
             }
           ],
-          "expanded": true,
+          "expanded": false,
           "expandedContent": true,
           "height": 150,
           "presentation": false
@@ -299,15 +273,59 @@
               "presentation": false
             }
           ],
-          "expanded": true,
+          "expanded": false,
           "expandedContent": true,
           "height": 103,
           "presentation": false
         }
       ],
-      "expanded": true,
+      "expanded": false,
       "expandedContent": true,
       "height": 150,
+      "presentation": false
+    },
+    {
+      "title": "Taktik",
+      "info": "* **Angriff**\r\n* **Aufspiel**",
+      "items": [
+        {
+          "title": "Angriff",
+          "info": "* **Wann:** Zeitpunkt des Absprungs\n* **Wo:** Ort des Absprung\n\n(siehe auch Spielsystem)",
+          "items": [
+            {
+              "title": "Wann",
+              "info": "1\\. Tempo - Schnellangriff - **1, 3, 4**\nDie Angreiferin springt, wenn die Aufspielerin den Ball berührt.\nDie Angreiferin orientiert sich an der \"Schulter\" der Aufspielerin.\n\n2\\. Tempo - Meter-, Kombinationsangriff - **5v, 6, 8, 9(Mitte oder Pipe)**\nDie Angreiferin hat den 1. Schritt gemacht, wenn die Aufspielerin den Ball berührt.\n\"Die Angreiferin ist am linken Fuß.\"\n\n3\\. Tempo - Hoher Ball - **0, 2, 9(1)**\nDie Angreiferin startet nachdem die Aufspielerin gespielt hat.",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            },
+            {
+              "title": "Wo",
+              "info": "1: bei der Aufspielerin(vor ihr)\n3: bei der Aufspielerin (hinter ihr)\n4: ca. 2-3m vor der Aufspielerin\n\n5v: ca.1-1,5m vor der Aufspielerin\n6: Pos. 4 - \"bei der Antenne\"\n8: ca. 3,5-4m vor der Aufspielerin\n\n0: Pos. 4 - \"bei der Antenne links\"\n2: Pos. 2 - \"bei der Antenne rechts\"\n\n9er - Hinterfeld\nimmer knapp(!) hinter der 3m-Linie\nMitte: genau in der Mitte\nPipe: hinter der Aufspielerin\n1: rechts, knapp innerhalb der Seitenlinie",
+              "expanded": true,
+              "expandedContent": true,
+              "height": 150,
+              "presentation": false
+            }
+          ],
+          "expanded": false,
+          "expandedContent": true,
+          "height": 82,
+          "presentation": false
+        },
+        {
+          "title": "Aufspiel",
+          "info": "* **Außenangreiferin: 6/8**\r\nDie Außenagreiferin muss von außerhalb des Spielfelds anlaufen, beim **6er** fehlt die Zeit nach der Annahme oder Feldverteidigung...\r\n=> Annahme: **8** - keine Annahme/Feldvertetidgung: **6**\r\n\r\n* **Mittelblockerin beobachten**\r\nManche Mittelblockerinnen entscheiden sehr früh, was die Aufspielerin tun wird und bewegen sich sehr früh zum Block. Die Aufspielerin, die das erkennt, soll in die andere Richtung aufspielen.\r\n\r\n* **Weite Wege**\r\nEs geht wieder darum möglichst gegen die Laufrichtung der gegnerischen Mittelblockerin aufzuspielen. Die Mittelblockerin geht mit der Aufspielerin am Netz mit um sich gegen einen 1er zu positionieren, also die Außenangreiferin anspielen, die weiter weg ist.",
+          "expanded": true,
+          "expandedContent": true,
+          "height": 150,
+          "presentation": false
+        }
+      ],
+      "expanded": true,
+      "expandedContent": true,
+      "height": 43,
       "presentation": false
     }
   ],
