@@ -44,249 +44,266 @@
       <g id="ball_actor_2" transform="translate(414 -950)">
         <circle fill="whitesmoke" stroke="none" cx="0" cy="0" r="25.0"/>
       </g>
-      <g id="primitive_actor_3" data-xid="actor_option.anlauf" transform="translate(410 350)">
-        <line x1="0" y1="0" x2="-310" y2="-200" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
+      <g id="player_actor_3" transform="translate(550 50) rotate(-90)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_3-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_3-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_3-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_3-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_3-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_3-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">Au2</text>
       </g>
       <g id="primitive_actor_4" data-xid="actor_option.anlauf" transform="translate(410 350)">
+        <line x1="0" y1="0" x2="-360" y2="-50" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
+      </g>
+      <g id="primitive_actor_5" data-xid="actor_option.anlauf" transform="translate(410 350)">
         <line x1="0" y1="0" x2="30" y2="-240" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="30" y1="-240" x2="42.093386622447824" y2="-205.73540456973117" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="30" y1="-240" x2="9.844355629253627" y2="-209.76653344388043" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
       </g>
-      <g id="player_actor_5" transform="translate(100 150) rotate(120)" data-optimize-text="true">
+      <g id="primitive_actor_6" data-xid="actor_option.anlauf" transform="translate(410 350)">
+        <line x1="0" y1="0" x2="14" y2="-120" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="primitive_actor_7" data-xid="actor_option.anlauf" transform="translate(424 230)">
+        <line x1="0" y1="0" x2="60" y2="-60" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="primitive_actor_8" data-xid="actor_option.anlauf" transform="translate(484 170)">
+        <line x1="0" y1="0" x2="296" y2="-10" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="primitive_actor_9" data-xid="actor_option.anlauf" transform="translate(780 160)">
+        <line x1="0" y1="0" x2="20" y2="-20" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="primitive_actor_10" data-xid="actor_option.anlauf" transform="translate(800 140)">
+        <line x1="0" y1="0" x2="0" y2="-30" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+        <line x1="0" y1="-30" x2="16.25" y2="2.5" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+        <line x1="0" y1="-30" x2="-16.25" y2="2.5" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="player_actor_11" transform="translate(50 300) rotate(100)" data-optimize-text="true">
         <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_5-prepareblock" style="display: none;">
+        <g id="player_actor_11-prepareblock" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
         </g>
-        <g id="player_actor_5-block" style="display: none;">
+        <g id="player_actor_11-block" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
         </g>
-        <g id="player_actor_5-preparereception" style="display: none;">
+        <g id="player_actor_11-preparereception" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
         </g>
-        <g id="player_actor_5-reception" style="display: none;">
+        <g id="player_actor_11-reception" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
         </g>
-        <g id="player_actor_5-attack" style="display: none;">
+        <g id="player_actor_11-attack" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
         </g>
-        <g id="player_actor_5-attackleft" style="display: none;">
+        <g id="player_actor_11-attackleft" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
         </g>
-        <g id="player_actor_5-set" style="display: none;">
+        <g id="player_actor_11-set" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
         </g>
-        <text id="player_actor_5-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">MB4</text>
+        <text id="player_actor_11-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">MB4</text>
       </g>
-      <g id="primitive_actor_6" data-xid="actor_option.anlauf" transform="translate(950 400)">
-        <line x1="0" y1="0" x2="-100" y2="-150" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
-      </g>
-      <g id="primitive_actor_7" data-xid="actor_option.anlauf" transform="translate(950 400)">
-        <line x1="0" y1="0" x2="-100" y2="-290" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
-        <line x1="-100" y1="-290" x2="-74.04299184069244" y2="-264.5727267010864" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
-        <line x1="-100" y1="-290" x2="-104.76761374354628" y2="-253.9780294932058" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
-      </g>
-      <g id="player_actor_8" transform="translate(850 250) rotate(-45)" data-optimize-text="true">
-        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_8-prepareblock" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
-        </g>
-        <g id="player_actor_8-block" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
-        </g>
-        <g id="player_actor_8-preparereception" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
-        </g>
-        <g id="player_actor_8-reception" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
-        </g>
-        <g id="player_actor_8-attack" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
-        </g>
-        <g id="player_actor_8-attackleft" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
-        </g>
-        <g id="player_actor_8-set" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
-        </g>
-        <text id="player_actor_8-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">Di2</text>
-      </g>
-      <g id="player_actor_9" transform="translate(350 200) rotate(70)" data-optimize-text="true">
-        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_9-prepareblock" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
-        </g>
-        <g id="player_actor_9-block" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
-        </g>
-        <g id="player_actor_9-preparereception" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
-        </g>
-        <g id="player_actor_9-reception" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
-        </g>
-        <g id="player_actor_9-attack" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
-        </g>
-        <g id="player_actor_9-attackleft" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
-        </g>
-        <g id="player_actor_9-set" style="display: none;">
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
-          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
-        </g>
-        <text id="player_actor_9-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">Au5</text>
-      </g>
-      <g id="primitive_actor_10" data-xid="actor_option.anlauf" transform="translate(-100 400)">
+      <g id="primitive_actor_12" data-xid="actor_option.anlauf" transform="translate(-100 400)">
         <line x1="0" y1="0" x2="300" y2="100" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
       </g>
-      <g id="primitive_actor_11" data-xid="actor_option.anlauf" transform="translate(-100 400)">
+      <g id="primitive_actor_13" data-xid="actor_option.anlauf" transform="translate(-100 400)">
         <line x1="0" y1="0" x2="150" y2="-290" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="150" y1="-290" x2="149.50229183788676" y2="-253.66730416573296" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="150" y1="-290" x2="120.63521843531842" y2="-268.59854902913037" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
       </g>
-      <g id="primitive_actor_12" data-xid="actor_option.anlauf" transform="translate(150 400)">
+      <g id="primitive_actor_14" data-xid="actor_option.anlauf" transform="translate(150 400)">
         <line x1="0" y1="0" x2="50" y2="100" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
       </g>
-      <g id="primitive_actor_13" data-xid="actor_option.anlauf" transform="translate(150 400)">
+      <g id="primitive_actor_15" data-xid="actor_option.anlauf" transform="translate(150 400)">
         <line x1="0" y1="0" x2="100" y2="-290" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="100" y1="-290" x2="104.76761374354628" y2="-253.9780294932058" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="100" y1="-290" x2="74.04299184069244" y2="-264.5727267010864" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
       </g>
-      <g id="player_actor_14" transform="translate(200 500) rotate(5)" data-optimize-text="true">
+      <g id="player_actor_16" transform="translate(200 500) rotate(5)" data-optimize-text="true">
         <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_14-prepareblock" style="display: none;">
+        <g id="player_actor_16-prepareblock" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
         </g>
-        <g id="player_actor_14-block" style="display: none;">
+        <g id="player_actor_16-block" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
         </g>
-        <g id="player_actor_14-preparereception">
+        <g id="player_actor_16-preparereception">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
         </g>
-        <g id="player_actor_14-reception" style="display: none;">
+        <g id="player_actor_16-reception" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
         </g>
-        <g id="player_actor_14-attack" style="display: none;">
+        <g id="player_actor_16-attack" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
         </g>
-        <g id="player_actor_14-attackleft" style="display: none;">
+        <g id="player_actor_16-attackleft" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
         </g>
-        <g id="player_actor_14-set" style="display: none;">
+        <g id="player_actor_16-set" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
         </g>
-        <text id="player_actor_14-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">AA3</text>
+        <text id="player_actor_16-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">AA3</text>
       </g>
-      <g id="primitive_actor_15" data-xid="actor_option.anlauf" transform="translate(410 600)">
+      <g id="primitive_actor_17" data-xid="actor_option.anlauf" transform="translate(410 600)">
         <line x1="0" y1="0" x2="40" y2="-90" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
       </g>
-      <g id="primitive_actor_16" data-xid="actor_option.anlauf" transform="translate(410 600)">
+      <g id="primitive_actor_18" data-xid="actor_option.anlauf" transform="translate(410 600)">
         <line x1="0" y1="0" x2="30" y2="-280" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="30" y1="-280" x2="42.69519723308328" y2="-245.9537892385494" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
         <line x1="30" y1="-280" x2="10.380149730689482" y2="-249.41611575666303" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
       </g>
-      <g id="player_actor_17" transform="translate(450 510)" data-optimize-text="true">
+      <g id="player_actor_19" transform="translate(450 510)" data-optimize-text="true">
         <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_17-prepareblock" style="display: none;">
+        <g id="player_actor_19-prepareblock" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
         </g>
-        <g id="player_actor_17-block" style="display: none;">
+        <g id="player_actor_19-block" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
         </g>
-        <g id="player_actor_17-preparereception">
+        <g id="player_actor_19-preparereception">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
         </g>
-        <g id="player_actor_17-reception" style="display: none;">
+        <g id="player_actor_19-reception" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
         </g>
-        <g id="player_actor_17-attack" style="display: none;">
+        <g id="player_actor_19-attack" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
         </g>
-        <g id="player_actor_17-attackleft" style="display: none;">
+        <g id="player_actor_19-attackleft" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
         </g>
-        <g id="player_actor_17-set" style="display: none;">
+        <g id="player_actor_19-set" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
         </g>
-        <text id="player_actor_17-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">AA6</text>
+        <text id="player_actor_19-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">AA6</text>
       </g>
-      <g id="player_actor_18" transform="translate(700 500) rotate(-5)" data-optimize-text="true">
+      <g id="player_actor_20" transform="translate(700 500) rotate(-5)" data-optimize-text="true">
         <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
-        <g id="player_actor_18-prepareblock" style="display: none;">
+        <g id="player_actor_20-prepareblock" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
         </g>
-        <g id="player_actor_18-block" style="display: none;">
+        <g id="player_actor_20-block" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
         </g>
-        <g id="player_actor_18-preparereception">
+        <g id="player_actor_20-preparereception">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
         </g>
-        <g id="player_actor_18-reception" style="display: none;">
+        <g id="player_actor_20-reception" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
         </g>
-        <g id="player_actor_18-attack" style="display: none;">
+        <g id="player_actor_20-attack" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
         </g>
-        <g id="player_actor_18-attackleft" style="display: none;">
+        <g id="player_actor_20-attackleft" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
         </g>
-        <g id="player_actor_18-set" style="display: none;">
+        <g id="player_actor_20-set" style="display: none;">
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
           <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
         </g>
-        <text id="player_actor_18-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">L1</text>
+        <text id="player_actor_20-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">L1</text>
       </g>
-      <g id="primitive_actor_19" data-xid="actor_option.anlauf" transform="translate(-100 -450)">
+      <g id="primitive_actor_21" data-xid="actor_option.anlauf" transform="translate(910 600)">
+        <line x1="0" y1="0" x2="-560" y2="150" style="stroke: gray; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.5, 15;"/>
+      </g>
+      <g id="primitive_actor_22" data-xid="actor_option.anlauf" transform="translate(910 600)">
+        <line x1="0" y1="0" x2="-60" y2="-280" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+        <line x1="-60" y1="-280" x2="-37.30101538748871" y2="-251.62626923436088" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+        <line x1="-60" y1="-280" x2="-69.07959384500452" y2="-244.8165738506075" style="stroke: gray; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;"/>
+      </g>
+      <g id="player_actor_23" transform="translate(350 750) rotate(80)" data-optimize-text="true">
+        <circle style="fill: firebrick; stroke: none;" transform="scale(1 0.5)" cx="0" cy="0" r="50"/>
+        <g id="player_actor_23-prepareblock" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="-37.5" y1="-25" x2="-22.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 12.5; stroke-linecap: round;" x1="22.5" y1="-25" x2="37.5" y2="-25"/>
+        </g>
+        <g id="player_actor_23-block" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 17; stroke-linecap: round;" x1="-41" y1="-25" x2="41" y2="-25"/>
+        </g>
+        <g id="player_actor_23-preparereception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-62.5" y1="-25" x2="-62.5" y2="-50"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="62.5" y2="-25"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="62.5" y1="-25" x2="62.5" y2="-50"/>
+        </g>
+        <g id="player_actor_23-reception" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="0" y2="-75"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="0" y2="-75"/>
+        </g>
+        <g id="player_actor_23-attack" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_23-attackleft" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-37.5" y2="-50"/>
+        </g>
+        <g id="player_actor_23-set" style="display: none;">
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="-37.5" y1="0" x2="-20" y2="-23"/>
+          <line style="stroke: firebrick; stroke-width: 25; stroke-linecap: round;" x1="37.5" y1="0" x2="20" y2="-23"/>
+        </g>
+        <text id="player_actor_23-text" style="fill: yellow; font: 30px sans-serif;" dy="0.35em" text-anchor="middle" x="0" y="0">Di5</text>
+      </g>
+      <g id="primitive_actor_24" data-xid="actor_option.anlauf" transform="translate(-100 -450)">
         <rect stroke="darkgray" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="#808080" x="0" y="0" width="450" height="335"/>
       </g>
-      <g id="primitive_actor_20" data-xid="actor_option.anlauf" transform="translate(-75 -400)">
-        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">Aufspielerin Pos 5</text>
+      <g id="primitive_actor_25" data-xid="actor_option.anlauf" transform="translate(-75 -400)">
+        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">Aufspielerin Pos 2</text>
       </g>
-      <g id="primitive_actor_21" data-xid="actor_option.anlauf" transform="translate(-75 -340)">
+      <g id="primitive_actor_26" data-xid="actor_option.anlauf" transform="translate(-75 -340)">
         <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">AA3: 6, 8(Ann)</text>
       </g>
-      <g id="primitive_actor_22" data-xid="actor_option.anlauf" transform="translate(-75 -280)">
-        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">MB4: 1</text>
+      <g id="primitive_actor_27" data-xid="actor_option.anlauf" transform="translate(-75 -280)">
+        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">MB4: 1, E</text>
       </g>
-      <g id="primitive_actor_23" data-xid="actor_option.anlauf" transform="translate(-75 -220)">
-        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">Di2: 2</text>
-      </g>
-      <g id="primitive_actor_24" data-xid="actor_option.anlauf" transform="translate(-75 -160)">
+      <g id="primitive_actor_28" data-xid="actor_option.anlauf" transform="translate(-75 -220)">
         <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">AA6: 9(6)</text>
+      </g>
+      <g id="primitive_actor_29" data-xid="actor_option.anlauf" transform="translate(-75 -160)">
+        <text text-anchor="start" dy="0.35em" x="0" y="0" style="fill: #EEEEEE; font: 50px sans-serif;">Di5: 9(1)</text>
       </g>
       <g class="actions"/>
     </g>
