@@ -568,6 +568,11 @@ def =
         target: 'annahme/l1.svg'
         #info: 'Aufspielerin Pos 1'
         infos: 'annahme/l1.json'
+      l1E:
+        anchor: 'l1_angetaeuschtes_doppelquick_mit_diagonalspielerin'
+        image: 'annahme_einbeiner/l1_angetaeuschtes_doppelquick_mit_diagonalspielerin.png'
+        target: 'annahme_einbeiner/l1_angetaeuschtes_doppelquick_mit_diagonalspielerin.svg'
+        infos: 'annahme_einbeiner/l1_angetaeuschtes_doppelquick_mit_diagonalspielerin.json'
       l6:
         #title: 'Läufer 6'
         anchor: 'l6'
@@ -589,6 +594,21 @@ def =
         target: 'annahme/l4.svg'
         #info: 'Aufspielerin Pos 4'
         infos: 'annahme/l4.json'
+      l4EA:
+        anchor: 'l4_aussenangreiferin_kreuzt'
+        image: 'annahme_einbeiner/l4_aussenangreiferin_kreuzt.png'
+        target: 'annahme_einbeiner/l4_aussenangreiferin_kreuzt.svg'
+        infos: 'annahme_einbeiner/l4_aussenangreiferin_kreuzt.json'
+      l4EM:
+        anchor: 'l4_mb'
+        image: 'annahme_einbeiner/l4_mb.png'
+        target: 'annahme_einbeiner/l4_mb.svg'
+        infos: 'annahme_einbeiner/l4_mb.json'
+      l4T:
+        anchor: 'l4_angetaeuschte_l5'
+        image: 'annahme_tricks/l4_angetaeuschte_l5.png'
+        target: 'annahme_tricks/l4_angetaeuschte_l5.svg'
+        infos: 'annahme_tricks/l4_angetaeuschte_l5.json'
       l3:
         #title: 'Läufer 3'
         anchor: 'l3'
@@ -596,6 +616,21 @@ def =
         target: 'annahme/l3.svg'
         #info: 'Aufspielerin Pos 3'
         infos: 'annahme/l3.json'
+      l3EA:
+        anchor: 'l3_aussenangreiferin_kreuzt'
+        image: 'annahme_einbeiner/l3_aussenangreiferin_kreuzt.png'
+        target: 'annahme_einbeiner/l3_aussenangreiferin_kreuzt.svg'
+        infos: 'annahme_einbeiner/l3_aussenangreiferin_kreuzt.json'
+      l3EM:
+        anchor: 'l3_mb'
+        image: 'annahme_einbeiner/l3_mb.png'
+        target: 'annahme_einbeiner/l3_mb.svg'
+        infos: 'annahme_einbeiner/l3_mb.json'
+      l3T:
+        anchor: 'l3_angetaeuschte_l6'
+        image: 'annahme_tricks/l3_angetaeuschte_l6.png'
+        target: 'annahme_tricks/l3_angetaeuschte_l6.svg'
+        infos: 'annahme_tricks/l3_angetaeuschte_l6.json'
       l2:
         #title: 'Läufer 2'
         anchor: 'l2'
@@ -603,6 +638,21 @@ def =
         target: 'annahme/l2.svg'
         #info: 'Aufspielerin Pos 2'
         infos: 'annahme/l2.json'
+      l2EA:
+        anchor: 'l2_aussenangreiferin_kreuzt'
+        image: 'annahme_einbeiner/l2_aussenangreiferin_kreuzt.png'
+        target: 'annahme_einbeiner/l2_aussenangreiferin_kreuzt.svg'
+        infos: 'annahme_einbeiner/l2_aussenangreiferin_kreuzt.json'
+      l2EM:
+        anchor: 'l2_mb'
+        image: 'annahme_einbeiner/l2_mb.png'
+        target: 'annahme_einbeiner/l2_mb.svg'
+        infos: 'annahme_einbeiner/l2_mb.json'
+      l2T:
+        anchor: 'l2_angetaeuschte_l1'
+        image: 'annahme_tricks/l2_angetaeuschte_l1.png'
+        target: 'annahme_tricks/l2_angetaeuschte_l1.svg'
+        infos: 'annahme_tricks/l2_angetaeuschte_l1.json'
     s:
       aufw1:
         #title: 'Wann 1'
@@ -755,6 +805,14 @@ def =
         infos: 'verteidigung/ohne_2.json'
 
 setTargetLinks = (def) ->
+  # helper function to split title after first comma
+  prepareTitle = (tit) ->
+    if tit.indexOf(',') > -1
+      parts = tit.split(',', 2)
+      if parts.length == 2
+        tit = parts[0] + '<div>' + parts[1].trim() + '</div>'
+    return tit
+
   map = {}
   keyMap = {
     br3: 'system6'
@@ -799,7 +857,7 @@ setTargetLinks = (def) ->
             infos.infos = JSON.parse(json)
             #copy data for overview
             if infos.infos.title != undefined
-              tab3.title = infos.infos.title
+              tab3.title = prepareTitle(infos.infos.title)
             if infos.infos.subtitle != undefined
               tab3.info = infos.infos.subtitle
           tgt = tab3.target.replace('.svg', '.html')
@@ -1019,7 +1077,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'grundlagen_u10'
@@ -1066,7 +1124,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'grundlagen_u11'
@@ -1113,7 +1171,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'grundlagen_u12'
@@ -1194,7 +1252,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'system4'
@@ -1308,7 +1366,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'system6'
@@ -1415,7 +1473,7 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
+        templates: ['main.html', 'block.html', 'table.html', 'table2.html', 'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
           back: '/ov.html'
           name: 'spielfeld6'
@@ -1441,7 +1499,8 @@ config = (grunt) ->
       options:
         include: 'D:/workdir/brueckl-hotvolleys-source/_work/include/'
         templatePath: 'D:/workdir/brueckl-hotvolleys-source/_work/ovsvg/templates/'
-        templates: ['main.html', 'block.html', 'blockX.html',
+        templates: ['main.html',
+                    'block.html', 'block2.html', 'block2b.html',
                     'table.html', 'table2.html',
                     'tableheader.html', 'tableimage.html', 'tableinfo.html']
         vars:
@@ -1451,28 +1510,97 @@ config = (grunt) ->
       content:
         template: 'main'
         title: 'Spielsystem'
-        block: [
+
+        block2: [
           {
             title: 'Annahme'
-            table: ''
-            table2: [
+            block2b: [
               {
-                tableheader: [ def.sys1.r.ann ]
-                tableimage: [ def.sys1.r.ann ]
-                tableinfo: [ def.sys1.r.ann ]
+                title: 'Grundlagen'
+                table2: [
+                  {
+                    tableheader: [ def.sys1.r.ann ]
+                    tableimage: [ def.sys1.r.ann ]
+                    tableinfo: [ def.sys1.r.ann ]
+                  }
+                ]
               }
               {
-                tableheader: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
-                tableimage: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
-                tableinfo: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                title: 'Standard'
+                table2: [
+                  {
+                    tableheader: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                    tableimage: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                    tableinfo: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+                  }
+                  {
+                    tableheader: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                    tableimage: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                    tableinfo: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                  }
+                ]
               }
               {
-                tableheader: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
-                tableimage: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
-                tableinfo: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+                title: 'Einbeiner'
+                table2: [
+                  {
+                    tableheader: [ def.sys1.r.l1E ]
+                    tableimage: [ def.sys1.r.l1E ]
+                    tableinfo: [ def.sys1.r.l1E ]
+                  }
+                  {
+                    tableheader: [ def.sys1.r.l2EM, def.sys1.r.l2EA ]
+                    tableimage: [ def.sys1.r.l2EM, def.sys1.r.l2EA ]
+                    tableinfo: [ def.sys1.r.l2EM, def.sys1.r.l2EA ]
+                  }
+                  {
+                    tableheader: [ def.sys1.r.l3EM, def.sys1.r.l3EA ]
+                    tableimage: [ def.sys1.r.l3EM, def.sys1.r.l3EA ]
+                    tableinfo: [ def.sys1.r.l3EM, def.sys1.r.l3EA ]
+                  }
+                  {
+                    tableheader: [ def.sys1.r.l4EM, def.sys1.r.l4EA ]
+                    tableimage: [ def.sys1.r.l4EM, def.sys1.r.l4EA ]
+                    tableinfo: [ def.sys1.r.l4EM, def.sys1.r.l4EA ]
+                  }
+                ]
+              }
+              {
+                title: 'Tricks'
+                table2: [
+                  {
+                    tableheader: [ def.sys1.r.l2T, def.sys1.r.l3T, def.sys1.r.l4T ]
+                    tableimage: [ def.sys1.r.l2T, def.sys1.r.l3T, def.sys1.r.l4T ]
+                    tableinfo: [ def.sys1.r.l2T, def.sys1.r.l3T, def.sys1.r.l4T ]
+                  }
+                ]
               }
             ]
           }
+        ]
+
+        block: [
+          # {
+          #   title: 'Annahme old'
+          #   table: ''
+          #   table2: [
+          #     {
+          #       tableheader: [ def.sys1.r.ann ]
+          #       tableimage: [ def.sys1.r.ann ]
+          #       tableinfo: [ def.sys1.r.ann ]
+          #     }
+          #     {
+          #       tableheader: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+          #       tableimage: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+          #       tableinfo: [ def.sys1.r.l1, def.sys1.r.l6, def.sys1.r.l5 ]
+          #     }
+          #     {
+          #       tableheader: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+          #       tableimage: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+          #       tableinfo: [ def.sys1.r.l2, def.sys1.r.l3, def.sys1.r.l4 ]
+          #     }
+          #   ]
+          # }
           {
             title: 'Aufspiel + Angriff'
             table: ''

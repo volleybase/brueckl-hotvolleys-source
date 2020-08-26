@@ -13,6 +13,26 @@ module.exports = function init(grunt) {
     // console.log(this)
     // console.log('----------------------------------------------------------')
 
+    // id generator
+    const ids = {
+      _cur: 0,
+
+      'reset': () => {
+        this._cur = 0
+      },
+      'next': (prefix) => {
+        return prefix + '_' + ++this._cur
+      },
+      'handle': (tpl) => {
+        if (tpl.indexOf('{{id}}') >= 0) {
+          const re = new RegExp('{{id}}', 'g')
+          tpl = tpl.replace(re, ids.next('h'))
+        }
+        return tpl
+      }
+    }
+    ids.reset()
+
     // load templates
     const tplDir = this.data.options.templatePath;
     const tpls = {}
@@ -33,6 +53,11 @@ module.exports = function init(grunt) {
         //   + keys
         //   + '\n------------------------')
 
+        grunt.verbose.writeln('template: ' + tpl)
+
+        // ids
+        tpl = ids.handle(tpl)
+
         let cont = process(grunt, tpl, include, null, variables)
         const keys2 = keys !== undefined ? keys : Object.keys(data)
         grunt.verbose.writeln('handle: ' + keys2)
@@ -40,9 +65,9 @@ module.exports = function init(grunt) {
         keys2.forEach((key) => {
           let res = ''
 
-          if (key === 'table2') {
-            res = ''
-          }
+          // if (key === 'table2') {
+          //   res = ''
+          // }
 
           if (tpls[key] !== undefined && data[key]) {
             if (Array.isArray(data[key])) {
@@ -59,7 +84,18 @@ module.exports = function init(grunt) {
             }
           }
 
+          // replace key
           cont = cont.replace(new RegExp('{{' + key + '}}', 'g'), res)
+
+          // check for key with function
+          let funcs = ['alt']
+          funcs.forEach((f) => {
+            let xkey = '{{' + f + ':' + key + '}}'
+            if (cont.indexOf(xkey) >= 0) {
+              // replace key and apply function
+              cont = cont.replace(new RegExp(xkey, 'g'), eval(f + "('" + res + "')")) // NOSONAR
+            }
+          })
         })
 
         return cont
@@ -77,8 +113,14 @@ module.exports = function init(grunt) {
 
       // create content
       // console.log('start: ' + this.data.content.template)
-      const content = handler(this.data.options.include, this.data.options.vars,
+      let content = handler(this.data.options.include, this.data.options.vars,
         tpls[this.data.content.template], this.data.content, keys)
+
+      // remove unused keys
+      content = content
+          .replace(new RegExp('{{block2}}', 'g'), '')
+          .replace(new RegExp('{{table}}', 'g'), '')
+          .replace(new RegExp('{{table2}}', 'g'), '');
 
       // write resulting file
       grunt.verbose.writeln('Create: ' + this.data.target)
@@ -87,6 +129,13 @@ module.exports = function init(grunt) {
 
     grunt.log.ok()
   })
+}
+
+const alt = (txt) => {
+  return txt
+    .replace('<div>', ', ')
+    .replace('</div>', '')
+    .replace(/"/, "'")
 }
 
 const process = (grunt, content, include, options, variables) => {
@@ -123,6 +172,6 @@ const process = (grunt, content, include, options, variables) => {
     })
   }
 
-  // return result
+  // return the result
   return c
 }
