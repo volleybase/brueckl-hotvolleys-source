@@ -46,6 +46,9 @@ namespace Parser
 
         private static string fnTargetsA = @"D:\workdir\brueckl-hotvolleys-source\data\training\targets_a.json";
         private static bool rawMode = false;
+
+        private static string fnTodos = @"D:\workdir\brueckl-hotvolleys-source\data\training\";
+
         #endregion
 
         #region -- The main entry point. --------------------------------------
@@ -78,6 +81,10 @@ namespace Parser
                             Log(mode);
                             ok = ExportTargets(filename, mode);
                             break;
+                        case "Todos":
+                            Log(mode);
+                            ok = ExportTodos(filename, mode);
+                            break;
                     }
                 }
             }
@@ -86,7 +93,7 @@ namespace Parser
             {
                 Log("Parser filename modus");
                 Log("  filename: The file name of the excel file to read.");
-                Log("  modus: HerzHirn or Targets");
+                Log("  modus: HerzHirn, Targets, Todos");
             }
             else
             {
@@ -240,7 +247,7 @@ namespace Parser
             var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             return Markdown.ToHtml(txt, pipeline)
                 .TrimEnd('\n')
-                .Replace(">\n<", "><")
+                // ?? .Replace(">\n<", "><")
                 .Replace("\n", "<br>");
         }
 
@@ -302,6 +309,57 @@ namespace Parser
             File.WriteAllText(fnTargetsA, items.ToString(), Encoding.UTF8);
             ok = true;
             er.Close();
+            return ok;
+        }
+
+        #endregion
+
+        #region -- Todos --
+
+        private static bool ExportTodos(string filename, string sheetname)
+        {
+            bool ok = false;
+
+            ExcelReader er = new ExcelReader();
+            er.Open(filename, sheetname);
+
+            int col = 0,
+                initLimit = 5,
+                limit = initLimit;
+            bool search = true;
+            while (search)
+            {
+                Range rgFn = (Range)er.worksheet.Cells[2, ++col];
+                Range rgTxt = (Range)er.worksheet.Cells[3, col];
+
+                // check height to ignore hidden lines
+                double w = (double)rgTxt.Width;
+                if (w > 0)
+                {
+                    string fn = rgFn.Text as string;
+                    string txt = rgTxt.Text as string;
+                    if (string.IsNullOrWhiteSpace(fn) || string.IsNullOrWhiteSpace(txt))
+                    {
+                        if (--limit <= 0)
+                        {
+                            search = false;
+                        }
+                    }
+                    else
+                    {
+                        limit = initLimit;
+                        Log(col + " - " + fn);
+
+                        JValue value = new JValue(_txt(txt));
+                        // File.WriteAllText(fnTodos + fn, "\"" + value.ToString() + "\"", Encoding.UTF8);
+                        File.WriteAllText(fnTodos + fn, value.ToString(), Encoding.UTF8);
+                    }
+                }
+            }
+
+            ok = true;
+            er.Close();
+
             return ok;
         }
 
