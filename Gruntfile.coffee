@@ -66,11 +66,15 @@ files_statistics_19 = [
   "statistics/19/**",
   "!**/*_old.*"
 ]
+files_statistics_21 = [
+  "statistics/21/**",
+  "!**/*_old.*"
+]
+
 files_teambuilding_19 = [
   "teambuilding/br3_19/**",
   "!**/*_old.*"
 ]
-
 files_teambuilding_21_source1 = [
   "_work/herzhirn/herzhirn.html"
 ]
@@ -115,6 +119,7 @@ files_copy = files
   .concat(files_favicons)
   .concat(files_info)
   .concat(files_statistics_19)
+  .concat(files_statistics_21)
   .concat(files_teambuilding_19)
   .concat(files_teambuilding_21)
   .concat(file_service_worker);
@@ -959,6 +964,7 @@ config = (grunt) ->
         favicons: files_favicons
         info: files_info
         statistics_19: files_statistics_19
+        statistics_21: files_statistics_21
         teambuilding_19: files_teambuilding_19
         teambuilding_21: files_teambuilding_21
 
@@ -1709,10 +1715,12 @@ config = (grunt) ->
     statistics_19:
       files: files_statistics_19
       tasks: ['initWorker', 'newer:copy:deploy2']
+    statistics_21:
+      files: files_statistics_21
+      tasks: ['initWorker', 'newer:copy:deploy2']
     teambuilding_19:
       files: files_teambuilding_19
       tasks: ['initWorker', 'newer:copy:deploy2']
-
     teambuilding_21_source1:
       files: files_teambuilding_21_source1,
       tasks: ['xcopy:herzhirn1']

@@ -8,3 +8,4 @@ package-lock.json
 ~*.xlsx
 ~*.xlsm
 **/*_old.*
+_work/statistics/pdf
