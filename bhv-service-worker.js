@@ -3,7 +3,7 @@
 // the names and the files of the cache
 const CACHE = {
   'main': 'bhv-infoapp-main-2a464bbbc33e6c15e31f8dfbc2be510e',
-  'data': 'bhv-infoapp-data-fbb3f7a958a8fa868c3d9e5e3d4cdf06',
+  'data': 'bhv-infoapp-data-25935dee7a56849aea15dca737044e60',
   'system1': 'bhv-infoapp-system1-396e168e59deacc76eaa7b4b1fbf8334',
   'system4': 'bhv-infoapp-system4-cce310d598413509c955f7a3dad58314',
   'system6': 'bhv-infoapp-system6-e0b78a63025a9acaa66928075091f4c6',
