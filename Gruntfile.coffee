@@ -1,5 +1,9 @@
 fs = require('fs')
 
+#string utils
+String::startsWith ?= (s) -> @[...s.length] is s
+String::endsWith   ?= (s) -> s is '' or @[-s.length..] is s
+
 # create_manifest = require('./_work/create.manifest.js')
 xcopy = require('./_work/_grunt/xcopy.js')
 create_svg = require('./_work/svg/create_svg.js')
@@ -38,6 +42,7 @@ files = [
   # ignore the old files
   "!**/*_old.*"
 ]
+files_test = files.concat(['!manifest.webmanifest'])
 files_system1 = [
   "system1/**"
 ]
@@ -122,8 +127,19 @@ files_copy = files
   .concat(files_statistics_21)
   .concat(files_teambuilding_19)
   .concat(files_teambuilding_21)
-  .concat(file_service_worker);
-
+  .concat(file_service_worker)
+files_copy_test = files_test
+  .concat(files_data)
+  .concat(files_system1)
+  .concat(files_system4)
+  .concat(files_system6)
+  .concat(files_favicons)
+  .concat(files_info)
+  .concat(files_statistics_19)
+  .concat(files_statistics_21)
+  .concat(files_teambuilding_19)
+  .concat(files_teambuilding_21)
+  .concat(files_video_feedback)
 
 # grundlagen
 def =
@@ -896,6 +912,13 @@ config = (grunt) ->
       expand: true
       cwd: "/workdir/BruecklHotvolleys.github.io"
       src: ["**/*", "!.git"]
+    test:
+      options:
+        force: true
+      expand: true
+      cwd: "/workdir/bhv-test"
+      src: ["**/*"]
+
 
   realFavicon:
     favicons:
@@ -979,7 +1002,6 @@ config = (grunt) ->
         src: files_teambuilding_21_source2
         dest: "/workdir/brueckl-hotvolleys-source/teambuilding/herzhirn_21"
       ]
-
     deploy1_do_not_change:
       # nonull -> error if source does not exist
       nonull: true
@@ -1010,6 +1032,32 @@ config = (grunt) ->
     #     src: [ "animator.js", "svgviewer.js" ]
     #     dest: "/workdir/brueckl-hotvolleys-source/script"
     #   ]
+    test:
+      nonull: true
+      options:
+        force: true
+        noProcess: [ '**/*.{png,gif,jpg,jpeg,ico,psd,pdf,js,json,md,css,mp4,mp3,xml,svg,gz}' ]
+        process: (content, filename) ->
+
+          # do not include manifest
+          if filename is "index.html"
+            #console.log "copy " + filename
+            content = content.replace("<link rel=\"manifest\" href=\"/manifest.webmanifest\">", "")
+
+          # remove init of service worker
+          if filename.endsWith(".html")
+            content = content
+              .replace("window.bhv.utils.registerSW();", "")
+              .replace("window.bhv.utils.connectSW();", "")
+
+          #return result
+          content
+
+      files: [
+        cwd: "/workdir/brueckl-hotvolleys-source/"
+        src: files_copy_test
+        dest: "/workdir/bhv-test/"
+      ]
 
   xcopy:
     herzhirn1:
@@ -1730,6 +1778,9 @@ config = (grunt) ->
     teambuilding_21:
       files: files_teambuilding_21,
       tasks: ['initWorker', 'newer:copy:deploy2']
+    test:
+      files: files_copy_test
+      tasks: ['newer:copy:test']
 
   encode:
     admin:
@@ -1788,6 +1839,20 @@ module.exports = (grunt) ->
     'copy:deploy2'
   ])
 
+  grunt.registerTask('build_test', [
+    'clean:test',
+
+    'clean:herzhirn',
+    'xcopy:herzhirn1',
+    'copy:herzhirn2',
+    #'copy:svgviewer',
+
+    'createovsvg',
+    'createsvg',
+
+    'copy:test'
+  ])
+
   grunt.registerTask('info', () ->
     i = (txt) ->
       grunt.log.writeln(txt)
@@ -1820,5 +1885,13 @@ module.exports = (grunt) ->
     i('')
     i('  build')
     i('    Alles erstellen')
+    i('')
+    i('-- test --')
+    i('')
+    i('  clean:test')
+    i('    Test säubern')
+    i('')
+    i('  build_test')
+    i('    Test erstellen')
     i('')
   );

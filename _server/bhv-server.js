@@ -175,3 +175,36 @@ if (useHttp2) {
 }
 
 // #endregion
+
+
+// #region -- bhv - new info pages --------------------------------------------
+
+var bhvTest = express()
+
+// logging
+const loggerTest = function(req, res, next) {
+  console.log(
+    '(T) %s %s %s %s', req.method, req.protocol,
+    (req.headers && req.headers['host'] ? req.headers['host'] : req.hostname),
+    req.url
+  );
+  next();
+}
+bhvTest.use(loggerTest)
+
+// static files
+bhvTest.use(express.static('D:/workdir/bhv-test'))
+
+// error info
+const onerrorTest = function (req, res, next) {
+  res.status(404).sendFile('D:/workdir/bhv-test/404.html');
+  console.log('BHV(Test): %s %s %s %s', req.method, res.statusCode, req.url, req.path);
+}
+bhvTest.use(onerror)
+
+// start
+bhvTest.listen(5050, function () {
+  console.log('BHV Info pages - test(5050)!')
+})
+
+// #endregion
