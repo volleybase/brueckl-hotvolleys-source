@@ -113,7 +113,13 @@ file_service_worker = ["bhv-service-worker.js"]
 files_svg = [
   "_work/svg/source/**/*.html",
   "_work/svg/container.html"
-];
+]
+
+# video feedback
+files_video_feedback = [
+  "testvideo/index.html"
+  "testvideo/demo.mp4"
+]
 
 # the files to copy
 files_copy = files
