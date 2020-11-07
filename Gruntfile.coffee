@@ -3,6 +3,8 @@ fs = require('fs')
 #string utils
 String::startsWith ?= (s) -> @[...s.length] is s
 String::endsWith   ?= (s) -> s is '' or @[-s.length..] is s
+#clone
+clone = (obj) -> JSON.parse(JSON.stringify(obj))
 
 # create_manifest = require('./_work/create.manifest.js')
 xcopy = require('./_work/_grunt/xcopy.js')
@@ -24,7 +26,6 @@ files = [
   "elements/**",
   "image/**",
   "script/**",
-  # "testvideo/**",
 
   # "u10/**",
   # "u11/**",
@@ -117,8 +118,8 @@ files_svg = [
 
 # video feedback
 files_video_feedback = [
-  "testvideo/index.html"
-  "testvideo/demo.mp4"
+  "videofeedback/index.html"
+  "videofeedback/demo.mp4"
 ]
 
 # the files to copy
@@ -146,6 +147,18 @@ files_copy_test = files_test
   .concat(files_teambuilding_19)
   .concat(files_teambuilding_21)
   .concat(files_video_feedback)
+files_copy_test_video = files_video_feedback
+files_copy_test_x = files_test
+  .concat(files_data)
+  .concat(files_system1)
+  .concat(files_system4)
+  .concat(files_system6)
+  .concat(files_favicons)
+  .concat(files_info)
+  .concat(files_statistics_19)
+  .concat(files_statistics_21)
+  .concat(files_teambuilding_19)
+  .concat(files_teambuilding_21)
 
 # grundlagen
 def =
@@ -925,7 +938,6 @@ config = (grunt) ->
       cwd: "/workdir/bhv-test"
       src: ["**/*"]
 
-
   realFavicon:
     favicons:
       src: '_work/favicons/bhv.svg'
@@ -1042,7 +1054,7 @@ config = (grunt) ->
       nonull: true
       options:
         force: true
-        noProcess: [ '**/*.{png,gif,jpg,jpeg,ico,psd,pdf,js,json,md,css,mp4,mp3,xml,svg,gz}' ]
+        noProcess: [ '**/*.{png,gif,jpg,jpeg,ico,psd,pdf,js,json,md,css,mp4,mp3,m4v,xml,svg,gz}' ]
         process: (content, filename) ->
 
           # do not include manifest
@@ -1784,9 +1796,12 @@ config = (grunt) ->
     teambuilding_21:
       files: files_teambuilding_21,
       tasks: ['initWorker', 'newer:copy:deploy2']
-    test:
-      files: files_copy_test
-      tasks: ['newer:copy:test']
+    test_video:
+      files: files_copy_test_video
+      tasks: ['newer:copy:test_video']
+    test_x:
+      files: files_copy_test_x
+      tasks: ['copy:test_x']
 
   encode:
     admin:
@@ -1807,7 +1822,20 @@ config = (grunt) ->
 
 module.exports = (grunt) ->
 
-  grunt.initConfig(config(grunt))
+  cfg = config(grunt)
+  cfg.copy.test_video = clone(cfg.copy.test)
+  cfg.copy.test_video.files[0].src = files_copy_test_video
+  cfg.copy.test_x = clone(cfg.copy.test)
+  cfg.copy.test_x.files[0].src = files_copy_test_x
+  #console.log(JSON.stringify(cfg.copy, null, 2))
+  #console.log("------------------------------------------------------------------------------------------------")
+  #console.log(JSON.stringify(cfg.copy.testb.files[0].src, null, 2))
+  #console.log("------------------------------------------------------------------------------------------------")
+  #console.log(JSON.stringify(files_test, null, 2))
+  #console.log("------------------------------------------------------------------------------------------------")
+  #console.log(JSON.stringify(files_copy_test_b, null, 2))
+  #console.log("------------------------------------------------------------------------------------------------")
+  grunt.initConfig(cfg)
 
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-copy')

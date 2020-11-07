@@ -299,7 +299,8 @@ function initMenu() {
       var id = this.getAttribute('id'),
           mark = this.querySelector('span'),
           nr;
-      console.log('menuitem: ' + id);
+      console.log('menuitem: ' + id + ' '
+          + (mark != null ? mark.innerText : ''));
 
       switch (id) {
 
@@ -308,7 +309,7 @@ function initMenu() {
           showLive = !showLive;
           containerLive.style.display = showLive ? 'block' : 'none';
           // mark.innerHTML = showLive ? menu_yes : menu_no;
-          setMI(mark, showDelayed);
+          setMI(mark, showLive);
           updateContainer();
           break;
 
@@ -378,12 +379,11 @@ function open_menu() {
 
 function init_video() {
   const videoElement = document.querySelector('video#video');
-  const audioSelect = document.querySelector('select#audioSource');
+  //const audioSelect = document.querySelector('select#audioSource');
   const videoSelect = document.querySelector('select#videoSource');
 
-  //navigator.mediaDevices.enumerateDevices()
-  //  .then(gotDevices).then(getStream).catch(handleError);
-  navigator.mediaDevices.getUserMedia({audio: true, video: true})
+  // navigator.mediaDevices.getUserMedia({audio: true, video: true})
+  navigator.mediaDevices.getUserMedia({ video: true })
     .then(navigator.mediaDevices.enumerateDevices()
           .then(gotDevices)
           .then(getStream))
@@ -395,12 +395,14 @@ function init_video() {
       const option = document.createElement('option');
       option.value = deviceInfo.deviceId;
       if (deviceInfo.kind === 'audioinput') {
-        option.text = deviceInfo.label ||
-          'microphone ' + (audioSelect.length + 1);
-        audioSelect.appendChild(option);
+        // ignore audios
+        //   option.text = deviceInfo.label ||
+        //     'microphone ' + (audioSelect.length + 1);
+        //   audioSelect.appendChild(option);
+      } else if (deviceInfo.kind === 'audiooutput') {
+        // ignore audios
       } else if (deviceInfo.kind === 'videoinput') {
-        option.text = deviceInfo.label || 'camera ' +
-          (videoSelect.length + 1);
+        option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
         videoSelect.appendChild(option);
       } else {
         console.log('Found another kind of device: ', deviceInfo);
@@ -448,14 +450,14 @@ function init_video() {
       any = true;
     }
 
-    if (audioSelect.value.substr(0, 3) === 'xx-') {
-
-    } else {
-      constraints.audio = {
-        deviceId: { exact: audioSelect.value }
-      };
-      any = true;
-    }
+    // if (audioSelect.value.substr(0, 3) === 'xx-') {
+    //
+    // } else {
+    //   constraints.audio = {
+    //     deviceId: { exact: audioSelect.value }
+    //   };
+    //   any = true;
+    // }
 
     if (any) {
       navigator.mediaDevices.getUserMedia(constraints).
@@ -463,7 +465,7 @@ function init_video() {
     }
   }
 
-  audioSelect.onchange = getStream;
+  //audioSelect.onchange = getStream;
   videoSelect.onchange = getStream;
 
   function gotStream(stream) {
@@ -490,9 +492,9 @@ function init_video() {
       <li id="mi2"><span class="marker">&cir;</span>Verzögert</li>
       <!--li id="mi3"><span class="marker">&cir;</span>Vollbild</li-->
       <li id="mi4"></li>
-      <li id="mi5"><div class="select-wrapper"><select id="audioSource">
+      <!--li id="mi5"><div class="select-wrapper"><select id="audioSource">
         <option value="xx-none">Ohne Ton</option>
-      </select></div></li>
+      </select></div></li-->
       <li id="mi6"><div class="select-wrapper"><select id="videoSource">
         <option value="xx-none">Ohne Bild</option>
         <option value="xx-demo" selected>Demo</option>
