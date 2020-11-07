@@ -135,6 +135,7 @@ files_copy = files
   .concat(files_teambuilding_19)
   .concat(files_teambuilding_21)
   .concat(file_service_worker)
+  .concat(files_video_feedback)
 files_copy_test = files_test
   .concat(files_data)
   .concat(files_system1)
