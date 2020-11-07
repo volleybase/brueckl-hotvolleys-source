@@ -1009,6 +1009,7 @@ config = (grunt) ->
         statistics_21: files_statistics_21
         teambuilding_19: files_teambuilding_19
         teambuilding_21: files_teambuilding_21
+        videofeedback: files_video_feedback
 
   copy:
     herzhirn2:
