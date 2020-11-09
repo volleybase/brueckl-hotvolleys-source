@@ -148,9 +148,10 @@ files_copy_test = files_test
   .concat(files_teambuilding_19)
   .concat(files_teambuilding_21)
   .concat(files_video_feedback)
+
 files_copy_test_video = files_video_feedback
-files_copy_test_x = files_test
-  .concat(files_data)
+files_copy_test_main = files_test
+files_copy_test_x = files_data
   .concat(files_system1)
   .concat(files_system4)
   .concat(files_system6)
@@ -1753,54 +1754,58 @@ config = (grunt) ->
       target: 'D:/workdir/brueckl-hotvolleys-source/system1/index.html'
 
   watch:
-    initWorker:
-      files: ['_work/serviceworker/serviceworker.js']
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    svg:
-      files: files_svg
-      tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
-    main:
-      files: files
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    system1:
-      files: files_system1
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    system4:
-      files: files_system4
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    system6:
-      files: files_system6
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    data:
-      files: files_data
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    favicons:
-      files: files_favicons
-      tasks: ['realFavicon:favicons', 'initWorker', 'newer:copy:deploy2']
-    info:
-      files: files_info
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    statistics_19:
-      files: files_statistics_19
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    statistics_21:
-      files: files_statistics_21
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    teambuilding_19:
-      files: files_teambuilding_19
-      tasks: ['initWorker', 'newer:copy:deploy2']
-    teambuilding_21_source1:
-      files: files_teambuilding_21_source1,
-      tasks: ['xcopy:herzhirn1']
-    teambuilding_21_source2:
-      files: files_teambuilding_21_source1_watch,
-      tasks: ['copy:herzhirn1']
-    teambuilding_21:
-      files: files_teambuilding_21,
-      tasks: ['initWorker', 'newer:copy:deploy2']
+    # initWorker:
+    #   files: ['_work/serviceworker/serviceworker.js']
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # svg:
+    #   files: files_svg
+    #   tasks: ['createsvg', 'initWorker', 'newer:copy:deploy2']
+    # main:
+    #   files: files
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # system1:
+    #   files: files_system1
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # system4:
+    #   files: files_system4
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # system6:
+    #   files: files_system6
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # data:
+    #   files: files_data
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # favicons:
+    #   files: files_favicons
+    #   tasks: ['realFavicon:favicons', 'initWorker', 'newer:copy:deploy2']
+    # info:
+    #   files: files_info
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # statistics_19:
+    #   files: files_statistics_19
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # statistics_21:
+    #   files: files_statistics_21
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # teambuilding_19:
+    #   files: files_teambuilding_19
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+    # teambuilding_21_source1:
+    #   files: files_teambuilding_21_source1,
+    #   tasks: ['xcopy:herzhirn1']
+    # teambuilding_21_source2:
+    #   files: files_teambuilding_21_source1_watch,
+    #   tasks: ['copy:herzhirn1']
+    # teambuilding_21:
+    #   files: files_teambuilding_21,
+    #   tasks: ['initWorker', 'newer:copy:deploy2']
+
+    test_main:
+      files: files_copy_test_main
+      tasks: ['copy:test_main']
     test_video:
       files: files_copy_test_video
-      tasks: ['newer:copy:test_video']
+      tasks: ['copy:test_video']
     test_x:
       files: files_copy_test_x
       tasks: ['copy:test_x']
@@ -1825,6 +1830,8 @@ config = (grunt) ->
 module.exports = (grunt) ->
 
   cfg = config(grunt)
+  cfg.copy.test_main = clone(cfg.copy.test)
+  cfg.copy.test_main.files[0].src = files_copy_test_main
   cfg.copy.test_video = clone(cfg.copy.test)
   cfg.copy.test_video.files[0].src = files_copy_test_video
   cfg.copy.test_x = clone(cfg.copy.test)
